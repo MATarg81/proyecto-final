@@ -1,10 +1,9 @@
 require("dotenv").config();
-const { default: axios } = require("axios");
+// const { default: axios } = require("axios");
 const { Router } = require("express");
-const {allProducts, productsId} = require('./utils/recipe');
+const {allProducts, productsId} = require('./utils/products');
 const {Product} = require ('../db');
-const { Op, Association } = require("sequelize");
-const { Product } = require('../db');
+// const { Op, Association } = require("sequelize");
 
 
 // Importar todos los routers;
