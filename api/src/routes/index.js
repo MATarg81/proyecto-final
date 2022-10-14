@@ -2,7 +2,7 @@ require("dotenv").config();
 const { default: axios } = require("axios");
 const { Router } = require("express");
 const { Op, Association } = require("sequelize");
-const { Products } = require('../db');
+const { Product } = require('../db');
 
 
 // Importar todos los routers;
@@ -17,7 +17,7 @@ const router = Router();
 router.delete('/products/delete:id', async (req, res, next)=>{
     const { id } = req.params;
     try {
-      await  Products.destroy({
+      await  Product.destroy({
         where:{
             id:id,
         }
