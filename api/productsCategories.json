@@ -1,0 +1,16 @@
+{
+    "results": [
+        {
+            "id": 1,
+            "name": "Ropa"
+        },
+        {
+            "id": 2,
+            "name": "Pelotas"
+        },
+        {
+            "id": 3,
+            "name": "Calzado"
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "results": [
+        {
+            "id": 1,
+            "name": "Futbol 5",
+            "detail": "Entrenamiento fisico individual y en grupo. Practica de tecnicas de equipo. Partidos los fines de semana",
+            "days":"Lunes, Jueves, Domingos",
+            "times": 19.00
+        },
+        {
+            "id": 2,
+            "name": "Natacion",
+            "detail": "Pileta libre o entrenamiento guiado. Pileta de 25 y 50 metros disponibles",
+            "days":"Martes, Miecoles, Viernes",
+            "times": 17.00
+        },
+        {
+            "id": 3,
+            "name": "Futbol 11",
+            "detail": "Entrenamiento fisico individual y en grupo. Practica de tecnicas de equipo. Partidos los fines de semana",
+            "days":"Lunes, Miercoles, Domingos",
+            "times": 16.00
+        },
+        {
+            "id": 4,
+            "name": "Atletismo",
+            "detail": "Preparacion para medio maraton y 10K. Entrenamiento fisico y tecnico.",
+            "days":"Jueves, Domingos",
+            "times": 11.00
+        },
+        {
+            "id": 5,
+            "name": "Basquet",
+            "detail": "Entrenamiento fisico individual y en grupo. Practica de tecnicas de equipo. Partidos los fines de semana",
+            "days":"Miercoles, Viernes, Domingos",
+            "times": 14.00
+        }
+    ]
+}
+
