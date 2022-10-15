@@ -1,7 +1,7 @@
 require("dotenv").config();
 // const { default: axios } = require("axios");
 const { Router } = require("express");
-const {allProducts, productsId} = require('./utils/products');
+const {allProducts, productsId} = require('./controllers/products');
 const {Product} = require ('../db');
 // const { Op, Association } = require("sequelize");
 
@@ -30,27 +30,28 @@ router.delete('/products/:id', async (req, res, next)=>{
     
 })
 
+router.get('/', allProducts)
 
-router.get("/", async(req, res) => {
+// router.get("/", async(req, res) => {
  
-    try {
-        const qname = req.query.name;
-        const totalProducts = await allProducts();
-        ;
-        if(qname) {
-            const productsWithName = totalProducts.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
-            (productsWithName.length) ?
-            res.send(productsWithName)
-            : res.status(404).send('Producto no encontrada');            
-        } else {
-            res.send(totalProducts);
-        }
+//     try {
+//         const qname = req.query.name;
+//         const totalProducts = await allProducts();
+//         ;
+//         if(qname) {
+//             const productsWithName = totalProducts.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
+//             (productsWithName.length) ?
+//             res.send(productsWithName)
+//             : res.status(404).send('Producto no encontrada');            
+//         } else {
+//             res.send(totalProducts);
+//         }
 
-    } catch (err) {
-        console.log(err);
-        res.status(404).send('Problemas en el controlador de la ruta GET/products');
-    }; 
-});
+//     } catch (err) {
+//         console.log(err);
+//         res.status(404).send('Problemas en el controlador de la ruta GET/products');
+//     }; 
+// });
 
 
 router.get('/:id', async(req, res) => {
