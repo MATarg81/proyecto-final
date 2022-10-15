@@ -1,5 +1,4 @@
 const { User, Role } = require("../../db");
-const axios = require("axios");
 const { Op } = require("sequelize");
 const dbData = require(""); //completar!!!
 
@@ -14,7 +13,7 @@ async function getUsers(req, res) {
         lastname: u.lastname,
         dateOfBirth: u.dateOfBirth,
         phoneNumber: u.phoneNumber,
-        direction: u.direction.toString(),
+        adress: u.adress.toString(),
       };
     });
     await User.bulkCreate(usersData);
@@ -58,7 +57,7 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, rol, direction, phoneNumber } =
+  const { name, lastname, email, dateOfBirth, rol, adress, phoneNumber } =
     req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
 
@@ -70,7 +69,7 @@ async function addUser(req, res) {
         email,
         dateOfBirth,
         rol,
-        direction,
+        adress,
         phoneNumber,
       });
       await newUser.addRole(rol);
@@ -88,7 +87,7 @@ async function addUser(req, res) {
 }
 
 function updateUser(req, res) {
-  const { email, name, lastname, dateOfBirth, phoneNumber, direction, rol } =
+  const { email, name, lastname, dateOfBirth, phoneNumber, adress, rol } =
     req.body;
 
   const findUser = User.findOne({ where: { email: email }, include: Role });
@@ -99,7 +98,7 @@ function updateUser(req, res) {
       lastname: lastname,
       dateOfBirth: dateOfBirth,
       phoneNumber: phoneNumber,
-      direction: direction,
+      adress: adress,
       rol: rol,
     });
     return res.status(200).send(`User ${name + lastname} updated correctly`);
