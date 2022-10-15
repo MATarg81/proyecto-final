@@ -1,0 +1,61 @@
+{
+    "results": [
+        {
+            "name": "Nahuel",
+            "lastname": "Cittadino",
+            "dateOfBirth": 16031990,
+            "phoneNumber": 2236690093,
+            "mail": "nahuelcittadino@gmai.com",
+            "adress": "Matheu 3156"
+        },
+        {
+            "name": "Laura",
+            "lastname": "Marcenaro",
+            "dateOfBirth": 19061997,
+            "phoneNumber": 116987456,
+            "mail": "lauramarcenaro@gmail.com",
+            "adress": "Rosalia 6668"
+        },
+        {
+            "name": "Brenda",
+            "lastname": "Alaniz",
+            "dateOfBirth": 22121998,
+            "phoneNumber": 2243321589,
+            "mail": "cecilia@yahoo.com",
+            "adress": "Av. Perales 5463"
+        },
+        {
+            "name": "Cinthya",
+            "lastname": "Molina",
+            "dateOfBirth": 20111991,
+            "phoneNumber": 115325486,
+            "mail": "cinthyamolina@gmail.com",
+            "adress": "Guerra Galactica 422"
+        },
+        {
+            "name": "Juan",
+            "lastname": "Bosque",
+            "dateOfBirth": 12111951,
+            "phoneNumber": 114658365,
+            "mail": "juanculia@gmail.com",
+            "adress": "Fernando 3070"
+        },
+        {
+            "name": "Matias",
+            "lastname": "Tula",
+            "dateOfBirth": 26021986,
+            "phoneNumber": 2245632105,
+            "mail": "matiastula@gmail.com",
+            "adress": "Padelnator 775"
+        },
+        {
+            "name": "Sebastian Lucas",
+            "lastname": "Fernandez",
+            "dateOfBirth": 26021995,
+            "phoneNumber": 224564657,
+            "mail": "sebasebasebado@gmail.com",
+            "adress": "Calle Falsa 123"
+        }
+    ]
+}
+
