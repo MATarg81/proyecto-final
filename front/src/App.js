@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
 
+
 function App() {
   return (
     <>
