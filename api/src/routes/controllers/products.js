@@ -5,6 +5,8 @@ const {Product, ProductsCategory} = require('../../db');
 
 //PRODUCTS DB:
 const allProducts = async() => {
+    const qname = req.query.name;
+
     try {
         const dbProduct = await Product.findAll({
             include: {
@@ -24,7 +26,16 @@ const allProducts = async() => {
             categories: db.ProductsCategory.map((t) => t.name),
         }));
         
-        return results;
+        if(qname) {
+            const productsWithName = results.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
+            (productsWithName.length) ?
+            res.send(productsWithName)
+            : res.status(404).send('Producto no encontrada');            
+        } else {
+            res.send(results);
+        }
+
+        //return results;
         
     } catch (error) {
         console.log('Problemas en la función productsDb()' + error);
