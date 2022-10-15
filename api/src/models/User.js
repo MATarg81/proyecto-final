@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
       email: {
         type: DataTypes.STRING(),
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
@@ -15,20 +15,20 @@ module.exports = (sequelize) => {
       },
       lastname: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       dateOfBirth: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       phoneNumber: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
       direction: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       timestamps: false,
