@@ -3,8 +3,15 @@ const {Product, ProductsCategory} = require('../../db');
 
 
 
+<<<<<<< HEAD
 //ALL PRODUCTS FROM DB:
 const allProducts = async() => {
+=======
+//PRODUCTS DB:
+const allProducts = async() => {
+    const qname = req.query.name;
+
+>>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
     try {
         const dbProduct = await Product.findAll({
             include: {
@@ -24,14 +31,32 @@ const allProducts = async() => {
             categories: db.ProductsCategory.map((t) => t.name),
         }));
         
+<<<<<<< HEAD
         return results;
+=======
+        if(qname) {
+            const productsWithName = results.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
+            (productsWithName.length) ?
+            res.send(productsWithName)
+            : res.status(404).send('Producto no encontrada');            
+        } else {
+            res.send(results);
+        }
+
+        //return results;
+>>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
         
     } catch (error) {
         console.log('Problemas en la función productsDb()' + error);
     };
 }
 
+<<<<<<< HEAD
 //PRODUCTS BY ID:
+=======
+
+//RECIPES POR ID:
+>>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
 const productsId = async(idP) => {
     try {
         const totalProducts = await allProducts();
@@ -42,6 +67,7 @@ const productsId = async(idP) => {
         
     }
     catch(err) {
+<<<<<<< HEAD
         console.log('Problemas en /:id' + err);
     }
 }
@@ -101,10 +127,14 @@ const deleteProduct = async (req, res)=>{
       res.status(200).send('Producto eliminado')
     } catch (error) {
         res.status(400).send('error')
+=======
+        console.log('Problemas en la función productsId()' + error);
+>>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
     }
 }
 
 
+<<<<<<< HEAD
 const putProduct = async (req, res) => {
     const {id} = req.params;
     const productUpdated = req.body;
@@ -122,3 +152,7 @@ const putProduct = async (req, res) => {
 }
 
 module.exports = {getProducts, getProductsId, deleteProduct, putProduct};
+=======
+
+module.exports = {allProducts, productsId};
+>>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
