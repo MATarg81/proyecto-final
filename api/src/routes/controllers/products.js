@@ -42,7 +42,7 @@ const productsId = async(idP) => {
         
     }
     catch(err) {
-        console.log('Problemas en la función productsId()' + error);
+        console.log('Problemas en /:id' + err);
     }
 }
 
@@ -57,7 +57,7 @@ const getProducts = async(req, res) => {
         if(qname) {
             const productsWithName = totalProducts.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
             (productsWithName.length) ?
-            res.send(productsWithName)
+            res.status(200).send(productsWithName)
             : res.status(404).send('Producto no encontrada');            
         } else {
             res.send(totalProducts);
@@ -77,7 +77,7 @@ const getProductsId = async(req, res) => {
         
         const result = await productsId(id);
         if (result) {
-            return res.send(result);
+            return res.status(200).send(result);
         } else {
             res.status(404).send('Id no existente')
         };
@@ -90,7 +90,7 @@ const getProductsId = async(req, res) => {
 
 
 
-const deleteProduct = async (req, res, next)=>{
+const deleteProduct = async (req, res)=>{
     const { id } = req.params;
     try {
       await  Product.destroy({
@@ -102,7 +102,23 @@ const deleteProduct = async (req, res, next)=>{
     } catch (error) {
         res.status(400).send('error')
     }
-    
 }
 
-module.exports = {getProducts, getProductsId, deleteProduct};
+
+const putProduct = async (req, res) => {
+    const {id} = req.params;
+    const productUpdated = req.body;
+    try {
+        await Product.update({
+            productUpdated,
+        }, {
+        where: {
+            id: id,
+        }});
+        res.status(200).json(productUpdated);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
+
+module.exports = {getProducts, getProductsId, deleteProduct, putProduct};
