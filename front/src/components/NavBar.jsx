@@ -76,7 +76,7 @@ function NavBar() {
               {/* <Link to="/registro" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-user-plus me-1"></i>Registrarse
               </Link> */}
-              <button className="btn btn-outline-dark ms-2" onClick={() => loginWithRedirect}>Registrarse</button>
+              <button className="btn btn-outline-dark ms-2" onClick={() => loginWithRedirect()}> <i className="fa fa-user-plus me-1"></i>RegistrarseRegistrarse</button>
               <Link to="/carrito" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i>Carrito (
                 {state.length})
