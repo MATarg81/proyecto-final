@@ -1,5 +1,6 @@
 const { User, Role } = require("../../db");
 const { Op } = require("sequelize");
+
 const dbData = require(""); //completar!!!
 
 async function getUsers(req, res) {
@@ -44,7 +45,6 @@ async function getUsers(req, res) {
   }
 }
 
-// La id tal vez deba ser username... sino por params buscariamos '/user/juanitosanchez@gmail.com' ?
 async function getUsersById(req, res) {
   const { email } = req.params;
   const findUser = await User.findOne({
@@ -57,22 +57,22 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, rol, adress, phoneNumber } =
+  const { name, lastname, email, dateOfBirth, role, adress, phoneNumber } =
     req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
 
   try {
     if (!dbUser) {
       const newUser = await User.create({
-        name,
-        lastname,
-        email,
-        dateOfBirth,
-        rol,
-        adress,
-        phoneNumber,
+        name: name,
+        lastname: lastname,
+        email: email,
+        dateOfBirth: dateOfBirth,
+        role: role,
+        adress: adress,
+        phoneNumber: phoneNumber,
       });
-      await newUser.addRole(rol);
+      await newUser.addRole(role);
       return res
         .status(200)
         .send(`User "${newUser.name + newUser.lastname}" added`);
@@ -82,12 +82,12 @@ async function addUser(req, res) {
         .send(`User "${dbUser.name + dbUser.lastname}" already exists`);
     }
   } catch (e) {
-    return res.send(e);
+    return res.status(404).send(e);
   }
 }
 
 function updateUser(req, res) {
-  const { email, name, lastname, dateOfBirth, phoneNumber, adress, rol } =
+  const { email, name, lastname, dateOfBirth, phoneNumber, adress, role } =
     req.body;
 
   const findUser = User.findOne({ where: { email: email }, include: Role });
@@ -99,7 +99,7 @@ function updateUser(req, res) {
       dateOfBirth: dateOfBirth,
       phoneNumber: phoneNumber,
       adress: adress,
-      rol: rol,
+      role: role,
     });
     return res.status(200).send(`User ${name + lastname} updated correctly`);
   } else {

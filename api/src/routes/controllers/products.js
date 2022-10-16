@@ -2,7 +2,6 @@ require("dotenv").config();
 const {Product, ProductsCategory} = require('../../db');
 
 
-
 //ALL PRODUCTS FROM DB:
 const allProducts = async() => {
     try {
@@ -30,6 +29,7 @@ const allProducts = async() => {
         console.log('Problemas en la función productsDb()' + error);
     };
 }
+
 
 //PRODUCTS BY ID:
 const productsId = async(idP) => {
