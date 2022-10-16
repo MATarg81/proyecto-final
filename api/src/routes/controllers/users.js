@@ -113,7 +113,7 @@ async function deleteUser(req, res) {
     await findUser.destroy();
     return res.status(200).send(`User was deleted`);
   } else {
-    return res.status(404).send(`Cannot find the user email ${email}`);
+    return res.status(404).send(`Cannot find the user email ${id}`);
   }
 }
 
