@@ -7,7 +7,7 @@ import Mati from '../imagesTeam/Mati.jpg'
 import Lau from '../imagesTeam/Lau.jpg'
 import Santi from '../imagesTeam/Santi.png'
 import Cin from '../imagesTeam/Cin.jpg'
-import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
+//import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai'
 
 function AboutTeam() {
     useEffect(() => { //esto lleva la pantalla (o el scroll mejor dicho) arriba del todo. 
@@ -25,8 +25,8 @@ function AboutTeam() {
                             <h5 class="card-title">Juan Bosque</h5>
                             <p class="card-text">Esta es una tarjeta más larga con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
-                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a>
+                              {/*   <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
+                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a> */}
                             </div>
                         </div>
                     </div>
@@ -38,8 +38,8 @@ function AboutTeam() {
                             <h5 class="card-title">Brenda Alaniz</h5>
                             <p class="card-text">Esta es una tarjeta más larga con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
-                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a>
+                              {/*   <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
+                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a> */}
                             </div>
                         </div>
                     </div>
@@ -51,8 +51,8 @@ function AboutTeam() {
                             <h5 class="card-title">Nahuel Cittadino</h5>
                             <p class="card-text">Esta es una tarjeta más larga con texto de apoyo a continuación como introducción natural a contenido adicional.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
-                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a>
+                              {/*   <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
+                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a> */}
                             </div>
                         </div>
                     </div>
@@ -64,8 +64,8 @@ function AboutTeam() {
                             <h5 class="card-title">Laura Marcenaro</h5>
                             <p class="card-text">Esta es una tarjeta más larga con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
-                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a>
+                              {/*   <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
+                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a> */}
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@ function AboutTeam() {
                             <h5 class="card-title">Matías Tula</h5>
                             <p class="card-text">Esta es una tarjeta más larga con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
-                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a>
+                              {/*   <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
+                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a> */}
                             </div>
                         </div>
                     </div>
@@ -90,8 +90,8 @@ function AboutTeam() {
                             <h5 class="card-title">Cinthya Molina</h5>
                             <p class="card-text">Esta es una tarjeta más larga con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
-                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a>
+                              {/*   <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
+                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a> */}
                             </div>
                         </div>
                     </div>
@@ -103,8 +103,8 @@ function AboutTeam() {
                             <h5 class="card-title">Santiago Fernandez</h5>
                             <p class="card-text">Esta es una tarjeta más larga con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
                             <div>
-                                <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
-                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a>
+                              {/*   <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"><AiFillLinkedin /> </a>
+                                <a href="https://github.com/juanchos85" target="_blank"><AiFillGithub /></a> */}
                             </div>
                         </div>
                     </div>
