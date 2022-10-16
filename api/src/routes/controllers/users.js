@@ -1,24 +1,25 @@
 const { User, Role } = require("../../db");
 const { Op } = require("sequelize");
-
-const dbData = require(""); //completar!!!
+const jsonData = require("../../../users.json");
 
 async function getUsers(req, res) {
   const { name, lastname, email } = req.query;
+  const dbData = await User.count();
 
   try {
-    const usersData = dbData.map((u) => {
-      return {
-        email: u.email,
-        name: u.name,
-        lastname: u.lastname,
-        dateOfBirth: u.dateOfBirth,
-        phoneNumber: u.phoneNumber,
-        adress: u.adress.toString(),
-      };
-    });
-    await User.bulkCreate(usersData);
-    if (name || lastname || email) {
+    if (!dbData) {
+      const usersData = jsonData.results.map((u) => {
+        return {
+          email: u.email,
+          name: u.name,
+          lastname: u.lastname,
+          dateOfBirth: u.dateOfBirth,
+          phoneNumber: u.phoneNumber,
+          adress: u.adress,
+        };
+      });
+      await User.bulkCreate(usersData);
+    } else if (name || lastname || email) {
       const userName = await User.findOne({
         where: { name: { [Op.iLike]: `%${name}%` } },
       });
@@ -28,15 +29,17 @@ async function getUsers(req, res) {
       const userEmail = await User.findOne({
         where: { email: { [Op.iLike]: `%${email}%` } },
       });
-      userName
-        ? res.status(200).send(userName)
-        : res.status(404).send("User can't be found");
-      userLastname
-        ? res.status(200).send(userLastname)
-        : res.status(404).send("User can't be found");
-      userEmail
-        ? res.status(200).send(userEmail)
-        : res.status(404).send("Email can't be found");
+      if (userName) {
+        return res.status(200).send(userName);
+      }
+      if (userLastname) {
+        return res.status(200).send(userLastname);
+      }
+      if (userEmail) {
+        return res.status(200).send(userEmail);
+      } else {
+        return res.status(404).send("User can't be found");
+      }
     } else {
       User.findAll().then((r) => res.status(200).send(r));
     }
@@ -57,8 +60,7 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, role, adress, phoneNumber } =
-    req.body;
+  const { name, lastname, email, dateOfBirth, role, adress, phoneNumber } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
 
   try {
@@ -68,21 +70,21 @@ async function addUser(req, res) {
         lastname: lastname,
         email: email,
         dateOfBirth: dateOfBirth,
-        role: role,
-        adress: adress,
         phoneNumber: phoneNumber,
+        adress: adress,
+        role: role,
       });
-      await newUser.addRole(role);
+      await newUser.addRole(role); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
       return res
         .status(200)
-        .send(`User "${newUser.name + newUser.lastname}" added`);
+        .send(`User "${name + ' ' + lastname}" added`);
     } else {
       res
         .status(404)
-        .send(`User "${dbUser.name + dbUser.lastname}" already exists`);
+        .send(`User "${name + ' ' + lastname}" already exists`);
     }
   } catch (e) {
-    return res.status(404).send(e);
+    return res.status(404).send(console.log(e));
   }
 }
 

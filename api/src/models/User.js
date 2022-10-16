@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       dateOfBirth: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
       },
       phoneNumber: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
       },
       adress: {
