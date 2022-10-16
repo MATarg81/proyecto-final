@@ -2,11 +2,8 @@ require("dotenv").config();
 const {Product, ProductsCategory} = require('../../db');
 
 
-
-//PRODUCTS DB:
+//ALL PRODUCTS FROM DB:
 const allProducts = async() => {
-    const qname = req.query.name;
-
     try {
         const dbProduct = await Product.findAll({
             include: {
@@ -26,16 +23,7 @@ const allProducts = async() => {
             categories: db.ProductsCategory.map((t) => t.name),
         }));
         
-        if(qname) {
-            const productsWithName = results.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
-            (productsWithName.length) ?
-            res.send(productsWithName)
-            : res.status(404).send('Producto no encontrada');            
-        } else {
-            res.send(results);
-        }
-
-        //return results;
+        return results;
         
     } catch (error) {
         console.log('Problemas en la función productsDb()' + error);
@@ -43,7 +31,7 @@ const allProducts = async() => {
 }
 
 
-//RECIPES POR ID:
+//PRODUCTS BY ID:
 const productsId = async(idP) => {
     try {
         const totalProducts = await allProducts();
@@ -54,10 +42,83 @@ const productsId = async(idP) => {
         
     }
     catch(err) {
-        console.log('Problemas en la función productsId()' + error);
+        console.log('Problemas en /:id' + err);
+    }
+}
+
+//--------------------------------------------------------------------------------------------------------------
+
+const getProducts = async(req, res) => {
+ 
+    try {
+        const qname = req.query.name;
+        const totalProducts = await allProducts();
+        ;
+        if(qname) {
+            const productsWithName = totalProducts.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
+            (productsWithName.length) ?
+            res.status(200).send(productsWithName)
+            : res.status(404).send('Producto no encontrada');            
+        } else {
+            res.send(totalProducts);
+        }
+
+    } catch (err) {
+        console.log(err);
+        res.status(404).send('Problemas en el controlador de la ruta GET/products');
+    }; 
+};
+
+
+
+const getProductsId = async(req, res) => {
+    try {
+        const id = req.params.id;
+        
+        const result = await productsId(id);
+        if (result) {
+            return res.status(200).send(result);
+        } else {
+            res.status(404).send('Id no existente')
+        };
+    }
+    catch(err) {
+        res.status(404).send('Problemas en el controlador de la ruta GET/products/:id');
+    }
+   
+};
+
+
+
+const deleteProduct = async (req, res)=>{
+    const { id } = req.params;
+    try {
+      await  Product.destroy({
+        where:{
+            id:id,
+        }
+      })
+      res.status(200).send('Producto eliminado')
+    } catch (error) {
+        res.status(400).send('error')
     }
 }
 
 
+const putProduct = async (req, res) => {
+    const {id} = req.params;
+    const productUpdated = req.body;
+    try {
+        await Product.update({
+            productUpdated,
+        }, {
+        where: {
+            id: id,
+        }});
+        res.status(200).json(productUpdated);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+}
 
-module.exports = {allProducts, productsId};
+module.exports = {getProducts, getProductsId, deleteProduct, putProduct};

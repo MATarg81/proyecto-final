@@ -1,26 +1,24 @@
 const { User, Role } = require("../../db");
 const { Op } = require("sequelize");
-const jsonData = require("../../../users.json");
+
+const dbData = require(""); //completar!!!
 
 async function getUsers(req, res) {
   const { name, lastname, email } = req.query;
-  const dbUsers = await User.count();
 
   try {
-    if (!dbUsers) {
-      const usersData = jsonData.results.map((u) => {
-        return {
-          email: u.email,
-          name: u.name,
-          lastname: u.lastname,
-          dateOfBirth: u.dateOfBirth,
-          phoneNumber: u.phoneNumber,
-          adress: u.adress,
-        };
-      });
-      await User.bulkCreate(usersData);
-      return res.status(200).send(usersData)
-    } else if (name || lastname || email) {
+    const usersData = dbData.map((u) => {
+      return {
+        email: u.email,
+        name: u.name,
+        lastname: u.lastname,
+        dateOfBirth: u.dateOfBirth,
+        phoneNumber: u.phoneNumber,
+        adress: u.adress.toString(),
+      };
+    });
+    await User.bulkCreate(usersData);
+    if (name || lastname || email) {
       const userName = await User.findOne({
         where: { name: { [Op.iLike]: `%${name}%` } },
       });
