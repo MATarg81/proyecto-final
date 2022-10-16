@@ -1,17 +1,12 @@
 require("dotenv").config();
 const {Product, ProductsCategory} = require('../../db');
+//SIEMPRE ES NECESARIO EL POST/products PARA EMPEZAR, HASTA QUE CAMBIEMOS EL FORCE:TRUE
 
 
 
-<<<<<<< HEAD
 //ALL PRODUCTS FROM DB:
 const allProducts = async() => {
-=======
-//PRODUCTS DB:
-const allProducts = async() => {
-    const qname = req.query.name;
 
->>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
     try {
         const dbProduct = await Product.findAll({
             include: {
@@ -22,41 +17,23 @@ const allProducts = async() => {
                 }
             }
         }); 
-         const results = dbProduct.map((db) => ({
+         const results = dbProduct?.map((db) => ({
             id: db.id,
             name: db.name,
             price: db.price,
             detail: db.detail,
             image: db.image,
-            categories: db.ProductsCategory.map((t) => t.name),
+            categories: db.ProductsCategory?.map((c) => c.name) //me falta probar si se cargan bien las categories, pero necesito lo que hizo Lau para eso
         }));
-        
-<<<<<<< HEAD
-        return results;
-=======
-        if(qname) {
-            const productsWithName = results.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
-            (productsWithName.length) ?
-            res.send(productsWithName)
-            : res.status(404).send('Producto no encontrada');            
-        } else {
-            res.send(results);
-        }
 
-        //return results;
->>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
+        return results;
         
     } catch (error) {
         console.log('Problemas en la función productsDb()' + error);
     };
 }
 
-<<<<<<< HEAD
 //PRODUCTS BY ID:
-=======
-
-//RECIPES POR ID:
->>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
 const productsId = async(idP) => {
     try {
         const totalProducts = await allProducts();
@@ -67,12 +44,24 @@ const productsId = async(idP) => {
         
     }
     catch(err) {
-<<<<<<< HEAD
         console.log('Problemas en /:id' + err);
     }
 }
 
 //--------------------------------------------------------------------------------------------------------------
+
+const postProducts = async(req, res) => {
+    const newProducts = req.body.results;
+    try {
+        await Product.bulkCreate(newProducts); 
+
+        res.status(200).send('Productos cargados con éxito!');      
+    } catch(error) {
+        res.send(400).status('Error al cargar productos: ' + error)
+    }
+} //EL formato del body debería ser {"results": [array de objetos products]}
+
+
 
 const getProducts = async(req, res) => {
  
@@ -85,8 +74,9 @@ const getProducts = async(req, res) => {
             (productsWithName.length) ?
             res.status(200).send(productsWithName)
             : res.status(404).send('Producto no encontrada');            
-        } else {
-            res.send(totalProducts);
+        } 
+        else {
+            res.status(200).send(totalProducts);
         }
 
     } catch (err) {
@@ -127,14 +117,10 @@ const deleteProduct = async (req, res)=>{
       res.status(200).send('Producto eliminado')
     } catch (error) {
         res.status(400).send('error')
-=======
-        console.log('Problemas en la función productsId()' + error);
->>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
     }
 }
 
 
-<<<<<<< HEAD
 const putProduct = async (req, res) => {
     const {id} = req.params;
     const productUpdated = req.body;
@@ -151,8 +137,4 @@ const putProduct = async (req, res) => {
     }
 }
 
-module.exports = {getProducts, getProductsId, deleteProduct, putProduct};
-=======
-
-module.exports = {allProducts, productsId};
->>>>>>> 205beb69c59476c800d2acd89d3dae23e999e794
+module.exports = {getProducts, getProductsId, deleteProduct, putProduct, postProducts};
