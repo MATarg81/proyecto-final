@@ -48,15 +48,20 @@ async function getUsers(req, res) {
   }
 }
 
+//Debería poder guardar los datos si se editan en el front. 
+// Por ejemplo: {name: Laura} --> front: usuario.name = Sofía --> Tabla: {name: Sofía}
 async function getUsersById(req, res) {
-  const { email } = req.params;
+  const { id } = req.params;
+
   const findUser = await User.findOne({
-    where: { email: email },
-    include: Role,
+    where: { email: id }
   });
-  findUser
-    ? res.status(200).send(findUser)
-    : res.status(404).send("User can't be found");
+  if (findUser) {
+    await findUser.save()
+    res.status(200).send(findUser);
+  } else {
+    res.status(404).send("User can't be found");
+  }
 }
 
 async function addUser(req, res) {
@@ -84,27 +89,6 @@ async function addUser(req, res) {
     return res.status(404).send(console.log(e));
   }
 }
-
-// function updateUser(req, res) {
-//   const { email, name, lastname, dateOfBirth, phoneNumber, adress, role } =
-//     req.body;
-
-//   const findUser = User.findOne({ where: { email: email }, include: Role });
-//   if (findUser) {
-//     findUser.set({
-//       email: email,
-//       name: name,
-//       lastname: lastname,
-//       dateOfBirth: dateOfBirth,
-//       phoneNumber: phoneNumber,
-//       adress: adress,
-//       role: role,
-//     });
-//     return res.status(200).send(`User ${name + lastname} updated correctly`);
-//   } else {
-//     res.status(404).send(`User mail ${email} can't be found`);
-//   }
-// }
 
 async function deleteUser(req, res) {
   const { id } = req.params;
