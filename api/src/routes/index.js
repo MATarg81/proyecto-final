@@ -6,6 +6,7 @@ const products = require ('./products');
 const users = require ('./users')
 const roles = require ('./roles')
 const category = require ('./category')
+const activities = require ('./activities')
 
 
 const router = Router();
@@ -16,6 +17,7 @@ router.use('/products', products);
 router.use('/users', users);
 router.use('/roles', roles)
 router.use('/categories', category)
+router.use('/activities', activities)
 
 
 
