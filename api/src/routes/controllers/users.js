@@ -60,7 +60,8 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, role, adress, phoneNumber } = req.body;
+  const { name, lastname, email, dateOfBirth, role, adress, phoneNumber } =
+    req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
 
   try {
@@ -74,56 +75,51 @@ async function addUser(req, res) {
         adress: adress,
         role: role,
       });
-      await newUser.addRole(role); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
-      return res
-        .status(200)
-        .send(`User "${name + ' ' + lastname}" added`);
+      //await newUser.addRole(role); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
+      return res.status(200).send(`User "${name + " " + lastname}" added`);
     } else {
-      res
-        .status(404)
-        .send(`User "${name + ' ' + lastname}" already exists`);
+      res.status(404).send(`User "${name + " " + lastname}" already exists`);
     }
   } catch (e) {
     return res.status(404).send(console.log(e));
   }
 }
 
-function updateUser(req, res) {
-  const { email, name, lastname, dateOfBirth, phoneNumber, adress, role } =
-    req.body;
+// function updateUser(req, res) {
+//   const { email, name, lastname, dateOfBirth, phoneNumber, adress, role } =
+//     req.body;
 
-  const findUser = User.findOne({ where: { email: email }, include: Role });
-  if (findUser) {
-    findUser.set({
-      email: email,
-      name: name,
-      lastname: lastname,
-      dateOfBirth: dateOfBirth,
-      phoneNumber: phoneNumber,
-      adress: adress,
-      role: role,
-    });
-    return res.status(200).send(`User ${name + lastname} updated correctly`);
-  } else {
-    res.status(404).send(`User mail ${email} can't be found`);
-  }
-}
+//   const findUser = User.findOne({ where: { email: email }, include: Role });
+//   if (findUser) {
+//     findUser.set({
+//       email: email,
+//       name: name,
+//       lastname: lastname,
+//       dateOfBirth: dateOfBirth,
+//       phoneNumber: phoneNumber,
+//       adress: adress,
+//       role: role,
+//     });
+//     return res.status(200).send(`User ${name + lastname} updated correctly`);
+//   } else {
+//     res.status(404).send(`User mail ${email} can't be found`);
+//   }
+// }
 
-function deleteUser(req, res) {
-  const { email } = req.query;
-  const findUser = User.findOne({ where: { email: email } });
+async function deleteUser(req, res) {
+  const { id } = req.params;
+  const findUser = await User.findOne({ where: { email: id } });
   if (findUser) {
-    User.destroy({ where: { email: email } });
-    return res.status(200).send(`User ${findUser.name} was deleted`);
+    await findUser.destroy();
+    return res.status(200).send(`User was deleted`);
   } else {
-    return res.status(404).send(`Cannot find the user email ${email}`);
+    return res.status(404).send(`Cannot find the user email ${id}`);
   }
 }
 
 module.exports = {
   getUsers,
   getUsersById,
-  updateUser,
   deleteUser,
   addUser,
 };
