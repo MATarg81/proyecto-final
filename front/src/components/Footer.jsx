@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+//import { aboutTeam } from './AboutTeam'
 
 function Footer() {
   return (
@@ -13,7 +14,10 @@ function Footer() {
                 <h6 className="text-uppercase fw-bold mb-1">
                   <i className="fas fa-gem me-3 text-secondary"></i>Dev Team
                 </h6>
-                <p>Algo sobre equipo de desarrollo?</p>
+                <Link to="AboutTeam" className="text-reset">
+                  <p>Equipo de desarrollo</p>
+                </Link>
+                  
               </div>
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-1">
                 <h6 className="text-uppercase fw-bold mb-1">Algo o no</h6>
