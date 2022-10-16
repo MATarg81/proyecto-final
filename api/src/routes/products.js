@@ -1,9 +1,15 @@
 const { Router } = require("express");
-const { getProducts, getProductsId, deleteProduct, putProduct, postProducts} = require("./controllers/products");
+
+const {Product} = require ('../db');
+// const { Op, Association } = require("sequelize");
+
+const { getProducts, getProductsId, deleteProduct, putProduct, postProducts } = require("./controllers/products");
+
 
 
 
 const router = Router();
+
 
 router.get('/', getProducts);
 router.get('/:id', getProductsId);

@@ -5,7 +5,7 @@
             "lastname": "Cittadino",
             "dateOfBirth": 16031990,
             "phoneNumber": 2236690093,
-            "mail": "nahuelcittadino@gmai.com",
+            "email": "nahuelcittadino@gmai.com",
             "adress": "Matheu 3156"
         },
         {
@@ -13,7 +13,7 @@
             "lastname": "Marcenaro",
             "dateOfBirth": 19061997,
             "phoneNumber": 116987456,
-            "mail": "lauramarcenaro@gmail.com",
+            "email": "lauramarcenaro@gmail.com",
             "adress": "Rosalia 6668"
         },
         {
@@ -21,7 +21,7 @@
             "lastname": "Alaniz",
             "dateOfBirth": 22121998,
             "phoneNumber": 2243321589,
-            "mail": "cecilia@yahoo.com",
+            "email": "cecilia@yahoo.com",
             "adress": "Av. Perales 5463"
         },
         {
@@ -29,7 +29,7 @@
             "lastname": "Molina",
             "dateOfBirth": 20111991,
             "phoneNumber": 115325486,
-            "mail": "cinthyamolina@gmail.com",
+            "email": "cinthyamolina@gmail.com",
             "adress": "Guerra Galactica 422"
         },
         {
@@ -37,7 +37,7 @@
             "lastname": "Bosque",
             "dateOfBirth": 12111951,
             "phoneNumber": 114658365,
-            "mail": "juanculia@gmail.com",
+            "email": "juanculia@gmail.com",
             "adress": "Fernando 3070"
         },
         {
@@ -45,7 +45,7 @@
             "lastname": "Tula",
             "dateOfBirth": 26021986,
             "phoneNumber": 2245632105,
-            "mail": "matiastula@gmail.com",
+            "email": "matiastula@gmail.com",
             "adress": "Padelnator 775"
         },
         {
@@ -53,7 +53,7 @@
             "lastname": "Fernandez",
             "dateOfBirth": 26021995,
             "phoneNumber": 224564657,
-            "mail": "sebasebasebado@gmail.com",
+            "email": "sebasebasebado@gmail.com",
             "adress": "Calle Falsa 123"
         }
     ]

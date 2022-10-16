@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     "user",
     {
       email: {
-        type: DataTypes.STRING(),
+        type: DataTypes.STRING,
         primaryKey: true,
         allowNull: false,
       },
@@ -18,11 +18,11 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       dateOfBirth: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
       },
       phoneNumber: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.BIGINT,
         allowNull: false,
       },
       adress: {

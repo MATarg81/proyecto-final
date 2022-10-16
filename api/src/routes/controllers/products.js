@@ -3,7 +3,6 @@ const {Product, ProductsCategory} = require('../../db');
 //SIEMPRE ES NECESARIO EL POST/products PARA EMPEZAR, HASTA QUE CAMBIEMOS EL FORCE:TRUE
 
 
-
 //ALL PRODUCTS FROM DB:
 const allProducts = async() => {
 
@@ -32,6 +31,7 @@ const allProducts = async() => {
         console.log('Problemas en la función productsDb()' + error);
     };
 }
+
 
 //PRODUCTS BY ID:
 const productsId = async(idP) => {

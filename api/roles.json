@@ -1,31 +1,24 @@
 {
     "results": [
         {
-            "id": 1,
             "name": "Presidente"
         },
         {
-            "id": 2,
             "name": "Secretario"
         },
         {
-            "id": 3,
             "name": "Tesorero"
         },
         {
-            "id": 4,
             "name": "Entrenador/Profesor"
         },
         {
-            "id": 5,
             "name": "Socio"
         },
         {
-            "id": 6,
             "name": "Seguridad"
         },
         {
-            "id": 7,
             "name": "Administrativo"
         }
     ]
