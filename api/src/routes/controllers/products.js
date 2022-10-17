@@ -56,6 +56,16 @@ const postProducts = async(req, res) => {
     } = req.body;
     
     try{
+        const {
+            name, 
+            price,
+            detail,
+            image,
+            categories
+        } = req.body;
+
+        const categoriesLowerCase = categories?.map((c) => c.toLowerCase());
+
 
         const newProduct = await Product.create({
             name: name,
