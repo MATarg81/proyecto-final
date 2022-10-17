@@ -8,7 +8,7 @@ import Login from "./components/Login";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
-import Landing from './components/Landing';
+import Landing from "./components/Landing";
 
 
 function App() {
