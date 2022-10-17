@@ -4,15 +4,11 @@ import Footer from "./Footer";
 
 function Home() {
   return (
-    <div>
+    <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
       <hr />
-      <div>
-        <Carousel />
-      </div>
+      <Carousel />
       <hr />
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
