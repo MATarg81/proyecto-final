@@ -8,7 +8,14 @@ import Login from "./components/Login";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
+
+
 import Landing from './components/Landing';
+
+
+import AboutTeam from "./components/AboutTeam";
+
+
 
 
 function App() {
@@ -24,6 +31,8 @@ function App() {
         <Route exact path="/ingreso" element={<Login />} />
         <Route exact path="/carrito" element={<Cart />} />
         <Route exact path="/tienda/:id" element={<Product />} />
+        <Route exact path="/aboutTeam" element={<AboutTeam />} />
+
       </Routes>
     </>
   );
