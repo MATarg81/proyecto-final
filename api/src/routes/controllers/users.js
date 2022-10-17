@@ -68,7 +68,7 @@ async function getUsersById(req, res) {
 async function addUser(req, res) {
   const { name, lastname, email, dateOfBirth, role, address, phoneNumber } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
-  const findRole = Role.findOne({where: {name: role}})
+  //const findRole = Role.findOne({where: {name: role}})
 
   try {
     if (!dbUser) {
