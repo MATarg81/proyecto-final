@@ -1,9 +1,11 @@
 require("dotenv").config();
 const {Product, ProductsCategory} = require('../../db');
+//SIEMPRE ES NECESARIO EL POST/products PARA EMPEZAR, HASTA QUE CAMBIEMOS EL FORCE:TRUE
 
 
 //ALL PRODUCTS FROM DB:
 const allProducts = async() => {
+
     try {
         const dbProduct = await Product.findAll({
             include: {
@@ -14,15 +16,15 @@ const allProducts = async() => {
                 }
             }
         }); 
-         const results = dbProduct.map((db) => ({
+         const results = dbProduct?.map((db) => ({
             id: db.id,
             name: db.name,
             price: db.price,
             detail: db.detail,
             image: db.image,
-            categories: db.ProductsCategory.map((t) => t.name),
+            categories: db.ProductsCategory?.map((c) => c.name) //me falta probar si se cargan bien las categories, pero necesito lo que hizo Lau para eso
         }));
-        
+
         return results;
         
     } catch (error) {
@@ -48,6 +50,19 @@ const productsId = async(idP) => {
 
 //--------------------------------------------------------------------------------------------------------------
 
+const postProducts = async(req, res) => {
+    const newProducts = req.body.results;
+    try {
+        await Product.bulkCreate(newProducts); 
+
+        res.status(200).send('Productos cargados con éxito!');      
+    } catch(error) {
+        res.send(400).status('Error al cargar productos: ' + error)
+    }
+} //EL formato del body debería ser {"results": [array de objetos products]}
+
+
+
 const getProducts = async(req, res) => {
  
     try {
@@ -59,8 +74,9 @@ const getProducts = async(req, res) => {
             (productsWithName.length) ?
             res.status(200).send(productsWithName)
             : res.status(404).send('Producto no encontrada');            
-        } else {
-            res.send(totalProducts);
+        } 
+        else {
+            res.status(200).send(totalProducts);
         }
 
     } catch (err) {
@@ -121,4 +137,4 @@ const putProduct = async (req, res) => {
     }
 }
 
-module.exports = {getProducts, getProductsId, deleteProduct, putProduct};
+module.exports = {getProducts, getProductsId, deleteProduct, putProduct, postProducts};
