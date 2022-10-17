@@ -14,7 +14,7 @@ function Footer() {
                 <h6 className="text-uppercase fw-bold mb-1">
                   <i className="fas fa-gem me-3 text-secondary"></i>Dev Team
                 </h6>
-                <Link to="AboutTeam" className="text-reset">
+                <Link to="/aboutTeam" className="text-reset">
                   <p>Equipo de desarrollo</p>
                 </Link>
                   
