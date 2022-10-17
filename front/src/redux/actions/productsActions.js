@@ -9,6 +9,7 @@ export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
 export const FILTER_BY_CATEGORIES = 'FILTER_BY_CATEGORIES';
 export const NEXT_PAGE = 'NEXT_PAGE';
 export const PREV_PAGE = 'PREV_PAGE';
+export const GET_PRODUCT_BY_NAME = 'GET_PRODUCT_BY_NAME'
 
 
 const BACK_URL = 'http://localhost:3001';
