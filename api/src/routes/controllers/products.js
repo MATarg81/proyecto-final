@@ -11,31 +11,16 @@ const allProducts = async() => {
     const dbData = await Product.count();
 
     try {
-        if (!dbData) {
+        if (!dbData) {   
             const results = await Product.bulkCreate(jsonData.results);
             return results;
-        
        
         } else {
             const dbProduct = await Product.findAll({
-                include: {
-                    model: Category,
-                    attributes: ["name"],
-                    throught: {
-                        attributes: [],
-                    }
-                } 
+                include: Category 
             }); 
-                const results = dbProduct?.map((db) => ({
-                    id: db.id,
-                    name: db.name,
-                    price: db.price,
-                    detail: db.detail,
-                    image: db.image,
-                    categories: db.Category?.map((c) => c.name) //me falta probars si se cargan bien las categories, pero necesito lo que hizo Lau para eso
-                }));
-    
-                return results; 
+            return dbProduct;
+
         }        
     } catch (error) {
         console.log('Problemas en la función productsDb()' + error);
@@ -46,9 +31,10 @@ const allProducts = async() => {
 //PRODUCTS BY ID:
 const productsId = async(idP) => {
     try {
-        const totalProducts = await allProducts();
 
-            const productId = totalProducts.find((r) => r.id === idP);
+        const totalProducts = await allProducts();
+            const productId = totalProducts.find((r) => r.id.toString() === idP);
+            console.log(productId)
             
             return productId;
         
@@ -59,17 +45,6 @@ const productsId = async(idP) => {
 }
 
 //--------------------------------------------------------------------------------------------------------------
-
-// const postProducts = async(req, res) => {
-//     const newProducts = req.body;
-//     try {
-//         await Product.findOrCreate(newProducts); 
-
-//         res.status(200).send('Productos cargados con éxito!');      
-//     } catch(error) {
-//         res.status(400).send('Error al cargar productos: ' + error)
-//     }
-// } 
 
 const postProducts = async(req, res) => {
     const {
@@ -126,7 +101,7 @@ const getProducts = async(req, res) => {
 const getProductsId = async(req, res) => {
     try {
         const id = req.params.id;
-        console.log(id)
+
         
         const result = await productsId(id);
         if (result) {
@@ -159,18 +134,29 @@ const deleteProduct = async (req, res)=>{
 
 
 const putProduct = async (req, res) => {
-    const {id} = req.params;
-    const productUpdated = req.body;
+    const idP = req.params.id;
+    
+    const {
+        name: name, 
+        price: price,
+        detail: detail,
+        image: image
+    } = req.body;
+
     try {
+
         await Product.update({
-            productUpdated,
+            name,
+            price,
+            detail,
+            image
         }, {
         where: {
-            id: id,
+            id: Number(idP),
         }});
-        res.status(200).json(productUpdated);
+        res.status(200).send("Producto actualizado con éxito");
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).send(error.JSON);
     }
 }
 
