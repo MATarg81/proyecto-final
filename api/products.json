@@ -4,7 +4,8 @@
             "name": "Pelota Nro. 5",
             "price": 5000,
             "detail": "PELOTA FABRICACION NACIONAL",
-            "image": "https://importancia.biz/wp-content/uploads/2014/07/importancia-de-los-deportes.jpg"
+            "image": "https://importancia.biz/wp-content/uploads/2014/07/importancia-de-los-deportes.jpg",
+            "categories": ["Ropa", "Pelotas"]
         },
         {
             "name": "Pelota de Basquet",
