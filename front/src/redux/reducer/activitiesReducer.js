@@ -1,21 +1,19 @@
 const initialState = {
     activities: [],
-    filtActivities: [],
 }
 
 //state y action-- tiene type y payload
-function reducer(state= initialState, { type, payload }){
-    console.log(payload, 'aaaaaaaa')
+function activitiesReducer(state= initialState, { type, payload }){
     switch(type) {
         case 'GET_ACTIVITIES':
+            console.log(payload, 'aaaaaaaa')
             return {
                 ...state,
-                activities: payload,
-                filtActivities: payload,
+                activities: payload
             }
 
         default: 
         return state;        
 }
 }
-export default reducer;
+export default activitiesReducer;
