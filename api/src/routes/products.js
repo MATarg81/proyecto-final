@@ -13,11 +13,8 @@ const router = Router();
 
 router.get('/', getProducts);
 router.get('/:id', getProductsId);
-
 router.post('/', postProducts);
-
 router.put('/:id', putProduct);
-
 router.delete('/:id', deleteProduct);
 
 

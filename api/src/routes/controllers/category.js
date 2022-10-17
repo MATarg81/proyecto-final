@@ -13,6 +13,8 @@ async function getCategory(req, res) {
       });
       await Category.bulkCreate(categoryData);
       return res.status(200).send("Category succesfully charged");
+    } else {
+      return res.status(404).send("Categories already charged")
     }
   } catch (e) {
     return res.status(404).send(e);

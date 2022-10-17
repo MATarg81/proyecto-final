@@ -4,7 +4,8 @@
             "name": "Futbol 5",
             "detail": "Entrenamiento fisico individual y en grupo. Practica de tecnicas de equipo. Partidos los fines de semana",
             "days":"Lunes, Jueves, Domingos",
-            "times": 19.00
+            "times": 19.00,
+            "user" : "nahuelcittadino@gmai.com"
         },
         {
             "name": "Natacion",

@@ -1,32 +1,27 @@
 require("dotenv").config();
-const {Product, ProductsCategory} = require('../../db');
+const {Product, Category} = require('../../db');
+const jsonData = require("../../../products.json");
+
 //SIEMPRE ES NECESARIO EL POST/products PARA EMPEZAR, HASTA QUE CAMBIEMOS EL FORCE:TRUE
 
 
 //ALL PRODUCTS FROM DB:
 const allProducts = async() => {
 
-    try {
-        const dbProduct = await Product.findAll({
-            include: {
-                model: ProductsCategory,
-                attributes: ["name"],
-                throught: {
-                    attributes: [],
-                }
-            }
-        }); 
-         const results = dbProduct?.map((db) => ({
-            id: db.id,
-            name: db.name,
-            price: db.price,
-            detail: db.detail,
-            image: db.image,
-            categories: db.ProductsCategory?.map((c) => c.name) //me falta probar si se cargan bien las categories, pero necesito lo que hizo Lau para eso
-        }));
+    const dbData = await Product.count();
 
-        return results;
-        
+    try {
+        if (!dbData) {   
+            const results = await Product.bulkCreate(jsonData.results);
+            return results;
+       
+        } else {
+            const dbProduct = await Product.findAll({
+                include: Category 
+            }); 
+            return dbProduct;
+
+        }        
     } catch (error) {
         console.log('Problemas en la función productsDb()' + error);
     };
@@ -36,9 +31,10 @@ const allProducts = async() => {
 //PRODUCTS BY ID:
 const productsId = async(idP) => {
     try {
-        const totalProducts = await allProducts();
 
-            const productId = totalProducts.find((r) => r.id === idP);
+        const totalProducts = await allProducts();
+            const productId = totalProducts.find((r) => r.id.toString() === idP);
+            console.log(productId)
             
             return productId;
         
@@ -51,15 +47,30 @@ const productsId = async(idP) => {
 //--------------------------------------------------------------------------------------------------------------
 
 const postProducts = async(req, res) => {
-    const newProducts = req.body.results;
-    try {
-        await Product.bulkCreate(newProducts); 
+    const {
+        name, 
+        price,
+        detail,
+        image,
+        categories
+    } = req.body;
+    
+    try{
 
-        res.status(200).send('Productos cargados con éxito!');      
-    } catch(error) {
-        res.send(400).status('Error al cargar productos: ' + error)
+        const newProduct = await Product.create({
+            name: name,
+            price: price,
+            detail: detail,
+            image: image || 'https://img.freepik.com/fotos-premium/deporte-mujer-sentada-descansando-despues-entrenamiento-o-ejercicio-gimnasio-proteina-shak_10307-27.jpg?w=740', 
+        }); 
+
+        newProduct.addCategory(categories);
+
+        return res.send(newProduct);
+    } catch (err) {
+        console.log('problema para realizar el post: '+ err);
     }
-} //EL formato del body debería ser {"results": [array de objetos products]}
+};//EL formato del body debería ser {"results": [array de objetos products]}
 
 
 
@@ -90,6 +101,7 @@ const getProducts = async(req, res) => {
 const getProductsId = async(req, res) => {
     try {
         const id = req.params.id;
+
         
         const result = await productsId(id);
         if (result) {
@@ -122,18 +134,29 @@ const deleteProduct = async (req, res)=>{
 
 
 const putProduct = async (req, res) => {
-    const {id} = req.params;
-    const productUpdated = req.body;
+    const idP = req.params.id;
+    
+    const {
+        name: name, 
+        price: price,
+        detail: detail,
+        image: image
+    } = req.body;
+
     try {
+
         await Product.update({
-            productUpdated,
+            name,
+            price,
+            detail,
+            image
         }, {
         where: {
-            id: id,
+            id: Number(idP),
         }});
-        res.status(200).json(productUpdated);
+        res.status(200).send("Producto actualizado con éxito");
     } catch (error) {
-        res.status(400).send(error);
+        res.status(400).send(error.JSON);
     }
 }
 
