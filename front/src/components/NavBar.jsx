@@ -1,21 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import LoginButton from './Login/LoginButton';
-import Profile from './Login/Profile';
-import LogoutButton from './Login/LogoutButton';
-import {useAuth0} from "@auth0/auth0-react";
+// import LoginButton from "./Login/LoginButton";
+// import Profile from "./Login/Profile";
+// import LogoutButton from "./Login/LogoutButton";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 function NavBar() {
-
   const state = useSelector((state) => state.handleCart);
-  const {isAuthenticated, isLoading} = useAuth0();
+  // const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-light py-3">
         <div className="container">
-          <img src="/img/sport-logo-free-vector.jpg" alt="Logo" height="80px" />
+          <Link to="/">
+            <img
+              src="/img/sport-logo-free-vector.jpg"
+              alt="Logo"
+              height="80px"
+            />
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -30,6 +35,7 @@ function NavBar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
+
                 <Link className="nav-link active" aria-current="page" to="/home">
                   Home
                 </Link>
@@ -39,13 +45,13 @@ function NavBar() {
                   Tienda
                 </Link>
               </li>
-              
+
               <li className="nav-item">
                 <Link className="nav-link" to="/actividades">
                   Actividades
                 </Link>
               </li>
-  
+
               <li className="nav-item">
                 <Link className="nav-link" to="/nosotros">
                   Nosotros
@@ -56,18 +62,12 @@ function NavBar() {
               {/* <Link to="/ingreso" className="btn btn-outline-dark">
                 <i className="fa fa-sign-in me-1"></i>Ingresar
               </Link> */}
-              <Link to="/registro" className="btn btn-outline-dark ms-2">
+              {/* <Link to="/registro" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-user-plus me-1"></i>Registrarse
               </Link>
-              {
-                isAuthenticated ?
-                <LogoutButton/>
-                :
-                <LoginButton/>
-              }
+              {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
 
-
-              <Profile></Profile>
+              {/* <Profile></Profile> */}
               <Link to="/carrito" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i>Carrito (
                 {state.length})
