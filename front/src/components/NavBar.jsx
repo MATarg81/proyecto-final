@@ -39,34 +39,13 @@ function NavBar() {
                   Tienda
                 </Link>
               </li>
-              <li className="nav-item dropdown">
-                <Link
-                  className="nav-link dropdown-toggle"
-                  to="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
+              
+              <li className="nav-item">
+                <Link className="nav-link" to="/actividades">
                   Actividades
                 </Link>
-                <ul className="dropdown-menu ">
-                  <li>
-                    <Link className="dropdown-item bg-white text-black" to="#">
-                      Actividad 1
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item bg-white text-black" to="#">
-                      Actividad 2
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item bg-white text-black" to="#">
-                      Actividad 3
-                    </Link>
-                  </li>
-                </ul>
               </li>
+  
               <li className="nav-item">
                 <Link className="nav-link" to="/nosotros">
                   Nosotros
