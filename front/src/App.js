@@ -8,7 +8,14 @@ import Login from "./components/Login";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
+
+
+import Landing from './components/Landing';
+
+
 import AboutTeam from "./components/AboutTeam";
+
+
 
 
 function App() {
@@ -16,7 +23,8 @@ function App() {
     <>
       <NavBar />
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Landing />} />
+        <Route exact path="/home" element={<Home />} />
         <Route exact path="/tienda" element={<Shop />} />
         <Route exact path="/nosotros" element={<About />} />
         <Route exact path="/registro" element={<Register />} />
