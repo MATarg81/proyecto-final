@@ -72,30 +72,24 @@ const productsId = async(idP) => {
 // } 
 
 const postProducts = async(req, res) => {
+    const {
+        name, 
+        price,
+        detail,
+        image,
+        categories
+    } = req.body;
+    
     try{
-        const {
-            name, 
-            price,
-            detail,
-            image,
-            categories
-        } = req.body;
-
-        const categoriesLowerCase = categories.map((c) => c.toLowerCase());
 
         const newProduct = await Product.create({
-            name,
-            price,
-            detail,
+            name: name,
+            price: price,
+            detail: detail,
             image: image || 'https://img.freepik.com/fotos-premium/deporte-mujer-sentada-descansando-despues-entrenamiento-o-ejercicio-gimnasio-proteina-shak_10307-27.jpg?w=740', 
         }); 
-        const category = await Category.findAll({
-            where: {
-                name: categoriesLowerCase,
-            }
-        });
 
-        newProduct.addCategory(category);
+        newProduct.addCategory(categories);
 
         return res.send(newProduct);
     } catch (err) {

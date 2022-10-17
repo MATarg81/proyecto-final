@@ -65,9 +65,9 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, role, adress, phoneNumber } =
-    req.body;
+  const { name, lastname, email, dateOfBirth, role, adress, phoneNumber } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
+  const findRole = Role.findOne({where: {name: role}})
 
   try {
     if (!dbUser) {
@@ -77,10 +77,9 @@ async function addUser(req, res) {
         email: email,
         dateOfBirth: dateOfBirth,
         phoneNumber: phoneNumber,
-        adress: adress,
-        role: role,
+        adress: adress
       });
-      //await newUser.addRole(role); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
+      //await newUser.addRole(findRole.id); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
       return res.status(200).send(`User "${name + " " + lastname}" added`);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);
