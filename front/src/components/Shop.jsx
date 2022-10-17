@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
+import {getProducts, getCategories, orderByName, orderByPrice, filterByCategories} from '../redux/actions';
+import Product from './Product';
 
 function Shop() {
   const [data, setData] = useState([]);

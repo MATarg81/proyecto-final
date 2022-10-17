@@ -28,30 +28,12 @@ export function getProducts() {
     };
 };
 
-export function getProductsByName(name) {
-    return async function (dispatch) {
-        try {
-            const url = await axios.get(BACK_URL + "/products?name=" + name);
-            return dispatch({
-                type: GET_RECIPE_BY_NAME,
-                payload: url.data,
-            });
-        } catch(err) {
-            console.log(err);
-            return dispatch({
-                type: GET_RECIPE_BY_NAME,
-                payload: "404"
-            });
 
-;
-        }
-    };
-}
 
 export function getDetail(id) {
     return async function (dispatch) {
         try {
-            const url = await axios.get(BACK_URL + "/recipes/" + id);
+            const url = await axios.get(BACK_URL + "/products/" + id);
             return dispatch({
                 type: GET_DETAIL,
                 payload: url.data,
@@ -66,7 +48,7 @@ export function getDetail(id) {
 export function getCategories() {
     return async function (dispatch) {
         try {
-            const url = await axios.get(BACK_URL + "/diets");
+            const url = await axios.get(BACK_URL + "/categories");
             return dispatch({
                 type: GET_CATEGORIES,
                 payload: url.data,
@@ -107,7 +89,7 @@ export function orderByPrice(payload) {
     }
 }
 
-export function filterByDiets(payload) {
+export function filterByCategories(payload) {
     return {
         type: FILTER_BY_CATEGORIES,
         payload
