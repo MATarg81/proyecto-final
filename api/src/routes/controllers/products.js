@@ -46,9 +46,10 @@ const allProducts = async() => {
 //PRODUCTS BY ID:
 const productsId = async(idP) => {
     try {
-        const totalProducts = await allProducts();
 
-            const productId = totalProducts.find((r) => r.id === idP);
+        const totalProducts = await allProducts();
+            const productId = totalProducts.find((r) => r.id.toString() === idP);
+            console.log(productId)
             
             return productId;
         
@@ -132,7 +133,7 @@ const getProducts = async(req, res) => {
 const getProductsId = async(req, res) => {
     try {
         const id = req.params.id;
-        console.log(id)
+
         
         const result = await productsId(id);
         if (result) {
