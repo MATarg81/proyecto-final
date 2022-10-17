@@ -8,16 +8,10 @@ import Login from "./components/Login";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
+
 import Activities from "./components/Activities";
-
-
 import Landing from './components/Landing';
-
-
 import AboutTeam from "./components/AboutTeam";
-
-
-
 
 function App() {
   return (
@@ -34,7 +28,6 @@ function App() {
         <Route exact path="/tienda/:id" element={<Product />} />
         <Route exact path="/actividades" element={<Activities />} /> 
         <Route exact path="/aboutTeam" element={<AboutTeam />} />
-
       </Routes>
     </>
   );
