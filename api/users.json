@@ -6,7 +6,7 @@
             "dateOfBirth": 16031990,
             "phoneNumber": 2236690093,
             "email": "nahuelcittadino@gmai.com",
-            "adress": "Matheu 3156"
+            "address": "Matheu 3156"
         },
         {
             "name": "Laura",
@@ -14,7 +14,7 @@
             "dateOfBirth": 19061997,
             "phoneNumber": 116987456,
             "email": "lauramarcenaro@gmail.com",
-            "adress": "Rosalia 6668"
+            "address": "Rosalia 6668"
         },
         {
             "name": "Brenda",
@@ -22,7 +22,7 @@
             "dateOfBirth": 22121998,
             "phoneNumber": 2243321589,
             "email": "cecilia@yahoo.com",
-            "adress": "Av. Perales 5463"
+            "address": "Av. Perales 5463"
         },
         {
             "name": "Cinthya",
@@ -30,7 +30,7 @@
             "dateOfBirth": 20111991,
             "phoneNumber": 115325486,
             "email": "cinthyamolina@gmail.com",
-            "adress": "Guerra Galactica 422"
+            "address": "Guerra Galactica 422"
         },
         {
             "name": "Juan",
@@ -38,7 +38,7 @@
             "dateOfBirth": 12111951,
             "phoneNumber": 114658365,
             "email": "juanculia@gmail.com",
-            "adress": "Fernando 3070"
+            "address": "Fernando 3070"
         },
         {
             "name": "Matias",
@@ -46,7 +46,7 @@
             "dateOfBirth": 26021986,
             "phoneNumber": 2245632105,
             "email": "matiastula@gmail.com",
-            "adress": "Padelnator 775"
+            "address": "Padelnator 775"
         },
         {
             "name": "Sebastian Lucas",
@@ -54,7 +54,7 @@
             "dateOfBirth": 26021995,
             "phoneNumber": 224564657,
             "email": "sebasebasebado@gmail.com",
-            "adress": "Calle Falsa 123"
+            "address": "Calle Falsa 123"
         }
     ]
 }

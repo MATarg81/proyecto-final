@@ -13,6 +13,8 @@ async function getRoles(req, res) {
       });
       await Role.bulkCreate(rolesData);
       return res.status(200).send("Roles succesfully charged");
+    } else {
+      return res.status(404).send("Roles already charged")
     }
   } catch (e) {
     return res.status(404).send(e);
