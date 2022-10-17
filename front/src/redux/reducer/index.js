@@ -1,8 +1,10 @@
 import handleCart from "./handleCart";
-import activitiesReducer from "./activitiesReducer"
+import activitiesReducer from "./activitiesReducer";
+import productsReducer from "./productsReducer"
 import { combineReducers } from "redux";
 
 const rootReducers = combineReducers({
+  productsReducer,
   handleCart,
   activitiesReducer,
 });

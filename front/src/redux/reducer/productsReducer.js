@@ -1,7 +1,6 @@
 
 import {
     GET_PRODUCTS,
-    GET_PRODUCTS_BY_NAME,
     GET_DETAIL,
     GET_CATEGORIES,
     POST_PRODUCT,
@@ -28,12 +27,6 @@ const rootReducer = (state = initialState, action) => {
                 products: action.payload,
                 showProducts: action.payload,
                 allProducts: action.payload
-            }
-        }
-        case GET_PRODUCTS_BY_NAME: {
-            return {
-                ...state,
-                showProducts: action.payload,
             }
         }
         case GET_DETAIL: {
@@ -72,9 +65,9 @@ const rootReducer = (state = initialState, action) => {
         case ORDER_BY_PRICE: {
             const productsPrice =
             action.payload === 'min/max'
-            ? state.showProducts.sort((a, b) => a.healthScore - b.healthScore)
+            ? state.showProducts.sort((a, b) => a.price - b.price)
             : action.payload === 'max/min'
-            ? state.showProducts.sort((a, b) => b.healthScore - a.healthScore)
+            ? state.showProducts.sort((a, b) => b.price - a.price)
             : state.showProducts;
             return {
                 ...state,
