@@ -61,28 +61,19 @@ const productsId = async(idP) => {
 
 //--------------------------------------------------------------------------------------------------------------
 
-// const postProducts = async(req, res) => {
-//     const newProducts = req.body;
-//     try {
-//         await Product.findOrCreate(newProducts); 
-
-//         res.status(200).send('Productos cargados con éxito!');      
-//     } catch(error) {
-//         res.status(400).send('Error al cargar productos: ' + error)
-//     }
-// } 
-
 const postProducts = async(req, res) => {
-    try{
-        const {
-            name, 
-            price,
-            detail,
-            image,
-            categories
-        } = req.body;
 
-        const categoriesLowerCase = categories.map((c) => c.toLowerCase());
+    const {
+        name, 
+        price,
+        detail,
+        image,
+        categories
+    } = req.body;
+    try{
+
+
+        // const categoriesLowerCase = categories.map((c) => c.toLowerCase());
 
         const newProduct = await Product.create({
             name,
@@ -90,13 +81,13 @@ const postProducts = async(req, res) => {
             detail,
             image: image || 'https://img.freepik.com/fotos-premium/deporte-mujer-sentada-descansando-despues-entrenamiento-o-ejercicio-gimnasio-proteina-shak_10307-27.jpg?w=740', 
         }); 
-        const category = await Category.findAll({
-            where: {
-                name: categoriesLowerCase,
-            }
-        });
+        // const category = await Category.findAll({
+        //     where: {
+        //         name: categoriesLowerCase,
+        //     }
+        // });
 
-        newProduct.addCategory(category);
+        newProduct.addCategory(categories);
 
         return res.send(newProduct);
     } catch (err) {
