@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import React from 'react';
 import  {  useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,12 +7,16 @@ import { getActivities } from '../redux/actions/activitiesActions';
 export default function Activities() {
 
     const dispatch = useDispatch();
-    const allActivities = useSelector( (state) => state.activities)
+
+    const allActivities = useSelector( (state) => state.activitiesReducer.activities)
     
     useEffect(() =>{
         dispatch(getActivities())
-        console.log(allActivities, ' actividadeeeeeee')
+        
     },[dispatch])
+    
+    
+    console.log(allActivities, ' aca todas las actividades')
     
 
 
