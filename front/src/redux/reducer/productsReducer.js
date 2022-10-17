@@ -32,7 +32,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_PRODUCTS_BY_NAME: {
             return {
                 ...state,
-                showRecipes: action.payload,
+                showProducts: action.payload,
             }
         }
         case GET_DETAIL: {
@@ -69,7 +69,7 @@ const rootReducer = (state = initialState, action) => {
         }
 
         case ORDER_BY_PRICE: {
-            const recipesPrice =
+            const productsPrice =
             action.payload === 'min/max'
             ? state.showProducts.sort((a, b) => a.healthScore - b.healthScore)
             : action.payload === 'max/min'
@@ -77,11 +77,11 @@ const rootReducer = (state = initialState, action) => {
             : state.showProducts;
             return {
                 ...state,
-                showProducts: recipesHs
+                showProducts: productsPrice
             }
         }
 
-        case FILTER_BY_DIETS: {
+        case FILTER_BY_CATEGORIES: {
             const productsCategories = action.payload 
             ? state.showProducts = state.allProducts.filter((r) => r.categories.includes(action.payload))
             : state.showProducts;
