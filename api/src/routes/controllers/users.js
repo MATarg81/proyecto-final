@@ -15,10 +15,11 @@ async function getUsers(req, res) {
           lastname: u.lastname,
           dateOfBirth: u.dateOfBirth,
           phoneNumber: u.phoneNumber,
-          adress: u.adress,
+          address: u.address,
         };
       });
       await User.bulkCreate(usersData);
+      return res.status(200).send("Users succefully charged")
     } else if (name || lastname || email) {
       const userName = await User.findOne({
         where: { name: { [Op.iLike]: `%${name}%` } },
@@ -41,7 +42,7 @@ async function getUsers(req, res) {
         return res.status(404).send("User can't be found");
       }
     } else {
-      User.findAll().then((r) => res.status(200).send(r));
+      User.findAll({include: Role}).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
@@ -54,7 +55,7 @@ async function getUsersById(req, res) {
   const { id } = req.params;
 
   const findUser = await User.findOne({
-    where: { email: id }
+    where: { id: id }
   });
   if (findUser) {
     await findUser.save()
@@ -65,7 +66,7 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, role, adress, phoneNumber } = req.body;
+  const { name, lastname, email, dateOfBirth, role, address, phoneNumber } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
   const findRole = Role.findOne({where: {name: role}})
 
@@ -77,9 +78,9 @@ async function addUser(req, res) {
         email: email,
         dateOfBirth: dateOfBirth,
         phoneNumber: phoneNumber,
-        adress: adress
+        address: address
       });
-      //await newUser.addRole(findRole.id); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
+      //newUser.addRole(findRole.id); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
       return res.status(200).send(`User "${name + " " + lastname}" added`);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);
