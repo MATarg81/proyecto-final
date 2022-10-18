@@ -15,13 +15,20 @@ export function getActivities(){
     }
 }
 
-export function deleteActivity(name){
+export function postActivity(payload){
+    return async function(dispatch){
+        const axiosPost = await axios.post('http://localhost:3001/activities',payload)
+        return axiosPost
+    }
+}
+
+export function deleteActivity(id){
     return async function(dispatch){
         try {
-            await axios.delete('http://localhost:3001/activities/?name='+name);
+            await axios.delete('http://localhost:3001/activities/'+id);
             return dispatch({
                 type: 'DELETE_ACTIVITY',
-                payload: name
+                payload: id
             })
         } catch (e) {
             console.log(e, 'error en delete activity action')
