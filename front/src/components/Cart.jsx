@@ -34,19 +34,20 @@ const Cart = () => {
               <div className="col-md-4">
                 <img
                   src={product.image}
-                  alt={product.title}
+                  alt={product.name}
                   height="200px"
                   width="180px"
                 />
               </div>
               <div className="col-md-4">
-                <h3>{product.title}</h3>
+                <h3>{product.name}</h3>
                 <p className="lead fw-bold">
-                  {product.qty} X $ {product.price} = $
+                  {product.qty} x $ {product.price} = $
                   {product.qty * product.price}
                 </p>
+                <hr />
                 <button
-                  className="btn btn-outline-dark me-4"
+                  className="btn btn-outline-dark me-2"
                   onClick={() => handleDel(product)}
                 >
                   <i className="fa fa-minus"></i>

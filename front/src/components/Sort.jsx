@@ -93,12 +93,12 @@ return (
             <Link to="/create"><button>Create a new Product</button></Link>
         </div>
     </nav>
-    <div>
+    {/* <div>
         {productsPage?.map((r) =>                 
             <Product key={r.id} id={r.id} name={r.name} img={r.image} price={r.price}/>
         )} 
-    </div>
-    <Pagination totalPages = {totalPages} page = {page} setPage = {setPage}/>    
+    </div> */}
+    {/* <Pagination totalPages = {totalPages} page = {page} setPage = {setPage}/>     */}
 </div>
 )
 }
