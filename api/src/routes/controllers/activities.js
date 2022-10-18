@@ -4,6 +4,17 @@ const jsonData = require("../../../activities.json");
 
 const allActivities = async() => {
 
+  // const dataActivity = [];
+  //       const results = jsonData.results.map(db => {
+  //         dataActivity.push({
+  //             name: db.name,
+  //             detail: db.detail,
+  //             days: db.days,
+  //             times: db.times,
+  //             img: db.img,
+  //         })
+  //       });
+  //       return dataActivity;
   const dbData = await Activities.count();
 
     try {

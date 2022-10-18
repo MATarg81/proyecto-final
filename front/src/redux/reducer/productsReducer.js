@@ -9,7 +9,7 @@ import {
     FILTER_BY_CATEGORIES,
     NEXT_PAGE,
     PREV_PAGE,
-} from '../actions/productsActions';
+} from '../actionsTypes/actionsTypesProducts';
 
 const initialState = {
     allProducts : [],

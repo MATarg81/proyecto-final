@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getProducts, getCategories, orderByName, orderByPrice, filterByCategories} from '../redux/actions/productsActions';
+import {getProducts, getCategories, orderByName, orderByPrice, filterByCategories} from '../redux/actionsCreator/productsActions';
 import Product from './Product';
 import Pagination from './Pagination';
 
