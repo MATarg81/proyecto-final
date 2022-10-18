@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-// import Skeleton from "react-loading-skeleton";
-// import { Link } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {getProducts} from '../redux/actionsCreator/productsActions';
-// import Product from './Product';
-import Pagination from './Pagination';
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../redux/actionsCreator/productsActions";
+import Pagination from "./Pagination";
 import Sort from "./Sort";
-import { addCart } from "../redux/actions/index"
+import { addCart } from "../redux/actions/index";
 
 function Shop() {
   // const [data, setData] = useState([]);
@@ -15,8 +12,8 @@ function Shop() {
   //---------------------------------------------------------------
   const dispatch = useDispatch();
   const addProduct = (product) => {
-      dispatch(addCart(product));
-    };
+    dispatch(addCart(product));
+  };
   const products = useSelector((state) => state.productsReducer.showProducts);
   const productsPerPage = 9;
   const totalPages = Math.ceil(products?.length / productsPerPage);
@@ -29,7 +26,6 @@ function Shop() {
   useEffect(() => {
     if (products?.length === 0) {
       dispatch(getProducts());
-      // console.log(getProducts());
     }
   }, [dispatch, products]);
 

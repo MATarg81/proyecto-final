@@ -47,3 +47,5 @@ const Pagination = function ({ page, setPage, totalPages }) {
 };
 
 export default Pagination;
+
+//
