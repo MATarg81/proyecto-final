@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, searchProducts } from "../redux/actionsCreator/productsActions";
 import Pagination from "./Pagination";
 import { addCart } from "../redux/actions/index";
 import {
@@ -8,6 +7,7 @@ import {
   orderByName,
   orderByPrice,
   filterByCategories,
+  searchProducts
 } from "../redux/actionsCreator/productsActions";
 import Searchbar from "./SearchBar";
 
