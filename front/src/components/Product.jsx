@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCart } from "../redux/actions";
 import { useParams } from "react-router";
@@ -89,21 +89,20 @@ function Product(props) {
   //   </div>
   // );
 
-    return (
+  return (
+    <div>
+      <div>
+        <h4>{props.name}</h4>
+        <h4>{props.price}</h4>
         <div>
-            <div>
-                <h4>{props.name}</h4>
-                <h4>{props.price}</h4>
-                    <div>
-                        <div>
-                            <img src ={props.img} alt={props.names} width='200px'/>
-                        </div>
-                </div>
-            </div> 
-        </div> 
-    )
-    
+          <div>
+            <img src={props.img} alt={props.names} width="200px" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-
 export default Product;
+//
