@@ -137,7 +137,7 @@ const addActivity = async(req, res) => {
         .send(`Actividad "${name + ' ' }" already exists`);
       }
 };
-
+//comentario
 module.exports = {
   getActivities, 
   getActivitiesId,
