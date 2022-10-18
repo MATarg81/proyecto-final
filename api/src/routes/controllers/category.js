@@ -21,4 +21,19 @@ async function getCategory(req, res) {
   }
 }
 
-module.exports = getCategory;
+async function getAllCategories(req, res){
+  const dbfilled = Category.findAll()
+  try {
+    if(dbfilled.length === 0){
+      const dbfilling = await getCategory()
+      if(dbfilling.length > 0) return res.status(200).json(dbfilling)
+    }else{
+      return res.status(200).json(dbfilled)
+    }
+    
+  } catch (error) {
+    return res.status(400).send('get All Categories db error').json(error)
+  }
+
+}
+module.exports = {getCategory, getAllCategories};
