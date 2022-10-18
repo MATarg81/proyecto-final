@@ -1,59 +1,129 @@
-import axios from "axios";
-import { GET_PRODUCTS , GET_PRODUCTS_BY_ID , ADD_PRODUCTS, DELETE_PRODUCTS } from "../actionsTypes/actionsTypesProducts"
+import axios from 'axios';
+import {
+  GET_PRODUCTS,
+  GET_DETAIL,
+  GET_CATEGORIES,
+  POST_PRODUCT,
+  ORDER_BY_NAME,
+  ORDER_BY_PRICE,
+  FILTER_BY_CATEGORIES,
+  NEXT_PAGE,
+  PREV_PAGE,
+  GET_PRODUCTS_BY_NAME,
+} from '../actionsTypes/actionsTypesProducts';
 
-// export const GET_PRODUCTS = "GET_PRODUCTS";
-// export const GET_PRODUCTS_BY_ID = "GET_PRODUCTS_BY_ID";
-// export const ADD_PRODUCTS = "ADD_PRODUCTS";
-// export const DELETE_PRODUCTS = "DELETE_PRODUCTS";
 
 
-export function get_products(name) {
-  return async function (dispatch) {
-    try {
-      const { data } = await axios.get(
-        `http://localhost:3001/products?name=${name}`
-      );
-      return dispatch({ type: GET_PRODUCTS, payload: data });
-    } catch (error) {
-    alert(error)
-    }
-  };
-}
-export function get_products_by_id(id) {
-  console.log("get_products_by_id" + id);
-  return async function (dispatch) {
-    try {
-      const { data } = await axios.get(`http://localhost:3001/products/:${id}`);
-      return dispatch({ type: GET_PRODUCTS_BY_ID, payload: data });
-    } catch (error) {
-      alert(error);
-    }
-  };
-}
+const BACK_URL = 'http://localhost:3001';
 
-export function add_products(id, object) {
-  return async function (dispatch) {
-    try {
-      const { data } = await axios.put(
-        `http://localhost:3001/products/:${id}`,
-        object
-      );
-      return dispatch({ type: ADD_PRODUCTS, payload: data });
-    } catch (error) {
-      alert(error)
-    }
-  };
-}
-
-export const delete_products = (id) => {
+export function getProducts() {
     return async function (dispatch) {
         try {
-          const { data } = await axios.delete(`http://localhost:3001/products/:${id}`);
-          console.log("soy ID " + data);
-          return dispatch({ type: DELETE_PRODUCTS, payload: data });
-        } catch (error) {
-          alert(error);
+            const url = await axios.get(BACK_URL + "/products");
+            // console.log(url.data)
+
+            return dispatch({
+                type: GET_PRODUCTS,
+                payload: url.data,
+            });
+        } catch(err) {
+            console.log(err);
+            return err;
         }
-      };
+    };
 };
 
+export function searchProducts(search) {
+  return function (dispatch) {
+    axios.get(`${BACK_URL}/products?name=${search}`) 
+      .then((products) => { 
+        dispatch({
+          type: GET_PRODUCTS_BY_NAME, 
+          payload: products.data 
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+}
+
+export function getDetail(id) {
+    return async function (dispatch) {
+        try {
+            const url = await axios.get(BACK_URL + "/products/" + id);
+            return dispatch({
+                type: GET_DETAIL,
+                payload: url.data,
+            });
+        } catch(err) {
+            console.log(err);
+            return err;
+        }
+    };
+}
+
+export function getCategories() {
+    return async function (dispatch) {
+        try {
+            const url = await axios.get(BACK_URL + "/categories");
+            return dispatch({
+                type: GET_CATEGORIES,
+                payload: url.data,
+            });
+        } catch(err) {
+            console.log(err);
+            return err;
+        }
+    };
+}
+
+export function createProduct(body) {
+    return async function (dispatch) {
+        try {
+            const res = await axios.post(BACK_URL + "/products", body);
+            return dispatch({
+                type: POST_PRODUCT,
+                payload: res,
+            });
+        } catch(err) {
+            console.log(err);
+            return err;
+        }
+    };
+}
+
+export function orderByName(payload) {
+    return {
+        type: ORDER_BY_NAME,
+        payload,
+    }
+}
+
+export function orderByPrice(payload) {
+    return {
+        type: ORDER_BY_PRICE,
+        payload,
+    }
+}
+
+export function filterByCategories(payload) {
+    return {
+        type: FILTER_BY_CATEGORIES,
+        payload
+    }
+}
+
+export function nextPage(payload) {
+    return {
+        type: NEXT_PAGE,
+        payload,
+    }
+}
+
+export function prevPage(payload) {
+    return {
+        type: PREV_PAGE,
+        payload,
+    }
+}

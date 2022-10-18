@@ -1,4 +1,12 @@
-export const GET_PRODUCTS = "GET_PRODUCTS";
-export const GET_PRODUCTS_BY_ID = "GET_PRODUCTS_BY_ID";
-export const ADD_PRODUCTS = "ADD_PRODUCTS";
-export const DELETE_PRODUCTS = "DELETE_PRODUCTS";
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_DETAIL = 'GET_DETAIL';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
+export const POST_PRODUCT = 'POST_PRODUCTS';
+export const ORDER_BY_NAME = 'ORDER_BY_NAME';
+export const ORDER_BY_PRICE = 'ORDER_BY_PRICE';
+export const FILTER_BY_CATEGORIES = 'FILTER_BY_CATEGORIES';
+export const NEXT_PAGE = 'NEXT_PAGE';
+export const PREV_PAGE = 'PREV_PAGE';
+export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
+
+

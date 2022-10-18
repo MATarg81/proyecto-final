@@ -9,7 +9,8 @@ import {
     FILTER_BY_CATEGORIES,
     NEXT_PAGE,
     PREV_PAGE,
-} from '../actions/productsActions';
+    GET_PRODUCTS_BY_NAME
+} from '../actionsTypes/actionsTypesProducts';
 
 const initialState = {
     allProducts : [],
@@ -29,6 +30,14 @@ const rootReducer = (state = initialState, action) => {
                 allProducts: action.payload
             }
         }
+
+        case GET_PRODUCTS_BY_NAME: {
+            return {
+                ...state,
+                showProducts: action.payload,
+            }
+        }
+
         case GET_DETAIL: {
             return {
                 ...state,
@@ -64,9 +73,9 @@ const rootReducer = (state = initialState, action) => {
 
         case ORDER_BY_PRICE: {
             const productsPrice =
-            action.payload === 'min/max'
+            action.payload === 'MIN/MAX'
             ? state.showProducts.sort((a, b) => a.price - b.price)
-            : action.payload === 'max/min'
+            : action.payload === 'MAX/MIN'
             ? state.showProducts.sort((a, b) => b.price - a.price)
             : state.showProducts;
             return {
@@ -107,3 +116,4 @@ const rootReducer = (state = initialState, action) => {
 }
 
 export default rootReducer;
+//
