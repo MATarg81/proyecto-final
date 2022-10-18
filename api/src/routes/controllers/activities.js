@@ -12,9 +12,11 @@ const allActivities = async() => {
   //             days: db.days,
   //             times: db.times,
   //             img: db.img,
-  //         })
-  //       });
+  //       })
+  //     });
   //       return dataActivity;
+
+  
   const dbData = await Activities.count();
 
     try {
@@ -109,6 +111,7 @@ const addActivity = async(req, res) => {
     detail,
     days,
     times,
+    img,
     email
   } = req.body;
  
@@ -120,7 +123,8 @@ const addActivity = async(req, res) => {
         name: name,
         detail: detail,
         days: days,
-        times: times
+        times: times,
+        img: img
       });
       
       newActivity.addUser(email);
