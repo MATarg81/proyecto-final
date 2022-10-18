@@ -12,6 +12,7 @@ import Product from "./components/Product";
 import Activities from "./components/Activities";
 import Landing from './components/Landing';
 import AboutTeam from "./components/AboutTeam";
+import ActivityCreate from "./components/ActivityCreate";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/tienda/:id" element={<Product />} />
         <Route exact path="/actividades" element={<Activities />} /> 
         <Route exact path="/aboutTeam" element={<AboutTeam />} />
+        <Route exact path="/crearActividades" element={<ActivityCreate />} />
       </Routes>
     </>
   );
