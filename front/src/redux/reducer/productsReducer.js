@@ -29,6 +29,14 @@ const rootReducer = (state = initialState, action) => {
                 allProducts: action.payload
             }
         }
+
+        case GET_PRODUCTS_BY_NAME: {
+            return {
+                ...state,
+                ProductsByName: action.payload,
+            }
+        }
+
         case GET_DETAIL: {
             return {
                 ...state,
