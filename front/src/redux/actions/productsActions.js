@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
 export const GET_DETAIL = 'GET_DETAIL';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const POST_PRODUCT = 'POST_PRODUCTS';
@@ -28,6 +29,21 @@ export function getProducts() {
         }
     };
 };
+
+export function searchProducts(search) {
+    return function (dispatch) {
+      axios.get(`${BACK_URL}/products?name=${search}`) 
+        .then((products) => { 
+          dispatch({
+            type: GET_PRODUCTS_BY_NAME, 
+            payload: products.data 
+          })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
 
 
 

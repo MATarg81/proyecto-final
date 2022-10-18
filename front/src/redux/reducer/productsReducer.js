@@ -2,6 +2,7 @@
 import {
     GET_PRODUCTS,
     GET_DETAIL,
+    GET_PRODUCTS_BY_NAME,
     GET_CATEGORIES,
     POST_PRODUCT,
     ORDER_BY_NAME,
@@ -12,15 +13,15 @@ import {
 } from '../actions/productsActions';
 
 const initialState = {
-    allProducts : [],
-    products : [],
+    allProducts: [],
+    products: [],
     showProducts: [],
     categories: [],
     detail: [],
 };
 
 const rootReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case GET_PRODUCTS: {
             return {
                 ...state,
@@ -29,6 +30,13 @@ const rootReducer = (state = initialState, action) => {
                 allProducts: action.payload
             }
         }
+
+        case GET_PRODUCTS_BY_NAME:
+            return {
+                ...state,
+                ProductsByName: action.payload,
+            }
+
         case GET_DETAIL: {
             return {
                 ...state,
@@ -48,13 +56,13 @@ const rootReducer = (state = initialState, action) => {
         }
 
         case ORDER_BY_NAME: {
-            const productsName = 
-            action.payload === 'A/Z'
-            ? state.showProducts.sort((a, b) => a.name.localeCompare(b.name))
-            : action.payload === 'Z/A' 
-            ? state.showProducts.sort((a, b) => b.name.localeCompare(a.name))
-            : state.showProducts;
-           
+            const productsName =
+                action.payload === 'A/Z'
+                    ? state.showProducts.sort((a, b) => a.name.localeCompare(b.name))
+                    : action.payload === 'Z/A'
+                        ? state.showProducts.sort((a, b) => b.name.localeCompare(a.name))
+                        : state.showProducts;
+
 
             return {
                 ...state,
@@ -64,11 +72,11 @@ const rootReducer = (state = initialState, action) => {
 
         case ORDER_BY_PRICE: {
             const productsPrice =
-            action.payload === 'min/max'
-            ? state.showProducts.sort((a, b) => a.price - b.price)
-            : action.payload === 'max/min'
-            ? state.showProducts.sort((a, b) => b.price - a.price)
-            : state.showProducts;
+                action.payload === 'min/max'
+                    ? state.showProducts.sort((a, b) => a.price - b.price)
+                    : action.payload === 'max/min'
+                        ? state.showProducts.sort((a, b) => b.price - a.price)
+                        : state.showProducts;
             return {
                 ...state,
                 showProducts: productsPrice
@@ -76,9 +84,9 @@ const rootReducer = (state = initialState, action) => {
         }
 
         case FILTER_BY_CATEGORIES: {
-            const productsCategories = action.payload 
-            ? state.showProducts = state.allProducts.filter((r) => r.categories.includes(action.payload))
-            : state.showProducts;
+            const productsCategories = action.payload
+                ? state.showProducts = state.allProducts.filter((r) => r.categories.includes(action.payload))
+                : state.showProducts;
 
             return {
                 ...state,
@@ -99,7 +107,8 @@ const rootReducer = (state = initialState, action) => {
         }
 
         default: {
-            return {...state,
+            return {
+                ...state,
             }
         }
     }
