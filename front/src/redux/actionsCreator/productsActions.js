@@ -21,6 +21,7 @@ export function getProducts() {
         try {
             const url = await axios.get(BACK_URL + "/products");
             // console.log(url.data)
+
             return dispatch({
                 type: GET_PRODUCTS,
                 payload: url.data,

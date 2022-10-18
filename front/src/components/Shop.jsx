@@ -9,7 +9,7 @@ import {
   filterByCategories,
   searchProducts
 } from "../redux/actionsCreator/productsActions";
-import Searchbar from "./SearchBar";
+import SearchBar from "./SearchBar";
 
 function Shop() {
   // const [data, setData] = useState([]);
@@ -118,6 +118,7 @@ function Shop() {
       <div>
         <nav>
           <div>
+            <SearchBar/>
             <select onChange={order}>
               <option defaultValue="Nombre">Nombre</option>
               <option value="A/Z">A/Z</option>
