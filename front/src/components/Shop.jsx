@@ -80,7 +80,7 @@ function Shop() {
         className="grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr 1fr",
           gridTemplateRows: "1fr 1fr 1fr",
           gap: "5px 5px",
         }}
