@@ -71,7 +71,6 @@ function Sort() {
     dispatch(getProducts());
   };
 
-  console.log(products);
   //------------------------------------------------------
 
   return (
