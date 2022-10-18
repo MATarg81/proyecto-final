@@ -10,7 +10,7 @@ function activitiesReducer(state= initialState, { type, payload }){
         case GET_CATEGORIES:
             return {
                 ...state,
-                activities: payload
+                categories: payload
             }
 
             

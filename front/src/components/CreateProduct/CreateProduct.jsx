@@ -113,43 +113,72 @@ const CreateProduct = function() {
 
 
     return (
-        <div >
-            <h1 >Create a new recipe</h1>
-            <form   >
-                <label>
-                    Nombre: 
-                </label>
-                <input placeholder = "Nombre..."  value = {input.name} type='text' onChange={handleChange} name='name'/>
-                {error.name && <p >{error.name}</p>}
-                <label>
-              
-                    Precio:                 <span >{input.price}</span>
-                </label>
-                <input  value = {input.price} type='text' onChange={handleChange} name='price'/> 
-                {error.price && <p>{error.price}</p>}
-                <label>
-             
-                    Image: 
-                </label> 
-                <input placeholder = "image URL... (optional)"  value = {input.image} type='text' onChange={handleChange} name='image'/> 
-                {error.image && <p >{error.image}</p>}
-                <label>
-                    Categorias: 
-                </label> 
-                <div>
-                    {categories && categories.map((d) => 
-                        <label  htmlFor={d.name} key={d.name}>
-                            <div  >
-                                <input onClick={handleCheck} key = {d.name} type ='checkbox' value = {d.name}/><span>{d.name + "    "} </span>
-                            </div>
-                        </label>)
-                    }
-                    {error.category && <p >{error.category}</p>}
-                </div>
-                <button  onClick={handleSubmit} disabled={Object.keys(error).length > 0}>Create</button>
-            </form>
-        </div>
+
+        <div>
         
+      <div className="ProductCreate">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <div className="mb-3" style={{display:"flex", flexDirection:"column" ,alignItems:"center"}}>
+
+            <label for="name" className="form-label">
+              Nombre del producto
+            </label>
+            <input
+              style={{width:'600px'}}
+              type="text"
+              className="form-control mb-3"
+              id="name"
+              aria-describedby="name"
+              placeholder="Name..."
+              value={input.name} 
+              name='name' 
+              required
+              onChange={(e)=>handleChange(e)}  
+            /> 
+            {error.name && <p >{error.name}</p>}
+            
+
+
+          
+            <label for="times" className="form-label">
+              Precio
+            </label>
+            <input
+            style={{width:'600px'}}
+              type="number"
+              className="form-control mb-3"
+              id="price"
+              placeholder="Precio..."
+              value={input.price} 
+              name='price' 
+              required
+              onChange={(e)=>handleChange(e)}
+            />
+            {error.price && <p>{error.price}</p>}
+
+            <label for="image" className="form-label">
+              Imagen
+            </label>
+            <input
+            style={{width:'600px'}}
+              type="iamge"
+              className="form-control"
+              id="image"
+              placeholder="Imagen..."
+              value={input.image} 
+              name='image' 
+              onChange={(e)=>handleChange(e)}
+            />
+            {error.image && <p >{error.image}</p>}
+          <hr />
+          <button type="submit" className="btn btn-primary">
+            Crear
+          </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     )
 }
 
