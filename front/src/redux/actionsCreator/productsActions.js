@@ -9,6 +9,7 @@ import {
   FILTER_BY_CATEGORIES,
   NEXT_PAGE,
   PREV_PAGE,
+  GET_PRODUCTS_BY_NAME,
 } from '../actionsTypes/actionsTypesProducts';
 
 
@@ -31,7 +32,20 @@ export function getProducts() {
     };
 };
 
-
+export function searchProducts(search) {
+  return function (dispatch) {
+    axios.get(`${BACK_URL}/products?name=${search}`) 
+      .then((products) => { 
+        dispatch({
+          type: GET_PRODUCTS_BY_NAME, 
+          payload: products.data 
+        })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+}
 
 export function getDetail(id) {
     return async function (dispatch) {
@@ -108,7 +122,7 @@ export function nextPage(payload) {
 
 export function prevPage(payload) {
     return {
-        type: NEXT_PAGE,
+        type: PREV_PAGE,
         payload,
     }
 }

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../redux/actionsCreator/productsActions";
+import { getProducts, searchProducts } from "../redux/actionsCreator/productsActions";
 import Pagination from "./Pagination";
 import Sort from "./Sort";
 import { addCart } from "../redux/actions/index";
+import Searchbar from "./SearchBar";
 
 function Shop() {
   // const [data, setData] = useState([]);
@@ -28,6 +29,8 @@ function Shop() {
       dispatch(getProducts());
     }
   }, [dispatch, products]);
+
+
 
   // const orderName = function(e) {
   //     e.preventDefault();
@@ -71,6 +74,7 @@ function Shop() {
   return (
     <>
       <div>
+        <Searchbar/>
         <Sort />
         {/* {productsPage?.map((r) =>                 
             <Product key={r.id} id={r.id} name={r.name} img={r.image} price={r.price}/>
