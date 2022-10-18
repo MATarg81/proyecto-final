@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { searchProducts } from '../redux/actionsCreator/productsActions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Searchbar() {
 
+    const products = useSelector((state) => state.productsReducer.showProducts);
+
     const [search, setSearch] = useState('')
+
     let dispatch = useDispatch()
+    
     function onSubmit(e) {
         e.preventDefault();
         dispatch(searchProducts(search))
