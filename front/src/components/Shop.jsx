@@ -4,7 +4,6 @@ import Pagination from "./Pagination";
 import { addCart } from "../redux/actions/index";
 import {
   getProducts,
-  getCategories,
   orderByName,
   orderByPrice,
   filterByCategories,
@@ -54,7 +53,7 @@ function Shop() {
     if (e.target.value === "A/Z" || e.target.value === "Z/A") {
       orderName(e);
     }
-    if (e.target.value === "max/min" || e.target.value === "min/max") {
+    if (e.target.value === "MAX/MIN" || e.target.value === "MIN/MAX") {
       orderPrice(e);
     }
   };
@@ -88,8 +87,8 @@ function Shop() {
             </select>
             <select onChange={order}>
               <option defaultValue="Precio">Precio</option>
-              <option value="MIN/MAX">min/max</option>
-              <option value="MAX/MIN">max/min</option>
+              <option value="MIN/MAX">MIN/MAX</option>
+              <option value="MAX/MIN">MAX/MIN</option>
             </select>
           </div>
           <div>

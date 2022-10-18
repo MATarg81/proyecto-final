@@ -64,9 +64,9 @@ const rootReducer = (state = initialState, action) => {
 
         case ORDER_BY_PRICE: {
             const productsPrice =
-            action.payload === 'min/max'
+            action.payload === 'MIN/MAX'
             ? state.showProducts.sort((a, b) => a.price - b.price)
-            : action.payload === 'max/min'
+            : action.payload === 'MAX/MIN'
             ? state.showProducts.sort((a, b) => b.price - a.price)
             : state.showProducts;
             return {
