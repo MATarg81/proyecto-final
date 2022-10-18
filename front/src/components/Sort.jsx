@@ -8,6 +8,7 @@ import {
   orderByPrice,
   filterByCategories,
 } from "../redux/actionsCreator/productsActions";
+import Product from "./Product";
 
 function Sort() {
   // const [data, setData] = useState([]);
@@ -71,7 +72,7 @@ function Sort() {
     dispatch(getProducts());
   };
 
-  console.log(products);
+  // console.log(products);
   //------------------------------------------------------
 
   return (
@@ -79,9 +80,12 @@ function Sort() {
       <nav>
         <div>
           <select onChange={order}>
-            <option defaultValue="---">---</option>
+            <option defaultValue="Nombre">Nombre</option>
             <option value="A/Z">A/Z</option>
             <option value="Z/A">Z/A</option>
+          </select>
+          <select onChange={order}>
+          <option defaultValue="Precio">Precio</option>
             <option value="min/max">min/max</option>
             <option value="max/min">max/min</option>
           </select>

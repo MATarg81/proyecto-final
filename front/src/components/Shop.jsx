@@ -2,8 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts, searchProducts } from "../redux/actionsCreator/productsActions";
 import Pagination from "./Pagination";
-import Sort from "./Sort";
 import { addCart } from "../redux/actions/index";
+import {
+  getProducts,
+  getCategories,
+  orderByName,
+  orderByPrice,
+  filterByCategories,
+} from "../redux/actionsCreator/productsActions";
 import Searchbar from "./SearchBar";
 
 function Shop() {
@@ -18,6 +24,9 @@ function Shop() {
   const products = useSelector((state) => state.productsReducer.showProducts);
   const productsPerPage = 9;
   const totalPages = Math.ceil(products?.length / productsPerPage);
+  const category = useSelector((state) => state.productsReducer.categories);
+  const [, setOrder] = useState();
+  const [name, setName] = useState();
 
   const [page, setPage] = useState(1);
   const first = (page - 1) * productsPerPage;
@@ -30,7 +39,41 @@ function Shop() {
     }
   }, [dispatch, products]);
 
+  const orderName = function (e) {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setOrder(e.target.value);
+  };
 
+  const orderPrice = function (e) {
+    e.preventDefault();
+    dispatch(orderByPrice(e.target.value));
+    setOrder(e.target.value);
+  };
+
+  const order = function (e) {
+    setPage(1);
+    if (e.target.value === "A/Z" || e.target.value === "Z/A") {
+      orderName(e);
+    }
+    if (e.target.value === "max/min" || e.target.value === "min/max") {
+      orderPrice(e);
+    }
+  };
+
+  const handleChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const filterCategories = (e) => {
+    setPage(1);
+    dispatch(filterByCategories(e.target.value));
+  };
+
+  const cleanFilters = (e) => {
+    e.preventDefault();
+    dispatch(getProducts());
+  };
 
   // const orderName = function(e) {
   //     e.preventDefault();
@@ -74,6 +117,28 @@ function Shop() {
   return (
     <>
       <div>
+        <nav>
+          <div>
+            <select onChange={order}>
+              <option defaultValue="Nombre">Nombre</option>
+              <option value="A/Z">A/Z</option>
+              <option value="Z/A">Z/A</option>
+            </select>
+            <select onChange={order}>
+              <option defaultValue="Precio">Precio</option>
+              <option value="MIN/MAX">min/max</option>
+              <option value="MAX/MIN">max/min</option>
+            </select>
+          </div>
+          <div>
+            <button onClick={cleanFilters}>Clean Filters</button>
+            {/* <Link to="/create">
+            <button>Create a new Product</button>
+          </Link> */}
+          </div>
+        </nav>
+        {/* <Sort />
+        {productsPage?.map((r) =>                 
         <Searchbar/>
         <Sort />
         {/* {productsPage?.map((r) =>                 
