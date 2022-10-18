@@ -40,7 +40,7 @@ Category.belongsToMany(Product, {through: 'Category_Product'});
 Activities.belongsToMany(User, {through: 'Activity_User'});
 User.belongsToMany(Activities, {through: 'Activity_User'});
 
-User.hasOne(Role, {through: 'User_Role'});
+User.belongsTo(Role);
 Role.belongsToMany(User, {through: 'User_Role'});
 
 
