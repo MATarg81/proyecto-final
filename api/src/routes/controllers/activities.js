@@ -15,7 +15,42 @@ const allActivities = async() => {
           })
         });
         return dataActivity;
+  const dbData = await Activities.count();
+
+    try {
+        if (!dbData) {   
+            const results = await Activities.bulkCreate(jsonData.results);
+            return results;
+       
+        } else {
+            const dbActivity = await Activities.findAll({
+                include: {
+                  model: User,
+                  attributes: ["email"],
+                  through: {
+                      attributes: []
+                  }
+            }}); 
+            return dbActivity;
+
+        }        
+    } catch (error) {
+        console.log('Problemas en la función dbActivity()' + error);
+    };
 }
+
+const activitiesId = async(id) => {
+  try {
+
+      const totalActivities = await allActivities();
+      const activityId = totalActivities.find((r) => r.id.toString() === id);
+          
+          return activityId;
+  }
+  catch(err) {
+      console.log('Problemas en /:id' + err);
+  }
+};
 
 const getActivities = async(req, res) => {
     try {
@@ -36,19 +71,37 @@ const getActivities = async(req, res) => {
     }; 
 };
 
+const getActivitiesId = async(req, res) => {
+  try {
+      const id = req.params.id;
+
+      
+      const result = await activitiesId(id);
+      if (result) {
+          return res.status(200).send(result);
+      } else {
+          res.status(404).send('Id no existente')
+      };
+  }
+  catch(err) {
+      res.status(404).send('Problemas en el controlador de la ruta GET/activities/:id');
+  }
+ 
+};
 
 const deleteActivity = async (req, res)=>{
-  const { name } = req.query;
-  const findActivity = Activities.findOne({ where: { name:name } });
+  const { id } = req.params;
   try {
-    if (findActivity) {
-      Activities.destroy({ where: { name:name } });
-      res.status(200).send('Actividad eliminada')
-    }
+    await  Activities.destroy({
+      where:{
+          id:id,
+      }
+    })
+    res.status(200).send('Actividad eliminada')
   } catch (error) {
-      res.status(400).send(error)
+      res.status(400).send('error')
   }
-};
+}
 
 const addActivity = async(req, res) => {
   const { 
@@ -56,13 +109,13 @@ const addActivity = async(req, res) => {
     detail,
     days,
     times,
-    user
+    email
   } = req.body;
  
   const dbActivity = await Activities.count();
 
   try {
-    if(!dbActivity){
+
       const newActivity = await Activities.create({
         name: name,
         detail: detail,
@@ -70,21 +123,21 @@ const addActivity = async(req, res) => {
         times: times
       });
       
+      newActivity.addUser(email);
+
       return res
         .status(200)
-        .send(`Actividad "${name + ' ' }" added`).json(newActivity);
-      } else {
+        .json(newActivity);
+      } catch {
       res
         .status(404)
         .send(`Actividad "${name + ' ' }" already exists`);
-    }
-  } catch (e) {
-    return res.status(404).send(console.log(e));
-  }
-} 
+      }
+};
 
 module.exports = {
   getActivities, 
+  getActivitiesId,
   deleteActivity,
   addActivity
 };
