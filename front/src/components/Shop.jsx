@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getProducts} from '../redux/actions/productsActions';
+import {getProducts} from '../redux/actionsCreator/productsActions';
 import Product from './Product';
 import Pagination from './Pagination';
 import Sort from "./Sort";
