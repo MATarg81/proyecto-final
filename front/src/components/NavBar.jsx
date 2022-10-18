@@ -53,6 +53,12 @@ function NavBar() {
               </li>
 
               <li className="nav-item">
+                <Link className="nav-link" to="/crearProducto">
+                  Crear Producto
+                </Link>
+              </li>
+
+              <li className="nav-item">
                 <Link className="nav-link" to="/nosotros">
                   Nosotros
                 </Link>
