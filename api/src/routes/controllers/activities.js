@@ -109,6 +109,7 @@ const addActivity = async(req, res) => {
     detail,
     days,
     times,
+    img,
     email
   } = req.body;
  
@@ -120,7 +121,8 @@ const addActivity = async(req, res) => {
         name: name,
         detail: detail,
         days: days,
-        times: times
+        times: times,
+        img: img
       });
       
       newActivity.addUser(email);
