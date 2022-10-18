@@ -9,6 +9,7 @@ import {
     FILTER_BY_CATEGORIES,
     NEXT_PAGE,
     PREV_PAGE,
+    GET_PRODUCTS_BY_NAME
 } from '../actionsTypes/actionsTypesProducts';
 
 const initialState = {
@@ -29,6 +30,14 @@ const rootReducer = (state = initialState, action) => {
                 allProducts: action.payload
             }
         }
+
+        case GET_PRODUCTS_BY_NAME: {
+            return {
+                ...state,
+                ProductsByName: action.payload,
+            }
+        }
+
         case GET_DETAIL: {
             return {
                 ...state,
