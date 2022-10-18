@@ -20,6 +20,8 @@ export function getProducts() {
     return async function (dispatch) {
         try {
             const url = await axios.get(BACK_URL + "/products");
+            // console.log(url.data)
+
             return dispatch({
                 type: GET_PRODUCTS,
                 payload: url.data,
