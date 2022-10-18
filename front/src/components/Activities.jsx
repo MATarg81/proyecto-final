@@ -44,13 +44,19 @@ export default function Activities() {
           allActivities.map((a) => {
             return (
               <div className="col" key={a.name}>
-                <div className="card" style={{margin:'15px', border:'1px solid black'}}>
+                <div 
+                className="card" 
+                style={{margin:'15px',
+                 border:'1px solid black'
+                 }}>
+
                   <img
                     src={a.img}
                     style={{ height: "250px", width: "100%" }}
                     className="card-img-top"
                     alt="..."
                   />
+
                   <div className="card-body" style={{  backgroundColor:'rgba(160, 160, 160, 0.788)' }}>
                     <h5 className="card-title">{a.name}</h5>
                     <p className="card-text">{a.detail}</p>
