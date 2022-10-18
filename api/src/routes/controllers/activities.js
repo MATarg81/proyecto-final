@@ -12,9 +12,8 @@ const allActivities = async() => {
   //             days: db.days,
   //             times: db.times,
   //             img: db.img,
-  //         })
-  //       });
-  
+  //       })
+  //     });
   //       return dataActivity;
 
   const dbData = await Activities.count();
