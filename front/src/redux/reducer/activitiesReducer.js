@@ -10,6 +10,12 @@ function activitiesReducer(state= initialState, { type, payload }){
                 ...state,
                 activities: payload
             }
+        
+        case 'DELETE_ACTIVITY':
+            return {
+                ...state,
+                activities: state.activities.filter(a => a.name !== payload)
+            }
             
         default: 
         return state;        

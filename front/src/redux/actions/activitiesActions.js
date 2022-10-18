@@ -14,3 +14,17 @@ export function getActivities(){
         }
     }
 }
+
+export function deleteActivity(name){
+    return async function(dispatch){
+        try {
+            await axios.delete('http://localhost:3001/activities/?name='+name);
+            return dispatch({
+                type: 'DELETE_ACTIVITY',
+                payload: name
+            })
+        } catch (e) {
+            console.log(e, 'error en delete activity action')
+        }
+    }
+}

@@ -10,7 +10,8 @@ const allActivities = async() => {
               name: db.name,
               detail: db.detail,
               days: db.days,
-              times: db.times
+              times: db.times,
+              img: db.img,
           })
         });
         return dataActivity;
