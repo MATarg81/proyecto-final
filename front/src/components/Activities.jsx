@@ -8,6 +8,7 @@ import {
   deleteActivity,
 } from "../redux/actions/activitiesActions";
 
+
 export default function Activities() {
   const dispatch = useDispatch();
 
@@ -19,7 +20,7 @@ export default function Activities() {
     dispatch(getActivities());
   }, [dispatch]);
 
-  const paramId = useParams();
+  
 
   function handleDeleteActivity(id) {
     if (window.confirm(`Are you sure you want to delete the activity?`)) {
@@ -34,42 +35,43 @@ export default function Activities() {
       <hr />
       <Link to="/crearActividades">
         {" "}
-        <button> Crear Actividad </button>{" "}
+        <button type="button" className="btn btn-primary">Crear Actividad</button>{" "}
       </Link>
       <hr />
 
-      <div class="row row-cols-1 row-cols-md-2 g-4">
+      <div className="row row-cols-1 row-cols-md-2 g-4">
         {allActivities ? (
           allActivities.map((a) => {
             return (
-              <div class="col" key={a.name}>
-                <div class="card">
+              <div className="col" key={a.name}>
+                <div className="card" style={{margin:'15px', border:'1px solid black'}}>
                   <img
                     src={a.img}
-                    style={{ height: "250px", width: "41.1rem" }}
-                    class="card-img-top"
+                    style={{ height: "250px", width: "100%" }}
+                    className="card-img-top"
                     alt="..."
                   />
-                  <div class="card-body">
-                    <h5 class="card-title">{a.name}</h5>
-                    <p class="card-text">{a.detail}</p>
+                  <div className="card-body" style={{  backgroundColor:'rgba(160, 160, 160, 0.788)' }}>
+                    <h5 className="card-title">{a.name}</h5>
+                    <p className="card-text">{a.detail}</p>
                     <p className="card-text">
                       <small className="text-muted">{a.days}</small>
                     </p>
                     <p className="card-text">
                       <small className="text-muted">{a.times}</small>
                     </p>
-                    <button> Inscribirse </button>
-                    <button
+                    <button type="button" className="btn btn-secondary">Inscribirse</button>
+                    <button 
+                      type="button" 
+                      className="btn btn-dark"
                       style={{
                         width: "100px",
                         position: "absolute",
                         right: "4px",
                       }}
                       onClick={() => handleDeleteActivity(a.id)}
-                    >
-                      Delete X
-                    </button>
+                      >Delete X
+                      </button>
                   </div>
                 </div>
               </div>
