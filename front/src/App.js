@@ -10,6 +10,7 @@ import Cart from "./components/Cart";
 import Product from "./components/Product";
 
 import Activities from "./components/Activities";
+import  CreateProduct  from "../src/components/CreateProduct/CreateProduct.jsx";
 import Landing from './components/Landing';
 import AboutTeam from "./components/AboutTeam";
 import ActivityCreate from "./components/ActivityCreate";
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/actividades" element={<Activities />} /> 
         <Route exact path="/aboutTeam" element={<AboutTeam />} />
         <Route exact path="/crearActividades" element={<ActivityCreate />} />
+        <Route exact path="/crearProducto" element={<CreateProduct />} />
       </Routes>
     </>
   );
