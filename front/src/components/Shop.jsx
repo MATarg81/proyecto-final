@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getProducts, searchProducts } from "../redux/actionsCreator/productsActions";
 import Pagination from "./Pagination";
 import { addCart } from "../redux/actions/index";
 import {
@@ -9,6 +10,7 @@ import {
   orderByPrice,
   filterByCategories,
 } from "../redux/actionsCreator/productsActions";
+import Searchbar from "./SearchBar";
 
 function Shop() {
   // const [data, setData] = useState([]);
@@ -73,6 +75,42 @@ function Shop() {
     dispatch(getProducts());
   };
 
+  // const orderName = function(e) {
+  //     e.preventDefault();
+  //     dispatch(orderByName(e.target.value));
+  //     setOrder(e.target.value);
+  // }
+
+  // const orderPrice = function(e) {
+  //     e.preventDefault();
+  //     dispatch(orderByPrice(e.target.value));
+  //     setOrder(e.target.value);
+  // }
+
+  // const order = function (e) {
+  //     setPage(1);
+  //     if (e.target.value === "A/Z" || e.target.value === "Z/A") {
+  //         orderName(e);
+  //     }
+  //     if (e.target.value === "max/min" || e.target.value === "min/max") {
+  //         orderPrice(e);
+  //     }
+  // }
+
+  // const handleChange = (e) => {
+  //     setName(e.target.value);
+  // }
+
+  // const filterCategories = (e) => {
+  //     setPage(1);
+  //     dispatch(filterByCategories(e.target.value));
+  // }
+
+  //     const cleanFilters = (e) => {
+  //         e.preventDefault();
+  //         dispatch(getProducts());
+  //     }
+
   //     console.log(products)
   //------------------------------------------------------
 
@@ -101,6 +139,9 @@ function Shop() {
         </nav>
         {/* <Sort />
         {productsPage?.map((r) =>                 
+        <Searchbar/>
+        <Sort />
+        {/* {productsPage?.map((r) =>                 
             <Product key={r.id} id={r.id} name={r.name} img={r.image} price={r.price}/>
         )}  */}
       </div>
