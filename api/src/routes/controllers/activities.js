@@ -16,6 +16,7 @@ const allActivities = async() => {
   //     });
   //       return dataActivity;
 
+  
   const dbData = await Activities.count();
 
     try {
@@ -137,7 +138,7 @@ const addActivity = async(req, res) => {
         .send(`Actividad "${name + ' ' }" already exists`);
       }
 };
-//comentario
+
 module.exports = {
   getActivities, 
   getActivitiesId,
