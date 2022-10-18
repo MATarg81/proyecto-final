@@ -34,7 +34,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_PRODUCTS_BY_NAME: {
             return {
                 ...state,
-                ProductsByName: action.payload,
+                showProducts: action.payload,
             }
         }
 
