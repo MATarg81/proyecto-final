@@ -44,6 +44,12 @@ async function getUsers(req, res) {
     } else {
       User.findAll({include: Role}).then((r) => res.status(200).send(r));
     }
+    //   User.findAll({include: {
+    //     model: Role,
+    //     attributes: ["name", "id"],
+    //     through: { attributes: [] },
+    // }}).then((r) => res.status(200).send(r));
+    // }
   } catch (error) {
     return res.status(404).send(error);
   }
@@ -68,7 +74,7 @@ async function getUsersById(req, res) {
 async function addUser(req, res) {
   const { name, lastname, email, dateOfBirth, role, address, phoneNumber } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
-  //const findRole = Role.findOne({where: {name: role}})
+  const findRole = await Role.findOne({where: {name: role}})
 
   try {
     if (!dbUser) {
@@ -80,8 +86,10 @@ async function addUser(req, res) {
         phoneNumber: phoneNumber,
         address: address
       });
-      //newUser.addRole(findRole.id); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
-      return res.status(200).send(`User "${name + " " + lastname}" added`);
+      
+      const addRole = await newUser.setRole(findRole.id); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
+      console.log(addRole)
+      return res.status(200).send(newUser);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);
     }
