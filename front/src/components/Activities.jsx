@@ -10,23 +10,23 @@ import {
 
 
 export default function Activities() {
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(getActivities());
+  }, [dispatch]);
+  
+  
   const allActivities = useSelector(
     (state) => state.activitiesReducer.activities
   );
 
-  useEffect(() => {
-    dispatch(getActivities());
-  }, [dispatch]);
-
-  
-
   function handleDeleteActivity(id) {
     if (window.confirm(`Are you sure you want to delete the activity?`)) {
+      
+      dispatch(deleteActivity(id));
     }
-
-    dispatch(deleteActivity(id));
   }
 
   return (
