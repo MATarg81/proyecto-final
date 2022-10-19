@@ -13,7 +13,7 @@ const allProducts = async() => {
     try {
         if (!dbData) {   
             const results = await Product.bulkCreate(jsonData.results);
-            return results;
+            return results.addCategory(jsonData.categories);
        
         } else {
             const dbProduct = await Product.findAll({
