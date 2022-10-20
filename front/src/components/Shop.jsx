@@ -7,7 +7,6 @@ import {
   orderByName,
   orderByPrice,
   filterByCategories,
-  searchProducts
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
 
@@ -116,22 +115,39 @@ function Shop() {
   return (
     <>
       <div>
-        <nav>
-          <div>
-            <SearchBar/>
-            <select onChange={order}>
-              <option defaultValue="Nombre">Nombre</option>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <select onChange={order}class="btn btn-secondary dropdown-toggle" aria-label="Default select example">
+            <option selected defaultValue="Nombre">Nombre</option>
+            <option value="A/Z">A/Z</option>
+            <option value="Z/A">Z/A</option>
+          </select>
+          {/* <select >
+              <option >Nombre</option>
               <option value="A/Z">A/Z</option>
               <option value="Z/A">Z/A</option>
-            </select>
-            <select onChange={order}>
+            </select> */}
+          <select onChange={order}class="btn btn-secondary dropdown-toggle" aria-label="Default select example">
+            <option selected defaultValue="Precio">Precio</option>
+            <option value="MIN/MAX">MIN/MAX</option>
+            <option value="MAX/MIN">MAX/MIN</option>
+          </select>
+            {/* <select onChange={order}>
               <option defaultValue="Precio">Precio</option>
               <option value="MIN/MAX">MIN/MAX</option>
               <option value="MAX/MIN">MAX/MIN</option>
-            </select>
+            </select> */}
+          <SearchBar/>
+          <button onClick={cleanFilters} class="btn btn-outline-success">Clean Filters</button>
+        </div>
+      </nav>
+        <nav>
+          <div>
+           
+            
           </div>
           <div>
-            <button onClick={cleanFilters}>Clean Filters</button>
+
             {/* <Link to="/create">
             <button>Create a new Product</button>
           </Link> */}
