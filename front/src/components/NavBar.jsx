@@ -65,9 +65,9 @@ function NavBar() {
           {/* <Link to="/ingreso" class="btn btn-outline-dark">
                 <i class="fa fa-sign-in me-1"></i>Ingresar
               </Link> */}
-              <Link to="/registro" class="btn btn-outline-dark ms-2">
+              {/* <Link to="/registro" class="btn btn-outline-dark ms-2">
                 <i class="fa fa-user-plus me-1"></i>Registrarse
-              </Link>
+              </Link> */}
               {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
               <AuthenticationButton />
 
