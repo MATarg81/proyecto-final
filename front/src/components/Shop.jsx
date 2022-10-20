@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
 import { addCart } from "../redux/actions/index";
@@ -109,32 +110,34 @@ function Shop() {
           gridTemplateColumns: "1fr 1fr 1fr 1fr",
           gridTemplateRows: "1fr 1fr 1fr",
           gap: "3rem",
+          margin: "2rem"
         }}
       >
         {productsPage?.map((p) => (
-          <div key={p.id} className="col card border-info mb-3">
-            <div className="card h-100">
-              <img
-                style={{ maxWidth: "300px"}}
-                src={p.image}
-                className="card-img-top"
-                alt={p.name}
-              />
-              <div className="card-body">
-                <h4 className="card-title">{p.name}</h4>
-                <p className="card-text">{p.detail}</p>
-                <h4>$ {p.price}</h4>
-              </div>
-              <div className="card-footer">
-                <button
-                  className="btn btn-outline-dark px-4 py-2"
-                  onClick={() => addProduct(p)}
-                >
-                  Agregar al carrito
-                </button>
+            <div key={p.id} className="col card border-info mb-3">
+              <div className="card h-100">
+                <img
+                  style={{ maxWidth: "300px"}}
+                  src={p.image}
+                  className="card-img-top"
+                  alt={p.name}
+                />
+                <div className="card-body">
+                  <h4 className="card-title">{p.name}</h4>
+                  <p className="card-text">{p.detail}</p>
+                  <h4>$ {p.price}</h4>
+                </div>
+                <div className="card-footer">
+                  <button
+                    className="btn btn-outline-dark px-4 py-2"
+                    onClick={() => addProduct(p)}
+                  >
+                    Agregar al carrito
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+
         ))}
       </div>
       <Pagination totalPages={totalPages} page={page} setPage={setPage} />
