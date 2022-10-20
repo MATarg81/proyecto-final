@@ -11,10 +11,7 @@ import {
 import SearchBar from "./SearchBar";
 
 function Shop() {
-  // const [data, setData] = useState([]);
-  // const [filter, setFilter] = useState(data);
-  // const [loading, setLoading] = useState(false);
-  //---------------------------------------------------------------
+
   const dispatch = useDispatch();
   const addProduct = (product) => {
     dispatch(addCart(product));
@@ -73,45 +70,6 @@ function Shop() {
     dispatch(getProducts());
   };
 
-  // const orderName = function(e) {
-  //     e.preventDefault();
-  //     dispatch(orderByName(e.target.value));
-  //     setOrder(e.target.value);
-  // }
-
-  // const orderPrice = function(e) {
-  //     e.preventDefault();
-  //     dispatch(orderByPrice(e.target.value));
-  //     setOrder(e.target.value);
-  // }
-
-  // const order = function (e) {
-  //     setPage(1);
-  //     if (e.target.value === "A/Z" || e.target.value === "Z/A") {
-  //         orderName(e);
-  //     }
-  //     if (e.target.value === "max/min" || e.target.value === "min/max") {
-  //         orderPrice(e);
-  //     }
-  // }
-
-  // const handleChange = (e) => {
-  //     setName(e.target.value);
-  // }
-
-  // const filterCategories = (e) => {
-  //     setPage(1);
-  //     dispatch(filterByCategories(e.target.value));
-  // }
-
-  //     const cleanFilters = (e) => {
-  //         e.preventDefault();
-  //         dispatch(getProducts());
-  //     }
-
-  //     console.log(products)
-  //------------------------------------------------------
-
   return (
     <>
       <div>
@@ -128,11 +86,6 @@ function Shop() {
             <option value="A/Z">A/Z</option>
             <option value="Z/A">Z/A</option>
           </select>
-          {/* <select >
-              <option >Nombre</option>
-              <option value="A/Z">A/Z</option>
-              <option value="Z/A">Z/A</option>
-            </select> */}
           <select onChange={order}class="btn btn-secondary dropdown-toggle" style = {{
             backgroundColor: "#FFFCF9",
             color: "#352D39"
@@ -141,11 +94,6 @@ function Shop() {
             <option value="MIN/MAX">MIN/MAX</option>
             <option value="MAX/MIN">MAX/MIN</option>
           </select>
-            {/* <select onChange={order}>
-              <option defaultValue="Precio">Precio</option>
-              <option value="MIN/MAX">MIN/MAX</option>
-              <option value="MAX/MIN">MAX/MIN</option>
-            </select> */}
           <SearchBar/>
           <button onClick={cleanFilters} class="btn btn-outline-success" style ={{
             backgroundColor: "#FFFCF9",
@@ -153,25 +101,6 @@ function Shop() {
           }}>Clean Filters</button>
         </div>
       </nav>
-        <nav>
-          <div>
-           
-            
-          </div>
-          <div>
-
-            {/* <Link to="/create">
-            <button>Create a new Product</button>
-          </Link> */}
-          </div>
-        </nav>
-        {/* <Sort />
-        {productsPage?.map((r) =>                 
-        <Searchbar/>
-        <Sort />
-        {/* {productsPage?.map((r) =>                 
-            <Product key={r.id} id={r.id} name={r.name} img={r.image} price={r.price}/>
-        )}  */}
       </div>
       <div
         className="grid"
@@ -212,131 +141,5 @@ function Shop() {
     </>
   );
 }
-//   <div>
-//     <nav>
-//         <div>
-//             <select onChange = {order}>
-//                 <option defaultValue= "---">---</option>
-//                 <option value="A/Z">A/Z</option>
-//                 <option value="Z/A">Z/A</option>
-//                 <option value="min/max">min/max</option>
-//                 <option value="max/min">max/min</option>
-//             </select>
-
-// </div>
-//     <div>
-//         <button onClick={cleanFilters}>Clean Filters</button>
-//         <Link to="/create"><button>Create a new Product</button></Link>
-//     </div>
-// </nav>
-
-// const Loading = () => {
-//   return (
-//     <>
-//       <div className="col-md-3">
-//         <Skeleton height={350} />
-//       </div>
-//       <div className="col-md-3">
-//         <Skeleton height={350} />
-//       </div>
-//       <div className="col-md-3">
-//         <Skeleton height={350} />
-//       </div>
-//       <div className="col-md-3">
-//         <Skeleton height={350} />
-//       </div>
-//     </>
-//   );
-// };
-
-// const filterProduct = (cat) => {
-//   const updatedList = data.filter((x) => x.category === cat);
-//   setFilter(updatedList);
-// };
-
-// const ShowProducts = () => {
-//   return (
-//     <>
-//       <div className="buttons d-flex justify-content-center mb-5 pb-5">
-//         <button
-//           className="btn btn-outline-dark me-2"
-//           onClick={() => setFilter(data)}
-//         >
-//           Todo
-//         </button>
-//         <button
-//           className="btn btn-outline-dark me-2"
-//           onClick={() => filterProduct("men's clothing")}
-//         >
-//           Sucursal A
-//         </button>
-//         <button
-//           className="btn btn-outline-dark me-2"
-//           onClick={() => filterProduct("women's clothing")}
-//         >
-//           Sucursal B
-//         </button>
-//         <button
-//           className="btn btn-outline-dark me-2"
-//           onClick={() => filterProduct("jewelery")}
-//         >
-//           Varios
-//         </button>
-//         <button
-//           className="btn btn-outline-dark me-2"
-//           onClick={() => filterProduct("electronics")}
-//         >
-//           Tecno
-//         </button>
-//       </div>
-//       {filter.map((product) => {
-//         return (
-//           <>
-//             <div className="col-md-3 mb-4">
-//               <div className="card h-100 text-center p-4" key={product.id}>
-//                 <img
-//                   src={product.image}
-//                   className="card-img-top"
-//                   alt={product.title}
-//                   height="250px"
-//                 />
-//                 <div className="card-body">
-//                   <h5 className="card-title mb-0">
-//                     {product.title.substring(0, 20)}...
-//                   </h5>
-//                   <p className="card-text lead fw-bold">$ {product.price}</p>
-//                   <Link
-//                     to={`/tienda/${product.id}`}
-//                     className="btn btn-outline-dark"
-//                   >
-//                     Comprar
-//                   </Link>
-//                 </div>
-//               </div>
-//             </div>
-//           </>
-//         );
-//       })}
-//     </>
-//   );
-// };
-
-// return (
-//   <div>
-//     <div className="container my-5 py-5">
-//       <div className="row">
-//         <div className="col-12 mb-5">
-//           <h1 className="display-6 fw-bolder text-center">
-//             Últimos ingresos
-//           </h1>
-//           <hr />
-//         </div>
-//       </div>
-//       <div className="row justify-content-center">
-//         {loading ? <Loading /> : <ShowProducts />}
-//       </div>
-//     </div>
-//   </div>
-// );
 
 export default Shop;
