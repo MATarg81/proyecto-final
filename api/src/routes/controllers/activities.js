@@ -124,7 +124,7 @@ const addActivity = async(req, res) => {
         detail: detail,
         days: days,
         times: times,
-        img: img
+        img: img || "https://eltarget.com/wp-content/uploads/2018/03/%C2%A1Los-10-deportes-mas-practicados-en-todo-el-mundo-696x339.jpg",
       });
       
       newActivity.addUser(email);
