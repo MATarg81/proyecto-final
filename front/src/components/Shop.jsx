@@ -116,8 +116,14 @@ function Shop() {
     <>
       <div>
       <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <select onChange={order}class="btn btn-secondary dropdown-toggle" aria-label="Default select example">
+        <div class="container-fluid"  style={{
+        backgroundColor: "#6D435A",
+        padding: "1rem"
+      }}>
+          <select onChange={order}class="btn btn-secondary dropdown-toggle" style = {{
+            backgroundColor: "#FFFCF9",
+            color: "#352D39"
+          }}>
             <option selected defaultValue="Nombre">Nombre</option>
             <option value="A/Z">A/Z</option>
             <option value="Z/A">Z/A</option>
@@ -127,7 +133,10 @@ function Shop() {
               <option value="A/Z">A/Z</option>
               <option value="Z/A">Z/A</option>
             </select> */}
-          <select onChange={order}class="btn btn-secondary dropdown-toggle" aria-label="Default select example">
+          <select onChange={order}class="btn btn-secondary dropdown-toggle" style = {{
+            backgroundColor: "#FFFCF9",
+            color: "#352D39"
+          }}>
             <option selected defaultValue="Precio">Precio</option>
             <option value="MIN/MAX">MIN/MAX</option>
             <option value="MAX/MIN">MAX/MIN</option>
@@ -138,7 +147,10 @@ function Shop() {
               <option value="MAX/MIN">MAX/MIN</option>
             </select> */}
           <SearchBar/>
-          <button onClick={cleanFilters} class="btn btn-outline-success">Clean Filters</button>
+          <button onClick={cleanFilters} class="btn btn-outline-success" style ={{
+            backgroundColor: "#FFFCF9",
+            color: "#352D39"
+          }}>Clean Filters</button>
         </div>
       </nav>
         <nav>
