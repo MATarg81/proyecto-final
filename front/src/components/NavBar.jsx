@@ -12,7 +12,7 @@ function NavBar() {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-light py-3" style={{ padding: '0px' }}>
+      <nav class="navbar navbar-expand-lg bg-light py-1" style={{padding: "0px 0px 0px 0px"}} >
         <div class="container">
           <Link to="/">
             <img
