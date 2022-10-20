@@ -17,7 +17,7 @@ function Shop() {
     dispatch(addCart(product));
   };
   const products = useSelector((state) => state.productsReducer.showProducts);
-  const productsPerPage = 9;
+  const productsPerPage = 12;
   const totalPages = Math.ceil(products?.length / productsPerPage);
   const category = useSelector((state) => state.productsReducer.categories);
   const [, setOrder] = useState();
@@ -76,7 +76,7 @@ function Shop() {
       <nav class="navbar navbar-light bg-light">
         <div class="container-fluid"  style={{
         backgroundColor: "#6D435A",
-        padding: "1rem"
+        padding: "1rem",
       }}>
           <select onChange={order}class="btn btn-secondary dropdown-toggle" style = {{
             backgroundColor: "#FFFCF9",
@@ -106,22 +106,22 @@ function Shop() {
         className="grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
           gridTemplateRows: "1fr 1fr 1fr",
-          gap: "5px 5px",
+          gap: "3rem",
         }}
       >
         {productsPage?.map((p) => (
           <div key={p.id} className="col card border-info mb-3">
             <div className="card h-100">
               <img
-                style={{ maxWidth: "300px" }}
+                style={{ maxWidth: "300px"}}
                 src={p.image}
                 className="card-img-top"
                 alt={p.name}
               />
               <div className="card-body">
-                <h3 className="card-title">{p.name}</h3>
+                <h4 className="card-title">{p.name}</h4>
                 <p className="card-text">{p.detail}</p>
                 <h4>$ {p.price}</h4>
               </div>

@@ -24,7 +24,20 @@ const Pagination = function ({ page, setPage, totalPages }) {
 
   return (
     <div>
-      <button onClick={handlePrev} disabled={currentPage <= 1}>
+      <div>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid"  style={{
+        backgroundColor: "#6D435A",
+        padding: "1rem"
+      }}>
+        <button onClick={handlePrev} 
+                disabled={currentPage <= 1} 
+                class="btn btn-outline-success" 
+                type="submit" 
+                style={{
+                    backgroundColor: "#FFFCF9",
+                    color: "#352D39"
+                }}>
         Prev.
       </button>
       {pages.map((p) => (
@@ -35,13 +48,26 @@ const Pagination = function ({ page, setPage, totalPages }) {
             setPage(p);
           }}
           disabled={currentPage === p}
+          class="btn btn-outline-success" type="submit" style={{
+            backgroundColor: "#FFFCF9",
+            color: "#352D39"
+}}
         >
           {p}
         </button>
       ))}
-      <button onClick={handleNext} disabled={currentPage >= totalPages}>
+      <button onClick={handleNext} 
+              disabled={currentPage >= totalPages}
+              class="btn btn-outline-success" type="submit" style={{
+                backgroundColor: "#FFFCF9",
+                color: "#352D39"
+}}>
         Next
       </button>
+        </div>
+        </nav>
+      </div>
+      
     </div>
   );
 };
