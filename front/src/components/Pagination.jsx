@@ -23,50 +23,26 @@ const Pagination = function ({ page, setPage, totalPages }) {
   }
 
   return (
-    <div>
-      <div>
-      <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid"  style={{
-        backgroundColor: "#6D435A",
-        padding: "1rem"
-      }}>
-        <button onClick={handlePrev} 
-                disabled={currentPage <= 1} 
-                class="btn btn-outline-success" 
-                type="submit" 
-                style={{
-                    backgroundColor: "#FFFCF9",
-                    color: "#352D39"
-                }}>
+
+    <div class="d-flex justify-content-around " >
+      <button onClick={handlePrev} disabled={currentPage <= 1} class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">
+
         Prev.
-      </button>
+      </button >
       {pages.map((p) => (
-        <button
-          key={p}
-          onClick={() => {
-            setCurrentPage(p);
-            setPage(p);
-          }}
-          disabled={currentPage === p}
-          class="btn btn-outline-success" type="submit" style={{
-            backgroundColor: "#FFFCF9",
-            color: "#352D39"
-}}
-        >
+
+        <button class="btn btn-outline-danger btn-rounded" key={p} onClick={() => { setCurrentPage(p); setPage(p);}} disabled={currentPage === p}>
           {p}
         </button>
+         
       ))}
-      <button onClick={handleNext} 
-              disabled={currentPage >= totalPages}
-              class="btn btn-outline-success" type="submit" style={{
-                backgroundColor: "#FFFCF9",
-                color: "#352D39"
-}}>
+      <button class="btn btn-outline-danger btn-rounded"  onClick={handleNext} disabled={currentPage >= totalPages} >
+
         Next
       </button>
-        </div>
-        </nav>
-      </div>
+       
+     
+     
       
     </div>
   );

@@ -110,8 +110,10 @@ function AboutTeam() {
                     </div>
                 </div>
             </div>
+            
 
         </div>
+        
 
     )
 }
