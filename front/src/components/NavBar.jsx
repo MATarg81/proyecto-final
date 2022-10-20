@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import LoginButton from "./Login/LoginButton";
-// import Profile from "./Login/Profile";
-// import LogoutButton from "./Login/LogoutButton";
-// import { useAuth0 } from "@auth0/auth0-react";
+import AuthenticationButton from './Login/authentication-button';
+import Profile from "./Login/Profile";
 
 function NavBar() {
   const state = useSelector((state) => state.handleCart);
-  // const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <div>
@@ -68,12 +65,13 @@ function NavBar() {
           {/* <Link to="/ingreso" class="btn btn-outline-dark">
                 <i class="fa fa-sign-in me-1"></i>Ingresar
               </Link> */}
-          {/* <Link to="/registro" class="btn btn-outline-dark ms-2">
+              <Link to="/registro" class="btn btn-outline-dark ms-2">
                 <i class="fa fa-user-plus me-1"></i>Registrarse
               </Link>
-              {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
+              {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
+              <AuthenticationButton />
 
-          {/* <Profile></Profile> */}
+          <Profile/>
           <Link to="/carrito" class="btn btn-outline-dark ms-2">
             <i class="fa fa-shopping-cart me-1"></i>Carrito (
             {state.length})
