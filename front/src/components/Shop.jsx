@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
 import { addCart } from "../redux/actions/index";
@@ -7,7 +6,6 @@ import {
   getProducts,
   orderByName,
   orderByPrice,
-  filterByCategories,
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
 
@@ -20,9 +18,7 @@ function Shop() {
   const products = useSelector((state) => state.productsReducer.showProducts);
   const productsPerPage = 12;
   const totalPages = Math.ceil(products?.length / productsPerPage);
-  const category = useSelector((state) => state.productsReducer.categories);
   const [, setOrder] = useState();
-  const [name, setName] = useState();
 
   const [page, setPage] = useState(1);
   const first = (page - 1) * productsPerPage;
@@ -57,15 +53,6 @@ function Shop() {
     }
   };
 
-  const handleChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const filterCategories = (e) => {
-    setPage(1);
-    dispatch(filterByCategories(e.target.value));
-  };
-
   const cleanFilters = (e) => {
     e.preventDefault();
     dispatch(getProducts());
@@ -73,7 +60,7 @@ function Shop() {
 
   return (
     <>
-      <div>
+      <div style={{minHeigth: "100%"}}>
       <nav class="navbar navbar-light bg-light">
         <div class="container-fluid"  style={{
         backgroundColor: "#6D435A",

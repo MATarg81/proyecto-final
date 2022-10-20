@@ -7,7 +7,7 @@ const LogoutButton = () => {
 
     return (
         <button className="btn btn-outline-dark ms-2" onClick={() => logout()}> 
-            <i className="fa fa-user-plus me-1"></i>Salir de mi cuenta
+            <i className="fa fa-sign-out"></i>Salir de mi cuenta
         </button>
     )
 }
