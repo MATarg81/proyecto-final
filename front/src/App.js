@@ -34,6 +34,7 @@ function App() {
         <Route exact path="/crearActividades" element={<ActivityCreate />} />
         <Route exact path="/crearProducto" element={<CreateProduct />} />
       </Routes>
+      <hr/>
       <Footer />
     </>
   );
