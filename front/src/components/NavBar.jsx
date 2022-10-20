@@ -16,7 +16,7 @@ function NavBar() {
           <div class= "container p-0" style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}}>
       <Link to="/">
         <img
-          src="/img/athenas_logo.png"
+          src="/img/athenas_logo-removebg-preview.png"
           alt="Logo"
           height="80px"
         />
