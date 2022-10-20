@@ -9,7 +9,7 @@ import SignupButton from './SignupButton';
 const AuthenticationButton = () => {
   const { isAuthenticated } = useAuth0();
 
-  return isAuthenticated ? <LogoutButton /> : <SignupButton />;
+  return isAuthenticated ? <LogoutButton /> : <LoginButton />;
 };
 
 export default AuthenticationButton;

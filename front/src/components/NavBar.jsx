@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import AuthenticationButton from './Login/authentication-button';
-import Profile from "./Login/Profile";
+import Profile from "./Login/Views/Profile";
 
 function NavBar() {
   const state = useSelector((state) => state.handleCart);
