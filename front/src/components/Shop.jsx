@@ -25,7 +25,7 @@ function Shop() {
   const byCategories = useSelector(
     (state) => state.productsReducer.byCategories
   );
-  const productsPerPage = 9;
+  const productsPerPage = 12;
   const totalPages = Math.ceil(products?.length / productsPerPage);
   const [, setOrder] = useState();
   const [input, setInput] = useState({
@@ -106,12 +106,12 @@ function Shop() {
 
   return (
     <><>
-      <div style={{ minHeigth: "100%" }}>
+      <div>
         <nav class="navbar navbar-light bg-light">
           <div
             class="container-fluid"
             style={{
-              backgroundColor: "#6D435A",
+              background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)",
               padding: "1rem",
             }}
           >
@@ -145,13 +145,19 @@ function Shop() {
               ))}
             </select>
             <form onSubmit={handleSumit}>
-              <label>Elegir rango de precios:</label>
+              <label>Precio:  </label>
               <input
                 type="text"
                 placeholder="Min..."
                 name="min"
                 onChange={handleChange}
                 value={input.min}
+                class="btn btn-secondary dropdown-toggle"
+                style={{
+                  backgroundColor: "#FFFCF9",
+                  color: "#352D39",
+                  maxWidth: "5rem"
+                }}
               ></input>
               <input
                 type="text"
@@ -159,14 +165,21 @@ function Shop() {
                 name="max"
                 onChange={handleChange}
                 value={input.max}
+                class="btn btn-secondary dropdown-toggle"
+                style={{
+                  backgroundColor: "#FFFCF9",
+                  color: "#352D39",
+                  maxWidth: "5rem"
+                }}
               ></input>
-              <input type="submit" value="Buscar" />
+              <input type="submit" value="Buscar" class="btn btn-secondary dropdown-toggle"
+              style={{
+                backgroundColor: "#FFFCF9",
+                color: "#352D39",
+              }}/>
             </form>
-          </div>
-        </nav>
-        <div>
-          <SearchBar />
-          <button
+            <SearchBar />
+            <button
             onClick={cleanFilters}
             class="btn btn-outline-success"
             style={{
@@ -174,16 +187,18 @@ function Shop() {
               color: "#352D39",
             }}
           >
-            Clean Filters
+            Borrar filtros
           </button>
+          </div>
+        </nav>
+        <div>
         </div>
       </div>
       <div
         className="grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr 1fr",
-          gridTemplateRows: "1fr 1fr 1fr",
+          gridTemplateColumns: "repeat(4, 1fr)",
           gap: "3rem",
           margin: "2rem",
         }}
@@ -191,15 +206,33 @@ function Shop() {
         {productsPage?.map((p) => (
           <div key={p.id} className="col card border-info mb-3">
             <div className="card h-100">
-              <img
-                style={{ maxWidth: "300px" }}
-                src={p.image}
-                className="card-img-top"
-                alt={p.name} />
+              <div style={{
+                    width: "200px",
+                    height: "200px",
+                    overflow: "hidden",
+                    margin: "10px",
+                    position: "relative"
+              }}>
+                <img
+                  style={{ 
+                    position:"absolute",
+                    left: "-100%",
+                    right: "-100%",
+                    top: "-100%",
+                    bottom: "-100%",
+                    margin: "auto",
+                    maxHeigth: "200px",
+                    minHeight: "100%",
+                    minWidth: "100%",
+                    }}
+                  src={p.image}
+                  className="card-img-top"
+                  alt={p.name} />
+              </div>
               <div className="card-body">
                 <h4 className="card-title">{p.name}</h4>
-                <p className="card-text">{p.detail}</p>
                 <h4>$ {p.price}</h4>
+                {/* <p className="card-text">{p.detail}</p> */}
               </div>
               <div className="card-footer d-flex justify-content-around">
                 <button
