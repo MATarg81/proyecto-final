@@ -128,6 +128,7 @@ function Shop() {
   //--------------- clean sort and filters function --------------------
   const cleanFilters = (e) => {
     e.preventDefault();
+    setPage(1);
     dispatch(getProducts());
     dispatch(filterByPrice([]));
     dispatch(filterByCategories([]));
