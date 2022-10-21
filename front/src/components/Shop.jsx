@@ -187,7 +187,7 @@ function Shop() {
               color: "#352D39",
             }}
           >
-            Clean Filters
+            Borrar filtros
           </button>
           </div>
         </nav>
