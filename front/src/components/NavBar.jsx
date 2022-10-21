@@ -9,8 +9,8 @@ function NavBar() {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-md bg-light py-1 mr-0" style={{margin:"0px"}}>
-          <div class= "container p-0" style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}}>
+      <nav class="navbar navbar-expand-md bg-light py-1 mr-0 " style={{margin:"0px"}}>
+          <div class= "container p-0 " style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}}>
       <Link to="/">
         <img
           src="/img/athenas_logo-removebg-preview.png"
@@ -29,8 +29,8 @@ function NavBar() {
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
           <li class="nav-item">
 
             <Link class="nav-link active" aria-current="page" to="/home">
