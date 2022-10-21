@@ -13,6 +13,7 @@ import {
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
 //import Sort from "./Sort";
+import { Link } from 'react-router-dom'
 
 function Shop() {
   const dispatch = useDispatch();
@@ -40,8 +41,8 @@ function Shop() {
     byCategories.length > 0
       ? byCategories?.slice(first, last)
       : price.length > 0
-      ? price?.slice(first, last)
-      : products?.slice(first, last);
+        ? price?.slice(first, last)
+        : products?.slice(first, last);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -173,23 +174,27 @@ function Shop() {
                 }}
               ></input>
               <input type="submit" value="Buscar" class="btn btn-secondary dropdown-toggle"
-              style={{
-                backgroundColor: "#FFFCF9",
-                color: "#352D39",
-              }}/>
+                style={{
+                  backgroundColor: "#FFFCF9",
+                  color: "#352D39",
+                }} />
             </form>
             <SearchBar />
             <button
-            onClick={cleanFilters}
-            class="btn btn-outline-success"
-            style={{
-              backgroundColor: "#FFFCF9",
-              color: "#352D39",
-            }}
-          >
-            Borrar filtros
-          </button>
+              onClick={cleanFilters}
+              class="btn btn-outline-success"
+              style={{
+                backgroundColor: "#FFFCF9",
+                color: "#352D39",
+              }}
+            >
+              Borrar filtros
+            </button>
+            <Link class="nav-link" to="/crearProducto">
+              Crear Producto
+            </Link>
           </div>
+          
         </nav>
         <div>
         </div>
@@ -207,15 +212,15 @@ function Shop() {
           <div key={p.id} className="col card border-info mb-3">
             <div className="card h-100">
               <div style={{
-                    width: "200px",
-                    height: "200px",
-                    overflow: "hidden",
-                    margin: "10px",
-                    position: "relative"
+                width: "200px",
+                height: "200px",
+                overflow: "hidden",
+                margin: "10px",
+                position: "relative"
               }}>
                 <img
-                  style={{ 
-                    position:"absolute",
+                  style={{
+                    position: "absolute",
                     left: "-100%",
                     right: "-100%",
                     top: "-100%",
@@ -224,7 +229,7 @@ function Shop() {
                     maxHeigth: "200px",
                     minHeight: "100%",
                     minWidth: "100%",
-                    }}
+                  }}
                   src={p.image}
                   className="card-img-top"
                   alt={p.name} />
@@ -246,7 +251,7 @@ function Shop() {
           </div>))}
       </div>
     </>
-    <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
+      <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
   );
 }
 
