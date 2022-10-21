@@ -24,7 +24,7 @@ const Pagination = function ({ page, setPage, totalPages }) {
 
   return (
 
-    <div class="d-flex justify-content-around " >
+    <div class="d-flex justify-content-around p-1" >
       <button onClick={handlePrev} disabled={currentPage <= 1} class="btn btn-outline-danger btn-rounded " data-mdb-ripple-color="dark" >
 
         Prev.
