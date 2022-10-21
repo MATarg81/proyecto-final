@@ -7,26 +7,34 @@ import {
   orderByName,
   orderByPrice,
   filterByCategories,
-  //searchProducts,
   getCategories,
   filterByPrice,
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
-//import Sort from "./Sort";
+import { Link } from 'react-router-dom'
 
 function Shop() {
+  //----------- Utils -----------------
   const dispatch = useDispatch();
-  const addProduct = (product) => {
-    dispatch(addCart(product));
-  };
+
+  // --------- Global states ---------------
   const products = useSelector((state) => state.productsReducer.showProducts);
   const category = useSelector((state) => state.productsReducer.categories);
   const price = useSelector((state) => state.productsReducer.filterByPrice);
   const byCategories = useSelector(
     (state) => state.productsReducer.byCategories
   );
+
+  // --------------- Pagination --------------
   const productsPerPage = 12;
-  const totalPages = Math.ceil(products?.length / productsPerPage);
+
+  const totalPages =
+    byCategories.length > 0
+      ? Math.ceil(byCategories?.length / productsPerPage)
+      : price.length > 0
+      ? Math.ceil(price?.length / productsPerPage)
+      : Math.ceil(products?.length / productsPerPage);
+
   const [, setOrder] = useState();
   const [input, setInput] = useState({
     min: "",
@@ -40,14 +48,31 @@ function Shop() {
     byCategories.length > 0
       ? byCategories?.slice(first, last)
       : price.length > 0
-      ? price?.slice(first, last)
-      : products?.slice(first, last);
+        ? price?.slice(first, last)
+        : products?.slice(first, last);
 
+  // --------------- Data call -------------
+
+  //Categories
   useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getCategories());
-  }, [dispatch]);
+    if (category?.length === 0) {
+      dispatch(getCategories());
+    }
+  }, [dispatch, category]);
+  
+  //Products
+  useEffect(() => {
+    if (category?.length > 0) {
+      dispatch(getProducts());
+    }
+  }, [dispatch, category]);
 
+  // --------------- Cart function ----------------
+  const addProduct = (product) => {
+    dispatch(addCart(product));
+  };
+
+  // -------------- sort functions ------------
   const orderName = function (e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
@@ -70,6 +95,7 @@ function Shop() {
     }
   };
 
+  // ----------------- filter functions ------------------
   const filterCategories = (e) => {
     e.preventDefault();
     setPage(1);
@@ -99,9 +125,13 @@ function Shop() {
     }
   };
 
+  //--------------- clean sort and filters function --------------------
   const cleanFilters = (e) => {
     e.preventDefault();
+    setPage(1);
     dispatch(getProducts());
+    dispatch(filterByPrice([]));
+    dispatch(filterByCategories([]));
   };
 
   return (
@@ -189,6 +219,9 @@ function Shop() {
           >
             Borrar filtros
           </button>
+          <Link class="nav-link" to="/crearProducto">
+              Crear Producto
+            </Link>
           </div>
         </nav>
         <div>
