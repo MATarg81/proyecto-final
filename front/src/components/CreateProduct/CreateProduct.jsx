@@ -11,7 +11,7 @@ const CreateProduct = function() {
 
 
     const dispatch = useDispatch();
-    const categories = useSelector((state) => state.categories);
+    const categories = useSelector((state) => state.categoriesReducer.categories);
     const [error, setError] = useState({});
 
     useEffect(() => {
@@ -23,7 +23,8 @@ const CreateProduct = function() {
         name: "",
         price: 0,
         image: "",
-        categories:"",
+        detail: "",
+        category:"",
       });
 
     const handleChange = (e) => {
@@ -74,12 +75,13 @@ const CreateProduct = function() {
         if(input.price < 1 || input.price > 100000) {
             error.price = "Price must be bigger than 0 and less than 100.000"
         }
-      
-
        
         if(input.image.length > 0 && !/^.*\.(jpe?g|JPE?G|png|PNG|bmp|BMP|gif|GIF)$/.test(input.image)) {
             error.image = "The file must be .jpg, .jpeg, .png, .bmp or .gif"
         }
+        if(input.detail.length < 5) {
+          error.detail = "Detail must have at least 10 characters description."
+      } 
         if(input.category.length < 0) {
             error.category = "Category must have at least 1 elemnt chosen"
         } 
@@ -91,7 +93,9 @@ const CreateProduct = function() {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        if (Object.keys(error).length === 0 ) {
+        let keys =Object.keys(error);
+        let values = Object.values(error);
+        if (keys.length === 0 && values.length === 0) {
             dispatch(createProduct(input))
             setInput({
                 name: "",
@@ -170,6 +174,38 @@ const CreateProduct = function() {
               onChange={(e)=>handleChange(e)}
             />
             {error.image && <p >{error.image}</p>}
+            <label for="name" className="form-label">
+              Detalles del producto: 
+            </label>
+            <input
+              style={{width:'600px'}}
+              type="text"
+              className="form-control mb-3"
+              id="detail"
+              aria-describedby="detail"
+              placeholder="Detalles..."
+              value={input.detail} 
+              name='detail' 
+              required
+              onChange={(e)=>handleChange(e)}  
+            /> 
+            {error.detail && <p >{error.detail}</p>}
+
+                    <label>
+                    Categorias: 
+                </label> 
+                <div>
+                    {categories?.map((el) => 
+                        <label htmlFor={el.name} key={el.name}>
+                            <div  >
+                                <input onClick={handleCheck} key = {el.name} type ='checkbox' value = {el.name}/><span>{el.name + "    "} </span>
+                            </div>
+                        </label>)
+                    }
+                    {error.categories && <p >{error.categories}</p>}
+                </div>
+            
+
           <hr />
           <button type="submit" className="btn btn-primary">
             Crear
