@@ -1,6 +1,5 @@
 import React from "react";
 import Carousel from "./Carousel";
-import Footer from "./Footer";
 
 function Home() {
   return (
@@ -8,7 +7,7 @@ function Home() {
       <hr />
       <Carousel />
       <hr />
-      <Footer />
+      
     </div>
   );
 }
