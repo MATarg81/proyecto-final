@@ -2,22 +2,23 @@ const { Category} = require("../../db");
 const jsonData = require("../../../category.json");
 
 async function getCategory(req, res) {
-  const dbData = await Category.findAll();
+  const dbData = await Category.count();
 
   try {
-    if (dbData.length === 0) {
-      const categoryData = jsonData.results.map((r) => {
-        return {
-          name: r.name,
-        };
-      });
-      await Category.bulkCreate(categoryData);
-      return res.status(200).json(categoryData);
+    if (!dbData) {
+      // const categoryData = jsonData.results.map((r) => {
+      //   return {
+      //     name: r.name,
+      //   };
+      // });
+      const charged = await Category.bulkCreate(jsonData.results);
+      res.status(200).json(charged);
     } else {
-      return Category.findAll().then((r) => res.status(200).send(r));
+      const allCategories = await Category.findAll();
+      res.status(200).send(allCategories);
     }
   } catch (e) {
-    return res.status(404).send(e);
+    res.status(404).send(e);
   }
 }
 
