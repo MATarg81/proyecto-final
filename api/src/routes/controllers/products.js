@@ -47,13 +47,6 @@ const productsId = async(idP) => {
 //--------------------------------------------------------------------------------------------------------------
 
 const postProducts = async(req, res) => {
-    const {
-        name, 
-        price,
-        detail,
-        image,
-        categories
-    } = req.body;
     
     try{
         const {
@@ -64,7 +57,7 @@ const postProducts = async(req, res) => {
             categories
         } = req.body;
 
-        const categoriesLowerCase = categories?.map((c) => c.toLowerCase());
+        //const categoriesLowerCase = categories?.map((c) => c.toLowerCase());
 
 
         const newProduct = await Product.create({
@@ -89,7 +82,8 @@ const getProducts = async(req, res) => {
     try {
         const qname = req.query.name;
         const totalProducts = await allProducts();
-        ;
+        const dbData = await Product.findAll({include: Category});
+        
         if(qname) {
             const productsWithName = totalProducts.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
             (productsWithName.length) ?
@@ -97,7 +91,8 @@ const getProducts = async(req, res) => {
             : res.status(404).send('Producto no encontrada');            
         } 
         else {
-            res.status(200).send(totalProducts);
+
+            res.status(200).send(dbData);
         }
 
     } catch (err) {

@@ -14,7 +14,7 @@ async function getCategory(req, res) {
       await Category.bulkCreate(categoryData);
       return res.status(200).json(categoryData);
     } else {
-      return res.status(200).json(dbData)
+      return Category.findAll().then((r) => res.status(200).send(r));
     }
   } catch (e) {
     return res.status(404).send(e);

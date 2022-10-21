@@ -6,30 +6,47 @@ import {
   getProducts,
   orderByName,
   orderByPrice,
+  filterByCategories,
+  //searchProducts,
+  getCategories,
+  filterByPrice,
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
+//import Sort from "./Sort";
 
 function Shop() {
-
   const dispatch = useDispatch();
   const addProduct = (product) => {
     dispatch(addCart(product));
   };
   const products = useSelector((state) => state.productsReducer.showProducts);
-  const productsPerPage = 12;
+  const category = useSelector((state) => state.productsReducer.categories);
+  const price = useSelector((state) => state.productsReducer.filterByPrice);
+  const byCategories = useSelector(
+    (state) => state.productsReducer.byCategories
+  );
+  const productsPerPage = 9;
   const totalPages = Math.ceil(products?.length / productsPerPage);
   const [, setOrder] = useState();
+  const [input, setInput] = useState({
+    min: "",
+    max: "",
+  });
 
   const [page, setPage] = useState(1);
   const first = (page - 1) * productsPerPage;
   const last = page * productsPerPage;
-  const productsPage = products?.slice(first, last);
+  let productsPage =
+    byCategories.length > 0
+      ? byCategories?.slice(first, last)
+      : price.length > 0
+      ? price?.slice(first, last)
+      : products?.slice(first, last);
 
   useEffect(() => {
-    if (products?.length === 0) {
-      dispatch(getProducts());
-    }
-  }, [dispatch, products]);
+    dispatch(getProducts());
+    dispatch(getCategories());
+  }, [dispatch]);
 
   const orderName = function (e) {
     e.preventDefault();
@@ -53,6 +70,35 @@ function Shop() {
     }
   };
 
+  const filterCategories = (e) => {
+    e.preventDefault();
+    setPage(1);
+    dispatch(filterByCategories(e.target.value));
+  };
+
+  function handleChange(e) {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  const handleSumit = (e) => {
+    e.preventDefault();
+    setPage(1);
+    if (byCategories.length > 0) {
+      const filteredCategories = byCategories?.filter((c) => {
+        return parseInt(c.price) > input.min && parseInt(c.price) < input.max;
+      });
+      dispatch(filterByPrice(filteredCategories));
+    } else {
+      const filteredAll = products?.filter((p) => {
+        return parseInt(p.price) > input.min && parseInt(p.price) < input.max;
+      });
+      dispatch(filterByPrice(filteredAll));
+    }
+  };
+
   const cleanFilters = (e) => {
     e.preventDefault();
     dispatch(getProducts());
@@ -60,35 +106,77 @@ function Shop() {
 
   return (
     <>
-      <div style={{minHeigth: "100%"}}>
-      <nav class="navbar navbar-light bg-light" >
-        <div class="container-fluid"  style={{
-        background: "linear-gradient(90deg, rgba(255,255,255,1) 12%, rgba(109,67,90,1) 50%, rgba(255,255,255,1) 88%)",
-        padding: "1rem",
-      }}>
-          <select onChange={order}class="btn btn-secondary dropdown-toggle border-0" style = {{
-            background: "#FFFCF9",
-            color: "#352D39"
-          }}>
-            <option selected defaultValue="Nombre" class="border-0">Nombre</option>
-            <option value="A/Z">A/Z</option>
-            <option value="Z/A">Z/A</option>
-          </select>
-          <select onChange={order}class="btn btn-secondary dropdown-toggle border-0" style = {{
-            backgroundColor: "#FFFCF9",
-            color: "#352D39"
-          }}>
-            <option selected defaultValue="Precio">Precio</option>
-            <option value="MIN/MAX">MIN/MAX</option>
-            <option value="MAX/MIN">MAX/MIN</option>
-          </select>
-          <SearchBar/>
-          <button onClick={cleanFilters} class="btn btn-outline-success border-0" style ={{
-            backgroundColor: "#FFFCF9",
-            color: "#352D39"
-          }}>Clean Filters</button>
+      <div style={{ minHeigth: "100%" }}>
+        <nav class="navbar navbar-light bg-light">
+          <div
+            class="container-fluid"
+            style={{
+              backgroundColor: "#6D435A",
+              padding: "1rem",
+            }}
+          >
+            <select
+              onChange={order}
+              class="btn btn-secondary dropdown-toggle"
+              style={{
+                backgroundColor: "#FFFCF9",
+                color: "#352D39",
+              }}
+            >
+              <option defaultValue="ordenar">Ordenar por:</option>
+              <option value="A/Z">A/Z</option>
+              <option value="Z/A">Z/A</option>
+              <option value="MIN/MAX">MIN/MAX</option>
+              <option value="MAX/MIN">MAX/MIN</option>
+            </select>
+            <select
+              onChange={filterCategories}
+              class="btn btn-secondary dropdown-toggle"
+              style={{
+                backgroundColor: "#FFFCF9",
+                color: "#352D39",
+              }}
+            >
+              <option defaultValue="Categories">Filtrar categorías</option>
+              {category?.map((c) => (
+                <option name={c.name} key={c.id} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+            <form onSubmit={handleSumit}>
+              <label>Elegir rango de precios:</label>
+              <input
+                type="text"
+                placeholder="Min..."
+                name="min"
+                onChange={handleChange}
+                value={input.min}
+              ></input>
+              <input
+                type="text"
+                placeholder="Max..."
+                name="max"
+                onChange={handleChange}
+                value={input.max}
+              ></input>
+              <input type="submit" value="Buscar" />
+            </form>
+          </div>
+        </nav>
+        <div>
+          <SearchBar />
+          <button
+            onClick={cleanFilters}
+            class="btn btn-outline-success"
+            style={{
+              backgroundColor: "#FFFCF9",
+              color: "#352D39",
+            }}
+          >
+            Clean Filters
+          </button>
         </div>
-      </nav>
       </div>
       <div
         className="grid"
@@ -97,7 +185,7 @@ function Shop() {
           gridTemplateColumns: "1fr 1fr 1fr 1fr",
           gridTemplateRows: "1fr 1fr 1fr",
           gap: "3rem",
-          margin: "2rem"
+          margin: "2rem",
         }}
       >
         {productsPage?.map((p) => (
@@ -124,7 +212,7 @@ function Shop() {
                 </div>
               </div>
             </div>
-
+          </div>
         ))}
       </div>
       <Pagination totalPages={totalPages} page={page} setPage={setPage} />

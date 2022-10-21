@@ -8,5 +8,6 @@ export const FILTER_BY_CATEGORIES = 'FILTER_BY_CATEGORIES';
 export const NEXT_PAGE = 'NEXT_PAGE';
 export const PREV_PAGE = 'PREV_PAGE';
 export const GET_PRODUCTS_BY_NAME = 'GET_PRODUCTS_BY_NAME'
+export const FILTER_BY_PRICE = 'FILTER_BY_PRICE';
 
 
