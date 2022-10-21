@@ -68,7 +68,7 @@
             "price": 3500,
             "detail": "Suela: 100% goma",
             "image": "https://zapatilandia.com.ar/wp-content/uploads/2021/08/negro-01.jpg",
-            "categories": [3]
+            "categories": [1, 3]
         }
     ]
 }

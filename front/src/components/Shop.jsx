@@ -24,33 +24,33 @@ function Shop() {
     dispatch(addCart(product));
   };
   const products = useSelector((state) => state.productsReducer.showProducts);
+  const category = useSelector((state) => state.productsReducer.categories);
+  const price = useSelector((state) => state.productsReducer.filterByPrice);
   const byCategories = useSelector(
     (state) => state.productsReducer.byCategories
   );
-  const category = useSelector((state) => state.productsReducer.categories);
-  const price = useSelector((state) => state.productsReducer.filterByPrice)
   const productsPerPage = 9;
   const totalPages = Math.ceil(products?.length / productsPerPage);
   const [, setOrder] = useState();
   const [input, setInput] = useState({
-    min: '',
-    max: ''
+    min: "",
+    max: "",
   });
 
   const [page, setPage] = useState(1);
   const first = (page - 1) * productsPerPage;
   const last = page * productsPerPage;
   let productsPage =
-    byCategories.length > 0
-      ? byCategories?.slice(first, last) : price.length > 0 ? price?.slice(first, last)
+    byCategories.length > 0 && products.length > 0
+      ? byCategories?.slice(first, last)
+      : price.length > 0
+      ? price?.slice(first, last)
       : products?.slice(first, last);
 
   useEffect(() => {
-    if (products?.length === 0) {
-      dispatch(getProducts());
-      dispatch(getCategories());
-    }
-  }, [dispatch, products]);
+    dispatch(getProducts());
+    dispatch(getCategories());
+  }, []);
 
   const orderName = function (e) {
     e.preventDefault();
@@ -74,32 +74,34 @@ function Shop() {
     }
   };
 
-  
   const filterCategories = (e) => {
     e.preventDefault();
     setPage(1);
     dispatch(filterByCategories(e.target.value));
   };
-  
+
   function handleChange(e) {
-    setInput({min: e.target.min, max: e.target.max})
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value,
+    });
   }
 
   const handleSumit = (e) => {
-    e.preventDefault()
-    const byPrice = [] // eslint-disable-next-line
-    products.map( p => {
-      if(p.price > input.min && p.price < input.max){
-        byPrice.push(p)
-      }
-    })// eslint-disable-next-line
-    byCategories.map(c => {
-      if(byCategories.price > input.min && byCategories.price < input.max)
-      byPrice.push(c)
-    })
-    dispatch(filterByPrice(byPrice))
+    e.preventDefault();
+    setPage(1);
+    if (byCategories.length > 0) {
+      const filteredCategories = byCategories?.filter((c) => {
+        return parseInt(c.price) > input.min && parseInt(c.price) < input.max;
+      });
+      dispatch(filterByPrice(filteredCategories));
+    } else {
+      const filteredAll = products?.filter((p) => {
+        return parseInt(p.price) > input.min && parseInt(p.price) < input.max;
+      });
+      dispatch(filterByPrice(filteredAll));
+    }
   };
-
 
   const cleanFilters = (e) => {
     e.preventDefault();
@@ -136,18 +138,18 @@ function Shop() {
               <input
                 type="text"
                 placeholder="Min..."
-                name="precioMin"
+                name="min"
                 onChange={handleChange}
-                min={input.min}
+                value={input.min}
               ></input>
               <input
                 type="text"
                 placeholder="Max..."
-                name="precioMax"
+                name="max"
                 onChange={handleChange}
-                max={input.max}
+                value={input.max}
               ></input>
-              <input type='submit' value='Buscar'/>
+              <input type="submit" value="Buscar" />
             </form>
           </div>
         </nav>

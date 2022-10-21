@@ -136,3 +136,15 @@ export function filterByPrice(payload) {
     payload,
   };
 }
+
+export function orderName(a, b) {
+  if(a.name < b.name) return -1
+  if(b.name < a.name) return 1 
+  return 0
+}
+
+export function orderPrice(a, b) {
+  if(parseInt(a.price) < parseInt(b.price)) return -1
+  if(parseInt(b.price) < parseInt(a.price)) return 1 
+  return 0
+}
