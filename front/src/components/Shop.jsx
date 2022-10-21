@@ -105,7 +105,7 @@ function Shop() {
   };
 
   return (
-    <>
+    <><>
       <div style={{ minHeigth: "100%" }}>
         <nav class="navbar navbar-light bg-light">
           <div
@@ -189,34 +189,31 @@ function Shop() {
         }}
       >
         {productsPage?.map((p) => (
-            <div key={p.id} className="col card border-info mb-3">
-              <div className="card h-100">
-                <img
-                  style={{ maxWidth: "300px"}}
-                  src={p.image}
-                  className="card-img-top"
-                  alt={p.name}
-                />
-                <div className="card-body">
-                  <h4 className="card-title">{p.name}</h4>
-                  <p className="card-text">{p.detail}</p>
-                  <h4>$ {p.price}</h4>
-                </div>
-                <div className="card-footer d-flex justify-content-around">
-                  <button
-                    className="btn btn-outline-dark px-4 py-2"
-                    onClick={() => addProduct(p)}
-                  >
-                    Agregar al carrito
-                  </button>
-                </div>
+          <div key={p.id} className="col card border-info mb-3">
+            <div className="card h-100">
+              <img
+                style={{ maxWidth: "300px" }}
+                src={p.image}
+                className="card-img-top"
+                alt={p.name} />
+              <div className="card-body">
+                <h4 className="card-title">{p.name}</h4>
+                <p className="card-text">{p.detail}</p>
+                <h4>$ {p.price}</h4>
+              </div>
+              <div className="card-footer d-flex justify-content-around">
+                <button
+                  className="btn btn-outline-dark px-4 py-2"
+                  onClick={() => addProduct(p)}
+                >
+                  Agregar al carrito
+                </button>
               </div>
             </div>
-          </div>
-        ))}
+          </div>))}
       </div>
-      <Pagination totalPages={totalPages} page={page} setPage={setPage} />
     </>
+    <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
   );
 }
 
