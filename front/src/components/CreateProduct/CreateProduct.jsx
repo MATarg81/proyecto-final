@@ -4,6 +4,7 @@ import {useEffect} from 'react';
 import {get_categories}  from '../../redux/actionsCreator/categoriesActions';
 import {createProduct} from '../../redux/actionsCreator/productsActions';
 import {useState}  from 'react';
+import upImage from './cloudinary'
 
 
 
@@ -11,7 +12,7 @@ const CreateProduct = function() {
 
 
     const dispatch = useDispatch();
-    const categories = useSelector((state) => state.categoriesReducer.categories);
+    const categories = useSelector((state) => state.productsReducer.categories);
     const [error, setError] = useState({});
 
     useEffect(() => {
@@ -165,13 +166,13 @@ const CreateProduct = function() {
             </label>
             <input
             style={{width:'600px'}}
-              type="iamge"
+              type="file"
               className="form-control"
               id="image"
               placeholder="Imagen..."
               value={input.image} 
               name='image' 
-              onChange={(e)=>handleChange(e)}
+              onChange={(e)=>{upImage(e.target.files)}}
             />
             {error.image && <p >{error.image}</p>}
             <label for="name" className="form-label">
