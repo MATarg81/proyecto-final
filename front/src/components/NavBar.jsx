@@ -49,11 +49,11 @@ function NavBar() {
             </Link>
           </li>
 
-          <li class="nav-item">
+          {/* <li class="nav-item">
             <Link class="nav-link" to="/crearProducto">
               Crear Producto
             </Link>
-          </li>
+          </li> */}
 
           <li class="nav-item">
             <Link class="nav-link" to="/nosotros">
