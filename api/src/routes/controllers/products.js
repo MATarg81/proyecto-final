@@ -19,6 +19,7 @@ const allProducts = async() => {
             const dbProduct = await Product.findAll({
                 include: Category 
             }); 
+         
             return dbProduct;
 
         }        
@@ -82,7 +83,11 @@ const getProducts = async(req, res) => {
     try {
         const qname = req.query.name;
         const totalProducts = await allProducts();
+        for (let i = 0; i < jsonData.results.length; i++) {
+            totalProducts[i].addCategory(jsonData.results[i].categories)
+        }
         const dbData = await Product.findAll({include: Category});
+
         
         if(qname) {
             const productsWithName = totalProducts.filter((r) => r.name.toLowerCase().includes(qname.toLowerCase()));
