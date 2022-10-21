@@ -61,20 +61,20 @@ function Shop() {
   return (
     <>
       <div style={{minHeigth: "100%"}}>
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-light bg-light" >
         <div class="container-fluid"  style={{
-        backgroundColor: "#6D435A",
+        background: "linear-gradient(90deg, rgba(255,255,255,1) 12%, rgba(109,67,90,1) 50%, rgba(255,255,255,1) 88%)",
         padding: "1rem",
       }}>
-          <select onChange={order}class="btn btn-secondary dropdown-toggle" style = {{
-            backgroundColor: "#FFFCF9",
+          <select onChange={order}class="btn btn-secondary dropdown-toggle border-0" style = {{
+            background: "#FFFCF9",
             color: "#352D39"
           }}>
-            <option selected defaultValue="Nombre">Nombre</option>
+            <option selected defaultValue="Nombre" class="border-0">Nombre</option>
             <option value="A/Z">A/Z</option>
             <option value="Z/A">Z/A</option>
           </select>
-          <select onChange={order}class="btn btn-secondary dropdown-toggle" style = {{
+          <select onChange={order}class="btn btn-secondary dropdown-toggle border-0" style = {{
             backgroundColor: "#FFFCF9",
             color: "#352D39"
           }}>
@@ -83,7 +83,7 @@ function Shop() {
             <option value="MAX/MIN">MAX/MIN</option>
           </select>
           <SearchBar/>
-          <button onClick={cleanFilters} class="btn btn-outline-success" style ={{
+          <button onClick={cleanFilters} class="btn btn-outline-success border-0" style ={{
             backgroundColor: "#FFFCF9",
             color: "#352D39"
           }}>Clean Filters</button>
@@ -114,7 +114,7 @@ function Shop() {
                   <p className="card-text">{p.detail}</p>
                   <h4>$ {p.price}</h4>
                 </div>
-                <div className="card-footer">
+                <div className="card-footer d-flex justify-content-around">
                   <button
                     className="btn btn-outline-dark px-4 py-2"
                     onClick={() => addProduct(p)}
