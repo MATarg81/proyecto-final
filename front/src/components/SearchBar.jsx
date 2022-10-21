@@ -20,6 +20,7 @@ export default function Searchbar() {
 
     return <div>
             <form onSubmit={onSubmit} class="d-flex" role="search">
+
                 <input onChange={onInputChange} class="form-control me-2" type="search" placeholder="Búsqueda por nombre..." aria-label="Buscar"/>
                 <button class="btn btn-outline-success" type="submit" style={{
                                 backgroundColor: "#FFFCF9",
