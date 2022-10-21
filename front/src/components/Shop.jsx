@@ -15,10 +15,6 @@ import SearchBar from "./SearchBar";
 //import Sort from "./Sort";
 
 function Shop() {
-  // const [data, setData] = useState([]);
-  // const [filter, setFilter] = useState(data);
-  // const [loading, setLoading] = useState(false);
-  //---------------------------------------------------------------
   const dispatch = useDispatch();
   const addProduct = (product) => {
     dispatch(addCart(product));
@@ -41,7 +37,7 @@ function Shop() {
   const first = (page - 1) * productsPerPage;
   const last = page * productsPerPage;
   let productsPage =
-    byCategories.length > 0 && products.length > 0
+    byCategories.length > 0
       ? byCategories?.slice(first, last)
       : price.length > 0
       ? price?.slice(first, last)
@@ -50,7 +46,7 @@ function Shop() {
   useEffect(() => {
     dispatch(getProducts());
     dispatch(getCategories());
-  }, []);
+  }, [dispatch]);
 
   const orderName = function (e) {
     e.preventDefault();
@@ -108,24 +104,39 @@ function Shop() {
     dispatch(getProducts());
   };
 
-  //     console.log(products)
-  //------------------------------------------------------
-
   return (
     <>
-      <div>
-        <nav>
-          <div>
-            <SearchBar />
-            {/* <Sort /> */}
-            <select onChange={order}>
+      <div style={{ minHeigth: "100%" }}>
+        <nav class="navbar navbar-light bg-light">
+          <div
+            class="container-fluid"
+            style={{
+              backgroundColor: "#6D435A",
+              padding: "1rem",
+            }}
+          >
+            <select
+              onChange={order}
+              class="btn btn-secondary dropdown-toggle"
+              style={{
+                backgroundColor: "#FFFCF9",
+                color: "#352D39",
+              }}
+            >
               <option defaultValue="ordenar">Ordenar por:</option>
               <option value="A/Z">A/Z</option>
               <option value="Z/A">Z/A</option>
               <option value="MIN/MAX">MIN/MAX</option>
               <option value="MAX/MIN">MAX/MIN</option>
             </select>
-            <select onChange={filterCategories}>
+            <select
+              onChange={filterCategories}
+              class="btn btn-secondary dropdown-toggle"
+              style={{
+                backgroundColor: "#FFFCF9",
+                color: "#352D39",
+              }}
+            >
               <option defaultValue="Categories">Filtrar categorías</option>
               {category?.map((c) => (
                 <option name={c.name} key={c.id} value={c.name}>
@@ -154,28 +165,27 @@ function Shop() {
           </div>
         </nav>
         <div>
-          <button onClick={cleanFilters}>Clean Filters</button>
-          {/* <Link to="/create">
-            <button>Create a new Product</button>
-          </Link>
-          </div>
-        </nav>
-        {/* <Sort />
-        {productsPage?.map((r) =>                 
-        <Searchbar/>
-        <Sort />
-        {/* {productsPage?.map((r) =>                 
-            <Product key={r.id} id={r.id} name={r.name} img={r.image} price={r.price}/>
-        )}  */}
+          <SearchBar />
+          <button
+            onClick={cleanFilters}
+            class="btn btn-outline-success"
+            style={{
+              backgroundColor: "#FFFCF9",
+              color: "#352D39",
+            }}
+          >
+            Clean Filters
+          </button>
         </div>
       </div>
       <div
         className="grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr 1fr",
+          gridTemplateColumns: "1fr 1fr 1fr 1fr",
           gridTemplateRows: "1fr 1fr 1fr",
-          gap: "5px 5px",
+          gap: "3rem",
+          margin: "2rem",
         }}
       >
         {productsPage?.map((p) => (
@@ -188,7 +198,7 @@ function Shop() {
                 alt={p.name}
               />
               <div className="card-body">
-                <h3 className="card-title">{p.name}</h3>
+                <h4 className="card-title">{p.name}</h4>
                 <p className="card-text">{p.detail}</p>
                 <h4>$ {p.price}</h4>
               </div>

@@ -6,6 +6,7 @@ import About from "./components/About";
 import Shop from "./components/Shop";
 import Login from "./components/Login";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
 
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/crearActividades" element={<ActivityCreate />} />
         <Route exact path="/crearProducto" element={<CreateProduct />} />
       </Routes>
+      <Footer />
     </>
   );
 }

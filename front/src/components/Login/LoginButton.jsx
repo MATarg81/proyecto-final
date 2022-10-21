@@ -7,7 +7,7 @@ const LoginButton = () => {
 
     return (
         <button className="btn btn-outline-dark ms-2" onClick={() => loginWithRedirect()}> 
-            <i className="fa fa-user-plus me-1"></i>Ingresar
+            <i className="fa fa-sign-in me-1"></i>Ingresar
         </button>
     )
 }

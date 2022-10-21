@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import { searchProducts } from '../redux/actionsCreator/productsActions'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 export default function Searchbar() {
-
-    const products = useSelector((state) => state.productsReducer.showProducts);
 
     const [search, setSearch] = useState('')
 
@@ -21,9 +19,12 @@ export default function Searchbar() {
     }
 
     return <div>
-            <form onSubmit={onSubmit}>
-                <input  type='text' onChange={onInputChange} placeholder='Buscar' value={search}/>
-                <input  type='submit' value='Search'/>
+            <form onSubmit={onSubmit} class="d-flex" role="search">
+                <input onChange={onInputChange} class="form-control me-2" type="search" placeholder="Búsqueda por nombre..." aria-label="Buscar"/>
+                <button class="btn btn-outline-success" type="submit" style={{
+                                backgroundColor: "#FFFCF9",
+                                color: "#352D39"
+                }}>Buscar</button>
             </form>
         </div>
 }

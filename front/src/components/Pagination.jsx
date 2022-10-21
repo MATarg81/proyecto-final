@@ -23,25 +23,27 @@ const Pagination = function ({ page, setPage, totalPages }) {
   }
 
   return (
-    <div>
-      <button onClick={handlePrev} disabled={currentPage <= 1}>
+
+    <div class="d-flex justify-content-around " >
+      <button onClick={handlePrev} disabled={currentPage <= 1} class="btn btn-outline-danger btn-rounded" data-mdb-ripple-color="dark">
+
         Prev.
-      </button>
+      </button >
       {pages.map((p) => (
-        <button
-          key={p}
-          onClick={() => {
-            setCurrentPage(p);
-            setPage(p);
-          }}
-          disabled={currentPage === p}
-        >
+
+        <button class="btn btn-outline-danger btn-rounded" key={p} onClick={() => { setCurrentPage(p); setPage(p);}} disabled={currentPage === p}>
           {p}
         </button>
+         
       ))}
-      <button onClick={handleNext} disabled={currentPage >= totalPages}>
+      <button class="btn btn-outline-danger btn-rounded"  onClick={handleNext} disabled={currentPage >= totalPages} >
+
         Next
       </button>
+       
+     
+     
+      
     </div>
   );
 };
