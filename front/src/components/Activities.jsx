@@ -46,7 +46,7 @@ export default function Activities() {
             return (
               <div className="col" key={a.name}>
                 <div
-                  className="card"
+                  className="card h-100"
                   style={{
                     margin: '15px',
                     border: '1px solid black'
