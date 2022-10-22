@@ -78,7 +78,7 @@ function About() {
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Pileta de natacion</h5>
+                  <h5 class="card-title">Pileta de natación</h5>
                   <p class="card-text">
                     La pileta del Club, la cual cuenta con instalaciones completas y en buen estado se utiliza para las clases de natacion, aquagym y waterpolo.
                   </p>
