@@ -1,4 +1,8 @@
 import React from 'react'
+import futbolretro from '../imagesTeam/Regional.jpg'
+import fundadores from '../imagesTeam/fundadores byn.PNG'
+import cancha from '../imagesTeam/atenas-cancha.jpg'
+import pileta from '../imagesTeam/pileta.jpg'
 
 function About() {
   return (
@@ -37,19 +41,24 @@ function About() {
 
 
 
+
       <div class="tab-content" id="v-pills-tabContent">
 
         <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab" tabindex="0">
 
+
           <div class="card mb-3">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmj-dZVH9oBx6Q2a9VQQd6ZJ4g8WR5jUEy9A&usqp=CAU" height='200px' class="card-img-top" alt="..." />
+            {/* <img src={futbolretro} height='200px' class="card-img-top" alt="..." /> */}
             <div class="card-body">
               <h5 class="card-title">Fundado en 1800a.c</h5>
               <p class="card-text">
 
               </p>
-              <p class="card-text"><small class="text-muted"> descripcion resumen anecdota</small></p>
+              <p class="card-text"><small class="text-muted"> El Club Athenas fue fundado el 24 de octubre de 1977 por la fusión de dos clubes integrados por jóvenes. Uno de ellos era el Club Atenas For Ever, compuesto por atenienses que inmigraron a nuestro pais durante la 2° Guerra Mundial y el otro era el Asociacion Deportiva Gladiadores formado jóvenes de recursos bajos y con distintas problematicas como adicciones, antecedentes penales, etc.</small></p>
+              <p class="card-text"><small class="text-muted"> Ambos clubes, antes de la fusión, tenían similares características: jugaban al fútbol en terrenos cedidos. </small></p>
+              <p class="card-text"><small class="text-muted"> El barrio era, entonces, demasiado pequeño para la existencia de dos entidades y no pasó mucho tiempo sin que comenzara a pensarse en la fusión de ambas. Resultando asi la creacion del Club Athenas</small></p>
             </div>
+            <img src={futbolretro} class="card-img-top" alt="..." />
           </div>
           <div class="card">
             <div class="card-body">
@@ -57,31 +66,37 @@ function About() {
               <p class="card-text">
 
               </p>
-              <p class="card-text"><small class="text-muted">Los fundadores, algo sobre ellos</small></p>
+              <p class="card-text"><small class="text-muted">Eleuterio Kyrgiakos y Roberto Fernandez, presidentes del Club Atenas For Ever y Aosciacion Deportiva Gladiadores, respectivamente. Fotografia tomada el dia de la fundacion, cuando ambas entidades se fusionaron.   </small></p>
             </div>
-            <img src="https://www.fototecasannicolas.org/media/sanicolas/images/1/5/1/72155_ca_object_representations_media_15183_page.jpg" height='200px' class="card-img-bottom" alt="..." />
+
           </div>
 
+          <img src={fundadores} class="card-img-bottom" alt="..." />
 
 
         </div>
 
+
+        <div className="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+     
+
         <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+
 
 
 
           <div class="card mb-3" max-width="540px">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-3ZolC4VH3foq6HAeCjJtfhJUwyVkq9IGRw&usqp=CAU" class="img-fluid rounded-start" alt="..." />
+                <img src={cancha} class="img-fluid rounded-start" alt="..." /> 
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Alguna foto del club</h5>
+                  <h5 class="card-title">Estadio Monte Olimpo</h5>
                   <p class="card-text">
-                    texto comentario etc....
+                    Estadio que sirve para los equipos masculinos y femeninos de futbol,tanto para entrenamiento y partidos. Ademas suele alquilarse para eventos musicales, el más importante de ellos fue el brindado por Duki en enero del 2022.
                   </p>
-                  <p class="card-text"><small class="text-muted">descripcion opcional o algo</small></p>
+                  <p class="card-text"><small class="text-muted">Las dimensiones del campo de juego son de 102mx62m</small></p>
                 </div>
               </div>
             </div>
@@ -90,15 +105,15 @@ function About() {
           <div class="card mb-3" max-width="540px">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz7CyvP7P3WCRggYkPebndTLpO2xTjulbOfQ&usqp=CAU" class="img-fluid rounded-start" alt="..." />
+                <img src={pileta} class="img-fluid rounded-start" alt="..." />
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">Mas fotos de canchas o tiendas etc</h5>
+                  <h5 class="card-title">Pileta de natación</h5>
                   <p class="card-text">
-                    texto comentario etc....
+                    La pileta del Club, la cual cuenta con instalaciones completas y en buen estado se utiliza para las clases de natacion, aquagym y waterpolo.
                   </p>
-                  <p class="card-text"><small class="text-muted">descripcion opcional o algo</small></p>
+                  <p class="card-text"><small class="text-muted">Posee 50m de largo. Profundidad de 4m.</small></p>
                 </div>
               </div>
             </div>
