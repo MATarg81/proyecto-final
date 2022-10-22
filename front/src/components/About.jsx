@@ -3,23 +3,43 @@ import React from 'react'
 function About() {
   return (
 
-    <div className="d-flex align-items-start">
 
-      <div className="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-        <button className="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">El club</button>
+    <div class="">
 
-        <button className="nav-link " id="v-pills-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="true">Historia</button>
 
-        <button className="nav-link" id="v-pills-more-tab" data-bs-toggle="pill" data-bs-target="#v-pills-more" type="button" role="tab" aria-controls="v-pills-more" aria-selected="true" >Más que un club</button>
+
+
+      <div class="d-flex justify-content-between">
+
+        <div>
+          <h1> Athenas Club </h1>
+        </div>
+
+
+        <div class="d-flex">
+
+          <div>
+            <button class="btn btn-primary" >El club</button>
+          </div>
+          <div>
+            <button class="btn btn-primary " >Historia</button>
+          </div>
+          <div>
+            <button class="btn btn-primary" >Más que un club</button>
+          </div>
+
+        </div>
+
 
       </div>
 
-      <div className="tab-content" id="v-pills-tabContent">
-
-        <div className="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab" tabindex="0">
 
 
+
+      <div class="tab-content" id="v-pills-tabContent">
+
+        <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab" tabindex="0">
 
           <div class="card mb-3">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmj-dZVH9oBx6Q2a9VQQd6ZJ4g8WR5jUEy9A&usqp=CAU" height='200px' class="card-img-top" alt="..." />
@@ -46,11 +66,9 @@ function About() {
 
         </div>
 
-        <div className="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
+        <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
 
-          <div>
-            <h1> Athenas Club </h1>
-          </div>
+
 
           <div class="card mb-3" max-width="540px">
             <div class="row g-0">
@@ -88,7 +106,7 @@ function About() {
 
         </div>
 
-        <div className="tab-pane fade" id="v-pills-more" role="tabpanel" aria-labelledby="v-pills-more-tab" tabindex="0">
+        <div class="tab-pane fade" id="v-pills-more" role="tabpanel" aria-labelledby="v-pills-more-tab" tabindex="0">
 
           <div>
             <h1> MÁS QUE UN CLUB </h1>
