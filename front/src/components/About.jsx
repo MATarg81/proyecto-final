@@ -65,7 +65,7 @@ function About() {
                   <p class="card-text">
                     Estadio que sirve para los equipos masculinos y femeninos de futbol,tanto para entrenamiento y partidos. Ademas suele alquilarse para eventos musicales, el más importante de ellos fue el brindado por Duki en enero del 2022.
                   </p>
-                  <p class="card-text"><small class="text-muted">Las dimensiones del campo de juego son de 102mx62m</small></p>
+                  <p class="card-text"><small class="text-muted">Las dimensiones del campo de juego son de 102x62m</small></p>
                 </div>
               </div>
             </div>
