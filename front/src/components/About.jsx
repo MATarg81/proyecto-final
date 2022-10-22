@@ -53,15 +53,11 @@ function About() {
         </div>
 
         <div className="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
-
-          <div>
-            <h1> Club Athenas </h1>
-          </div>
-
+     
           <div class="card mb-3" max-width="540px">
             <div class="row g-0">
               <div class="col-md-4">
-                <img src={cancha} class="img-fluid rounded-start" alt="..." />
+                <img src={cancha} class="img-fluid rounded-start" alt="..." /> 
               </div>
               <div class="col-md-8">
                 <div class="card-body">
