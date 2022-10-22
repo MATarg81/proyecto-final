@@ -7,27 +7,34 @@ import {
   orderByName,
   orderByPrice,
   filterByCategories,
-  //searchProducts,
   getCategories,
   filterByPrice,
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
-//import Sort from "./Sort";
 import { Link } from 'react-router-dom'
 
 function Shop() {
+  //----------- Utils -----------------
   const dispatch = useDispatch();
-  const addProduct = (product) => {
-    dispatch(addCart(product));
-  };
+
+  // --------- Global states ---------------
   const products = useSelector((state) => state.productsReducer.showProducts);
   const category = useSelector((state) => state.productsReducer.categories);
   const price = useSelector((state) => state.productsReducer.filterByPrice);
   const byCategories = useSelector(
     (state) => state.productsReducer.byCategories
   );
+
+  // --------------- Pagination --------------
   const productsPerPage = 12;
-  const totalPages = Math.ceil(products?.length / productsPerPage);
+
+  const totalPages =
+    byCategories.length > 0
+      ? Math.ceil(byCategories?.length / productsPerPage)
+      : price.length > 0
+      ? Math.ceil(price?.length / productsPerPage)
+      : Math.ceil(products?.length / productsPerPage);
+
   const [, setOrder] = useState();
   const [input, setInput] = useState({
     min: "",
@@ -44,11 +51,28 @@ function Shop() {
         ? price?.slice(first, last)
         : products?.slice(first, last);
 
-  useEffect(() => {
-    dispatch(getProducts());
-    dispatch(getCategories());
-  }, [dispatch]);
+  // --------------- Data call -------------
 
+  //Categories
+  useEffect(() => {
+    if (category?.length === 0) {
+      dispatch(getCategories());
+    }
+  }, [dispatch, category]);
+  
+  //Products
+  useEffect(() => {
+    if (category?.length > 0) {
+      dispatch(getProducts());
+    }
+  }, [dispatch, category]);
+
+  // --------------- Cart function ----------------
+  const addProduct = (product) => {
+    dispatch(addCart(product));
+  };
+
+  // -------------- sort functions ------------
   const orderName = function (e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
@@ -71,6 +95,7 @@ function Shop() {
     }
   };
 
+  // ----------------- filter functions ------------------
   const filterCategories = (e) => {
     e.preventDefault();
     setPage(1);
@@ -100,9 +125,13 @@ function Shop() {
     }
   };
 
+  //--------------- clean sort and filters function --------------------
   const cleanFilters = (e) => {
     e.preventDefault();
+    setPage(1);
     dispatch(getProducts());
+    dispatch(filterByPrice([]));
+    dispatch(filterByCategories([]));
   };
 
   return (
@@ -174,27 +203,26 @@ function Shop() {
                 }}
               ></input>
               <input type="submit" value="Buscar" class="btn btn-secondary dropdown-toggle"
-                style={{
-                  backgroundColor: "#FFFCF9",
-                  color: "#352D39",
-                }} />
-            </form>
-            <SearchBar />
-            <button
-              onClick={cleanFilters}
-              class="btn btn-outline-success"
               style={{
                 backgroundColor: "#FFFCF9",
                 color: "#352D39",
-              }}
-            >
-              Borrar filtros
-            </button>
-            <Link class="nav-link" to="/crearProducto">
+              }}/>
+            </form>
+            <SearchBar />
+            <button
+            onClick={cleanFilters}
+            class="btn btn-outline-success"
+            style={{
+              backgroundColor: "#FFFCF9",
+              color: "#352D39",
+            }}
+          >
+            Borrar filtros
+          </button>
+          <Link class="nav-link" to="/crearProducto">
               Crear Producto
             </Link>
           </div>
-          
         </nav>
         <div>
         </div>
@@ -212,15 +240,15 @@ function Shop() {
           <div key={p.id} className="col card border-info mb-3">
             <div className="card h-100">
               <div style={{
-                width: "200px",
-                height: "200px",
-                overflow: "hidden",
-                margin: "10px",
-                position: "relative"
+                    width: "200px",
+                    height: "200px",
+                    overflow: "hidden",
+                    margin: "10px",
+                    position: "relative"
               }}>
                 <img
-                  style={{
-                    position: "absolute",
+                  style={{ 
+                    position:"absolute",
                     left: "-100%",
                     right: "-100%",
                     top: "-100%",
@@ -229,7 +257,7 @@ function Shop() {
                     maxHeigth: "200px",
                     minHeight: "100%",
                     minWidth: "100%",
-                  }}
+                    }}
                   src={p.image}
                   className="card-img-top"
                   alt={p.name} />
@@ -251,7 +279,7 @@ function Shop() {
           </div>))}
       </div>
     </>
-      <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
+    <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
   );
 }
 
