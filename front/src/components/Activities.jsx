@@ -40,10 +40,10 @@ export default function Activities() {
           </div>
           <div class="col">
             <img src="/img/natacion.jpg" alt="campeones2" style={{ width: "280px" }} />
-
           </div>
-          <img src="/img/inf_camp.jpg" alt="campeones" style={{ width: "300px" }} />
+
           <div class="col">
+          <img src="/img/inf_camp.jpg" alt="campeones" style={{ width: "300px" }} />
           </div>
         </div>
 
