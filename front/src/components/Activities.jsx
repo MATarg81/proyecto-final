@@ -35,32 +35,32 @@ export default function Activities() {
       <div class="container p-3">
         <div class="row">
           <div class="col">
-             <h3 class="">Actividades del Club</h3>
-             <p class="mb-0 ">En esta seccion usted podra informarse de todas las actividades que el club tiene disponible tanto de los días y horarios como del lugar donde se realizan. </p>
+            <h3 class="">Actividades del Club</h3>
+            <p class="mb-0 ">En esta seccion usted podra informarse de todas las actividades que el club tiene disponible tanto de los días y horarios como del lugar donde se realizan. </p>
           </div>
           <div class="col">
-          <img src="/img/natacion.jpg" alt="campeones2" style={{ width: "280px" }} />
-      
+            <img src="/img/natacion.jpg" alt="campeones2" style={{ width: "280px" }} />
+
           </div>
-          <div class="col">
           <img src="/img/inf_camp.jpg" alt="campeones" style={{ width: "300px" }} />
+          <div class="col">
           </div>
         </div>
 
 
-        
 
-       
+
+
         <div></div>
 
         <div></div>
 
 
 
-       
+
 
       </div>
-     
+
       <div class="d-flex flex-column px-4" /* style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}} */>
         <Link to="/crearActividades">
           {" "}
