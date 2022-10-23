@@ -48,7 +48,7 @@ function About() {
 
 
           <div class="card mb-3">
-            {/* <img src={futbolretro} height='200px' class="card-img-top" alt="..." /> */}
+            {/* <img src={futbolretro} height='200px' class="card-img-top" alt="..." /> culo*/}
             <div class="card-body">
               <h5 class="card-title">Fundado en 1800a.c</h5>
               <p class="card-text">
@@ -96,7 +96,7 @@ function About() {
                   <p class="card-text">
                     Estadio que sirve para los equipos masculinos y femeninos de futbol,tanto para entrenamiento y partidos. Ademas suele alquilarse para eventos musicales, el más importante de ellos fue el brindado por Duki en enero del 2022.
                   </p>
-                  <p class="card-text"><small class="text-muted">Las dimensiones del campo de juego son de 102mx62m</small></p>
+                  <p class="card-text"><small class="text-muted">Las dimensiones del campo de juego son de 102x62m</small></p>
                 </div>
               </div>
             </div>
@@ -170,7 +170,6 @@ function About() {
         </div>
 
       </div>
-    </div>
     </div>
   )
 }
