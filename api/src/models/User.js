@@ -9,6 +9,10 @@ module.exports = (sequelize) => {
         autoIncrement: true,
         primaryKey: true,
       },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -22,7 +26,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       dateOfBirth: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       phoneNumber: {
@@ -30,6 +34,10 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      postalCode: {
         type: DataTypes.STRING,
         allowNull: false,
       },
