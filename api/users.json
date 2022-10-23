@@ -6,7 +6,9 @@
             "dateOfBirth": 16031990,
             "phoneNumber": 2236690093,
             "email": "nahuelcittadino@gmai.com",
-            "address": "Matheu 3156"
+            "address": "Matheu 3156",
+            "postalCode": "B2345",
+            "password": "alskndA1!"
         },
         {
             "name": "Laura",
@@ -14,7 +16,9 @@
             "dateOfBirth": 19061997,
             "phoneNumber": 116987456,
             "email": "lauramarcenaro@gmail.com",
-            "address": "Rosalia 6668"
+            "address": "Rosalia 6668",
+            "postalCode": "B2345",
+            "password": "alskndA1!"
         },
         {
             "name": "Brenda",
@@ -22,7 +26,9 @@
             "dateOfBirth": 22121998,
             "phoneNumber": 2243321589,
             "email": "cecilia@yahoo.com",
-            "address": "Av. Perales 5463"
+            "address": "Av. Perales 5463",
+            "postalCode": "B2345",
+            "password": "alskndA1!"
         },
         {
             "name": "Cinthya",
@@ -30,7 +36,9 @@
             "dateOfBirth": 20111991,
             "phoneNumber": 115325486,
             "email": "cinthyamolina@gmail.com",
-            "address": "Guerra Galactica 422"
+            "address": "Guerra Galactica 422",
+            "postalCode": "B2345",
+            "password": "alskndA1!"
         },
         {
             "name": "Juan",
@@ -38,7 +46,9 @@
             "dateOfBirth": 12111951,
             "phoneNumber": 114658365,
             "email": "juanculia@gmail.com",
-            "address": "Fernando 3070"
+            "address": "Fernando 3070",
+            "postalCode": "B2345",
+            "password": "alskndA1!"
         },
         {
             "name": "Matias",
@@ -46,7 +56,9 @@
             "dateOfBirth": 26021986,
             "phoneNumber": 2245632105,
             "email": "matiastula@gmail.com",
-            "address": "Padelnator 775"
+            "address": "Padelnator 775",
+            "postalCode": "B2345",
+            "password": "alskndA1!"
         },
         {
             "name": "Sebastian Lucas",
@@ -54,7 +66,9 @@
             "dateOfBirth": 26021995,
             "phoneNumber": 224564657,
             "email": "sebasebasebado@gmail.com",
-            "address": "Calle Falsa 123"
+            "address": "Calle Falsa 123",
+            "postalCode": "B2345",
+            "password": "alskndA1!"
         }
     ]
 }
