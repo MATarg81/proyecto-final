@@ -13,17 +13,17 @@ function Register() {
 
   const [input, setInput] = useState({
     name: "",
-    lastname: '',
+    lastname: "",
     email: "",
-    phoneNumber: '',
+    phoneNumber: "",
     password: "",
     validatePass: "",
-    dateOfBirth: '',
+    dateOfBirth: "",
     address: "",
-    postalCode: ''
+    postalCode: "",
   });
 
-  let pass = input.password
+  let pass = input.password;
   //let CP = input.postalCode
 
   const hours = [];
@@ -32,80 +32,107 @@ function Register() {
   }
 
   function validate(input) {
-    let error = {}
+    let error = {};
 
     //Validate name
-    if(input.name) {
-      if (input.name.length < 2 ) {
-        error.name = "Debe tener al menos 2 caracteres"
+    if (input.name) {
+      if (input.name.length < 2) {
+        error.name = "Debe tener al menos 2 caracteres";
       } else {
-        for(let i in input.name) {
-          if(input.name.charCodeAt(i) < 65 || input.name.charCodeAt(i) > 122 ) {
-            if(input.name.charCodeAt(i) !== 32 && input.name.charCodeAt(i) !== 39 ) {
-              error.name = "Solo puede contener letras"
-            } 
-          } 
-        }
-      }
-    }
-    
-    //Validate lastname
-    if(input.lastname){
-      if (input.lastname.length < 2 ) { 
-        error.lastname = "Debe tener al menos 2 caracteres"
-      } else {
-        for(let i in input.lastname) {
-          if(input.lastname.charCodeAt(i) < 65 || input.lastname.charCodeAt(i) > 122) {
-            if(input.lastname.charCodeAt(i) !== 32 && input.lastname.charCodeAt(i) !== 39 ){
-              error.lastname = "Solo puede contener letras"
+        for (let i in input.name) {
+          if (input.name.charCodeAt(i) < 65 || input.name.charCodeAt(i) > 122) {
+            if (
+              input.name.charCodeAt(i) !== 32 &&
+              input.name.charCodeAt(i) !== 39
+            ) {
+              error.name = "Solo puede contener letras";
             }
           }
         }
       }
     }
-    
-    //Validate email
-    if(input.email) {
-      if(input.email.length < 11) {
-        error.email = "El mail ingresado es demasiado corto"
-      } else if(!input.email.includes('@') || !input.email.includes('.com')) {
-        error.email = "El email ingresado no es válido"
-      }
-    }
 
-    //Validate password
-    if(input.password) {
-      if(input.password.length < 8) {error.password = "La contraseña es demasiado corta"}
-      else if(!input.password.match(/[A-Z]/)) {error.password = 'Debe contener al menos una mayúscula'}
-      else if(!input.password.match(/\d/)) {error.password = 'Debe tener al menos un número'}
-      else if(!input.password.match(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/)) {error.password = 'Debe tener al menos un símbolo'}
-    }
-
-    //Confirm password
-    if(input.validatePass && pass) {
-      if(pass !== input.validatePass) {error.validatePass = 'Las contraseñas no coinciden'}
-    }
-
-    //Validate dirección
-    if(input.address) {
-      if(!input.address.match(/\d/)) {error.address = 'Por favor agrega una altura'}
-    }
-
-    //Validate CP
-    if(input.postalCode) {
-      if(input.postalCode.length !== 5) {error.postalCode = 'Ingresa un código postal válido'}
-      if(!input.postalCode.match(/^[A-Z]/)) {error.postalCode = 'Debe comenzar con una mayúscula'}
-      for(let i = 1; i < input.postalCode.length; i++) {
-        if(!input.postalCode[i].match(/\d/) || input.postalCode.length !== 5) {
-          error.postalCode = 'Ingresa un código postal válido'
+    //Validate lastname
+    if (input.lastname) {
+      if (input.lastname.length < 2) {
+        error.lastname = "Debe tener al menos 2 caracteres";
+      } else {
+        for (let i in input.lastname) {
+          if (
+            input.lastname.charCodeAt(i) < 65 ||
+            input.lastname.charCodeAt(i) > 122
+          ) {
+            if (
+              input.lastname.charCodeAt(i) !== 32 &&
+              input.lastname.charCodeAt(i) !== 39
+            ) {
+              error.lastname = "Solo puede contener letras";
+            }
+          }
         }
       }
     }
 
-    //Validate phone number 
-    if(input.phoneNumber) {
-      if(!input.phoneNumber.match(/\d/)) {error.phoneNumber = 'Debe contener números únicamente'}
-      else if(input.phoneNumber.length < 10) {error.phoneNumber = 'El número es demasiado corto'}
+    //Validate email
+    if (input.email) {
+      if (input.email.length < 11) {
+        error.email = "El mail ingresado es demasiado corto";
+      } else if (!input.email.includes("@") || !input.email.includes(".com")) {
+        error.email = "El email ingresado no es válido";
+      }
+    }
+
+    //Validate password
+    if (input.password) {
+      if (input.password.length < 8) {
+        error.password = "La contraseña es demasiado corta";
+      } else if (!input.password.match(/[A-Z]/)) {
+        error.password = "Debe contener al menos una mayúscula";
+      } else if (!input.password.match(/\d/)) {
+        error.password = "Debe tener al menos un número";
+      } else if (
+        !input.password.match(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/)
+      ) {
+        error.password = "Debe tener al menos un símbolo";
+      }
+    }
+
+    //Confirm password
+    if (input.validatePass && pass) {
+      if (pass !== input.validatePass) {
+        error.validatePass = "Las contraseñas no coinciden";
+      }
+    }
+
+    //Validate dirección
+    if (input.address) {
+      if (!input.address.match(/\d/)) {
+        error.address = "Por favor agrega una altura";
+      }
+    }
+
+    //Validate CP
+    if (input.postalCode) {
+      if (input.postalCode.length !== 5) {
+        error.postalCode = "Ingresa un código postal válido";
+      }
+      if (!input.postalCode.match(/^[A-Z]/)) {
+        error.postalCode = "Debe comenzar con una mayúscula";
+      }
+      for (let i = 1; i < input.postalCode.length; i++) {
+        if (!input.postalCode[i].match(/\d/) || input.postalCode.length !== 5) {
+          error.postalCode = "Ingresa un código postal válido";
+        }
+      }
+    }
+
+    //Validate phone number
+    if (input.phoneNumber) {
+      if (!input.phoneNumber.match(/\d/)) {
+        error.phoneNumber = "Debe contener números únicamente";
+      } else if (input.phoneNumber.length < 10) {
+        error.phoneNumber = "El número es demasiado corto";
+      }
     }
 
     return error;
@@ -116,22 +143,33 @@ function Register() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    setError(validate({
-      ...error,
-      [e.target.name]: e.target.value
-    }))
+    setError(
+      validate({
+        ...error,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if(!input.name || !input.lastname || !input.email || !input.password || !input.validatePass || !input.phoneNumber || !input.dateOfBirth || !input.address || !input.postalCode) {
-      alert('Por favor completa todos los campos')
-    } else{
-      dispatch(add_users(input))
-      navigate('/home')
-    }  
-      
+    if (
+      !input.name ||
+      !input.lastname ||
+      !input.email ||
+      !input.password ||
+      !input.validatePass ||
+      !input.phoneNumber ||
+      !input.dateOfBirth ||
+      !input.address ||
+      !input.postalCode
+    ) {
+      alert("Por favor completa todos los campos");
+    } else {
+      dispatch(add_users(input));
+      navigate("/home");
     }
+  }
 
   return (
     <>
@@ -153,7 +191,7 @@ function Register() {
               id="nameInput"
               placeholder="Nombre(s)..."
               onChange={handleChange}
-              name='name'
+              name="name"
               value={input.name}
               class={
                 input.name && !error.name
@@ -161,7 +199,9 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.name ? error.name : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.name ? error.name : "Este campo es obligatorio"}
+            </div>
           </div>
 
           {/* Apellido */}
@@ -174,7 +214,7 @@ function Register() {
               id="lastnameInput"
               placeholder="Apellido(s)..."
               onChange={handleChange}
-              name='lastname'
+              name="lastname"
               value={input.lastname}
               class={
                 input.lastname && !error.lastname
@@ -182,7 +222,9 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.lastname ? error.lastname : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.lastname ? error.lastname : "Este campo es obligatorio"}
+            </div>
           </div>
 
           {/* Email */}
@@ -195,7 +237,7 @@ function Register() {
               id="emailInput"
               placeholder="Email..."
               onChange={handleChange}
-              name='email'
+              name="email"
               value={input.email}
               class={
                 input.email && !error.email
@@ -203,7 +245,9 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.email ? error.email : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.email ? error.email : "Este campo es obligatorio"}
+            </div>
           </div>
 
           {/* Contraseña */}
@@ -216,7 +260,7 @@ function Register() {
               id="passwordInput"
               placeholder="Contraseña..."
               onChange={handleChange}
-              name='password'
+              name="password"
               value={input.password}
               class={
                 input.password && !error.password
@@ -224,7 +268,9 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.password ? error.password : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.password ? error.password : "Este campo es obligatorio"}
+            </div>
           </div>
 
           {/* Confirmacion de contraseña */}
@@ -237,7 +283,7 @@ function Register() {
               id="validatePassInput"
               placeholder="Escribe la contraseña nuevamente..."
               onChange={handleChange}
-              name='validatePass'
+              name="validatePass"
               value={input.validatePass}
               class={
                 input.validatePass && !error.validatePass
@@ -245,7 +291,11 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.validatePass ? error.validatePass : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.validatePass
+                ? error.validatePass
+                : "Este campo es obligatorio"}
+            </div>
           </div>
 
           {/* Dirección */}
@@ -258,7 +308,7 @@ function Register() {
               id="addressInput"
               placeholder="Dirección..."
               onChange={handleChange}
-              name='address'
+              name="address"
               value={input.address}
               class={
                 input.address && !error.address
@@ -266,7 +316,9 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.address ? error.address : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.address ? error.address : "Este campo es obligatorio"}
+            </div>
           </div>
 
           {/* Código Postal */}
@@ -279,7 +331,7 @@ function Register() {
               id="postalCodeInput"
               placeholder="CP..."
               onChange={handleChange}
-              name='postalCode'
+              name="postalCode"
               value={input.postalCode}
               class={
                 input.postalCode && !error.postalCode
@@ -287,7 +339,11 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.postalCode ? error.postalCode : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.postalCode
+                ? error.postalCode
+                : "Este campo es obligatorio"}
+            </div>
           </div>
 
           {/* Fecha de nacimiento */}
@@ -299,7 +355,7 @@ function Register() {
               type="date"
               id="dateOfBirthInput"
               onChange={handleChange}
-              name='dateOfBirth'
+              name="dateOfBirth"
               value={input.dateOfBirth}
               class={
                 input.dateOfBirth && !error.dateOfBirth
@@ -307,7 +363,11 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.dateOfBirth ? error.dateOfBirth : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.dateOfBirth
+                ? error.dateOfBirth
+                : "Este campo es obligatorio"}
+            </div>
           </div>
 
           {/* Número de contacto */}
@@ -320,7 +380,7 @@ function Register() {
               id="phoneNumberInput"
               placeholder="Teléfono..."
               onChange={handleChange}
-              name='phoneNumber'
+              name="phoneNumber"
               value={input.phoneNumber}
               class={
                 input.phoneNumber && !error.phoneNumber
@@ -328,7 +388,11 @@ function Register() {
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.phoneNumber ? error.phoneNumber : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">
+              {error.phoneNumber
+                ? error.phoneNumber
+                : "Este campo es obligatorio"}
+            </div>
           </div>
           <div class="mt-3 mb-3">
             <button type="submit" class="btn btn-primary">
@@ -339,6 +403,6 @@ function Register() {
       </div>
     </>
   );
-            }
+}
 
 export default Register;
