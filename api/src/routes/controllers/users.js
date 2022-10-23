@@ -66,9 +66,9 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, role, address, phoneNumber } = req.body;
+  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode, password } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
-  const findRole = await Role.findOne({where: {name: role}})
+  //const findRole = await Role.findOne({where: {name: role}})
 
   try {
     if (!dbUser) {
@@ -76,12 +76,14 @@ async function addUser(req, res) {
         name: name,
         lastname: lastname,
         email: email,
-        dateOfBirth: dateOfBirth,
+        dateOfBirth: dateOfBirth.toString(),
         phoneNumber: phoneNumber,
-        address: address
+        address: address,
+        postalCode: postalCode.toString(),
+        password: password
       });
       
-      const addRole = await newUser.setRole(findRole.id); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
+      const addRole = await newUser.setRole(5);
       console.log(addRole)
       return res.status(200).send(newUser);
     } else {

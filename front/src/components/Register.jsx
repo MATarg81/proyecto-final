@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { add_usesrs } from "../redux/actionsCreator/usersActions";
+import { add_users } from "../redux/actionsCreator/usersActions";
 import { useNavigate } from "react-router-dom";
 
-//AGREGAR = 'dateOfBirth' y 'adress'
+//AGREGAR = 'dateOfBirth' y 'address'
 //La confirmación de contraseña no oculta los caracteres
 function Register() {
   const dispatch = useDispatch();
@@ -19,8 +19,12 @@ function Register() {
     password: "",
     validatePass: "",
     dateOfBirth: '',
-    adress: "",
+    address: "",
+    postalCode: ''
   });
+
+  let pass = input.password
+  //let CP = input.postalCode
 
   const hours = [];
   for (let i = 1; i <= 24; i++) {
@@ -30,7 +34,7 @@ function Register() {
   function validate(input) {
     let error = {}
 
-    //name
+    //Validate name
     if(input.name) {
       if (input.name.length < 2 ) {
         error.name = "Debe tener al menos 2 caracteres"
@@ -40,12 +44,12 @@ function Register() {
             if(input.name.charCodeAt(i) !== 32 && input.name.charCodeAt(i) !== 39 ) {
               error.name = "Solo puede contener letras"
             } 
-          }
+          } 
         }
       }
     }
     
-    //lastname
+    //Validate lastname
     if(input.lastname){
       if (input.lastname.length < 2 ) { 
         error.lastname = "Debe tener al menos 2 caracteres"
@@ -60,7 +64,7 @@ function Register() {
       }
     }
     
-    //email
+    //Validate email
     if(input.email) {
       if(input.email.length < 11) {
         error.email = "El mail ingresado es demasiado corto"
@@ -69,7 +73,7 @@ function Register() {
       }
     }
 
-    //password
+    //Validate password
     if(input.password) {
       if(input.password.length < 8) {error.password = "La contraseña es demasiado corta"}
       else if(!input.password.match(/[A-Z]/)) {error.password = 'Debe contener al menos una mayúscula'}
@@ -77,17 +81,31 @@ function Register() {
       else if(!input.password.match(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/)) {error.password = 'Debe tener al menos un símbolo'}
     }
 
-    //confirm password
-    if(input.validatePass) {
-      if(input.validatePass !== input.password) {error.validatePass = 'Las contraseñas no coinciden'
-    } else {
-        return error
+    //Confirm password
+    if(input.validatePass && pass) {
+      if(pass !== input.validatePass) {error.validatePass = 'Las contraseñas no coinciden'}
+    }
+
+    //Validate dirección
+    if(input.address) {
+      if(!input.address.match(/\d/)) {error.address = 'Por favor agrega una altura'}
+    }
+
+    //Validate CP
+    if(input.postalCode) {
+      if(input.postalCode.length !== 5) {error.postalCode = 'Ingresa un código postal válido'}
+      if(!input.postalCode.match(/^[A-Z]/)) {error.postalCode = 'Debe comenzar con una mayúscula'}
+      for(let i = 1; i < input.postalCode.length; i++) {
+        if(!input.postalCode[i].match(/\d/) || input.postalCode.length !== 5) {
+          error.postalCode = 'Ingresa un código postal válido'
+        }
       }
     }
 
-    //Dirección
-    if(input.adress) {
-
+    //Validate phone number 
+    if(input.phoneNumber) {
+      if(!input.phoneNumber.match(/\d/)) {error.phoneNumber = 'Debe contener números únicamente'}
+      else if(input.phoneNumber.length < 10) {error.phoneNumber = 'El número es demasiado corto'}
     }
 
     return error;
@@ -106,21 +124,14 @@ function Register() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // if(!input.name || !input.email || !input.password || !input.phoneNumber || input.adress || input.dateOfBirth || input.validatePass) {
-    //   alert('Please, complete all the fields correctly')
-  }
-  // if(error.hasOwnProperty('name') || error.hasOwnProperty('duration') || error.hasOwnProperty('difficulty') || error.hasOwnProperty('season') || error.hasOwnProperty('country')) {
-  //   alert('Please, complete all the fields correctly')
-  // }
-  // else {
-  // dispatch(add_usesrs(input))
-  // navigate('/home')
-  // }
-  //}
-
-  // useEffect(() => {
-  //   dispatch(getCountries())
-  // }, [dispatch])
+    if(!input.name || !input.lastname || !input.email || !input.password || !input.validatePass || !input.phoneNumber || !input.dateOfBirth || !input.address || !input.postalCode) {
+      alert('Por favor completa todos los campos')
+    } else{
+      dispatch(add_users(input))
+      navigate('/home')
+    }  
+      
+    }
 
   return (
     <>
@@ -238,24 +249,45 @@ function Register() {
           </div>
 
           {/* Dirección */}
-          <div class="col-5">
-            <label for="adressInput" class="form-label">
+          <div class="col-4">
+            <label for="addressInput" class="form-label">
               Dirección
             </label>
             <input
-              type="adress"
-              id="adressInput"
+              type="address"
+              id="addressInput"
               placeholder="Dirección..."
               onChange={handleChange}
-              name='adress'
-              value={input.adress}
+              name='address'
+              value={input.address}
               class={
-                input.adress && !error.adress
+                input.address && !error.address
                   ? "form-control is-valid"
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">{error.adress ? error.adress : 'Este campo es obligatorio'}</div>
+            <div class="invalid-feedback">{error.address ? error.address : 'Este campo es obligatorio'}</div>
+          </div>
+
+          {/* Código Postal */}
+          <div class="col-1">
+            <label for="postalCodeInput" class="form-label">
+              C.P.
+            </label>
+            <input
+              type="postalCode"
+              id="postalCodeInput"
+              placeholder="CP..."
+              onChange={handleChange}
+              name='postalCode'
+              value={input.postalCode}
+              class={
+                input.postalCode && !error.postalCode
+                  ? "form-control is-valid"
+                  : "form-control is-invalid"
+              }
+            ></input>
+            <div class="invalid-feedback">{error.postalCode ? error.postalCode : 'Este campo es obligatorio'}</div>
           </div>
 
           {/* Fecha de nacimiento */}
@@ -291,7 +323,7 @@ function Register() {
               name='phoneNumber'
               value={input.phoneNumber}
               class={
-                input.phoneNumber && error.phoneNumber
+                input.phoneNumber && !error.phoneNumber
                   ? "form-control is-valid"
                   : "form-control is-invalid"
               }
@@ -307,6 +339,6 @@ function Register() {
       </div>
     </>
   );
-}
+            }
 
 export default Register;
