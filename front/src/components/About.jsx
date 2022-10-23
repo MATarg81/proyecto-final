@@ -24,7 +24,7 @@ function About() {
         <div className="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab" tabindex="0">
 
           <div class="card mb-3">
-            {/* <img src={futbolretro} height='200px' class="card-img-top" alt="..." /> */}
+            {/* <img src={futbolretro} height='200px' class="card-img-top" alt="..." /> culo*/}
             <div class="card-body">
               <h5 class="card-title">Fundado en 1800a.c</h5>
               <p class="card-text">
