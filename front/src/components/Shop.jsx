@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
 import { addCart } from "../redux/actions/index";
+import { addFav } from "../redux/actionsCreator/favsActions";
 import {
   getProducts,
   orderByName,
@@ -11,6 +12,8 @@ import {
   filterByPrice,
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
+//import cuore from "../imagesTeam/cuore.png"
+import { AiFillHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "./Login/LoginButton";
@@ -26,7 +29,7 @@ function Shop() {
   const byCategories = useSelector(
     (state) => state.productsReducer.byCategories
   );
-
+  //const favState = useSelector(state => state.FavReducer.favs)
   // --------------- Pagination --------------
   const productsPerPage = 12;
 
@@ -69,6 +72,17 @@ function Shop() {
     }
   }, [dispatch, category]);
 
+  //favs
+  function handleAddtoFav(id) {
+    //ADDtoFavs(p)
+    dispatch(addFav(id))
+    //localStorage.setItem('favs', JSON.stringify(favState))
+    alert('Producto agregado a favoritos')
+  }
+
+  // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
+  //   localStorage.setItem('favs', JSON.stringify(favState))
+  // }, [favState])
   // --------------- Cart function ----------------
   const addProduct = (product) => {
     dispatch(addCart(product));
@@ -284,6 +298,15 @@ function Shop() {
                     Agregar al carrito
                   </button>
                 </div>
+                <div>
+
+                <button
+                  className="btn btn-outline-dark px-4 py-2"
+                  onClick={() => handleAddtoFav(p.id)}
+                  >
+                  <AiFillHeart/>
+                </button>
+                  </div>
               </div>
             </div>
           </Link>

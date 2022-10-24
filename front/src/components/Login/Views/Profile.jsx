@@ -5,7 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Profile = () => {
 
   const {user, isAuthenticated} = useAuth0();
-  console.log(user)
+  //console.log(user)
   // const { name, picture, email } = user;
 
   return (

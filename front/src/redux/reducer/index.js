@@ -3,6 +3,7 @@ import activitiesReducer from "./activitiesReducer";
 import productsReducer from "./productsReducer"
 import categoriesReducer from './categoriesReducer'
 import reviewsReducer from './reviewsReducer'
+import favReducer from "./favReducer";
 import { combineReducers } from "redux";
 
 const rootReducers = combineReducers({
@@ -11,6 +12,7 @@ const rootReducers = combineReducers({
   handleCart,
   activitiesReducer,
   reviewsReducer,
+  favReducer,
 });
 
 export default rootReducers;
