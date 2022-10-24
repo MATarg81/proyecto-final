@@ -12,6 +12,7 @@ export default function Searchbar({setPage}) {
         e.preventDefault();
         setPage(1);
         dispatch(searchProducts(search))
+        setSearch('')
     }
 
     function onInputChange(e) {
