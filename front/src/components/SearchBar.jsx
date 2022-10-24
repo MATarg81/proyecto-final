@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { searchProducts } from '../redux/actionsCreator/productsActions'
 import { useDispatch } from 'react-redux'
 
-export default function Searchbar() {
+export default function Searchbar({setPage}) {
 
     const [search, setSearch] = useState('')
 
@@ -10,6 +10,7 @@ export default function Searchbar() {
     
     function onSubmit(e) {
         e.preventDefault();
+        setPage(1);
         dispatch(searchProducts(search))
     }
 

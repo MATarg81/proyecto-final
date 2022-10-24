@@ -9,8 +9,10 @@ function NavBar() {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-md bg-light py-1 mr-0 " style={{margin:"0px"}}>
-          <div class= "container p-0 " style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}}>
+      <nav class="navbar navbar-expand-md bg-light py-1 mr-0 " style={{
+        margin:"0px",
+        background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}}>
+          <div class= "container p-0 ">
       <Link to="/">
         <img
           src="/img/athenas_logo-removebg-preview.png"
@@ -62,14 +64,16 @@ function NavBar() {
           </li>
         </ul>
         <div class="buttons">
-          {/* <Link to="/ingreso" class="btn btn-outline-dark">
-                <i class="fa fa-sign-in me-1"></i>Ingresar
-              </Link> */}
-              {/* <Link to="/registro" class="btn btn-outline-dark ms-2">
-                <i class="fa fa-user-plus me-1"></i>Registrarse
+
+          {/* <Link to="/login" class="btn btn-outline-dark">
+                <i class="fa fa-sign-in me-1"></i>login
+          </Link> */}
+
+              {/* <Link to="/logout" class="btn btn-outline-dark ms-2">
+                <i class="fa fa-user-plus me-1"></i>logout
               </Link> */}
               {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
-              <AuthenticationButton />
+               <AuthenticationButton />
 
           <Profile/>
           <Link to="/carrito" class="btn btn-outline-dark ms-2">
