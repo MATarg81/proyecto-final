@@ -17,10 +17,10 @@ const cartReducer = (state = inicialState, action) => {
 
       if (exist) {
         // Incrementar cantidad
-        state.items.map((x) => x.id === product.id ? { ...x, qty: (x.qty + 1) } : x);
+        const newState = state.items.map((x) => x.id === product.id ? { ...x, qty: (x.qty + 1) } : x);
         const newPrice = state.price + price;
         return {
-          items: state.items,
+          items: newState,
           price: newPrice,
         }
       } else {
