@@ -1,8 +1,10 @@
+import { ADD_ITEM, DELETE_ITEM } from "../actionsTypes/actionsTypesCart";
+
 // Agregar item al carro
 
 export const addCart = (product) => {
   return {
-    type: "ADDITEM",
+    type: ADD_ITEM,
     payload: product,
   };
 };
@@ -11,7 +13,7 @@ export const addCart = (product) => {
 
 export const delCart = (product) => {
   return {
-    type: "DELITEM",
+    type: DELETE_ITEM,
     payload: product,
   };
 };

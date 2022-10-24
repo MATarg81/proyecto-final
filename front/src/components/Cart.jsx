@@ -84,9 +84,9 @@ const Cart = () => {
 
   return (
     <div>
-      {state.length === 0 && emptyCart()}
-      {state.length !== 0 && state.map(cartItems)}
-      {state.length !== 0 && buttons()}
+      {state?.length === 0 && emptyCart()}
+      {state?.length !== 0 && state?.map(cartItems)}
+      {state?.length !== 0 && buttons()}
     </div>
   );
 };

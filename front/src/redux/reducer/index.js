@@ -1,4 +1,4 @@
-import handleCart from "./handleCart";
+import cartReducer from "./cartReducer";
 import activitiesReducer from "./activitiesReducer";
 import productsReducer from "./productsReducer"
 import categoriesReducer from './categoriesReducer'
@@ -8,7 +8,7 @@ import { combineReducers } from "redux";
 const rootReducers = combineReducers({
   productsReducer,
   categoriesReducer,
-  handleCart,
+  cartReducer,
   activitiesReducer,
   reviewsReducer,
 });
