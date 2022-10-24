@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_USERS , GET_USERS_BY_ID , ADD_USERS, DELETE_USERS } from "../actionsTypes/actionsTypesUsers.js"
+import { GET_USERS , GET_USERS_BY_ID , DELETE_USERS } from "../actionsTypes/actionsTypesUsers.js"
 
 // export const GET_USERS = "GET_USERS";
 // export const GET_USERS_BY_ID = "GET_USERS_BY_ID";
@@ -32,18 +32,12 @@ export function get_users_by_id(id) {
   };
 }
 
-export function add_usesrs(object) {
-  return async function (dispatch) {
-    try {
-      const { data } = await axios.post(
-        `http://localhost:3001/users`,
-        object
-      );
-      return dispatch({ type: ADD_USERS, payload: data });
-    } catch (error) {
-      alert(error)
-    }
-  };
+export function add_users(payload) {
+  return function(){ 
+    axios.post(`http://localhost:3001/users`, payload)
+      .then(res => {alert(res.data)})
+      .catch(e => {alert(e.response.data)})
+  }
 }
 
 export const delete_users = (id) => {

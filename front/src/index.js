@@ -10,25 +10,28 @@ import store from './redux/store/store'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
+import Auth0ProviderWithHistory from './auth/auth0-provider-with-history';
 import {Auth0Provider} from "@auth0/auth0-react";
 const domain = process.env.REACT_APP_AUTH0_DOMAIN
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID
-
+//redirectUri = {window.location.origin}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Auth0Provider 
-      domain = {domain} 
-      clientId = {clientId} 
-      redirectUri = {window.location.origin}
-    >
-      <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </BrowserRouter>
-    </Auth0Provider>
+    <BrowserRouter>
+      <Auth0ProviderWithHistory>
+        <Auth0Provider 
+          domain = {domain} 
+          clientId = {clientId} 
+          redirectUri= "http://localhost:3000/registro"
+        >
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </Auth0Provider>
+      </Auth0ProviderWithHistory>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

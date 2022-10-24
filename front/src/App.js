@@ -6,15 +6,18 @@ import About from "./components/About";
 import Shop from "./components/Shop";
 import Login from "./components/Login";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
 
 import Activities from "./components/Activities";
-import  CreateProduct  from "../src/components/CreateProduct/CreateProduct.jsx";
+import CreateProduct  from "../src/components/CreateProduct/CreateProduct.jsx";
 import Landing from './components/Landing';
 import AboutTeam from "./components/AboutTeam";
 import ActivityCreate from "./components/ActivityCreate";
-
+import Reviews from "./components/Reviews";
+import ReviewsCreate from "./components/ReviewsCreate";
+import Favorites from "./components/Favorites";
 function App() {
   return (
     <>
@@ -32,7 +35,11 @@ function App() {
         <Route exact path="/aboutTeam" element={<AboutTeam />} />
         <Route exact path="/crearActividades" element={<ActivityCreate />} />
         <Route exact path="/crearProducto" element={<CreateProduct />} />
+        <Route exact path="/reviews" element={<Reviews />} />
+        <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />
+        <Route exact path="/favorites" element={<Favorites />} />
       </Routes>
+      <Footer />
     </>
   );
 }

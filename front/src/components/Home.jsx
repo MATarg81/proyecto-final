@@ -1,14 +1,24 @@
 import React from "react";
 import Carousel from "./Carousel";
-import Footer from "./Footer";
 
 function Home() {
   return (
-    <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-      <hr />
-      <Carousel />
-      <hr />
-      <Footer />
+    <div  class="d-flex justify-content-center" /* style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }} */>
+
+      <div class="d-flex p-2">
+        <iframe class="embed-responsive-item" src="https://www.instagram.com/athenasclub22/"></iframe>
+      </div>
+
+      
+      <div>
+        <Carousel />
+      </div>
+
+      <div class="d-flex p-2">
+        <iframe class="embed-responsive-item" src="https://www.facebook.com/profile.php?id=100086986148643"></iframe>
+      </div>
+
+      
     </div>
   );
 }

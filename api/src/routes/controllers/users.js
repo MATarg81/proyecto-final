@@ -8,17 +8,20 @@ async function getUsers(req, res) {
 
   try {
     if (!dbData) {
-      const usersData = jsonData.results.map((u) => {
-        return {
-          email: u.email,
-          name: u.name,
-          lastname: u.lastname,
-          dateOfBirth: u.dateOfBirth,
-          phoneNumber: u.phoneNumber,
-          address: u.address,
-        };
-      });
-      await User.bulkCreate(usersData);
+      jsonData.results.map(async u => {
+          const newUser = await User.create({
+            name: u.name,
+            lastname: u.lastname,
+            email: u.email,
+            dateOfBirth: u.dateOfBirth.toString(),
+            phoneNumber: u.phoneNumber,
+            address: u.address,
+            postalCode: u.postalCode.toString(),
+            password: u.password
+          });
+          
+          await newUser.setRole(5);
+        });
       return res.status(200).send("Users succefully charged")
     } else if (name || lastname || email) {
       const userName = await User.findOne({
@@ -44,12 +47,6 @@ async function getUsers(req, res) {
     } else {
       User.findAll({include: Role}).then((r) => res.status(200).send(r));
     }
-    //   User.findAll({include: {
-    //     model: Role,
-    //     attributes: ["name", "id"],
-    //     through: { attributes: [] },
-    // }}).then((r) => res.status(200).send(r));
-    // }
   } catch (error) {
     return res.status(404).send(error);
   }
@@ -72,9 +69,8 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, role, address, phoneNumber } = req.body;
+  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode, password } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
-  const findRole = await Role.findOne({where: {name: role}})
 
   try {
     if (!dbUser) {
@@ -82,13 +78,14 @@ async function addUser(req, res) {
         name: name,
         lastname: lastname,
         email: email,
-        dateOfBirth: dateOfBirth,
+        dateOfBirth: dateOfBirth.toString(),
         phoneNumber: phoneNumber,
-        address: address
+        address: address,
+        postalCode: postalCode.toString(),
+        password: password
       });
       
-      const addRole = await newUser.setRole(findRole.id); //Queda pendiente añadir un rol. Error: newUser.addRole is not a function
-      console.log(addRole)
+      const addRole = await newUser.setRole(5);
       return res.status(200).send(newUser);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);

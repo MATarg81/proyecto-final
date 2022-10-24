@@ -1,16 +1,12 @@
 import React from "react";
-import { useState } from "react";
 
 const Pagination = function ({ page, setPage, totalPages }) {
-  const [currentPage, setCurrentPage] = useState(1);
 
   const handleNext = () => {
-    setCurrentPage(currentPage + 1);
     setPage(page + 1);
   };
 
   const handlePrev = () => {
-    setCurrentPage(currentPage - 1);
     setPage(page - 1);
   };
 
@@ -23,29 +19,29 @@ const Pagination = function ({ page, setPage, totalPages }) {
   }
 
   return (
-    <div>
-      <button onClick={handlePrev} disabled={currentPage <= 1}>
+
+    <div class="d-flex justify-content-around p-1" >
+      <button onClick={handlePrev} disabled={page <= 1} class="btn btn-outline-danger btn-rounded " data-mdb-ripple-color="dark" >
+
         Prev.
-      </button>
+      </button >
       {pages.map((p) => (
-        <button
-          key={p}
-          onClick={() => {
-            setCurrentPage(p);
-            setPage(p);
-          }}
-          disabled={currentPage === p}
-        >
+
+        <button class="btn btn-outline-danger btn-rounded" key={p} onClick={() => {setPage(p);}} disabled={page === p}>
           {p}
         </button>
+         
       ))}
-      <button onClick={handleNext} disabled={currentPage >= totalPages}>
+      <button class="btn btn-outline-danger btn-rounded"  onClick={handleNext} disabled={page >= totalPages} >
+
         Next
       </button>
+       
+     
+     
+      
     </div>
   );
 };
 
 export default Pagination;
-
-//

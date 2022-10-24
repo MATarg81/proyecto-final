@@ -1,65 +1,173 @@
 {
     "results": [
         {
-            "name": "Pelota Nro 5",
+            "name": "Pelota Nro. 5",
             "price": 5000,
             "detail": "PELOTA FABRICACION NACIONAL",
-            "image": "https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/p/e/pelota-qatar-2022-adidas-al-rihla-league-box-replica-numero-5-blanca-100040h57782001-1.jpg",
-            "categories": [1, 2]
+            "image": "https://http2.mlstatic.com/D_NQ_NP_841425-MLA50512205810_062022-O.webp",
+            "categories": [2]
         },
         {
             "name": "Pelota de Basquet",
             "price": 7500,
             "detail": "Pelota esférica, de cuero, piel rugosa o material sintético, para facilitar el agarre de los jugadores.",
-            "image": "https://www.lavoz.com.ar/resizer/r_jw6CuNxX983UgfytufzNvM9ZE=/1023x1023/smart/cloudfront-us-east-1.images.arcpublishing.com/grupoclarin/R7BYU77HKZGEBHXSVKQCSGQ5TQ.png"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_2X_868536-MLA51823476514_102022-F.webp",
+            "categories": [2]
         },
         {
             "name": "Musculosa Pechera Deportiva",
             "price": 4000,
             "detail": "Musculosa Pechera Deportiva Gimnasio Futbol Entrenamiento",
-            "image": "https://cdn.solodeportes.com.ar/media/catalog/product/cache/7c4f9b393f0b8cb75f2b74fe5e9e52aa/7/4/74002rju0302005-1.jpg"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_2X_795323-MLA45076934191_032021-F.webp",
+            "categories": [1]
         },
         {
             "name": "Shorts Deportivo Futbol Basquet Running Tenis Pádel",
             "price": 2000,
             "detail": "Shorts Deportivo SIN bolsillos y cintura ajustable interior en Jersey Set (poliéster). Ideal para Futbol, Básquet, Gimnasio, Running Tenis Pádel y todos los deportes que elijas!",
-            "image": "https://http2.mlstatic.com/D_NQ_NP_675622-MLA47601422480_092021-O.jpg"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_2X_619451-MLA50710783134_072022-F.webp",
+            "categories": [1]
         },
         {
             "name": "Calza Deportiva Cocot Mujer",
             "price": 4000,
             "detail": "Cuentan con una excelente tela para hacer deportes!!",
-            "image": "https://http2.mlstatic.com/D_NQ_NP_664519-MLA41165335947_032020-O.jpg"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_701300-MLA51915445273_102022-O.webp",
+            "categories": [1]
         },
         {
             "name": "Conjunto Remera Y Short Algodon Cortos Futbol",
             "price": 6500,
             "detail": "CONJUNTO REMERA Y SHORT ALGODON",
-            "image": "https://http2.mlstatic.com/D_NQ_NP_698617-MLA51543979111_092022-V.jpg"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_827431-MLA51540040198_092022-O.webp",
+            "categories": [1]
         },
         {
-            "name": "Campera Rompeviento Hombre",
+            "name": "Campera Rompeviento Hombre ",
             "price": 14000,
             "detail": "Rompeviento Hombre Forrado Polo Club - Excelente calce y confección.",
-            "image": "https://http2.mlstatic.com/D_NQ_NP_982031-MLA47395955469_092021-W.jpg"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_943941-MLA47395825869_092021-O.webp",
+            "categories": [1]
         },
         {
             "name": "Pelota Papi Baby Futbol Nº3",
             "price": 5000,
             "detail": "PELOTA SINTÉTICA, MEDIO PIQUE, CÁMARA DE CAUCHO BUTILICO ",
-            "image": "https://http2.mlstatic.com/D_NQ_NP_748232-MLA41561354315_042020-O.jpg"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_661500-MLA42822862105_072020-O.webp",
+            "categories": [2]
         },
         {
             "name": "Camiseta Hockey Negra",
             "price": 6500,
             "detail": "CAMISETA HOCKEY SIN MANGA",
-            "image": "https://hockeygear.com.ar/wp-content/uploads/2019/04/AJ5439-350x350.jpeg"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_803836-MLA49421045357_032022-O.webp",
+            "categories": [1]
         },
         {
             "name": "Ojotas color negro",
             "price": 3500,
             "detail": "Suela: 100% goma",
-            "image": "https://zapatilandia.com.ar/wp-content/uploads/2021/08/negro-01.jpg"
+            "image": "https://http2.mlstatic.com/D_NQ_NP_668780-MLA49326566137_032022-O.webp",
+            "categories": [3]
+        },
+        {
+            "name": "Top Deportivo Aeroready Designed To Move Padded Sport 3 Tiras",
+            "price": 8499,
+            "detail": "Tejido entrelazado 89 % poliéster reciclado, 11 % elastano. Panel de malla transpirable en la espalda",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_644946-MLA51486202424_092022-O.webp",
+            "categories": [1]
+        },
+        {
+            "name": "Zapatillas Hoops 2.0 Mid",
+            "price": 19999,
+            "detail": "Exterior en cuero sintético. Panel de malla alrededor del tobillo. Plantilla en EVA. Forro interno textil. Suela de caucho",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_970357-MLA51062193252_082022-O.webp",
+            "categories": [3]
+        },
+        {
+            "name": "Zapatillas Forum Low",
+            "price": 36999,
+            "detail": "Exterior sintético. Forro interno textil. Suela de caucho. El exterior contiene al menos un 50 % de material reciclado",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_653506-MLA52026146328_102022-O.webp",
+            "categories": [3]
+        },
+        {
+            "name": "Zapatillas Dame 8",
+            "price": 42999,
+            "detail": "Exterior textil. Sensación de amortiguación y sujeción. Forro interno textil. Mediasuela Bounce Pro.Suela de caucho",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_888686-MLA51714256948_092022-O.webp",
+            "categories": [3]
+        },
+        {
+            "name": "Buzo Con Capucha Dame 8 Innovation",
+            "price": 3500,
+            "detail": "Corte holgado. Capucha con cordón de ajuste. Felpa francesa 100 % algodón. Bolsillo canguro",
+            "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/f84eb5f995dd4b60a60cad7f0177fa80_9366/Buzo_con_Capucha_Dame_8_Innovation_Negro_HE5464_01_laydown.jpg",
+            "categories": [1]
+        },
+        {
+            "name": "Pollera De Tenis Club",
+            "price": 12999,
+            "detail": "Cintura elástica. Tejido de punto doble 100 % poliéster reciclado. Tejido absorbente. Tejido estructurado. Calzas interiores integradas. Primegreen",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_970756-MLA49262254740_032022-O.webp",
+            "categories": [1]
+        },
+        {
+            "name": "Zapatillas De Hockey Fabela Zone",
+            "price": 32999,
+            "detail": "Horma clásica. Exterior textil con refuerzos sintéticos. Forro interno textil. Mediasuela liviana de EVA. Estabilizador de talón externo. Suela de caucho con huella de cuadrícula",
+            "image": "https://http2.mlstatic.com/D_NQ_NP_761624-MLA48496690119_122021-O.webp",
+            "categories": [3]
+        },
+        {
+            "name": "Zapatillas Hockey Youngstar (Unisex)",
+            "price": 22999,
+            "detail": "Cierre de cordones. Parte superior textil con refuerzos sintéticos; estructura interior de una sola pieza. Suela de goma con dibujo de rejilla; forro textil. Mediasuela ligera de EVA",
+            "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d6f5ce87280647aeb6e4ad0c00e5e30c_9366/Zapatillas_Hockey_Youngstar_(UNISEX)_Naranja_FZ5346_01_standard.jpg",
+            "categories": [3]
+        },
+        {
+            "name": "Campera Marathon 3 Tiras",
+            "price": 23999,
+            "detail": "Cierre frontal y cuello alto. Tejido dobby 100 % poliéster reciclado. Bolsillos frontales con cierre. Diseño reflectante. Primegreen",
+            "image": "https://http2.mlstatic.com/D_969645-MLA50890909061_072022-F.webp",
+            "categories": [1]
+        },
+        {
+            "name": "Medias De Running Performance Tobillera",
+            "price": 3299,
+            "detail": "Largo al tobillo. Un par por paquete. 90 % poliéster reciclado, 5 % elastano, 5 % nylon reciclado. Refuerzo en el arco del pie. Puños que se mantienen en su lugar. Costuras planas en los dedos",
+            "image": "https://www.nakaoutdoors.com.ar/img/articulos/2021/11/naturehike_sk05_medias_running_thumb1.jpg",
+            "categories": [1]
+        },
+        {
+            "name": "Medias Adi 21",
+            "price": 3499,
+            "detail": "Largo hasta la rodilla. 84 % poliéster reciclado, 11 % algodón, 5 % elastano. Amortiguación y ligereza. Diseño específico para el pie izquierdo y derecho.Puños acanalados",
+            "image": "https://tiendariver.vteximg.com.br/arquivos/ids/169394-1000-1000/HN6143_APP-F.jpg?v=637958632015530000",
+            "categories": [1]
+        },
+        {
+            "name": "Ojotas Adilette",
+            "price": 11000,
+            "detail": "Parte superior de cuero sintético texturizado para mayor durabilidad y secado rápido. Cómodo forro textil. Cómoda plantilla contorneada para uso prolongado. Las 3 Tiras contrastantes en la banda. Suela con patrones para mejor agarre",
+            "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/cb1316406e584892bdb3a991001bd46d_9366/Ojotas_Adilette_Aqua_(UNISEX)_Negro_F35543_01_standard.jpg",
+            "categories": [3]
+        },
+        {
+            "name": "Remera Aeroready Designed 2 Move 3 Tiras Sport",
+            "price": 7499,
+            "detail": "Corte clásico. Cuello redondo. Tejido calado 100 % poliéster reciclado. Diseño transpirable. Tejido absorbente. Panel de malla en la espalda. Dobladillo curvo con aberturas laterales. Más larga en la espalda",
+            "image": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/6bc8d44ef1e0404b8010aabe00fa7430_9366/Remera_Designed_2_Move_3_Tiras_Azul_FL0357_01_laydown.jpg",
+            "categories": [1]
+        },
+        {
+            "name": "Remera De Entrenamiento Aeroready Hiit",
+            "price": 9499,
+            "detail": "Corte clásico. Cuello redondo. Tejido de punto doble 100 % poliéster reciclado. Tecnología de absorción AEROREADY. Paneles de malla. Aberturas laterales. Espalda alargada",
+            "image": "https://assets.adidas.com/images/w_600,f_auto,q_auto/a2d5e573b68d4e8eb4baae8500afe1ae_9366/Remera_de_Entrenamiento_AEROREADY_HIIT_Back_3_Tiras_Negro_HN8506_01_laydown.jpg",
+            "categories": [1]
         }
     ]
 }
+
