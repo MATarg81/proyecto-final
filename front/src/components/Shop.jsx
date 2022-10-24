@@ -154,8 +154,9 @@ function Shop() {
   const {user, isAuthenticated} = useAuth0()
 
   return (
-    isAuthenticated?
-    <><>
+    // isAuthenticated?
+    <>
+    <>
       <div>
         <nav class="navbar navbar-light bg-light">
           <div
@@ -312,12 +313,13 @@ function Shop() {
           ))}
       </div>
     </>
-    <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
-    : 
-    <div>
-      <h3>need to login, click here </h3> <LoginButton />
-      <hr />
-    </div>
+    <Pagination totalPages={totalPages} page={page} setPage={setPage} />
+    </>
+    // : 
+    // <div>
+    //   <h3>need to login, click here </h3> <LoginButton />
+    //   <hr />
+    // </div>
   );
 }
 
