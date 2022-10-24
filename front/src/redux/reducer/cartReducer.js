@@ -9,7 +9,6 @@ const cartReducer = (state = inicialState, action) => {
 
   const product = action.payload;
   const price = parseFloat(product?.price)
-
   switch (action.type) {
     case ADD_ITEM:
 
@@ -18,9 +17,7 @@ const cartReducer = (state = inicialState, action) => {
 
       if (exist) {
         // Incrementar cantidad
-        state.items.map((x) =>
-          x.id === product.id ? { ...x, qty: x.qty + 1 } : x
-        );
+        state.items.map((x) => x.id === product.id ? { ...x, qty: (x.qty + 1) } : x);
         const newPrice = state.price + price;
         return {
           items: state.items,
@@ -38,7 +35,7 @@ const cartReducer = (state = inicialState, action) => {
       break;
 
     case DELETE_ITEM:
-      const exist1 = state.find((x) => x.id === product.id);
+      const exist1 = state.items.find((x) => x.id === product.id);
 
       if (exist1.qty === 1) {
         const newItems = state.items.filter((x) => x.id !== exist1.id);

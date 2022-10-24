@@ -58,7 +58,6 @@ const Cart = () => {
                 >
                   <i className="fa fa-plus"></i>
                 </button>
-                <h3>TOTAL: {state.price}</h3>
               </div>
             </div>
           </div>
@@ -88,6 +87,7 @@ const Cart = () => {
       {state.length === 0 && emptyCart()}
       {state.length !== 0 && state.items.map(cartItems)}
       {state.length !== 0 && buttons()}
+      {state.price !== 0 && <h3>TOTAL: {state.price}</h3>}
     </div>
   );
 };
