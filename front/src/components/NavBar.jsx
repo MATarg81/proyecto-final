@@ -62,6 +62,13 @@ function NavBar() {
               Nosotros
             </Link>
           </li>
+
+          <li class="nav-item">
+            <Link class="nav-link" to="/favorites">
+              Favoritos
+            </Link>
+          </li>
+
         </ul>
         <div class="buttons">
 
