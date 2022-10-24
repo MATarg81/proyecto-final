@@ -2,14 +2,39 @@ require("dotenv").config();
 const { Product, Category } = require("../../db");
 const jsonData = require("../../../products.json");
 
-//SIEMPRE ES NECESARIO EL POST/products PARA EMPEZAR, HASTA QUE CAMBIEMOS EL FORCE:TRUE
+
+const allProducts = async() => {
+    try {
+        const dbProduct = await Product.findAll({
+            include: {
+                model: Category,
+                attributes: ["name"],
+                throught: {
+                    attributes: [],
+                }
+            }
+        }); 
+         const results = dbProduct.map((p) => ({
+            id: p.id,
+            name: p.name,
+            price: p.price,
+            detail: p.detail,
+            image: p.image,
+        }));
+        
+        return results;
+        
+    } catch (error) {
+        console.log('Problemas en la función allProducts()' + error);
+    };
+}
 
 //PRODUCTS BY ID:
 const productsId = async (idP) => {
   try {
+    console.log(typeof idP)
     const totalProducts = await allProducts();
     const productId = totalProducts.find((r) => r.id.toString() === idP);
-    console.log(productId);
 
     return productId;
   } catch (err) {
