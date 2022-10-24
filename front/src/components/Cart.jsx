@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addCart, delCart } from "../redux/actions/index";
+import { addCart, delCart } from "../redux/actionsCreator/cartActions";
 
 const Cart = () => {
-  const state = useSelector((state) => state.handleCart);
+  const state = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
 
   const handleAdd = (item) => {
@@ -58,6 +58,7 @@ const Cart = () => {
                 >
                   <i className="fa fa-plus"></i>
                 </button>
+                <h3>TOTAL: {state.price}</h3>
               </div>
             </div>
           </div>
@@ -84,9 +85,9 @@ const Cart = () => {
 
   return (
     <div>
-      {state?.length === 0 && emptyCart()}
-      {state?.length !== 0 && state?.map(cartItems)}
-      {state?.length !== 0 && buttons()}
+      {state.length === 0 && emptyCart()}
+      {state.length !== 0 && state.items.map(cartItems)}
+      {state.length !== 0 && buttons()}
     </div>
   );
 };
