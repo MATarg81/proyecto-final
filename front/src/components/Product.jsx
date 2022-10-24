@@ -12,6 +12,7 @@ function Product(props) {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setloading] = useState(false);
+  console.log(product)
 
   const dispatch = useDispatch();
   const addProduct = (product) => {
@@ -55,18 +56,18 @@ function Product(props) {
             src={product.image}
             alt={product.title}
             height="400px"
-            width="400px"
+            // width="400px"
           />
         </div>
         <div className="col-md-6">
-          <h4 className="text-uppercase text-black-50">{product.category}</h4>
+          <h4 className="text-uppercase text-black-50">{product.categories}</h4>
           <h1 className="display-5">{product.title}</h1>
-          <p className="lead fw-bolder">
+          {/* <p className="lead fw-bolder">
             Rating {product.rating && product.rating.rate}
             <i className="fa fa-star"></i>
-          </p>
+          </p> */}
           <h3 className="display-6 fw-bold my-4">$ {product.price}</h3>
-          <p className="lead">{product.description}</p>
+          <p className="lead">{product.detail}</p>
           <button
             className="btn btn-outline-dark px-4 py-2"
             onClick={() => addProduct(product)}

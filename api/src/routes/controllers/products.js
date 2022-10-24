@@ -20,8 +20,9 @@ const allProducts = async() => {
             price: p.price,
             detail: p.detail,
             image: p.image,
+            categories: p.Categories?.map((c) => c.name),
         }));
-        
+      
         return results;
         
     } catch (error) {
