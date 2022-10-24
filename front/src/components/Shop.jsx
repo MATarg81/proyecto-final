@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
-import { addCart } from "../redux/actions/index";
+//import { addCart } from "../redux/actions/index";
+import { addFav } from "../redux/actionsCreator/favsActions";
+import { addCart } from "../redux/actionsCreator/cartActions";
 import {
   getProducts,
   orderByName,
@@ -11,6 +13,8 @@ import {
   filterByPrice,
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
+//import cuore from "../imagesTeam/cuore.png"
+import { AiFillHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "./Login/LoginButton";
@@ -26,7 +30,7 @@ function Shop() {
   const byCategories = useSelector(
     (state) => state.productsReducer.byCategories
   );
-
+  //const favState = useSelector(state => state.FavReducer.favs)
   // --------------- Pagination --------------
   const productsPerPage = 12;
 
@@ -69,6 +73,17 @@ function Shop() {
     }
   }, [dispatch, category]);
 
+  //favs
+  function handleAddtoFav(id) {
+    //ADDtoFavs(p)
+    dispatch(addFav(id))
+    //localStorage.setItem('favs', JSON.stringify(favState))
+    alert('Producto agregado a favoritos')
+  }
+
+  // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
+  //   localStorage.setItem('favs', JSON.stringify(favState))
+  // }, [favState])
   // --------------- Cart function ----------------
   const addProduct = (product) => {
     dispatch(addCart(product));
@@ -139,8 +154,9 @@ function Shop() {
   const {user, isAuthenticated} = useAuth0()
 
   return (
-    isAuthenticated?
-    <><>
+    // isAuthenticated?
+    <>
+    <>
       <div>
         <nav class="navbar navbar-light bg-light">
           <div
@@ -242,7 +258,6 @@ function Shop() {
         }}
       >
         {productsPage?.map((p) => (
-          <Link to = {'/tienda/' + p.id}>
             <div key={p.id} className="col card border-info mb-3" style={{
               border: "none",
               boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)"
@@ -284,18 +299,27 @@ function Shop() {
                     Agregar al carrito
                   </button>
                 </div>
+                <div>
+
+                <button
+                  className="btn btn-outline-dark px-4 py-2"
+                  onClick={() => handleAddtoFav(p.id)}
+                  >
+                  <AiFillHeart/>
+                </button>
+                  </div>
               </div>
             </div>
-          </Link>
           ))}
       </div>
     </>
-    <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
-    :
-    <div>
-    <h3>need to login, click here </h3> <LoginButton />
-    <hr />
-    </div>
+    <Pagination totalPages={totalPages} page={page} setPage={setPage} />
+    </>
+    // : 
+    // <div>
+    //   <h3>need to login, click here </h3> <LoginButton />
+    //   <hr />
+    // </div>
   );
 }
 

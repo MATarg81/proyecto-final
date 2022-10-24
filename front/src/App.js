@@ -17,7 +17,7 @@ import AboutTeam from "./components/AboutTeam";
 import ActivityCreate from "./components/ActivityCreate";
 import Reviews from "./components/Reviews";
 import ReviewsCreate from "./components/ReviewsCreate";
-
+import Favorites from "./components/Favorites";
 function App() {
   return (
     <>
@@ -37,6 +37,7 @@ function App() {
         <Route exact path="/crearProducto" element={<CreateProduct />} />
         <Route exact path="/reviews" element={<Reviews />} />
         <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />
+        <Route exact path="/favorites" element={<Favorites />} />
       </Routes>
       <Footer />
     </>
