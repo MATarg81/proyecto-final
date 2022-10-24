@@ -4,15 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiFillHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 import { addCart } from "../redux/actions/index";
-import { deleteFav } from "../redux/actionsCreator/favsActions";
+import { deleteFav, getFavs } from "../redux/actionsCreator/favsActions";
 
 function Favorites() {
 
     const dispatch = useDispatch();
 
     const favoritos = useSelector( state => state.favReducer.favs)
-    console.log(favoritos, 'local storage acaaaaaaa')
-
+    
 
     const addProduct = (product) => {
         dispatch(addCart(product));

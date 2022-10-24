@@ -21,11 +21,12 @@ function favReducer(state= favsInitialState, action){
                 ...state,  
               }
             }
-            localStorage.setItem('favs', JSON.stringify(item)) //setItem se usa para almacenar informacion
+            //localStorage.setItem('favs', JSON.stringify(item)) //setItem se usa para almacenar informacion
            
             return {
               ...state,
-                favs: [...state.favs, localStorage.getItem('favs')] }
+                favs: [...state.favs, item] 
+              }
 
         case REMOVE_FAV:
             const favoritos = state.favs;
