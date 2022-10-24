@@ -22,6 +22,7 @@ export function addFav(id) {
     };
 }
 
+
 export function deleteFav(id) {
     console.log(id);
     return {
