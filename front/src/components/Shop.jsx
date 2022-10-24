@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
-import { addCart } from "../redux/actions/index";
+//import { addCart } from "../redux/actions/index";
 import { addFav } from "../redux/actionsCreator/favsActions";
+import { addCart } from "../redux/actionsCreator/cartActions";
 import {
   getProducts,
   orderByName,
@@ -256,7 +257,6 @@ function Shop() {
         }}
       >
         {productsPage?.map((p) => (
-          <Link to = {'/tienda/' + p.id}>
             <div key={p.id} className="col card border-info mb-3" style={{
               border: "none",
               boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)"
@@ -309,15 +309,14 @@ function Shop() {
                   </div>
               </div>
             </div>
-          </Link>
           ))}
       </div>
     </>
     <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
-    :
+    : 
     <div>
-    <h3>need to login, click here </h3> <LoginButton />
-    <hr />
+      <h3>need to login, click here </h3> <LoginButton />
+      <hr />
     </div>
   );
 }

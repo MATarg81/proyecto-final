@@ -8,6 +8,7 @@ const Profile = () => {
   //console.log(user)
   // const { name, picture, email } = user;
 
+
   return (
 
     isAuthenticated && (<div>
