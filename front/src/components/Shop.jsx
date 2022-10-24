@@ -12,6 +12,8 @@ import {
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
 import { Link } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from "./Login/LoginButton";
 
 function Shop() {
   //----------- Utils -----------------
@@ -134,7 +136,10 @@ function Shop() {
     dispatch(filterByCategories([]));
   };
 
+  const {user, isAuthenticated} = useAuth0()
+
   return (
+    isAuthenticated?
     <><>
       <div>
         <nav class="navbar navbar-light bg-light">
@@ -280,6 +285,11 @@ function Shop() {
       </div>
     </>
     <Pagination totalPages={totalPages} page={page} setPage={setPage} /></>
+    :
+    <div>
+    <h3>need to login, click here </h3> <LoginButton />
+    <hr />
+    </div>
   );
 }
 

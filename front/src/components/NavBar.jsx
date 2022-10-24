@@ -62,14 +62,16 @@ function NavBar() {
           </li>
         </ul>
         <div class="buttons">
-          {/* <Link to="/ingreso" class="btn btn-outline-dark">
-                <i class="fa fa-sign-in me-1"></i>Ingresar
-              </Link> */}
-              {/* <Link to="/registro" class="btn btn-outline-dark ms-2">
-                <i class="fa fa-user-plus me-1"></i>Registrarse
+
+          {/* <Link to="/login" class="btn btn-outline-dark">
+                <i class="fa fa-sign-in me-1"></i>login
+          </Link> */}
+
+              {/* <Link to="/logout" class="btn btn-outline-dark ms-2">
+                <i class="fa fa-user-plus me-1"></i>logout
               </Link> */}
               {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
-              <AuthenticationButton />
+               <AuthenticationButton />
 
           <Profile/>
           <Link to="/carrito" class="btn btn-outline-dark ms-2">

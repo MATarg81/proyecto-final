@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express-openid-connect": "^2.9.0"
+  }
+}
