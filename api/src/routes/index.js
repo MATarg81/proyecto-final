@@ -7,7 +7,7 @@ const users = require ('./users')
 const roles = require ('./roles')
 const category = require ('./category')
 const activities = require ('./activities')
-
+const reviews = require ('./reviews')
 
 const router = Router();
 
@@ -18,7 +18,6 @@ router.use('/users', users);
 router.use('/roles', roles)
 router.use('/categories', category)
 router.use('/activities', activities)
-
-
+router.use('/reviews', reviews)
 
 module.exports = router;
