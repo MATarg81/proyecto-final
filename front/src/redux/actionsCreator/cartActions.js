@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM } from "../actionsTypes/actionsTypesCart";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL } from "../actionsTypes/actionsTypesCart";
 
 // Agregar item al carro
 
@@ -17,3 +17,11 @@ export const delCart = (product) => {
     payload: product,
   };
 };
+
+// Eliminar todo del carro 
+
+export const delAll = () => {
+  return {
+    type: DELETE_ALL,
+  }
+}

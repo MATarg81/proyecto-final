@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM } from "../actionsTypes/actionsTypesCart";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL } from "../actionsTypes/actionsTypesCart";
 
 const inicialState = {
   items:[],
@@ -19,6 +19,7 @@ const cartReducer = (state = inicialState, action) => {
         // Incrementar cantidad
         const newState = state.items.map((x) => x.id === product.id ? { ...x, qty: (x.qty + 1) } : x);
         const newPrice = state.price + price;
+        
         return {
           items: newState,
           price: newPrice,
@@ -56,6 +57,13 @@ const cartReducer = (state = inicialState, action) => {
       };
 
       break;
+
+      case DELETE_ALL: {
+        return {
+          items: [],
+          price: 0,
+        }
+      }
 
     default:
       return state;
