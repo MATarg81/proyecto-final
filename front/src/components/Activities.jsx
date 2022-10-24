@@ -7,6 +7,7 @@ import {
   getActivities,
   deleteActivity,
 } from "../redux/actions/activitiesActions";
+import Reviews from "./Reviews";
 
 
 export default function Activities() {
@@ -117,6 +118,8 @@ export default function Activities() {
           <div>Loading Activities....</div>
         )}
       </div>
+      <Reviews />
+
     </div>
   );
 }
