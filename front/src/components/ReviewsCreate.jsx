@@ -37,12 +37,20 @@ export default function ReviewsCreate() {
   })
 };
 
-const handleClick = (score) => {
-  console.log('click')
-  // dispatch(addScore(score));
-};
-
-
+var contador;
+const handleClick = (e) =>{
+  console.log(e)
+  
+  let nombre = e.target.id
+  
+  for (let i=0; i<5; i++){
+    let elm = document.getElementById((i+1) + '_' + nombre)
+    if(i<contador){
+      elm[i].style.color="orange";
+    } else {
+      elm[i].style.color="black";
+    }
+  }}
 
 function handleSubmit(e){
     e.preventDefault();
@@ -81,34 +89,14 @@ return (
               <form onSubmit={(e) => handleSubmit(e)}>
 
                 <div className="form-label" style={{display:"flex", flexDirection:"row" ,alignItems:"center"}}>
-
-                    <div>
-                      <label for="radio1" style={{color:'gray', cursor:"pointer"}} class="fa fa-star" aria-hidden="true"></label>
-                      <input id="0" type="radio" style={{display:'none'}} name="estrellas" value={input.score} onClick={(e)=>handleClick(e)}/>
-                    </div>
-
-                 <div>
-                   <label for="radio2" style={{color:'gray', cursor:"pointer"}} class="fa fa-star" ></label>
-                   <input id="1" type="radio" style={{display:'none'}} name="estrellas" value={input.score} onClick={(e)=>handleClick(e)}/>
-                  </div>
+                  <span class="fa fa-star" onClick={(e)=>handleClick(e)} style={{cursor: "pointer"}} id="1"></span>
+                  <span class="fa fa-star" onClick={(e)=>handleClick(e)} style={{cursor: "pointer"}} id="2"></span>
+                  <span class="fa fa-star" onClick={(e)=>handleClick(e)} style={{cursor: "pointer"}} id="3"></span>
+                  <span class="fa fa-star" onClick={(e)=>handleClick(e)} style={{cursor: "pointer"}} id="4"></span>
+                  <span class="fa fa-star" onClick={(e)=>handleClick(e)} style={{cursor: "pointer"}} id="5"></span>
+                </div> 
 
                   <div>
-                     <label for="radio3" style={{color:'gray', cursor:"pointer"}} class="fa fa-star" ></label>
-                     <input id="1" type="radio" style={{display:'none'}} name="estrellas" value={input.score} onClick={(e)=>handleClick(e)}/>
-                   </div>
-
-                   <div>
-                      <label for="radio4" style={{color:'gray', cursor:"pointer"}} class="fa fa-star" ></label>
-                      <input id="3" type="radio" style={{display:'none'}} name="estrellas" value={input.score} onClick={(e)=>handleClick(e)}/>
-                   </div>
-
-                   <div>
-                     <label for="radio5" style={{color:'gray', cursor:"pointer"}} class="fa fa-star" ></label>
-                     <input id="4" type="radio" style={{display:'none'}} name="estrellas" value={input.score} onClick={(e)=>handleClick(e)}/>
-                   </div>
-                  </div>
-
-                  <div className="col-12" style={{display:"flex", flexDirection:"column" ,alignItems:"center"}}>
                   <label for="content" className="form-label">Tu comentario</label>
                   <input
                     style={{width:'600px'}}

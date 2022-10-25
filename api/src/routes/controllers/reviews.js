@@ -11,6 +11,7 @@ const allReviews = async() => {
             return results;
        
         } else {
+          
             const dbReviews = await Review.findAll({include: User})
             return dbReviews;
         }        
@@ -41,17 +42,20 @@ async function addReviews(req, res) {
     activity,
     name,
   } = req.body;
-  // const findActivity = Activities.findOne({ where: { name: activity}});
+  const findActivity = Activities.findOne({ where: { name: activity}});
 
   try {
       const newReview = await Review.create({
         score: score,
         content: content,
-        activity: activity
+
       });
-      
+      let reviewsSave = [];
       newReview.setUser(name);
-      // newReview.setActivities(findActivity.id);
+      newReview.setActivities(findActivity.id);
+
+      reviewsSave.push(newReview);
+      await newReview.save();
 
       console.log(newReview)
 
