@@ -5,6 +5,7 @@ import {get_categories}  from '../../redux/actionsCreator/categoriesActions';
 import {createProduct} from '../../redux/actionsCreator/productsActions';
 import {useState}  from 'react';
 import upImage from './cloudinary'
+import validate from './validate';
 
 
 
@@ -19,6 +20,7 @@ const CreateProduct = function() {
         dispatch(get_categories());
     }, [dispatch]);
 
+  
 
     const [input, setInput] = useState({
         name: "",
@@ -27,6 +29,28 @@ const CreateProduct = function() {
         detail: "",
         category:"",
       });
+      const handleImg = async(e)=>{
+     await upImage(e.target.files[0])
+     
+        setInput({
+            ...input,
+            [e.target.name]: e.target.files,
+            
+        });
+
+
+            setError(
+                validate({
+                    ...input,
+                    [e.target.name]: e.target.value,
+                }
+            )
+            
+    )
+  
+       
+      
+      }
 
     const handleChange = (e) => {
 
@@ -35,6 +59,7 @@ const CreateProduct = function() {
         setInput({
             ...input,
             [e.target.name]: e.target.value,
+            
         });
 
 
@@ -47,13 +72,13 @@ const CreateProduct = function() {
             
     )}
     
-
+    
     const handleCheck = (e) => {
 
         
          setInput({
             ...input,
-            categories: e.target.value
+            category: e.target.value
 
         })
        
@@ -66,37 +91,14 @@ const CreateProduct = function() {
         
     }
 
-    const validate = (input) => {
-
-        let error = {};
-
-        if(input.name.length < 5) {
-            error.name = "The name must have at least 5 characters."
-        } 
-        if(input.price < 1 || input.price > 100000) {
-            error.price = "Price must be bigger than 0 and less than 100.000"
-        }
-       
-        if(input.image.length > 0 && !/^.*\.(jpe?g|JPE?G|png|PNG|bmp|BMP|gif|GIF)$/.test(input.image)) {
-            error.image = "The file must be .jpg, .jpeg, .png, .bmp or .gif"
-        }
-        if(input.detail.length < 5) {
-          error.detail = "Detail must have at least 10 characters description."
-      } 
-        if(input.category.length < 0) {
-            error.category = "Category must have at least 1 elemnt chosen"
-        } 
-      
-       
-
-        return error;
-    }
 
     const handleSubmit = (e) =>{
         e.preventDefault();
+       
         let keys =Object.keys(error);
         let values = Object.values(error);
         if (keys.length === 0 && values.length === 0) {
+           console.log(input, " input")
             dispatch(createProduct(input))
             setInput({
                 name: "",
@@ -138,7 +140,7 @@ const CreateProduct = function() {
               value={input.name} 
               name='name' 
               required
-              onChange={(e)=>handleChange(e)}  
+              onChange={(e)=>{handleChange(e) }}  
             /> 
             {error.name && <p >{error.name}</p>}
             
@@ -172,7 +174,7 @@ const CreateProduct = function() {
               placeholder="Imagen..."
               value={input.image} 
               name='image' 
-              onChange={(e)=>{upImage(e.target.files)}}
+              onChange={(e)=>{ handleImg(e)}}
             />
             {error.image && <p >{error.image}</p>}
             <label for="name" className="form-label">
