@@ -9,10 +9,10 @@ function NavBar() {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-md bg-light py-1 mr-0 " style={{
+      <nav className="navbar navbar-expand-md bg-light py-1 mr-0 " style={{
         margin:"0px",
         background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}}>
-          <div class= "container p-0 ">
+          <div className= "container p-0 ">
       <Link to="/">
         <img
           src="/img/athenas_logo-removebg-preview.png"
@@ -21,7 +21,7 @@ function NavBar() {
         />
       </Link>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
@@ -29,62 +29,62 @@ function NavBar() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-          <li class="nav-item">
+      <div className="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li className="nav-item">
 
-            <Link class="nav-link active" aria-current="page" to="/home">
+            <Link className="nav-link active" aria-current="page" to="/home">
               Home
             </Link>
           </li>
-          <li class="nav-item">
-            <Link class="nav-link" to="/tienda">
+          <li className="nav-item">
+            <Link className="nav-link" to="/tienda">
               Tienda
             </Link>
           </li>
 
-          <li class="nav-item">
-            <Link class="nav-link" to="/actividades">
+          <li className="nav-item">
+            <Link className="nav-link" to="/actividades">
               Actividades
             </Link>
           </li>
 
-          {/* <li class="nav-item">
-            <Link class="nav-link" to="/crearProducto">
+          {/* <li className="nav-item">
+            <Link className="nav-link" to="/crearProducto">
               Crear Producto
             </Link>
           </li> */}
 
-          <li class="nav-item">
-            <Link class="nav-link" to="/nosotros">
+          <li className="nav-item">
+            <Link className="nav-link" to="/nosotros">
               Nosotros
             </Link>
           </li>
 
-          <li class="nav-item">
-            <Link class="nav-link" to="/favorites">
+          <li className="nav-item">
+            <Link className="nav-link" to="/favorites">
               Favoritos
             </Link>
           </li>
 
         </ul>
-        <div class="buttons">
+        <div className="buttons">
 
-          {/* <Link to="/login" class="btn btn-outline-dark">
-                <i class="fa fa-sign-in me-1"></i>login
+          {/* <Link to="/login" className="btn btn-outline-dark">
+                <i className="fa fa-sign-in me-1"></i>login
           </Link> */}
 
-              {/* <Link to="/logout" class="btn btn-outline-dark ms-2">
-                <i class="fa fa-user-plus me-1"></i>logout
+              {/* <Link to="/logout" className="btn btn-outline-dark ms-2">
+                <i className="fa fa-user-plus me-1"></i>logout
               </Link> */}
               {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
                <AuthenticationButton />
 
           <Profile/>
-          <Link to="/carrito" class="btn btn-outline-dark ms-2">
-            <i class="fa fa-shopping-cart me-1"></i>Carrito (
+          <Link to="/carrito" className="btn btn-outline-dark ms-2">
+            <i className="fa fa-shopping-cart me-1"></i>Carrito (
             {state.items?.length})
           </Link>
         </div>
