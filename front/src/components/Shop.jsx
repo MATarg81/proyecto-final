@@ -16,13 +16,14 @@ import {
 import SearchBar from "./SearchBar";
 //import cuore from "../imagesTeam/cuore.png"
 import { AiFillHeart } from 'react-icons/ai';
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "./Login/LoginButton";
 
 function Shop() {
   //----------- Utils -----------------
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // --------- Global states ---------------
   const products = useSelector((state) => state.productsReducer.showProducts);
@@ -264,33 +265,35 @@ function Shop() {
               boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)"
             }}>
               <div className="card h-100" style ={{border: "none"}}>
-                <div style={{
-                      width: "200px",
-                      height: "200px",
-                      overflow: "hidden",
-                      margin: "10px",
-                      position: "relative"
-                }}>
-                  <img
-                    style={{ 
-                      position:"absolute",
-                      left: "-100%",
-                      right: "-100%",
-                      top: "-100%",
-                      bottom: "-100%",
-                      margin: "auto",
-                      maxHeigth: "200px",
-                      minHeight: "100%",
-                      minWidth: "100%",
-                      }}
-                    src={p.image}
-                    className="card-img-top"
-                    alt={p.name} />
-                </div>
-                <div className="card-body">
-                  <h4 className="card-title">{p.name}</h4>
-                  <h4>$ {p.price}</h4>
-                  {/* <p className="card-text">{p.detail}</p> */}
+                <div onClick = {() => navigate('/tienda/' + p.id)}>
+                  <div style={{
+                        width: "200px",
+                        height: "200px",
+                        overflow: "hidden",
+                        margin: "10px",
+                        position: "relative"
+                  }}>
+                    <img
+                      style={{ 
+                        position:"absolute",
+                        left: "-100%",
+                        right: "-100%",
+                        top: "-100%",
+                        bottom: "-100%",
+                        margin: "auto",
+                        maxHeigth: "200px",
+                        minHeight: "100%",
+                        minWidth: "100%",
+                        }}
+                      src={p.image}
+                      className="card-img-top"
+                      alt={p.name} />
+                  </div>
+                  <div className="card-body">
+                    <h4 className="card-title">{p.name}</h4>
+                    <h4>$ {p.price}</h4>
+                    {/* <p className="card-text">{p.detail}</p> */}
+                  </div>
                 </div>
                 <div className="card-footer d-flex justify-content-around">
                   <button
