@@ -11,6 +11,7 @@ import {
   filterByCategories,
   getCategories,
   filterByPrice,
+  searchProducts,
 } from "../redux/actionsCreator/productsActions";
 import SearchBar from "./SearchBar";
 //import cuore from "../imagesTeam/cuore.png"
@@ -229,7 +230,7 @@ function Shop() {
                 color: "#352D39",
               }}/>
             </form>
-            <SearchBar />
+            <SearchBar setPage={setPage}/>
             <button
             onClick={cleanFilters}
             class="btn btn-outline-success"
