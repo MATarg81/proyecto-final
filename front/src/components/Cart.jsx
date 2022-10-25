@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addCart, delCart, delAll } from "../redux/actionsCreator/cartActions";
+import { addCart, delCart, delAll, postCart } from "../redux/actionsCreator/cartActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 
 const Cart = () => {
@@ -20,6 +20,11 @@ const Cart = () => {
   const handleDeleteAll = () => {
     dispatch(delAll());
     setCart(state.items)
+  }
+
+  const handleCartDB = () => {
+    dispatch(postCart(state));
+    setCart([]);
   }
 
   const emptyCart = () => {
@@ -81,6 +86,7 @@ const Cart = () => {
           <h3>TOTAL: ${state.price}</h3>
           <button className="btn btn-outline-dark mb-5 w-25 mx-auto" onClick = {handleDeleteAll}>Eliminar Carrito</button>
             <Link
+              onClick={handleCartDB}
               to="/checkout"
               className="btn btn-outline-dark mb-5 w-25 mx-auto"
             >

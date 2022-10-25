@@ -1,4 +1,5 @@
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, LOCAL_STORAGE_CART } from "../actionsTypes/actionsTypesCart";
+import axios from "axios";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART } from "../actionsTypes/actionsTypesCart";
 
 // Agregar item al carro
 
@@ -28,9 +29,25 @@ export const delAll = () => {
 
 // Obtener cart del localStorage
 
-export const localStorageCart = (cart) => {
-  return {
-    type: LOCAL_STORAGE_CART,
-    payload: cart
-  }
+// export const localStorageCart = (cart) => {
+//   return {
+//     type: LOCAL_STORAGE_CART,
+//     payload: cart
+//   }
+// }
+
+export const postCart = (body) => {
+
+  return async function (dispatch) {
+    try {
+      const res = await axios.post("/cart", body);
+      return dispatch({
+        type: POST_CART,
+        payload: res,
+      });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  };
 }

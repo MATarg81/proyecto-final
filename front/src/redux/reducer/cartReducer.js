@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, LOCAL_STORAGE_CART } from "../actionsTypes/actionsTypesCart";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART } from "../actionsTypes/actionsTypesCart";
 
 const inicialState = {
   items:JSON.parse(localStorage.cart),
@@ -67,18 +67,24 @@ const cartReducer = (state = inicialState, action) => {
 
       break;
 
-      case LOCAL_STORAGE_CART: {
+      // case LOCAL_STORAGE_CART: {
 
-        const price = action.payload?.forEach((p) => {
-          let suma = 0;
-          suma += p.qty * p.price;
-          return suma;
-        })
+      //   const price = action.payload?.forEach((p) => {
+      //     let suma = 0;
+      //     suma += p.qty * p.price;
+      //     return suma;
+      //   })
 
+      //   return {
+      //     items: action.payload,
+      //     price: price
+      //   }
+      // }
+
+      case POST_CART: {
         return {
-          items: action.payload,
-          price: price
-        }
+          ...state,
+        };
       }
 
     default:
