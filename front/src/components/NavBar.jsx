@@ -5,15 +5,15 @@ import AuthenticationButton from './Login/authentication-button';
 import Profile from "./Login/Views/Profile";
 
 function NavBar() {
-
-  const cart = useSelector((state) => state.cartReducer.items);
+  
+  const state = useSelector((state) => state.cartReducer.items);
 
   return (
     <div>
-      <nav className="navbar navbar-expand-md bg-light py-1 mr-0 " style={{
+      <nav class="navbar navbar-expand-md bg-light py-1 mr-0 " style={{
         margin:"0px",
         background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}}>
-          <div className= "container p-0 ">
+          <div class= "container p-0 ">
       <Link to="/">
         <img
           src="/img/athenas_logo-removebg-preview.png"
@@ -22,7 +22,7 @@ function NavBar() {
         />
       </Link>
       <button
-        className="navbar-toggler"
+        class="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
@@ -30,63 +30,56 @@ function NavBar() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse " id="navbarSupportedContent">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-          <li className="nav-item">
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
 
-            <Link className="nav-link active" aria-current="page" to="/home">
+            <Link class="nav-link active" aria-current="page" to="/home">
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/tienda">
+          <li class="nav-item">
+            <Link class="nav-link" to="/tienda">
               Tienda
             </Link>
           </li>
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/actividades">
+          <li class="nav-item">
+            <Link class="nav-link" to="/actividades">
               Actividades
             </Link>
           </li>
 
-          {/* <li className="nav-item">
-            <Link className="nav-link" to="/crearProducto">
+          {/* <li class="nav-item">
+            <Link class="nav-link" to="/crearProducto">
               Crear Producto
             </Link>
           </li> */}
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/nosotros">
+          <li class="nav-item">
+            <Link class="nav-link" to="/nosotros">
               Nosotros
             </Link>
           </li>
-
-          <li className="nav-item">
-            <Link className="nav-link" to="/favorites">
-              Favoritos
-            </Link>
-          </li>
-
         </ul>
-        <div className="buttons">
+        <div class="buttons">
 
-          {/* <Link to="/login" className="btn btn-outline-dark">
-                <i className="fa fa-sign-in me-1"></i>login
+          {/* <Link to="/login" class="btn btn-outline-dark">
+                <i class="fa fa-sign-in me-1"></i>login
           </Link> */}
 
-              {/* <Link to="/logout" className="btn btn-outline-dark ms-2">
-                <i className="fa fa-user-plus me-1"></i>logout
+              {/* <Link to="/logout" class="btn btn-outline-dark ms-2">
+                <i class="fa fa-user-plus me-1"></i>logout
               </Link> */}
               {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
                <AuthenticationButton />
 
           <Profile/>
-          <Link to="/carrito" className="btn btn-outline-dark ms-2">
-            <i className="fa fa-shopping-cart me-1"></i>Carrito (
-            {cart?.length})
+          <Link to="/carrito" class="btn btn-outline-dark ms-2">
+            <i class="fa fa-shopping-cart me-1"></i>Carrito (
+            {state?.length})
           </Link>
         </div>
       </div>

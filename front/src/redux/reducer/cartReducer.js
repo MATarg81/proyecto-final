@@ -1,7 +1,7 @@
 import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, LOCAL_STORAGE_CART } from "../actionsTypes/actionsTypesCart";
 
 const inicialState = {
-  items:[],
+  items:JSON.parse(localStorage.cart),
   price: 0,
 };
 
@@ -64,6 +64,8 @@ const cartReducer = (state = inicialState, action) => {
           price: 0,
         }
       }
+
+      break;
 
       case LOCAL_STORAGE_CART: {
 

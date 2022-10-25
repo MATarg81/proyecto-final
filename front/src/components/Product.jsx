@@ -13,7 +13,7 @@ function Product(props) {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setloading] = useState(false);
-  const cart = useSelector((state) => state.cartReducer.cart.items);
+  const cart = useSelector((state) => state.cartReducer.items);
   const [, setCart] = useLocalStorage('cart', cart)
   console.log(product)
 
