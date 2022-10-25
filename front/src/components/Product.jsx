@@ -7,12 +7,11 @@ import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
 function Product(props) {
-
-  console.log("estoy en el componente Product")
+  console.log("estoy en el componente Product");
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setloading] = useState(false);
-  console.log(product)
+  console.log(product);
 
   const dispatch = useDispatch();
   const addProduct = (product) => {
