@@ -7,4 +7,4 @@ Hacer una carpeta .env que contenga:
 DB_PASSWORD="su contraseña"
 DB_HOST=localhost
 DB_NAME=AthenasClub)
-juan2
+juan22
