@@ -30,15 +30,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Role, Product, Category, User, Activities, Cart, Review } = sequelize.models;
+const { Role, Product, Category, User, Activity, Cart, Review } = sequelize.models;
 
 
 // RELACIONES:
 Product.belongsToMany(Category, {through: 'Category_Product'});
 Category.belongsToMany(Product, {through: 'Category_Product'});
 
-Activities.belongsToMany(User, {through: 'Activity_User'});
-User.belongsToMany(Activities, {through: 'Activity_User'});
+Activity.belongsToMany(User, {through: 'Activity_User'});
+User.belongsToMany(Activity, {through: 'Activity_User'});
 
 User.belongsTo(Role);
 Role.belongsToMany(User, {through: 'User_Role'});
@@ -46,11 +46,11 @@ Role.belongsToMany(User, {through: 'User_Role'});
 User.belongsTo(Cart);
 Category.belongsToMany(User, {through: 'Cart_User'});
 
-Review.belongsTo(User);
-User.belongsToMany(Review, {through: 'Review_User'});
+// Review.belongsTo(User);
+// User.belongsToMany(Review, {through: 'Review_User'});
 
-Review.belongsTo(Activities);
-Activities.belongsToMany(Review, {through: 'Activity_Review'});
+Review.belongsTo(Activity);
+Activity.belongsToMany(Review, {through: 'Activity_Review'});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

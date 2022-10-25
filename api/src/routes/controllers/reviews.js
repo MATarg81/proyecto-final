@@ -1,4 +1,4 @@
-const { Review , User, Activities } = require("../../db");
+const { Review , User, Activity } = require("../../db");
 const jsonData = require("../../../reviews.json");
 
 
@@ -10,17 +10,17 @@ const allReviews = async() => {
             // const results = await Review.bulkCreate(jsonData.results);
             // return results;
           const results = jsonData.results.map(async r => {
-            const findAct = await Activities.findOne({where: {name: r.activity}})
+            const findAct = await Activity.findOne({where: {name: r.activity}})
             const newRev = await Review.create({
               score: r.score,
               content: r.content
             });
-            await newRev.setUser(r.user);
-            await newRev.setActivities(findAct?.id);
+            await newRev.setActivity(findAct?.id);
           });
           return results;
         } else {
-            const dbReviews = await Review.findAll({include: User})
+          
+            const dbReviews = await Review.findAll({include:[{model: Activity, attributes: ['name'], include:[{model:User, attributes: ['name', 'lastname']}]}]})
             return dbReviews;
         }        
     } catch (error) {
@@ -50,17 +50,20 @@ async function addReviews(req, res) {
     activity,
     name,
   } = req.body;
-  // const findActivity = Activities.findOne({ where: { name: activity}});
+  const findActivity = Activity.findOne({ where: { name: activity}});
 
   try {
       const newReview = await Review.create({
         score: score,
         content: content,
-        activity: activity
+
       });
-      
-      newReview.setUser(name);
-      // newReview.setActivities(findActivity.id);
+      let reviewsSave = [];
+      //newReview.setUser(name);
+      newReview.setActivity(findActivity.id);
+
+      reviewsSave.push(newReview);
+      await newReview.save();
 
       console.log(newReview)
 

@@ -1,4 +1,4 @@
-const { Activities, User} = require('../../db');
+const { Activity, User, Role} = require('../../db');
 const jsonData = require("../../../activities.json");
  
 
@@ -17,22 +17,23 @@ const allActivities = async() => {
   //       return dataActivity;
 
   
-  const dbData = await Activities.count();
+  const dbData = await Activity.count();
 
     try {
         if (!dbData) {   
-            const results = await Activities.bulkCreate(jsonData.results);
-            return results;
-       
+          const results = jsonData.results.map(async a => {
+            const newRev = await Activity.create({
+              name: a.name,
+              detail: a.detail,
+              days: a.days,
+              times: a.times,
+              img: a.img
+            });
+            await newRev.addUser(a.user);
+          });
+          return results;
         } else {
-            const dbActivity = await Activities.findAll({
-                include: {
-                  model: User,
-                  attributes: ["email"],
-                  through: {
-                      attributes: []
-                  }
-            }}); 
+            const dbActivity = await Activity.findAll({include:[{model: User, attributes: ['email'], include:[{model:Role}]}]}); 
             return dbActivity;
 
         }        
@@ -94,7 +95,7 @@ const getActivitiesId = async(req, res) => {
 const deleteActivity = async (req, res)=>{
   const { id } = req.params;
   try {
-    await  Activities.destroy({
+    await  Activity.destroy({
       where:{
           id:id,
       }
@@ -115,11 +116,11 @@ const addActivity = async(req, res) => {
     email
   } = req.body;
  
-  const dbActivity = await Activities.count();
+  const dbActivity = await Activity.count();
 
   try {
 
-      const newActivity = await Activities.create({
+      const newActivity = await Activity.create({
         name: name,
         detail: detail,
         days: days,
