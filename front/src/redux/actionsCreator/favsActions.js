@@ -5,12 +5,12 @@ import {
     REMOVE_FAV
 } from "../actionsTypes/actionsTypesFavs.js";
 
-const BACK_URL = "http://localhost:3001";
+// const BACK_URL = "http://localhost:3001";
 
 export function addFav(id) {
     return async function (dispatch) {
         try {
-            const url = await axios.get(BACK_URL + "/products/" + id);
+            const url = await axios.get("/products/" + id);
             return dispatch({
                 type: ADD_FAV,
                 payload: url.data,
