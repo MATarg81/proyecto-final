@@ -20,10 +20,6 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      activity: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
     },
     {
       timestamps: false,

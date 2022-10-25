@@ -7,9 +7,18 @@ const allReviews = async() => {
 
     try {
         if (!dbData) {   
-            const results = await Review.bulkCreate(jsonData.results);
-            return results;
-       
+            // const results = await Review.bulkCreate(jsonData.results);
+            // return results;
+          const results = jsonData.results.map(async r => {
+            const findAct = await Activities.findOne({where: {name: r.activity}})
+            const newRev = await Review.create({
+              score: r.score,
+              content: r.content
+            });
+            await newRev.setUser(r.user);
+            await newRev.setActivities(findAct?.id);
+          });
+          return results;
         } else {
             const dbReviews = await Review.findAll({include: User})
             return dbReviews;
