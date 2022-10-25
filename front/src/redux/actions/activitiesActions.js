@@ -3,7 +3,7 @@ import axios from 'axios';
 export function getActivities(){
     return async function(dispatch){
         try {
-            let axiosActivities = await axios('http://localhost:3001/activities');
+            let axiosActivities = await axios('/activities');
             
             return dispatch({
                 type: 'GET_ACTIVITIES',
@@ -17,7 +17,7 @@ export function getActivities(){
 
 export function postActivity(payload){
     return async function(dispatch){
-        const axiosPost = await axios.post('http://localhost:3001/activities',payload)
+        const axiosPost = await axios.post('/activities',payload)
         return axiosPost
     }
 }
@@ -25,7 +25,7 @@ export function postActivity(payload){
 export function deleteActivity(id){
     return async function(dispatch){
         try {
-            await axios.delete('http://localhost:3001/activities/'+id);
+            await axios.delete('/activities/'+id);
             return dispatch({
                 type: 'DELETE_ACTIVITY',
                 payload: id
