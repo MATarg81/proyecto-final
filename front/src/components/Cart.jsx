@@ -15,7 +15,7 @@ const Cart = () => {
   };
   const handleDeleteAll = () => {
     dispatch(delAll());
-  }
+  };
 
   const emptyCart = () => {
     return (
@@ -73,8 +73,13 @@ const Cart = () => {
       <>
         <div className="container">
           <div className="row">
-          <h3>TOTAL: ${state.price}</h3>
-          <button className="btn btn-outline-dark mb-5 w-25 mx-auto" onClick = {handleDeleteAll}>Eliminar Carrito</button>
+            <h3>TOTAL: ${state.price}</h3>
+            <button
+              className="btn btn-outline-dark mb-5 w-25 mx-auto"
+              onClick={handleDeleteAll}
+            >
+              Eliminar Carrito
+            </button>
             <Link
               to="/checkout"
               className="btn btn-outline-dark mb-5 w-25 mx-auto"
