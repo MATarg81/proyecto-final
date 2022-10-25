@@ -3,18 +3,25 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillHeart } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
-import { addCart } from "../redux/actions/index";
+import { addCart } from "../redux/actionsCreator/cartActions";
 import { deleteFav, getFavs } from "../redux/actionsCreator/favsActions";
+import { useLocalStorage} from "../localStorage/useLocalStorage";
+import { useNavigate } from "react-router-dom";
 
 function Favorites() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+   
 
     const favoritos = useSelector( state => state.favReducer.favs)
+    const cart = useSelector(state => state.cartReducer.items)
     
+    const [, setCart] = useLocalStorage('cart', cart)
 
     const addProduct = (product) => {
         dispatch(addCart(product));
+        setCart(cart);
       };
 
       const handleDeleteFav = (id) => {
@@ -34,39 +41,41 @@ function Favorites() {
         }}
       >
         {favoritos?.map((p) => (
-          <Link to = {'/tienda/' + p.id}>
+          
             <div key={p.id} className="col card border-info mb-3" style={{
               border: "none",
               boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)"
             }}>
               <div className="card h-100" style ={{border: "none"}}>
-                <div style={{
-                      width: "200px",
-                      height: "200px",
-                      overflow: "hidden",
-                      margin: "10px",
-                      position: "relative"
-                }}>
-                  <img
-                    style={{ 
-                      position:"absolute",
-                      left: "-100%",
-                      right: "-100%",
-                      top: "-100%",
-                      bottom: "-100%",
-                      margin: "auto",
-                      maxHeigth: "200px",
-                      minHeight: "100%",
-                      minWidth: "100%",
-                      }}
-                    src={p.image}
-                    className="card-img-top"
-                    alt={p.name} />
-                </div>
-                <div className="card-body">
-                  <h4 className="card-title">{p.name}</h4>
-                  <h4>$ {p.price}</h4>
-                  {/* <p className="card-text">{p.detail}</p> */}
+                <div onClick = {() => navigate('/tienda/' + p.id)}>
+                  <div style={{
+                        width: "200px",
+                        height: "200px",
+                        overflow: "hidden",
+                        margin: "10px",
+                        position: "relative"
+                  }}>
+                    <img
+                      style={{ 
+                        position:"absolute",
+                        left: "-100%",
+                        right: "-100%",
+                        top: "-100%",
+                        bottom: "-100%",
+                        margin: "auto",
+                        maxHeigth: "200px",
+                        minHeight: "100%",
+                        minWidth: "100%",
+                        }}
+                      src={p.image}
+                      className="card-img-top"
+                      alt={p.name} />
+                  </div>
+                  <div className="card-body">
+                    <h4 className="card-title">{p.name}</h4>
+                    <h4>$ {p.price}</h4>
+                    {/* <p className="card-text">{p.detail}</p> */}
+                  </div>
                 </div>
                 <div className="card-footer d-flex justify-content-around">
                   <button
@@ -84,7 +93,6 @@ function Favorites() {
                 </button>
               </div>
             </div>
-          </Link>
           ))}
       </div>
         </div>

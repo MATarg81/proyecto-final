@@ -1,4 +1,4 @@
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL } from "../actionsTypes/actionsTypesCart";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, LOCAL_STORAGE_CART } from "../actionsTypes/actionsTypesCart";
 
 // Agregar item al carro
 
@@ -23,5 +23,14 @@ export const delCart = (product) => {
 export const delAll = () => {
   return {
     type: DELETE_ALL,
+  }
+}
+
+// Obtener cart del localStorage
+
+export const localStorageCart = (cart) => {
+  return {
+    type: LOCAL_STORAGE_CART,
+    payload: cart
   }
 }

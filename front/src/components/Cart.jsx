@@ -2,19 +2,24 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { addCart, delCart, delAll } from "../redux/actionsCreator/cartActions";
+import { useLocalStorage } from "../localStorage/useLocalStorage";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
+  const [, setCart] = useLocalStorage('cart', state.items)
 
   const handleAdd = (item) => {
     dispatch(addCart(item));
+    setCart(state.items)
   };
   const handleDel = (item) => {
     dispatch(delCart(item));
+    setCart(state.items)
   };
   const handleDeleteAll = () => {
     dispatch(delAll());
+    setCart(state.items)
   }
 
   const emptyCart = () => {

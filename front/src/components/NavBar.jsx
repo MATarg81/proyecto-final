@@ -5,7 +5,8 @@ import AuthenticationButton from './Login/authentication-button';
 import Profile from "./Login/Views/Profile";
 
 function NavBar() {
-  const state = useSelector((state) => state.cartReducer);
+
+  const cart = useSelector((state) => state.cartReducer.items);
 
   return (
     <div>
@@ -85,7 +86,7 @@ function NavBar() {
           <Profile/>
           <Link to="/carrito" className="btn btn-outline-dark ms-2">
             <i className="fa fa-shopping-cart me-1"></i>Carrito (
-            {state.items?.length})
+            {cart?.length})
           </Link>
         </div>
       </div>

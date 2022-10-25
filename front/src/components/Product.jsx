@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addCart } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart } from "../redux/actionsCreator/cartActions";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import { useLocalStorage } from "../localStorage/useLocalStorage";
 
 function Product(props) {
 
@@ -12,11 +13,15 @@ function Product(props) {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setloading] = useState(false);
+  const cart = useSelector((state) => state.cartReducer.cart.items);
+  const [, setCart] = useLocalStorage('cart', cart)
   console.log(product)
 
   const dispatch = useDispatch();
+
   const addProduct = (product) => {
     dispatch(addCart(product));
+    setCart(cart)
   };
 
   useEffect(() => {

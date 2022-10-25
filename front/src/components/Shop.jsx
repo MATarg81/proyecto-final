@@ -19,19 +19,23 @@ import { AiFillHeart } from 'react-icons/ai';
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "./Login/LoginButton";
+import { useLocalStorage } from "../localStorage/useLocalStorage";
 
 function Shop() {
   //----------- Utils -----------------
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+
   // --------- Global states ---------------
   const products = useSelector((state) => state.productsReducer.showProducts);
   const category = useSelector((state) => state.productsReducer.categories);
   const price = useSelector((state) => state.productsReducer.filterByPrice);
+  const cart = useSelector((state) => state.cartReducer.items);
   const byCategories = useSelector(
     (state) => state.productsReducer.byCategories
   );
+  const [, setCart] = useLocalStorage('cart', cart)
   //const favState = useSelector(state => state.FavReducer.favs)
   // --------------- Pagination --------------
   const productsPerPage = 12;
@@ -89,6 +93,7 @@ function Shop() {
   // --------------- Cart function ----------------
   const addProduct = (product) => {
     dispatch(addCart(product));
+    setCart(cart);
   };
 
   // -------------- sort functions ------------
