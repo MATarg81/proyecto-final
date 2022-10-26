@@ -135,7 +135,7 @@ const deleteProduct = async (req, res) => {
 const putProduct = async (req, res) => {
   const idP = req.params.id;
 
-  const { name: name, price: price, detail: detail, image: image, stock } = req.body;
+  const { name, price, detail, image, stock, qty } = req.body;
 
   try {
     await Product.update(
@@ -144,7 +144,7 @@ const putProduct = async (req, res) => {
         price,
         detail,
         image,
-        stock,
+        stock: stock - qty,
       },
       {
         where: {
