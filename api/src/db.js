@@ -72,13 +72,14 @@ User.belongsTo(Role);
 Role.belongsToMany(User, {through: 'User_Role'});
 
 User.belongsTo(Cart);
-Category.belongsToMany(User, {through: 'Cart_User'});
+Cart.belongsToMany(User, {through: 'Cart_User'});
 
 // Review.belongsTo(User);
 // User.belongsToMany(Review, {through: 'Review_User'});
 
 Review.belongsTo(Activity);
 Activity.belongsToMany(Review, {through: 'Activity_Review'});
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

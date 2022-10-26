@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addCart } from "../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { addCart } from "../redux/actionsCreator/cartActions";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import { useLocalStorage } from "../localStorage/useLocalStorage";
 
 function Product(props) {
   console.log("estoy en el componente Product");
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setloading] = useState(false);
-  console.log(product);
+  const cart = useSelector((state) => state.cartReducer.items);
+  const [, setCart] = useLocalStorage('cart', cart)
 
   const dispatch = useDispatch();
+
   const addProduct = (product) => {
     dispatch(addCart(product));
+    setCart(cart)
   };
 
   useEffect(() => {

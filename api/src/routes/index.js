@@ -8,6 +8,7 @@ const roles = require ('./roles')
 const category = require ('./category')
 const activities = require ('./activities')
 const reviews = require ('./reviews')
+const cart = require ('./cart')
 
 const router = Router();
 
@@ -19,5 +20,6 @@ router.use('/roles', roles)
 router.use('/categories', category)
 router.use('/activities', activities)
 router.use('/reviews', reviews)
+router.use('/cart', cart)
 
 module.exports = router;
