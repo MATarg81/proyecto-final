@@ -1,6 +1,7 @@
 require("dotenv").config();
 const { Product, Category } = require("../../db");
 const jsonData = require("../../../products.json");
+const { Op } = require("sequelize");
 
 
 const allProducts = async() => {
@@ -15,11 +16,11 @@ const allProducts = async() => {
             }
         }); 
          const results = dbProduct.map((p) => ({
-            id: p.id,
             name: p.name,
             price: p.price,
             detail: p.detail,
             image: p.image,
+            stock: p.stock,
             categories: p.Categories?.map((c) => c.name),
         }));
       
@@ -33,7 +34,6 @@ const allProducts = async() => {
 //PRODUCTS BY ID:
 const productsId = async (idP) => {
   try {
-    console.log(typeof idP)
     const totalProducts = await allProducts();
     const productId = totalProducts.find((r) => r.id.toString() === idP);
 
@@ -47,14 +47,14 @@ const productsId = async (idP) => {
 
 const postProducts = async (req, res) => {
   try {
-    const { name, price, detail, image, categories } = req.body;
-
+    const { name, price, detail, image, categories, stock } = req.body;
     //const categoriesLowerCase = categories?.map((c) => c.toLowerCase());
 
     const newProduct = await Product.create({
       name: name,
       price: price,
       detail: detail,
+      stock: stock,
       image:
         image ||
         "https://img.freepik.com/fotos-premium/deporte-mujer-sentada-descansando-despues-entrenamiento-o-ejercicio-gimnasio-proteina-shak_10307-27.jpg?w=740",
@@ -80,6 +80,7 @@ const getProducts = async (req, res) => {
           price: p.price,
           detail: p.detail,
           image: p.image,
+          stock: p.stock
         });
         await newP.addCategories(p.categories);
       });
@@ -91,7 +92,8 @@ const getProducts = async (req, res) => {
         ? res.status(200).send(productsWithName)
         : res.status(404).send("Producto no encontrada");
     } else {
-      await Product.findAll({ include: Category }).then(r => res.status(200).send(r));
+      Product.findAll({where: {stock: {[Op.gte]: 1}}, include: Category})
+      .then(r => {res.status(200).send(r)})
     }
   } catch (err) {
     console.log(err);
@@ -102,10 +104,10 @@ const getProducts = async (req, res) => {
 const getProductsId = async (req, res) => {
   try {
     const id = req.params.id;
-
-    const result = await productsId(id);
-    if (result) {
-      return res.status(200).send(result);
+    const productId= await Product.findByPk(id)
+   
+    if (productId) {
+      return res.status(200).send(productId);
     } else {
       res.status(404).send("Id no existente");
     }
@@ -133,7 +135,7 @@ const deleteProduct = async (req, res) => {
 const putProduct = async (req, res) => {
   const idP = req.params.id;
 
-  const { name: name, price: price, detail: detail, image: image } = req.body;
+  const { name: name, price: price, detail: detail, image: image, stock } = req.body;
 
   try {
     await Product.update(
@@ -142,6 +144,7 @@ const putProduct = async (req, res) => {
         price,
         detail,
         image,
+        stock,
       },
       {
         where: {

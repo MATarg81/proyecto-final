@@ -71,6 +71,7 @@ function Product(props) {
           </p> */}
           <h3 className="display-6 fw-bold my-4">$ {product.price}</h3>
           <p className="lead">{product.detail}</p>
+          <p>Stock disponible: {product.stock}</p>
           <button
             className="btn btn-outline-dark px-4 py-2"
             onClick={() => addProduct(product)}
