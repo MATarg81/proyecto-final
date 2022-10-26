@@ -13,11 +13,12 @@ import {
   filterByPrice,
   searchProducts,
 } from "../redux/actionsCreator/productsActions";
+import Favorites from "./Favorites";
 import SearchBar from "./SearchBar";
 //import cuore from "../imagesTeam/cuore.png"
-import { AiFillHeart } from 'react-icons/ai';
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react';
+import { AiFillHeart } from "react-icons/ai";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Login/LoginButton";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 
@@ -60,8 +61,8 @@ function Shop() {
     byCategories.length > 0
       ? byCategories?.slice(first, last)
       : price.length > 0
-        ? price?.slice(first, last)
-        : products?.slice(first, last);
+      ? price?.slice(first, last)
+      : products?.slice(first, last);
 
   // --------------- Data call -------------
 
@@ -71,7 +72,7 @@ function Shop() {
       dispatch(getCategories());
     }
   }, [dispatch, category]);
-  
+
   //Products
   useEffect(() => {
     if (category?.length > 0) {
@@ -82,9 +83,9 @@ function Shop() {
   //favs
   function handleAddtoFav(id) {
     //ADDtoFavs(p)
-    dispatch(addFav(id))
+    dispatch(addFav(id));
     //localStorage.setItem('favs', JSON.stringify(favState))
-    alert('Producto agregado a favoritos')
+    alert("Producto agregado a favoritos");
   }
 
   // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
@@ -158,51 +159,52 @@ function Shop() {
     dispatch(filterByCategories([]));
   };
 
-  const {user, isAuthenticated} = useAuth0()
+  const { user, isAuthenticated } = useAuth0();
 
   return (
     // isAuthenticated?
     <>
-    <>
-      <div>
-        <nav class="navbar navbar-light bg-light">
-          <div
-            class="container-fluid"
-            style={{
-              background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)",
-              padding: "1rem",
-            }}
-          >
-            <select
-              onChange={order}
-              class="btn btn-secondary dropdown-toggle"
+      <>
+        <div>
+          <nav className="navbar navbar-light bg-light">
+            <div
+              className="container-fluid"
               style={{
-                backgroundColor: "#FFFCF9",
-                color: "#352D39",
+                background:
+                  "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)",
+                padding: "1rem",
               }}
             >
-              <option defaultValue="ordenar">Ordenar por:</option>
-              <option value="A/Z">A/Z</option>
-              <option value="Z/A">Z/A</option>
-              <option value="MIN/MAX">MIN/MAX</option>
-              <option value="MAX/MIN">MAX/MIN</option>
-            </select>
-            <select
-              onChange={filterCategories}
-              class="btn btn-secondary dropdown-toggle"
-              style={{
-                backgroundColor: "#FFFCF9",
-                color: "#352D39",
-              }}
-            >
-              <option defaultValue="Categories">Filtrar categorías</option>
-              {category?.map((c) => (
-                <option name={c.name} key={c.id} value={c.name}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-            <form onSubmit={handleSumit}>
+              <select
+                onChange={order}
+                className="btn btn-secondary dropdown-toggle"
+                style={{
+                  backgroundColor: "#FFFCF9",
+                  color: "#352D39",
+                }}
+              >
+                <option defaultValue="ordenar">Ordenar por:</option>
+                <option value="A/Z">A/Z</option>
+                <option value="Z/A">Z/A</option>
+                <option value="MIN/MAX">MIN/MAX</option>
+                <option value="MAX/MIN">MAX/MIN</option>
+              </select>
+              <select
+                onChange={filterCategories}
+                className="btn btn-secondary dropdown-toggle"
+                style={{
+                  backgroundColor: "#FFFCF9",
+                  color: "#352D39",
+                }}
+              >
+                <option defaultValue="Categories">Filtrar categorías</option>
+                {category?.map((c) => (
+                  <option name={c.name} key={c.id} value={c.name}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+              {/* <form onSubmit={handleSumit}>
               <label>Precio:  </label>
               <input
                 type="text"
@@ -210,7 +212,7 @@ function Shop() {
                 name="min"
                 onChange={handleChange}
                 value={input.min}
-                class="btn btn-secondary dropdown-toggle"
+                className="btn btn-secondary dropdown-toggle"
                 style={{
                   backgroundColor: "#FFFCF9",
                   color: "#352D39",
@@ -223,64 +225,72 @@ function Shop() {
                 name="max"
                 onChange={handleChange}
                 value={input.max}
-                class="btn btn-secondary dropdown-toggle"
+                className="btn btn-secondary dropdown-toggle"
                 style={{
                   backgroundColor: "#FFFCF9",
                   color: "#352D39",
                   maxWidth: "5rem"
                 }}
               ></input>
-              <input type="submit" value="Buscar" class="btn btn-secondary dropdown-toggle"
+              <input type="submit" value="Buscar" className="btn btn-secondary dropdown-toggle"
               style={{
                 backgroundColor: "#FFFCF9",
                 color: "#352D39",
               }}/>
-            </form>
-            <SearchBar setPage={setPage}/>
-            <button
-            onClick={cleanFilters}
-            class="btn btn-outline-success"
-            style={{
-              backgroundColor: "#FFFCF9",
-              color: "#352D39",
-            }}
-          >
-            Borrar filtros
-          </button>
-          <Link class="nav-link" to="/crearProducto">
-              Crear Producto
-            </Link>
-          </div>
-        </nav>
-        <div>
+            </form> */}
+              <Link className="btn btn-outline-dark ms-2" to="/favorites">
+                Favoritos
+              </Link>
+              <SearchBar setPage={setPage} />
+              <button
+                onClick={cleanFilters}
+                className="btn btn-outline-dark ms-2"
+                // style={{
+                //   backgroundColor: "#FFFCF9",
+                //   color: "#352D39",
+                // }}
+              >
+                Borrar filtros
+              </button>
+              <Link className="nav-link" to="/crearProducto">
+                Crear Producto
+              </Link>
+            </div>
+          </nav>
+          <div></div>
         </div>
-      </div>
-      <div
-        className="grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "3rem",
-          margin: "2rem",
-        }}
-      >
-        {productsPage?.map((p) => (
-            <div key={p.id} className="col card border-info mb-3" style={{
-              border: "none",
-              boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)"
-            }}>
-              <div className="card h-100" style ={{border: "none"}}>
-                <div onClick = {() => navigate('/tienda/' + p.id)}>
-                  <div style={{
-                        width: "200px",
-                        height: "200px",
-                        overflow: "hidden",
-                        margin: "10px",
-                        position: "relative"
-                  }}>
+        <div
+          className="grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "3rem",
+            margin: "2rem",
+          }}
+        >
+          {productsPage?.map((p) => (
+            <div
+              key={p.id}
+              className="col card border-info mb-3"
+              style={{
+                border: "none",
+                boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)",
+              }}
+            >
+              <div className="card h-100" style={{ border: "none" }}>
+                <div onClick={() => navigate("/tienda/" + p.id)}>
+                  <div
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      overflow: "hidden",
+                      margin: "10px",
+                      position: "relative",
+                    }}
+                  >
                     <img
-                      style={{ 
-                        position:"absolute",
+                      style={{
+                        position: "absolute",
                         left: "-100%",
                         right: "-100%",
                         top: "-100%",
@@ -289,10 +299,11 @@ function Shop() {
                         maxHeigth: "200px",
                         minHeight: "100%",
                         minWidth: "100%",
-                        }}
+                      }}
                       src={p.image}
                       className="card-img-top"
-                      alt={p.name} />
+                      alt={p.name}
+                    />
                   </div>
                   <div className="card-body">
                     <h4 className="card-title">{p.name}</h4>
@@ -309,22 +320,21 @@ function Shop() {
                   </button>
                 </div>
                 <div>
-
-                <button
-                  className="btn btn-outline-dark px-4 py-2"
-                  onClick={() => handleAddtoFav(p.id)}
+                  <button
+                    className="btn btn-outline-dark px-4 py-2"
+                    onClick={() => handleAddtoFav(p.id)}
                   >
-                  <AiFillHeart/>
-                </button>
-                  </div>
+                    <AiFillHeart />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
-      </div>
+        </div>
+      </>
+      <Pagination totalPages={totalPages} page={page} setPage={setPage} />
     </>
-    <Pagination totalPages={totalPages} page={page} setPage={setPage} />
-    </>
-    // : 
+    // :
     // <div>
     //   <h3>need to login, click here </h3> <LoginButton />
     //   <hr />
