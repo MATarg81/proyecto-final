@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiFillHeart } from 'react-icons/ai';
@@ -9,6 +9,7 @@ import { useLocalStorage} from "../localStorage/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 
 function Favorites() {
+  const dispatch = useDispatch();
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -24,14 +25,9 @@ function Favorites() {
         setCart(cart);
       };
 
-      const handleDeleteFav = (id) => {
-        dispatch(deleteFav(id))
-        alert('Producto eliminado de favoritos')
-      }
-
-    return (
-        <div>
-                  <div
+  return (
+    <div>
+      <div
         className="grid"
         style={{
           display: "grid",
@@ -89,14 +85,14 @@ function Favorites() {
                   className="btn btn-outline-dark px-4 py-2"
                   onClick={() => handleDeleteFav(p.id)}
                 >
-                  <AiFillHeart/>
+                  <AiFillHeart />
                 </button>
               </div>
             </div>
           ))}
       </div>
-        </div>
-    );
+    </div>
+  );
 }
 
 export default Favorites;

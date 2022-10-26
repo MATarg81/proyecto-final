@@ -8,14 +8,12 @@ import Skeleton from "react-loading-skeleton";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 
 function Product(props) {
-
-  console.log("estoy en el componente Product")
+  console.log("estoy en el componente Product");
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setloading] = useState(false);
   const cart = useSelector((state) => state.cartReducer.items);
   const [, setCart] = useLocalStorage('cart', cart)
-  console.log(product)
 
   const dispatch = useDispatch();
 
