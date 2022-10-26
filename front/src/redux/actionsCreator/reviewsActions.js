@@ -7,7 +7,7 @@ import {
 export function getReviews(){
     return async function(dispatch){
         try {
-          const url = await axios.get('http://localhost:3001/reviews');
+          const url = await axios.get('/reviews');
           return dispatch({
             type: GET_REVIEWS,
             payload: url.data
@@ -22,7 +22,7 @@ export function getReviews(){
 export function postReview(payload){
   return async function(dispatch){
     try{
-      const response = await axios.post('http://localhost:3001/reviews', payload)
+      const response = await axios.post('/reviews', payload)
       return dispatch({
         type: POST_REVIEW,
         payload: response,

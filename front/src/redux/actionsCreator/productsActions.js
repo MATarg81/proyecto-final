@@ -13,12 +13,12 @@ import {
   FILTER_BY_PRICE
 } from "../actionsTypes/actionsTypesProducts";
 
-const BACK_URL = "http://localhost:3001";
+// const BACK_URL = "http://localhost:3001";
 
 export function getProducts() {
   return async function (dispatch) {
     try {
-      const url = await axios.get(BACK_URL + "/products");
+      const url = await axios.get("/products");
       // console.log(url.data)
 
       return dispatch({
@@ -35,7 +35,7 @@ export function getProducts() {
 export function searchProducts(search) {
   return function (dispatch) {
     axios
-      .get(`${BACK_URL}/products?name=${search}`)
+      .get(`/products?name=${search}`)
       .then((products) => {
         dispatch({
           type: GET_PRODUCTS_BY_NAME,
@@ -51,7 +51,7 @@ export function searchProducts(search) {
 export function getDetail(id) {
   return async function (dispatch) {
     try {
-      const url = await axios.get(BACK_URL + "/products/" + id);
+      const url = await axios.get("/products/" + id);
       return dispatch({
         type: GET_DETAIL,
         payload: url.data,
@@ -66,7 +66,7 @@ export function getDetail(id) {
 export function getCategories() {
   return async function (dispatch) {
     return await axios
-      .get(BACK_URL + "/categories")
+      .get("/categories")
       .then((res) => {
         dispatch({
           type: GET_CATEGORIES,
@@ -82,7 +82,7 @@ export function getCategories() {
 export function createProduct(body) {
   return async function (dispatch) {
     try {
-      const res = await axios.post(BACK_URL + "/products", body);
+      const res = await axios.post("/products", body);
       return dispatch({
         type: POST_PRODUCT,
         payload: res,
