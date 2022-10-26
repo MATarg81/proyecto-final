@@ -1,8 +1,5 @@
 const { Router } = require("express");
 
-const {Product} = require ('../db');
-// const { Op, Association } = require("sequelize");
-
 const { getProducts, getProductsId, deleteProduct, putProduct, postProducts } = require("./controllers/products");
 
 
