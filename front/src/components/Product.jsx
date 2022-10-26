@@ -14,8 +14,6 @@ function Product(props) {
   const [loading, setloading] = useState(false);
   const cart = useSelector((state) => state.cartReducer.items);
   const [, setCart] = useLocalStorage('cart', cart)
-  console.log(product)
-
 
   const dispatch = useDispatch();
 

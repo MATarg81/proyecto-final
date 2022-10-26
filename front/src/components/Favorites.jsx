@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 function Favorites() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
-
   const favoritos = useSelector( state => state.favReducer.favs)
   const cart = useSelector(state => state.cartReducer.items)
   
@@ -28,7 +26,6 @@ function Favorites() {
     alert("Producto eliminado de favoritos");
   };
 
-
   return (
     <div>
       <div
@@ -40,7 +37,9 @@ function Favorites() {
           margin: "2rem",
         }}
       >
+
         {favoritos?.map((p) => (          
+
             <div key={p.id} className="col card border-info mb-3" style={{
               border: "none",
               boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)"

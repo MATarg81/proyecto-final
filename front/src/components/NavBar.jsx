@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -5,19 +6,19 @@ import AuthenticationButton from "./Login/authentication-button";
 import Profile from "./Login/Views/Profile";
 
 function NavBar() {
-  const state = useSelector((state) => state.cartReducer.items);
+  const state = useSelector((state) => state.cartReducer);
 
   return (
     <div>
-      <nav 
-      className="navbar navbar-expand-md bg-light py-1 mr-0 " 
-      style={{
-        margin:"0px",
-        background: 
-          "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"
+      <nav
+        className="navbar navbar-expand-md bg-light py-1 mr-0 "
+        style={{
+          margin: "0px",
+          background:
+            "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)",
         }}
       >
-        <div className= "container p-0 ">
+        <div className="container p-0 ">
           <Link to="/">
             <img
               src="/img/athenas_logo-removebg-preview.png"
@@ -36,43 +37,43 @@ function NavBar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div 
-            className="collapse navbar-collapse " 
+          <div
+            className="collapse navbar-collapse "
             id="navbarSupportedContent"
           >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
-                <Link 
-                  className="nav-link active" 
-                  aria-current="page" 
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
                   to="/home"
                 >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link class="nav-link" to="/tienda">
+                <Link className="nav-link" to="/tienda">
                   Tienda
                 </Link>
               </li>
 
-              <li class="nav-item">
-                <Link class="nav-link" to="/actividades">
+              <li className="nav-item">
+                <Link className="nav-link" to="/actividades">
                   Actividades
                 </Link>
               </li>
 
-          {/* <li class="nav-item">
-            <Link class="nav-link" to="/crearProducto">
+              {/* <li className="nav-item">
+            <Link className="nav-link" to="/crearProducto">
               Crear Producto
             </Link>
           </li> */}
 
-            <li className="nav-item">
-              <Link className="nav-link" to="/nosotros">
-                Nosotros
-              </Link>
-            </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/nosotros">
+                  Nosotros
+                </Link>
+              </li>
 
               {/* <li className="nav-item">
             <Link className="nav-link" to="/favorites">
@@ -94,7 +95,7 @@ function NavBar() {
               <Profile />
               <Link to="/carrito" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i>Carrito (
-                {state.items.length})
+                {state.items?.length})
               </Link>
             </div>
           </div>
@@ -103,6 +104,5 @@ function NavBar() {
     </div>
   );
 }
-
 
 export default NavBar;
