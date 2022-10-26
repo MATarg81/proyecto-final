@@ -9,66 +9,67 @@ import {
 } from "../redux/actions/activitiesActions";
 import Reviews from "./Reviews";
 
-
 export default function Activities() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch]);
 
-
   const allActivities = useSelector(
     (state) => state.activitiesReducer.activities
   );
 
-
   function handleDeleteActivity(id) {
     if (window.confirm(`Are you sure you want to delete the activity?`)) {
-
       dispatch(deleteActivity(id));
     }
   }
 
   return (
     <div>
-      <div class="container p-3">
-        <div class="row">
-          <div class="col">
-            <h3 class="">Actividades del Club</h3>
-            <p class="mb-0 ">En esta seccion usted podra informarse de todas las actividades que el club tiene disponible tanto de los días y horarios como del lugar donde se realizan. </p>
+      <div className="container p-3">
+        <div className="row">
+          <div className="col">
+            <h3 className="">Actividades del Club</h3>
+            <p className="mb-0 ">
+              En esta seccion usted podra informarse de todas las actividades
+              que el club tiene disponible tanto de los días y horarios como del
+              lugar donde se realizan.{" "}
+            </p>
           </div>
-          <div class="col">
-            <img src="/img/natacion.jpg" alt="campeones2" style={{ width: "280px" }} />
+          <div className="col">
+            <img
+              src="/img/natacion.jpg"
+              alt="campeones2"
+              style={{ width: "280px" }}
+            />
           </div>
 
-          <div class="col">
-          <img src="/img/inf_camp.jpg" alt="campeones" style={{ width: "300px" }} />
+          <div className="col">
+            <img
+              src="/img/inf_camp.jpg"
+              alt="campeones"
+              style={{ width: "300px" }}
+            />
           </div>
         </div>
 
-
-
-
-
         <div></div>
 
         <div></div>
-
-
-
-
-
       </div>
 
-      <div class="d-flex flex-column px-4" /* style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}} */>
+      <div
+        className="d-flex flex-column px-4" /* style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}} */
+      >
         <Link to="/crearActividades">
           {" "}
-          <button type="button" className="btn btn-outline-dark ms-2" >Crear Actividad</button>{" "}
+          <button type="button" className="btn btn-outline-dark ms-2">
+            Crear Actividad
+          </button>{" "}
         </Link>
       </div>
-
 
       <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
         {allActivities ? (
@@ -78,9 +79,9 @@ export default function Activities() {
                 <div
                   className="card h-100 m-2"
                   style={{
-                    border: '1px solid black'
-                  }}>
-
+                    border: "1px solid black",
+                  }}
+                >
                   <img
                     src={a.img}
                     style={{ height: "250px", width: "100%" }}
@@ -88,7 +89,13 @@ export default function Activities() {
                     alt="..."
                   />
 
-                  <div className="card-body" style={{ backgroundColor: 'rgba(160, 160, 160, 0.788)', padding: "0px" }}>
+                  <div
+                    className="card-body"
+                    style={{
+                      backgroundColor: "rgba(160, 160, 160, 0.788)",
+                      padding: "0px",
+                    }}
+                  >
                     <h5 className="card-title">{a.name}</h5>
                     <p className="card-text">{a.detail}</p>
                     <p className="card-text">
@@ -97,7 +104,9 @@ export default function Activities() {
                     <p className="card-text">
                       <small className="text-muted">Horario: {a.times}</small>
                     </p>
-                    <button type="button" className="btn btn-secondary">Inscribirse</button>
+                    <button type="button" className="btn btn-secondary">
+                      Inscribirse
+                    </button>
                     <button
                       type="button"
                       className="btn btn-dark"
@@ -107,7 +116,8 @@ export default function Activities() {
                         right: "4px",
                       }}
                       onClick={() => handleDeleteActivity(a.id)}
-                    >Delete X
+                    >
+                      Delete X
                     </button>
                   </div>
                 </div>
@@ -119,7 +129,6 @@ export default function Activities() {
         )}
       </div>
       <Reviews />
-
     </div>
   );
 }
