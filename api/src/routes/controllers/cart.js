@@ -17,10 +17,9 @@ const postCart = async (req, res) => {
 
         products: itemsMap,
         total: parseInt(price),
-        userId: 1,
     });
   
-
+      newCart.setUser(1);
   
       return res.send(newCart);
     } catch (err) {
