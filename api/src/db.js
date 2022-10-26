@@ -71,8 +71,8 @@ User.belongsToMany(Activity, {through: 'Activity_User'});
 User.belongsTo(Role);
 Role.belongsToMany(User, {through: 'User_Role'});
 
-User.belongsTo(Cart);
-Cart.belongsToMany(User, {through: 'Cart_User'});
+Cart.belongsTo(User, { as: 'User', foreignKey : 'userId'});
+User.hasMany(Cart, { as: 'User', foreignKey : 'userId'});
 
 // Review.belongsTo(User);
 // User.belongsToMany(Review, {through: 'Review_User'});
