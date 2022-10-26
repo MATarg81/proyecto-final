@@ -1,28 +1,26 @@
 require("dotenv").config();
-const { Cart, User } = require("../../db");
+const { Cart } = require("../../db");
 
 const postCart = async (req, res) => {
     console.log("entré a postCart")
     try {
-        console.log(req.body)
       const { items, price } = req.body;
-      console.log(items, price)
+
       const itemsMap = items.map((p) => (JSON.stringify({
         id: p.id,
         name: p.name,
         price: p.price,
         qty: p.qty
       })))
-  
-      //const categoriesLowerCase = categories?.map((c) => c.toLowerCase());
-  
+      console.log(itemsMap)
       const newCart = await Cart.create({
 
         products: itemsMap,
         total: parseInt(price),
+        userId: 1,
     });
   
-      newCart.addUser(1);
+
   
       return res.send(newCart);
     } catch (err) {
