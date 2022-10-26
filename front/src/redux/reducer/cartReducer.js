@@ -1,7 +1,9 @@
 import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART } from "../actionsTypes/actionsTypesCart";
 
 const inicialState = {
-  items:JSON.parse(localStorage.cart),
+  items:localStorage.cart 
+    ? JSON.parse(localStorage.cart)
+    : [],
   price: 0,
 };
 
