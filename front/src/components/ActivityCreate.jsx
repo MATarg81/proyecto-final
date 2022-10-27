@@ -227,7 +227,7 @@ export default function ActivityCreate() {
             </div>
             <br />
             <button type="submit" className="btn btn-primary">
-              Crear
+               Crear
             </button>
             <br />
           </div>
