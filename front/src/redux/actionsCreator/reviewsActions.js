@@ -8,6 +8,7 @@ export function getReviews(){
     return async function(dispatch){
         try {
           const url = await axios.get('/reviews');
+          
           return dispatch({
             type: GET_REVIEWS,
             payload: url.data
