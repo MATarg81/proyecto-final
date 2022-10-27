@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import generica from '../imagesTeam/Santi.png'
@@ -17,8 +17,6 @@ export default function Perfil() {
                     <div class="">
                         <div class="">
                             <img src={generica} alt="generica" />
-                           
-
                         </div>
                         <div class="">
                             <div>
@@ -33,22 +31,18 @@ export default function Perfil() {
                                 <h3> Email: </h3>
                                 <h2>{usersState?.email}</h2>
                             </div>
-
                             <div>
-                                
+                                <h3> Tipo de usuario: </h3>
+                                {/* <h2>{usersState?.}</h2> */}
                             </div>
-
                             <div>
                                 <h3> Télefono: </h3>
-                                <h2>{usersState?.phone}</h2>
+                                <h2>{usersState?.phoneNumber}</h2>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     );
 }
