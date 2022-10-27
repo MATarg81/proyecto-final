@@ -32,11 +32,11 @@ export default function ActivityCreate() {
     return errors;
   }
   const handleImg = async (e) => {
-    const s = await upImage(e.target.files[0]);
+    const upLoeadedImg = await upImage(e.target.files[0]);
 
     setInput({
       ...input,
-      img: s.url,
+      img: upLoeadedImg.url,
     });
 
     setErrors(
@@ -216,7 +216,7 @@ export default function ActivityCreate() {
               </label>
               <input
                 style={{ width: "600px" }}
-                type="iamge"
+                type="file"
                 className="form-control"
                 id="img"
                 placeholder="Image..."
@@ -227,7 +227,7 @@ export default function ActivityCreate() {
             </div>
             <br />
             <button type="submit" className="btn btn-primary">
-              Crear
+               Crear
             </button>
             <br />
           </div>
