@@ -19,10 +19,7 @@ module.exports = (sequelize) => {
       content: {
         type: DataTypes.TEXT,
         allowNull: false,
-      },
-      activity: {
-        type: DataTypes.STRING,
-        allowNull: false,
+
       },
     },
     {
