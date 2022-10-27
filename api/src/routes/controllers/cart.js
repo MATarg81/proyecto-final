@@ -6,13 +6,13 @@ const postCart = async (req, res) => {
     try {
       const { items, price } = req.body;
 
-      const itemsMap = items.map((p) => (JSON.stringify({
+      const itemsMap = items.map((p) => ({
         id: p.id,
         name: p.name,
         price: p.price,
         qty: p.qty
-      })))
-      console.log(itemsMap)
+      }))
+
       const newCart = await Cart.create({
 
         products: itemsMap,
