@@ -25,12 +25,11 @@ const CreateProduct = function () {
     category: "",
   });
   const handleImg = async (e) => {
-    const s = await upImage(e.target.files[0]);
-    console.log(s, "soy s")
-
+    const upLoeadedImg = await upImage(e.target.files[0]);
+  
     setInput({
       ...input,
-      image: s.url,
+      image: upLoeadedImg.url,
     });
 
     setError(
