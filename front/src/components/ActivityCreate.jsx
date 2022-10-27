@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postActivity } from "../redux/actions/activitiesActions";
-
+import upImage from "./CreateProduct/cloudinary";
 export default function ActivityCreate() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,6 +31,21 @@ export default function ActivityCreate() {
     if (!input.img) errors.img = "Please add an image about the activity";
     return errors;
   }
+  const handleImg = async (e) => {
+    const s = await upImage(e.target.files[0]);
+
+    setInput({
+      ...input,
+      img: s.url,
+    });
+
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+  };
 
   const handleChange = (e) => {
     setInput((prevInput) => {
@@ -205,9 +220,8 @@ export default function ActivityCreate() {
                 className="form-control"
                 id="img"
                 placeholder="Image..."
-                value={input.img}
                 name="img"
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => handleImg(e)}
               />
               {errors.img && <p>{errors.img}</p>}
             </div>

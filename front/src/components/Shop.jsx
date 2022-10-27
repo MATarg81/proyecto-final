@@ -252,9 +252,12 @@ function Shop() {
               >
                 Borrar filtros
               </button>
+              <button
+              className="btn btn-outline-dark ms-2">
               <Link className="nav-link" to="/crearProducto">
                 Crear Producto
               </Link>
+              </button>
             </div>
           </nav>
           <div></div>
