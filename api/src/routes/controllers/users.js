@@ -107,8 +107,9 @@ async function deleteUser(req, res) {
 }
 
 async function updateUser(req, res) {
-  const { id } = req.params;
+  const id = req.params.id;
   const body = req.body;
+  console.log(id)
 
   try {
     await User.update(
@@ -125,10 +126,10 @@ async function updateUser(req, res) {
       },
       {
         where: {
-          id: Number(idP),
+          id: Number(id),
         },
       }
-    );
+    ).setRole(body.roleId)
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
     res.status(400).send(error.JSON);

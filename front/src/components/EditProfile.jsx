@@ -68,7 +68,7 @@ export default function EditProfile() {
                     <input
                         name="phone"
                         onChange={(e) => handleOnChange(e.target.name, e.target?.value)}
-                        value={usersState?.phone}
+                        value={usersState?.phoneNumber}
                         type="text"
                     />
                     <label>Direccion</label>
