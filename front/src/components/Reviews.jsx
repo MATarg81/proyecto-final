@@ -44,14 +44,13 @@ export default function Reviews() {
                     }}
                   >
                     <h5 className="card-title">{a.score}</h5>
+
+                    
                     <p className="card-text">{a.content}</p>
                     <p className="card-text">
                       <small className="text-muted">
-                        Actividad: {a.activity}
+                        Actividad: {a.activityId}
                       </small>
-                    </p>
-                    <p className="card-text">
-                      <small className="text-muted">Nombre: {a.name}</small>
                     </p>
                   </div>
                 </div>

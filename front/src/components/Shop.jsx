@@ -44,8 +44,8 @@ function Shop() {
     byCategories.length > 0
       ? Math.ceil(byCategories?.length / productsPerPage)
       : price.length > 0
-      ? Math.ceil(price?.length / productsPerPage)
-      : Math.ceil(products?.length / productsPerPage);
+        ? Math.ceil(price?.length / productsPerPage)
+        : Math.ceil(products?.length / productsPerPage);
 
   const [, setOrder] = useState();
   const [input, setInput] = useState({
@@ -60,8 +60,8 @@ function Shop() {
     byCategories.length > 0
       ? byCategories?.slice(first, last)
       : price.length > 0
-      ? price?.slice(first, last)
-      : products?.slice(first, last);
+        ? price?.slice(first, last)
+        : products?.slice(first, last);
 
   // --------------- Data call -------------
 
@@ -244,10 +244,10 @@ function Shop() {
               <button
                 onClick={cleanFilters}
                 className="btn btn-outline-dark ms-2"
-                // style={{
-                //   backgroundColor: "#FFFCF9",
-                //   color: "#352D39",
-                // }}
+              // style={{
+              //   backgroundColor: "#FFFCF9",
+              //   color: "#352D39",
+              // }}
               >
                 Borrar filtros
               </button>

@@ -4,6 +4,7 @@ const {
   getUsersById,
   deleteUser,
   addUser,
+  updateUser
 } = require("./controllers/users");
 //const { verifyAdmin, verifyInstructor } = require('./controllers/middlewaresRoles')
 
@@ -18,5 +19,6 @@ router.get("/", getUsers);
 router.get("/:id", getUsersById);
 router.post("/", addUser);
 router.delete("/:id", deleteUser);
+router.patch("/:id", updateUser)
 
 module.exports = router;

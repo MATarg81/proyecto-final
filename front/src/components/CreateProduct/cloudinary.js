@@ -16,7 +16,7 @@ export async function upImage(obj) {
       "https://api.cloudinary.com/v1_1/dzux3ynpe/image/upload",
       options
     );
-    const data = await res.json();
+     const data = await res.json();
     return data;
   } catch (error) {
     return new Error("Error al cargar la imagen");

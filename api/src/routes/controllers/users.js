@@ -10,19 +10,19 @@ async function getUsers(req, res) {
   try {
     if (!dbData) {
       jsonData.results.map(async u => {
-          const newUser = await User.create({
-            name: u.name,
-            lastname: u.lastname,
-            email: u.email,
-            dateOfBirth: u.dateOfBirth.toString(),
-            phoneNumber: u.phoneNumber,
-            address: u.address,
-            postalCode: u.postalCode.toString(),
-            password: u.password
-          });
-          
-          await newUser.setRole(5);
+        const newUser = await User.create({
+          name: u.name,
+          lastname: u.lastname,
+          email: u.email,
+          dateOfBirth: u.dateOfBirth.toString(),
+          phoneNumber: u.phoneNumber,
+          address: u.address,
+          postalCode: u.postalCode.toString(),
+          password: u.password
         });
+
+        await newUser.setRole(5);
+      });
       return res.status(200).send("Users succefully charged")
     } else if (name || lastname || email) {
       const userName = await User.findOne({
@@ -46,7 +46,8 @@ async function getUsers(req, res) {
         return res.status(404).send("User can't be found");
       }
     } else {
-      User.findAll({include: Role}).then((r) => res.status(200).send(r));
+      // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
+      User.findAll().then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
@@ -85,7 +86,7 @@ async function addUser(req, res) {
         postalCode: postalCode.toString(),
         password: password
       });
-      
+
       const addRole = await newUser.setRole(5);
       return res.status(200).send(newUser);
     } else {
@@ -107,9 +108,41 @@ async function deleteUser(req, res) {
   }
 }
 
+async function updateUser(req, res) {
+  const id = req.params.id;
+  const body = req.body;
+  console.log(id)
+
+  try {
+    await User.update(
+      {
+        name: body.name,
+        lastname: body.lastname,
+        dateOfBirth: body.dateOfBirth,
+        phoneNumber: body.phoneNumber,
+        email: body.email,
+        address: body.address,
+        postalCode: body.postalCode,
+        password: body.password
+
+      },
+      {
+        where: {
+          id: Number(id),
+        },
+      }
+    ).setRole(body.idRole);
+    res.status(200).send("Usuario actualizado con éxito");
+  } catch (error) {
+    res.status(400).send(error.JSON);
+  }
+}
+
 module.exports = {
   getUsers,
   getUsersById,
   deleteUser,
   addUser,
+  updateUser,
 };
+
