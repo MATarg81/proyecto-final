@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_USERS, GET_USERS_BY_ID, DELETE_USERS } from "../actionsTypes/actionsTypesUsers.js"
+import { GET_USERS, GET_USERS_BY_ID, DELETE_USERS, EDIT_USERS } from "../actionsTypes/actionsTypesUsers.js"
 
 // export const GET_USERS = "GET_USERS";
 // export const GET_USERS_BY_ID = "GET_USERS_BY_ID";
@@ -52,13 +52,22 @@ export const delete_users = (id) => {
   };
 };
 
-export function update_user(payload) {
-  return async (dispatch) => {
-    return axios.patch('/update_user', payload)
-      .then(res => console.log(res))
-  }
-
+export function update_user(body) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.patch(`/users/:${body.id}`, body)
+      return dispatch({
+        type: EDIT_USERS,
+        payload: res,
+      });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  };
 }
+
+
 
 
 
