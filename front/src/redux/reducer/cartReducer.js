@@ -1,6 +1,7 @@
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART } from "../actionsTypes/actionsTypesCart";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART } from "../actionsTypes/actionsTypesCart";
 
 const inicialState = {
+  purchesesMade:[],
   items:localStorage.cart 
   ? JSON.parse(localStorage.cart)
   : [],
@@ -87,6 +88,13 @@ const cartReducer = (state = inicialState, action) => {
       case POST_CART: {
         return {
           ...state,
+        };
+      }
+
+      case GET_CART: {
+        return {
+          ...state,
+          purchesesMade: action.payload,
         };
       }
 
