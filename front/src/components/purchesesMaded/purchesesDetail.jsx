@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function PurchesesMaded(){
+export default function PurchesesDetail(){
     return (
         <div>purchesesDetail</div>
     )
