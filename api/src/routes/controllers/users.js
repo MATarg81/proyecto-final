@@ -45,7 +45,8 @@ async function getUsers(req, res) {
         return res.status(404).send("User can't be found");
       }
     } else {
-      User.findAll({ include: Role }).then((r) => res.status(200).send(r));
+      // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
+      User.findAll().then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
@@ -107,8 +108,9 @@ async function deleteUser(req, res) {
 }
 
 async function updateUser(req, res) {
-  const { id } = req.params;
+  const id = req.params.id;
   const body = req.body;
+  console.log(id)
 
   try {
     await User.update(
@@ -125,10 +127,10 @@ async function updateUser(req, res) {
       },
       {
         where: {
-          id: Number(idP),
+          id: Number(id),
         },
       }
-    );
+    ).setRole(body.idRole);
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
     res.status(400).send(error.JSON);
