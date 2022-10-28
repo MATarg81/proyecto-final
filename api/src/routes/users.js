@@ -5,6 +5,7 @@ const {
   deleteUser,
   addUser,
 } = require("./controllers/users");
+//const { verifyAdmin, verifyInstructor } = require('./controllers/middlewaresRoles')
 
 //Trae todos los users desde la DB
 //Trae los users por nombre, apellido, email,
