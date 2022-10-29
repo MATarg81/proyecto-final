@@ -1,7 +1,7 @@
-import {
-  GET_REVIEWS,
-  POST_REVIEW
-} from "../actionsTypes/actionsTypesReviews";
+// import {
+//   GET_REVIEWS,
+//   POST_REVIEW
+// } from "../actionsTypes/actionsTypesReviews";
 
 export const initialState = {
   reviews: [],
@@ -9,19 +9,19 @@ export const initialState = {
 
 const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_REVIEWS: {
+    case 'GET_REVIEWS': {
       return {
         ...state,
         reviews: action.payload,
       }
     };
-    case POST_REVIEW: {
+    case 'POST_REVIEW': {
       return {
         ...state,
       }
     };
     default:
-      return { ...state };
+      return state;
   }
 };
 
