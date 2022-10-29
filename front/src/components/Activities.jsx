@@ -7,7 +7,7 @@ import {
   getActivities,
   deleteActivity,
 } from "../redux/actions/activitiesActions";
-import Reviews from "./Reviews";
+import ReviewsCreate from "./ReviewsCreate";
 
 export default function Activities() {
   const dispatch = useDispatch();
@@ -119,6 +119,16 @@ export default function Activities() {
                     >
                       Delete X
                     </button>
+                    <div
+                      className="d-flex flex-column px-4" /* style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}} */
+                    >
+                      <Link to="/crearCalificacion">
+                        {" "}
+                        <button type="button" className="btn btn-outline-dark ms-2">
+                          Deja tu reseña
+                        </button>{" "}
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -128,7 +138,6 @@ export default function Activities() {
           <div>Loading Activities....</div>
         )}
       </div>
-      <Reviews />
     </div>
   );
 }
