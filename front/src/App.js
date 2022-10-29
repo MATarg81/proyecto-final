@@ -11,7 +11,6 @@ import Cart from "./components/Cart";
 import Product from "./components/Product";
 import PurchesesMaded from "./components/purchesesMaded/purchesesMaded";
 import PurchesesDetail from "./components/purchesesMaded/purchesesDetail"
-
 import Activities from "./components/Activities";
 import CreateProduct  from "../src/components/CreateProduct/CreateProduct.jsx";
 import Landing from './components/Landing';
@@ -41,7 +40,7 @@ function App() {
         <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />
         <Route exact path="/favorites" element={<Favorites />} />
         <Route exact path="/comprasRealizadas" element={<PurchesesMaded />} />
-        <Route exact path="/detalleComprasRealizadas" element={<PurchesesDetail/>} />
+        <Route exact path="/detalleComprasRealizadas/:id" element={<PurchesesDetail/>} />
       </Routes>
       <Footer />
     </>
