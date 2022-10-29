@@ -111,6 +111,7 @@ async function updateUser(req, res) {
   const id = req.params.id;
   const body = req.body;
   console.log(id)
+  console.log(id)
 
   try {
     await User.update(
@@ -130,7 +131,7 @@ async function updateUser(req, res) {
           id: Number(id),
         },
       }
-    ).setRole(body.idRole);
+    ).setRole(body.idRole).setRole(body.roleId)
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
     res.status(400).send(error.JSON);
