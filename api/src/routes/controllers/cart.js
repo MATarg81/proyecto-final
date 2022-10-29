@@ -10,7 +10,6 @@ const postCart = async (req, res) => {
       const itemsMap = items.map(async (p) => {
        (JSON.stringify({
           id: p.id,
-
           name: p.name, //en MeLi Title
           detail: p.detail, // description
           image : p.image, // picture_url
@@ -26,20 +25,11 @@ const postCart = async (req, res) => {
       console.log(itemsMap)
       const newCart = await Cart.create({
 
-    const itemsMap = items.map(async (p) => {
-      JSON.stringify({
-        id: p.id,
-        name: p.name,
-        price: p.price,
-        qty: p.qty,
-      });
-
-
         products: itemsMap,
         total: parseInt(price),
     });
   
-      newCart.setUser(1);
+      newCart.setUser(1); //FALTA VER Cómo asignarle a un usuario el carrito cuando esté logueado
   
       return res.send(newCart);
     } catch (err) {
@@ -47,20 +37,4 @@ const postCart = async (req, res) => {
     }
   }; 
 
-  const getCart = async (req, res) =>{
-    try {
-      const {id} = req.params
-      const purhcesesMaded = await Cart.findAll({
-        where:{
-          userId:id
-        }
-  
-      })
-      return res.status(200).json(purhcesesMaded)
-    } catch (error) {
-      return res.status(400).json(error)
-    }
-
-  }
-
-module.exports= {postCart, getCart};
+module.exports= {postCart};
