@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react'
 import { get_users, get_users_by_id } from '../redux/actionsCreator/usersActions'
 
-
-
 export default function EditProfile() {
     const usersState = useSelector((state) => state.usersReducer.usersById);
     //const [image, setImage] = React.useState(); //para cargar la imagen nueva (aunque deberiamos agregar imagen en la db)
