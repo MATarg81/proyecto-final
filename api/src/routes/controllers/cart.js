@@ -25,16 +25,6 @@ const postCart = async (req, res) => {
       )
       console.log(itemsMap)
       const newCart = await Cart.create({
-
-    const itemsMap = items.map(async (p) => {
-      JSON.stringify({
-        id: p.id,
-        name: p.name,
-        price: p.price,
-        qty: p.qty,
-      });
-
-
         products: itemsMap,
         total: parseInt(price),
     });
