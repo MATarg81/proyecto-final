@@ -18,6 +18,7 @@ import ActivityCreate from "./components/ActivityCreate";
 import Reviews from "./components/Reviews";
 import ReviewsCreate from "./components/ReviewsCreate";
 import Favorites from "./components/Favorites";
+import EditProfile from "./components/EditProfile";
 function App() {
   return (
     <>
@@ -38,6 +39,7 @@ function App() {
         <Route exact path="/reviews" element={<Reviews />} />
         <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />
         <Route exact path="/favorites" element={<Favorites />} />
+        <Route exact path="edituser" element={<EditProfile />} />
       </Routes>
       <Footer />
     </>
