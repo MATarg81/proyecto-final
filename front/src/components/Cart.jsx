@@ -19,7 +19,7 @@ const Cart = () => {
   };
   const handleDeleteAll = () => {
     dispatch(delAll());
-    setCart(state.items)
+    setCart([])
   }
 
   const handleCartDB = () => {
@@ -89,7 +89,7 @@ const Cart = () => {
               className="btn btn-outline-dark mb-5 w-25 mx-auto"
               onClick={handleDeleteAll}
             >
-              Eliminar Carrito
+              Vaciar Carrito
             </button>
             <Link
               onClick={handleCartDB}

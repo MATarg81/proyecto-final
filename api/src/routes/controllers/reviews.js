@@ -20,13 +20,26 @@ const allReviews = async() => {
           return results;
         } else {
           
-            const dbReviews = await Review.findAll({include:[{model: Activity, attributes: ['name'], include:[{model:User, attributes: ['name', 'lastname']}]}]})
+            const dbReviews = await Review.findAll({include:[{model: Activity, attributes: ['name'], include:[{model: User, attributes: ['name']}]}]})
             return dbReviews;
         }        
     } catch (error) {
         console.log('Problemas en la función dbReviews()' + error);
     };
 }
+
+const reviewsId = async(id) => {
+  try {
+      const totalReviews = await allReviews();
+      const reviewsId = totalReviews.find((r) => r.activityId.toString() === id);
+          
+          return reviewsId;
+  }
+  catch(err) {
+      console.log('Problemas en /:id' + err);
+  }
+};
+
 
 async function getReviews(req, res) {
 
@@ -43,12 +56,29 @@ try{
   }
 };
 
+
+async function getReviewsId (req, res) {
+  try {
+      const id = req.params.id;
+
+      
+      const result = await reviewsId(id);
+      if (result) {
+          return res.status(200).send(result);
+      } else {
+          res.status(404).send('Id no existente')
+      };
+  }
+  catch(err) {
+      res.status(404).send('Problemas en el controlador de la ruta GET/reviews/:id');
+  }
+};
+
 async function addReviews(req, res) {
   const { 
     score, 
     content, 
-    activity,
-    name,
+    activity
   } = req.body;
   const findActivity = Activity.findOne({ where: { name: activity}});
 
@@ -58,12 +88,8 @@ async function addReviews(req, res) {
         content: content,
 
       });
-      let reviewsSave = [];
-      //newReview.setUser(name);
+      
       newReview.setActivity(findActivity.id);
-
-      reviewsSave.push(newReview);
-      await newReview.save();
 
       console.log(newReview)
 
@@ -80,5 +106,6 @@ async function addReviews(req, res) {
 
 module.exports = {
   getReviews,
-  addReviews
+  addReviews,
+  getReviewsId
 };
