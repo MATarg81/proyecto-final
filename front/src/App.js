@@ -9,8 +9,8 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Product from "./components/Product";
-import PurchesesMaded from "./components/purchesesMaded/purchesesMaded";
-import PurchesesDetail from "./components/purchesesMaded/purchesesDetail"
+import PurchesesMaded from "./components/purchesesMaded/PurchesesMaded";
+import PurchesesDetail from "./components/purchesesMaded/PurchesesDetail"
 
 import Activities from "./components/Activities";
 import CreateProduct  from "../src/components/CreateProduct/CreateProduct.jsx";
@@ -41,7 +41,7 @@ function App() {
         <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />
         <Route exact path="/favorites" element={<Favorites />} />
         <Route exact path="/comprasRealizadas" element={<PurchesesMaded />} />
-        <Route exact path="/detalleComprasRealizadas" element={<PurchesesDetail/>} />
+        <Route exact path="/detalleComprasRealizadas/:id" element={<PurchesesDetail/>} />
       </Routes>
       <Footer />
     </>

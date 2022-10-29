@@ -13,7 +13,7 @@ export const addCart = (product) => {
 export const getCart = (userId) => {
   return async function (dispatch) {
     try {
-      const {data} = await axios.get(`/cart/:${userId}` );
+      const {data} = await axios.get(`http://localhost:3001/cart/${userId}` );//hardcodeo provisorio de user
       return dispatch({
         type: GET_CART,
         payload: data,
