@@ -1,18 +1,19 @@
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART } from "../actionsTypes/actionsTypesCart";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART } from "../actionsTypes/actionsTypesCart";
 
 const inicialState = {
-  items:localStorage.cart 
-  ? JSON.parse(localStorage.cart)
-  : [],
-  price: 0,
+  purchesesMaded:[],
+  // items:localStorage.cart 
+  // ? JSON.parse(localStorage.cart)
+  // : [],
+  // price: 0,
   // items:JSON.parse(localStorage.cart),
 };
 
 const cartReducer = (state = inicialState, action) => {
-
   const product = action.payload;
   const price = parseFloat(product?.price)
   switch (action.type) {
+    
     case ADD_ITEM:
 
       // Ver si el producto existe
@@ -87,6 +88,14 @@ const cartReducer = (state = inicialState, action) => {
       case POST_CART: {
         return {
           ...state,
+        };
+      }
+
+      case GET_CART: {
+       
+        return {
+          ...state,
+          purchesesMaded: product,
         };
       }
 
