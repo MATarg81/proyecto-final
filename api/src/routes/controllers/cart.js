@@ -34,13 +34,18 @@ const postCart = async (req, res) => {
   }; 
 
   const getCart = async (req, res) =>{
-    const {id} = req.params
-    const purhcesesMaded = await Cart.findAll({
-      where:{
-        userId:id
-      }
-
-    })
+    try {
+      const {id} = req.params
+      const purhcesesMaded = await Cart.findAll({
+        where:{
+          userId:id
+        }
+  
+      })
+      return res.status(200).json(purhcesesMaded)
+    } catch (error) {
+      return res.status(400).json(error)
+    }
 
   }
 

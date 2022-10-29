@@ -1,12 +1,23 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import PurchesesDetail from './PurchesesDetail';
+import { getCart } from '../../redux/actionsCreator/cartActions';
+
+
 
 
 export default function PurchesesMaded(){
     const dispatch = useDispatch();
     const purchesesMaded = useSelector(state=> state.cartReducer.purchesesMaded)
+    // const { id } = useParams();
+
+    useEffect(()=>{
+        if(purchesesMaded.length === 0){
+        dispatch(getCart(1))//hardcodeo
+        // dispatch(getCart(id))
+    }
+    }, [dispatch, purchesesMaded])
 
     return (
         <div>
