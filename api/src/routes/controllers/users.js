@@ -45,7 +45,8 @@ async function getUsers(req, res) {
         return res.status(404).send("User can't be found");
       }
     } else {
-      User.findAll({ include: Role }).then((r) => res.status(200).send(r));
+      // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
+      User.findAll().then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
@@ -129,7 +130,9 @@ async function updateUser(req, res) {
           id: Number(id),
         },
       }
-    ).setRole(body.roleId)
+
+    ).setRole(body.idRole);
+
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
     res.status(400).send(error.JSON);

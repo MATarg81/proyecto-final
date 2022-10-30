@@ -9,9 +9,9 @@ const validate = (input) => {
         error.price = "Price must be bigger than 0 and less than 100.000"
     }
    
-    // if(input.image.length > 0 && !/^.*\.(jpe?g|JPE?G|png|PNG|bmp|BMP|gif|GIF)$/.test(input.image)) {
-    //     error.image = "The file must be .jpg, .jpeg, .png, .bmp or .gif"
-    // }
+    if(input.image.length > 0 && !/^.*\.(jpe?g|JPE?G|png|PNG|bmp|BMP|gif|GIF)$/.test(input.image)) {
+        error.image = "The file must be .jpg, .jpeg, .png, .bmp or .gif"
+    }
     if(input.detail.length < 5) {
       error.detail = "Detail must have at least 10 characters description."
   } 

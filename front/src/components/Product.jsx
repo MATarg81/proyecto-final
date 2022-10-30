@@ -71,12 +71,22 @@ function Product(props) {
           </p> */}
           <h3 className="display-6 fw-bold my-4">$ {product.price}</h3>
           <p className="lead">{product.detail}</p>
-          <button
-            className="btn btn-outline-dark px-4 py-2"
-            onClick={() => addProduct(product)}
-          >
-            Agregar al carrito
-          </button>
+          <p>
+            {
+              product.stock > 0 
+              ? `Stock disponible: ${product.stock}` 
+              : 'El producto no se encuentra disponible en este momento'
+            }
+          </p>
+          
+            <button
+              className="btn btn-outline-dark px-4 py-2"
+              onClick={() => addProduct(product)}
+              disabled={product.stock > 0 ? false : true}
+            >
+              Agregar al carrito
+            </button>
+          
           <Link to="/carrito" className="btn btn-dark ms-2 px-3 py-2">
             Ir al carrito
           </Link>

@@ -27,7 +27,6 @@ function Shop() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   // --------- Global states ---------------
   const products = useSelector((state) => state.productsReducer.showProducts);
   const category = useSelector((state) => state.productsReducer.categories);
@@ -36,7 +35,7 @@ function Shop() {
   const byCategories = useSelector(
     (state) => state.productsReducer.byCategories
   );
-  const [, setCart] = useLocalStorage('cart', cart)
+  const [, setCart] = useLocalStorage("cart", cart);
   //const favState = useSelector(state => state.FavReducer.favs)
   // --------------- Pagination --------------
   const productsPerPage = 12;
@@ -252,9 +251,11 @@ function Shop() {
               >
                 Borrar filtros
               </button>
-              <Link className="nav-link" to="/crearProducto">
-                Crear Producto
-              </Link>
+              <button className="btn btn-outline-dark ms-2">
+                <Link className="nav-link" to="/crearProducto">
+                  Crear Producto
+                </Link>
+              </button>
             </div>
           </nav>
           <div></div>

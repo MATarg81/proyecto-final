@@ -2,50 +2,59 @@
   "results": [
 
       {
-          "content": "Me gusta, el ambiente es muy familiar, tienen categorias para todas las edades.",          "score": 4,
-          "activity": "Futbol 11"
+          "content": "Me gusta, el ambiente es muy familiar, tienen categorias para todas las edades.",          
+          "score": 4,
+          "activity": "Futbol 11",
+          "user": 6
       },
 
       {
         "content": "No solo enseñan el deporte sino que también inculcan valores humanos y compañerismo a los peques.",
         "score": 5,
-        "activity": "Basquet"
+        "activity": "Basquet",
+        "user": 6
           
       },
 
       {
           "content": "Excelente club, exclusivo, con las mejores canchas de futbol de Baires",
           "score": 4,
-          "activity": "Futbol"
+          "activity": "Futbol",
+          "user": 7
       },
       {
           "content": "Tiene la mejor pileta olímpica de la ciudad.",
           "score": 4,
-          "activity": "Natacion"
+          "activity": "Natacion",
+          "user": 5
       },
 
       {
           "content": "Excelente el equipo profesores y preparadores fisicos.",
           "score": 5,
-          "activity": "Atletismo"
+          "activity": "Atletismo",
+          "user": 4
       },
 
       {
           "content": "Un desastre lo que están haciendo las autoridades con el Club.",
           "score": 1,
-          "activity": "Futbol"
+          "activity": "Futbol",
+          "user": 1
       },
 
       {
           "content": "El voley es bastante competitivo internamente y si no tenes aptitudes te dejan de lado.",
           "score": 2,
-          "activity": "Voley"
+          "activity": "Voley",
+          "user": 3
       },
 
       {
           "content": "Son muy amables y súper responsables. Mi hija hizo colonia de verano. Lo recomiendo",
           "score": 5,
-          "activity": "Natacion"
+          "activity": "Natacion",
+          "user": 2
       }
   ]
 }
