@@ -21,7 +21,7 @@ async function getUsers(req, res) {
           password: u.password
         });
 
-        await newUser.setRole(5);
+        await newUser.setRole(3);
       });
       return res.status(200).send("Users succefully charged")
     } else if (name || lastname || email) {
@@ -87,7 +87,7 @@ async function addUser(req, res) {
         password: password
       });
 
-      const addRole = await newUser.setRole(5);
+      const addRole = await newUser.setRole(3);
       return res.status(200).send(newUser);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);
@@ -99,6 +99,7 @@ async function addUser(req, res) {
 
 async function deleteUser(req, res) {
   const { id } = req.params;
+
   const findUser = await User.findOne({ where: { id: id } });
   if (findUser) {
     await findUser.destroy();

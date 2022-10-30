@@ -1,25 +1,13 @@
 {
     "results": [
         {
-            "name": "Presidente"
+            "name": "SuperAdmin"
         },
         {
-            "name": "Secretario"
-        },
-        {
-            "name": "Tesorero"
-        },
-        {
-            "name": "Entrenador/Profesor"
+            "name": "Admin"
         },
         {
             "name": "Socio"
-        },
-        {
-            "name": "Seguridad"
-        },
-        {
-            "name": "Administrativo"
         }
     ]
 }
