@@ -37,7 +37,7 @@ const cartReducer = (state = inicialState, action) => {
           price: newPrice,
         };
       }
-      break;
+      // break;
 
     case DELETE_ITEM:
       const exist1 = state.items.find((x) => x.id === product.id);
@@ -60,7 +60,7 @@ const cartReducer = (state = inicialState, action) => {
         }
       };
 
-      break;
+      // break;
 
       case DELETE_ALL: {
         return {
@@ -69,7 +69,7 @@ const cartReducer = (state = inicialState, action) => {
         }
       }
 
-      break;
+      // break;
 
       // case LOCAL_STORAGE_CART: {
 
@@ -101,7 +101,7 @@ const cartReducer = (state = inicialState, action) => {
 
     default:
       return state;
-      break;
+      // break;
   }
 };
 
