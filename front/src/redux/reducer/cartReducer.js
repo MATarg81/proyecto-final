@@ -2,10 +2,10 @@ import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART } from "../actio
 
 const inicialState = {
   purchesesMaded:[],
-  // items:localStorage.cart 
-  // ? JSON.parse(localStorage.cart)
-  // : [],
-  // price: 0,
+  items:localStorage.cart 
+  ? JSON.parse(localStorage.cart)
+  : [],
+  price: 0,
   // items:JSON.parse(localStorage.cart),
 };
 
