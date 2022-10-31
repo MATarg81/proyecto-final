@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART } from "../actionsTypes/actionsTypesCart";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART, TOTAL_PRICE } from "../actionsTypes/actionsTypesCart";
 
 // Agregar item al carro
 
@@ -13,7 +13,7 @@ export const addCart = (product) => {
 export const getCart = (userId) => {
   return async function (dispatch) {
     try {
-      const {data} = await axios.get(`http://localhost:3001/cart/${userId}` );//hardcodeo provisorio de user
+      const {data} = await axios.get(`/cart/${userId}` );//hardcodeo provisorio de user
       return dispatch({
         type: GET_CART,
         payload: data,
@@ -33,6 +33,13 @@ export const delCart = (product) => {
     payload: product,
   };
 };
+
+export function totalPrice(price) {
+  return{
+    type: TOTAL_PRICE,
+    payload: price
+  }
+}
 
 // Eliminar todo del carro 
 

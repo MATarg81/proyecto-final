@@ -1,5 +1,3 @@
-
-
 class PaymentController {
   constructor(subscriptionService) {
     this.subscriptionService = subscriptionService;

@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const PaymentController = require("./controllers/PaymentController");
-const PaymentService = require("./controllers/PaymentService");
+const PaymentController = require("./controllers/paymentController");
+const PaymentService = require("./controllers/paymentService");
 const PaymentInstance = new PaymentController(new PaymentService());
 
 /* GET home page. */
