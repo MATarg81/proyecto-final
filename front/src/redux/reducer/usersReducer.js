@@ -24,7 +24,7 @@ const usersReducer = (state = initialState, action) => {
       };
     }
 
-    case EDIT_USERS: {
+    case EDIT_USERS: 
       return {
         ...state,
         usersEdited: action.payload,
