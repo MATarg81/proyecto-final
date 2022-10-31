@@ -12,7 +12,7 @@ async function getRoles(req, res) {
         };
       });
       await Role.bulkCreate(rolesData);
-      return res.status(200).send("Roles succesfully charged");
+      return res.status(200).send(rolesData);
     } else {
       return Role.findAll().then((r) => res.status(200).send(r));
     }

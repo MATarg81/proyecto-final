@@ -10,7 +10,9 @@ import {
   NEXT_PAGE,
   PREV_PAGE,
   GET_PRODUCTS_BY_NAME,
-  FILTER_BY_PRICE
+  FILTER_BY_PRICE,
+  EDIT_PRODUCT,
+  POST_CATEGORY
 } from "../actionsTypes/actionsTypesProducts";
 
 // const BACK_URL = "http://localhost:3001";
@@ -26,8 +28,8 @@ export function getProducts() {
         payload: url.data,
       });
     } catch (err) {
-      console.log(err);
-      return err;
+      console.log(err.message);
+      return err.message;
     }
   };
 }
@@ -74,7 +76,7 @@ export function getCategories() {
         });
       })
       .catch((e) => {
-        console.log(e.response.data);
+        console.log(e.message);
       });
   };
 }
@@ -85,6 +87,36 @@ export function createProduct(body) {
       const res = await axios.post("/products", body);
       return dispatch({
         type: POST_PRODUCT,
+        payload: res,
+      });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  };
+}
+
+export function addCategories(body) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.post("/categories", body);
+      return dispatch({
+        type: POST_CATEGORY,
+        payload: res,
+      });
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  };
+}
+
+export function updateProduct(body) {
+  return async function (dispatch) {
+    try {
+      const res = await axios.patch(`/products/${body.id}`, body);
+      return dispatch({
+        type: EDIT_PRODUCT,
         payload: res,
       });
     } catch (err) {

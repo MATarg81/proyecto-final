@@ -8,7 +8,7 @@ async function getUsers(req, res) {
 
   try {
     if (!dbData) {
-      jsonData.results.map(async u => {
+      const allUsers = jsonData.results.map(async u => {
         const newUser = await User.create({
           name: u.name,
           lastname: u.lastname,
@@ -22,7 +22,7 @@ async function getUsers(req, res) {
 
         await newUser.setRole(5);
       });
-      return res.status(200).send("Users succefully charged")
+      return res.status(200).send(allUsers)
     } else if (name || lastname || email) {
       const userName = await User.findOne({
         where: { name: { [Op.iLike]: `%${name}%` } },

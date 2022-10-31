@@ -74,7 +74,7 @@ const getProducts = async (req, res) => {
 
   try {
     if (!dbData) {
-      jsonData.results.map(async (p) => {
+      const results = jsonData.results.map(async (p) => {
         const newP = await Product.create({
           name: p.name,
           price: p.price,
@@ -84,6 +84,7 @@ const getProducts = async (req, res) => {
         });
         await newP.addCategories(p.categories);
       });
+      res.status(200).send(results)
     } else if (dbData && qname) {
       const productsWithName = jsonData.results.filter((r) =>
         r.name.toLowerCase().includes(qname.toLowerCase())
@@ -92,7 +93,7 @@ const getProducts = async (req, res) => {
         ? res.status(200).send(productsWithName)
         : res.status(404).send("Producto no encontrada");
     } else {
-      Product.findAll({where: {stock: {[Op.gte]: 1}}, include: Category})
+      Product.findAll({where: {stock: {[Op.gte]: 1}}, include: {model: Category}})
       .then(r => {res.status(200).send(r)})
     }
   } catch (err) {

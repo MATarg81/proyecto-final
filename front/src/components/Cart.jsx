@@ -1,21 +1,31 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addCart, delCart, delAll, postCart } from "../redux/actionsCreator/cartActions";
+import { addCart, delCart, delAll, postCart, totalPrice } from "../redux/actionsCreator/cartActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
+import { useEffect } from "react";
+
 
 const Cart = () => {
-  const state = useSelector((state) => state.cartReducer);
+  const state = useSelector((state) => state.cartReducer.items);
+  const statePrice = useSelector((state) => state.cartReducer.price);
   const dispatch = useDispatch();
-  const [, setCart] = useLocalStorage('cart', state.items)
+  const [, setCart] = useLocalStorage('cart', state)
+
+  useEffect(() => {
+    if(state) {
+      setCart(state)
+      dispatch(totalPrice(state))
+    }
+  }, [state, setCart])
 
   const handleAdd = (item) => {
     dispatch(addCart(item));
-    setCart(state.items)
+    setCart(state)
   };
   const handleDel = (item) => {
     dispatch(delCart(item));
-    setCart(state.items)
+    setCart(state)
   };
   const handleDeleteAll = () => {
     dispatch(delAll());
@@ -27,6 +37,7 @@ const Cart = () => {
     setCart([]);
   }
 
+  
 
   const emptyCart = () => {
     return (
@@ -84,7 +95,7 @@ const Cart = () => {
       <>
         <div className="container">
           <div className="row">
-            <h3>TOTAL: ${state.price}</h3>
+            <h3>TOTAL: ${statePrice}</h3>
             <button
               className="btn btn-outline-dark mb-5 w-25 mx-auto"
               onClick={handleDeleteAll}
@@ -106,9 +117,9 @@ const Cart = () => {
 
   return (
     <div>
-      {state.items.length === 0 && emptyCart()}
-      {state.items.length !== 0 && state.items.map(cartItems)}
-      {state.items.length !== 0 && buttons()}
+      {state.length === 0 && emptyCart()}
+      {state.length !== 0 && state.map(cartItems)}
+      {state.length !== 0 && buttons()}
     </div>
   );
 };
