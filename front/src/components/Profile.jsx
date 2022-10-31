@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from 'react-router-dom'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import generica from "../imagesTeam/Santi.png";
@@ -14,9 +15,7 @@ export default function Perfil() {
   const usersState = useSelector((state) => state.usersReducer.usersById);
   const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
-  const [name, setName] = useState("");
   const dispatch = useDispatch();
-    console.log(name)
 
   useEffect(() => {
     if (allUsers?.length === 0) {
@@ -30,11 +29,6 @@ export default function Perfil() {
     }
   }, [dispatch, allUsers, roles, usersState]);
 
-  function handleClick(e) {
-    e.preventDefault();
-    setName(e.target.id)
-  }
-
   return (
     <div class="container-fluid">
       <div class="row flex-nowrap">
@@ -47,50 +41,56 @@ export default function Perfil() {
               <span class="fs-5 d-none d-sm-inline">Menu</span>
             </a>
 
-            <ul onClick={e => handleClick(e)}
+            <ul 
               
               class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
               id="menu"
             >
-              <li id="Perfil" >
+              
+              <li>
                 <label class="nav-link align-middle px-0">
                   <div class="ms-1 d-none d-sm-inline">Perfil</div>
                 </label>
               </li>
-
-              <li id="Actividades" >
+              
+              <li>
+              <Link to='/profile/actividades'>
                 <label class="nav-link align-middle px-0">
                   <div class="ms-1 d-none d-sm-inline">Actividades</div>
                 </label>
+              </Link>
               </li>
 
               <li id="Historial de compras" >
+              <Link to='/profile/historial'>
                 <label class="nav-link align-middle px-0">
                   <div class="ms-1 d-none d-sm-inline">
                     Historial de compras
                   </div>
                 </label>
+                </Link>
               </li>
 
               <li id="Usuarios">
+              <Link to='/profile/usuarios'>
                 <label class="nav-link align-middle px-0">
                   <div class="ms-1 d-none d-sm-inline">Usuarios</div>
                 </label>
+                </Link>
               </li>
 
               <li id="Productos">
+              <Link to='/profile/productos'>
                 <label class="nav-link align-middle px-0">
                   <div class="ms-1 d-none d-sm-inline">Productos</div>
                 </label>
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
         <div class="col py-3">
-          <>
-            {name && name === "Perfil" ? (
-              <>
                 <div>
                   <img src={generica} alt="generica" />
                 </div>
@@ -120,17 +120,6 @@ export default function Perfil() {
                   <h3> postalCode: </h3>
                   <h2>{usersState?.postalCode}</h2>
                 </div>
-              </>
-            ) : name && name === "Actividades" ? (
-              <>Acá van las actividades en las que está inscripto</>
-            ) : name && name === "Historial de compras" ? (
-              <>Acá va el historial de compras del user</>
-            ) : name && name === "Usuarios" ? (
-              <>Acá van todos los usuarios y la posibilidad de editarlos</>
-            ) : name && name === "Productos" ? (
-              <>Acá van todos los productos y la posibilidad de editarlos</>
-            ) : setName('Perfil')}
-          </>
         </div>
       </div>
     </div>
