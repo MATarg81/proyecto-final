@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART } from "../actionsTypes/actionsTypesCart";
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART, TOTAL_PRICE } from "../actionsTypes/actionsTypesCart";
 
 // Agregar item al carro
 
@@ -33,6 +33,13 @@ export const delCart = (product) => {
     payload: product,
   };
 };
+
+export function totalPrice(price) {
+  return{
+    type: TOTAL_PRICE,
+    payload: price
+  }
+}
 
 // Eliminar todo del carro 
 

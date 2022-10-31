@@ -1,8 +1,9 @@
-import { GET_USERS , GET_USERS_BY_ID } from "../actionsTypes/actionsTypesUsers"
+import { GET_USERS , GET_USERS_BY_ID, GET_ALL_ROLES } from "../actionsTypes/actionsTypesUsers"
 
 export const initialState = {
   users: [],
   usersById: [],
+  roles: []
 }
 
 
@@ -20,6 +21,13 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         usersById: action.payload,
       };
+    }
+
+    case GET_ALL_ROLES: {
+      return {
+        ...state,
+        roles: action.payload
+      }
     }
 
     default:

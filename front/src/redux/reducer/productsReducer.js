@@ -11,6 +11,8 @@ import {
   GET_PRODUCTS_BY_NAME,
   FILTER_BY_CATEGORIES,
   FILTER_BY_PRICE,
+  EDIT_PRODUCT,
+  POST_CATEGORY
 } from "../actionsTypes/actionsTypesProducts";
 
 const initialState = {
@@ -53,6 +55,17 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    }
+    case POST_CATEGORY: {
+      state.categories.push(action.payload)
+      return{
+        ...state
+      }
+    }
+    case EDIT_PRODUCT: {
+      return {
+        ...state,
+      }
     }
 
     case ORDER_BY_NAME: {

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom';
-import PurchesesDetail from './PurchesesDetail';
+//import PurchesesDetail from './PurchesesDetail';
 import { getCart } from '../../redux/actionsCreator/cartActions';
 
 

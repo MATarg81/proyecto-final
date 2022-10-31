@@ -28,6 +28,7 @@ export default function Searchbar({ setPage }) {
           type="search"
           placeholder="Búsqueda por nombre..."
           aria-label="Buscar"
+          value={search}
         />
         <button
           className="btn btn-outline-dark ms-2"
