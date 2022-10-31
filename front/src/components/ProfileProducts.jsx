@@ -10,7 +10,7 @@ import {
 import ProfileEditProduct from "./ProfileEditProduct";
 //import Pagination from "./Pagination";
 
-export default function ProfileProducts({input}) {
+export default function ProfileProducts() {
   const products = useSelector((state) => state.productsReducer.showProducts);
   const categories = useSelector((state) => state.productsReducer.categories);
   const byCategories = useSelector(
@@ -50,7 +50,6 @@ export default function ProfileProducts({input}) {
     e.preventDefault();
     dispatch(filterByCategories(e.target.value));
   };
-
 
   return (
     <>
@@ -129,40 +128,40 @@ export default function ProfileProducts({input}) {
                     </td>
                     <td className="col-1">{p.stock}</td>
                     <td className="col-2">
-                        <button
-                          type="button"
-                          class="btn btn-primary"
-                          data-bs-toggle="modal"
-                          data-bs-target="#editProduct"
-                        >
-                          Editar
-                        </button>
-                        <div
-                          class="modal fade"
-                          id="editProduct"
-                          tabindex="-1"
-                          aria-labelledby="editProductLabel"
-                          aria-hidden="true"
-                        >
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="editProductLabel">
-                                  Editar producto
-                                </h5>
-                                <button
-                                  type="button"
-                                  class="btn-close"
-                                  data-bs-dismiss="modal"
-                                  aria-label="Close"
-                                ></button>
-                              </div>
-                              <div class="modal-body">
-                                  <ProfileEditProduct data={p}/>
-                              </div>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editProduct"
+                      >
+                        Editar
+                      </button>
+                      <div
+                        class="modal fade"
+                        id="editProduct"
+                        tabindex="-1"
+                        aria-labelledby="editProductLabel"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="editProductLabel">
+                                Editar producto
+                              </h5>
+                              <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
                             </div>
+                              <div class="modal-body">
+                                <ProfileEditProduct />
+                              </div>
                           </div>
                         </div>
+                      </div>
                     </td>
                   </tr>
                 </>
