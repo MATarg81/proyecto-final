@@ -1,8 +1,9 @@
-import { GET_USERS , GET_USERS_BY_ID, GET_ALL_ROLES } from "../actionsTypes/actionsTypesUsers"
+import { GET_USERS , GET_USERS_BY_ID, EDIT_USERS, GET_ALL_ROLES } from "../actionsTypes/actionsTypesUsers"
 
 export const initialState = {
   users: [],
   usersById: [],
+  usersEdited: [], 
   roles: []
 }
 
@@ -23,6 +24,11 @@ const usersReducer = (state = initialState, action) => {
       };
     }
 
+    case EDIT_USERS: {
+      return {
+        ...state,
+        usersEdited: action.payload,
+        }
     case GET_ALL_ROLES: {
       return {
         ...state,
