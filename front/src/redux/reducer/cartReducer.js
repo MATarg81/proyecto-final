@@ -6,7 +6,6 @@ const inicialState = {
   ? JSON.parse(localStorage.cart)
   : [],
   price: 0,
-  // items:JSON.parse(localStorage.cart),
 };
 
 const cartReducer = (state = inicialState, action) => {
