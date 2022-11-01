@@ -6,6 +6,7 @@ const {
   addUser,
   updateUser
 } = require("./controllers/users");
+const { verifyAdmin } = require('./controllers/middlewaresRoles')
 
 //Trae todos los users desde la DB
 //Trae los users por nombre, apellido, email,
@@ -15,9 +16,9 @@ const {
 const router = Router();
 
 router.get("/", getUsers);
-router.get("/:id", getUsersById);
+router.get("/:id", getUsersById); 
 router.post("/", addUser);
-router.delete("/:id", deleteUser);
+router.delete("/:id",verifyAdmin(), deleteUser);
 router.patch("/:id", updateUser)
 
 module.exports = router;

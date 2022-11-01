@@ -6,12 +6,15 @@ import { createProduct } from "../../redux/actionsCreator/productsActions";
 import { useState } from "react";
 import upImage from "./cloudinary";
 import validate from "./validate";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import LoginButton from '../Login/LoginButton';
 
 const CreateProduct = function () {
 
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.productsReducer.categories);
   const [error, setError] = useState({});
+  const {isAuthenticated} = useAuth0()
 
   useEffect(() => {
     dispatch(get_categories());
@@ -87,7 +90,7 @@ const CreateProduct = function () {
     }
   };
 
-  return (
+  return ( !isAuthenticated ?  <div><p>you must login, click here!</p><LoginButton/></div> :
     <div>
       <div className="ProductCreate">
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -199,5 +202,8 @@ const CreateProduct = function () {
     </div>
   );
 };
+export default withAuthenticationRequired(CreateProduct, {
+  onRedirecting: () => <p>is loading .....</p>,
+});
 
-export default CreateProduct;
+//export default CreateProduct;

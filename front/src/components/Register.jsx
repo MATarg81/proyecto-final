@@ -1,13 +1,21 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { add_users } from "../redux/actionsCreator/usersActions";
+import React, { useState, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { add_users, get_users } from "../redux/actionsCreator/usersActions";
 import { useNavigate } from "react-router-dom";
+//import axios from "axios";
+
+
+import { useAuth0 } from "@auth0/auth0-react";
 
 //AGREGAR = 'dateOfBirth' y 'address'
 //La confirmación de contraseña no oculta los caracteres
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const {user, isAuthenticated} = useAuth0()
+
+ 
 
   const [error, setError] = useState({});
 
@@ -171,7 +179,8 @@ function Register() {
     }
   }
 
-  return (
+
+  return ( isAuthenticated &&
     <>
       <div class="container">
         <form
@@ -403,6 +412,8 @@ function Register() {
       </div>
     </>
   );
+              
+
 }
 
 export default Register;
