@@ -20,7 +20,7 @@ async function getUsers(req, res) {
           password: u.password
         });
 
-        await newUser.setRole(5);
+        await newUser.setRole(1);
       });
       return res.status(200).send(allUsers)
     } else if (name || lastname || email) {
