@@ -74,8 +74,8 @@ Role.belongsToMany(User, {through: 'User_Role'});
 Cart.belongsTo(User, { as: 'User', foreignKey : 'userId'});
 User.hasMany(Cart, { as: 'User', foreignKey : 'userId'});
 
-// Review.belongsTo(User);
-// User.belongsToMany(Review, {through: 'Review_User'});
+Cart.belongsToMany(Product, {through: 'Cart_Products'})
+Product.belongsToMany(Cart, {through: 'Cart_Products'})
 
 Cart.belongsTo(User); // una compra pertenece a un usuario
 User.belongsToMany(Cart, {through: "Cart_User"}); // un usuario puede realizar muchas compras

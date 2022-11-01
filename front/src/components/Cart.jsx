@@ -4,27 +4,44 @@ import { Link } from "react-router-dom";
 import { addCart, delCart, delAll, postCart, totalPrice } from "../redux/actionsCreator/cartActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { useEffect } from "react";
+import { useState } from "react";
 
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.items);
-  const statePrice = useSelector((state) => state.cartReducer.price);
+  const allState = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
   const [, setCart] = useLocalStorage('cart', state)
+  const [price, setPrice] = useState(0)
 
+  //console.log(statePrice)
   useEffect(() => {
     if(state) {
       setCart(state)
-      dispatch(totalPrice(state))
+      //dispatch(totalPrice(state))
     }
   }, [state, setCart])
 
+  useEffect(() => {
+    if(state){
+      let sum = 0
+      state?.map(i => {
+        return sum = sum + parseInt(i.price) * parseInt(i.qty)
+      })
+      setPrice(sum)
+        dispatch(totalPrice(sum))
+      
+    }
+  }, [])
+
   const handleAdd = (item) => {
     dispatch(addCart(item));
+    setPrice(price + parseInt(item.price))
     setCart(state)
   };
   const handleDel = (item) => {
     dispatch(delCart(item));
+    setPrice(price - parseInt(item.price))
     setCart(state)
   };
   const handleDeleteAll = () => {
@@ -33,8 +50,9 @@ const Cart = () => {
   }
 
   const handleCartDB = () => {
-    dispatch(postCart(state));
+    dispatch(postCart(allState));
     setCart([]);
+    dispatch(delAll());
   }
 
   
@@ -67,8 +85,7 @@ const Cart = () => {
               <div className="col-md-4">
                 <h3>{product.name}</h3>
                 <p className="lead fw-bold">
-                  {product.qty} x $ {product.price} = ${" "}
-                  {product.qty * product.price}
+                  {product.qty} x $ {product.price} = ${product.qty * product.price}
                 </p>
                 <hr />
                 <button
@@ -95,7 +112,7 @@ const Cart = () => {
       <>
         <div className="container">
           <div className="row">
-            <h3>TOTAL: ${statePrice}</h3>
+            <h3>TOTAL: ${price}</h3>
             <button
               className="btn btn-outline-dark mb-5 w-25 mx-auto"
               onClick={handleDeleteAll}

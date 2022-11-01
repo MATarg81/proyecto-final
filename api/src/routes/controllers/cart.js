@@ -1,37 +1,53 @@
 require("dotenv").config();
-const { Cart, Product } = require("../../db");
+const { Cart, Product, User } = require("../../db");
 const { putProduct } = require("./products");
 
 const postCart = async (req, res) => {
     console.log("entré a postCart")
+    const { items, price } = req.body;
+    console.log(items)
     try {
-      const { items, price } = req.body;
 
-      const itemsMap = items.map(async (p) => {
-       (JSON.stringify({
-          id: p.id,
+      const newCartList = await Cart.create({
+        total: price,
+        userId: 1,
+        productQty: items.map(i => [i.id, i.qty])
+      })
 
-          name: p.name, //en MeLi Title
-          detail: p.detail, // description
-          image : p.image, // picture_url
-          categories: p.categories, //category_id
-          price: p.price, // unit_price
-          qty: p.qty //quantity
-      }))
+      await items.map(async i => {
+        await newCartList.addProduct(i.id)
+        const findProd = await Product.findByPk(i.id)
+        await findProd.update({stock: findProd.stock - i.qty})
+      });
+
+      //await newCartList.setUser(1);
+
+      return res.status(200).send(newCartList)
+    //   const itemsMap = items.map(async (p) => {
+    //    (JSON.stringify({
+    //       id: p.id,
+
+    //       name: p.name, //en MeLi Title
+    //       detail: p.detail, // description
+    //       image : p.image, // picture_url
+    //       categories: p.categories, //category_id
+    //       price: p.price, // unit_price
+    //       qty: p.qty //quantity
+    //   }))
       
-      const findProd = await Product.findByPk(p.id)
-      await findProd.update({stock: findProd.stock - p.qty})
-    }
-      )
-      console.log(itemsMap)
-      const newCart = await Cart.create({
-        products: itemsMap,
-        total: parseInt(price),
-    });
+    //   const findProd = await Product.findByPk(p.id)
+    //   await findProd.update({stock: findProd.stock - p.qty})
+    // }
+    //   )
+    //   console.log(itemsMap)
+    //   const newCart = await Cart.create({
+    //     products: itemsMap,
+    //     total: parseInt(price),
+    // });
   
-      newCart.setUser(1);
+    //   newCart.setUser(1);
   
-      return res.send(newCart);
+      //return res.send(newCart);
     } catch (err) {
       console.log("problema para realizar el post: " + err);
     }
@@ -53,4 +69,14 @@ const postCart = async (req, res) => {
 
   }
 
-module.exports= {postCart, getCart};
+  function getAllCart(req, res) {
+    try{
+      Cart.findAll({include: {model: Product}})
+      .then(r => res.status(200).send(r))
+      
+    } catch(e) {
+      return res.status(404).send(e)
+    }
+  }
+
+module.exports= {postCart, getCart, getAllCart};

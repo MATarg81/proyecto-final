@@ -1,11 +1,11 @@
 import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART, TOTAL_PRICE } from "../actionsTypes/actionsTypesCart";
 
 const inicialState = {
-  purchesesMaded:[],
-  items:localStorage.cart 
+  //purchesesMaded:[],
+  price: 0,
+  items: localStorage.cart 
   ? JSON.parse(localStorage.cart)
   : [],
-  price: 0,
 };
 
 const cartReducer = (state = inicialState, action) => {
@@ -20,21 +20,17 @@ const cartReducer = (state = inicialState, action) => {
       if (exist) {
         // Incrementar cantidad
         const newState = state.items.map((x) => x.id === product.id ? { ...x, qty: (x.qty + 1) } : x);
-        const newPrice = state.price + parseInt(product.price);
-        
+                
         return {
           ...state,
           items: newState,
-          price: newPrice,
         }
       } else {
         const product = action.payload;
         state.items?.push({...product, qty:1})
-        const newPrice = state.price + parseInt(product.price);
         return {
           ...state,
           items: state.items,
-          price: newPrice,
         };
       }
 
@@ -43,25 +39,19 @@ const cartReducer = (state = inicialState, action) => {
 
       if (exist1.qty === 1) {
         const newItems = state.items.filter((x) => x.id !== exist1.id);
-        const newPrice = state.price - parseInt(product.price);
         return {
           ...state,
           items: newItems,
-          price: newPrice
         }
       } else {
         const newItems = state.items.map((x) =>
           x.id === product.id ? { ...x, qty: x.qty - 1 } : x
         );
-        const newPrice = state.price - parseInt(product.price);
         return {
           ...state,
           items: newItems,
-          price: newPrice
         }
       };
-
-
 
       case DELETE_ALL: {
         return {
@@ -71,13 +61,10 @@ const cartReducer = (state = inicialState, action) => {
       }
 
       case TOTAL_PRICE: {
-          let sum = 0
-          action.payload.map( i => {
-            return sum = sum + (parseInt(i.price) * parseInt(i.qty))
-          })
+         
           return {
             ...state,
-            price: sum
+            price: action.payload
           
         }
       }
