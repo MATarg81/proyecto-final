@@ -4,9 +4,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postActivity } from "../redux/actions/activitiesActions";
 import upImage from "./CreateProduct/cloudinary";
-export default function ActivityCreate() {
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import LoginButton from '../components/Login/LoginButton';
+
+ const ActivityCreate = function () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const{ isAuthenticated, loginWithRedirect } = useAuth0()
 
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
@@ -85,7 +89,7 @@ export default function ActivityCreate() {
     }
   }
 
-  return (
+  return ( isAuthenticated ?
     <div>
       <Link to="/actividades">
         <button> Go Back </button>
@@ -233,6 +237,9 @@ export default function ActivityCreate() {
           </div>
         </form>
       </div>
-    </div>
-  );
+    </div> : <div><p>you must login, click here!</p><LoginButton/></div>
+  ) ;
 }
+ export default withAuthenticationRequired(ActivityCreate, {
+   onRedirecting: () => <p>is loading .....</p>,
+ });

@@ -19,6 +19,7 @@ export function get_users(name, lastname, email) {
           email || ""
         }`
       );
+      console.log(data,' chekeando usuario, llega data a la action')
       return dispatch({ type: GET_USERS, payload: data });
     } catch (error) {
       alert(error);

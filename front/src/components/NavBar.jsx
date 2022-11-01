@@ -75,24 +75,12 @@ function NavBar() {
                 </Link>
               </li>
 
-              {/* <li className="nav-item">
-            <Link className="nav-link" to="/favorites">
-              Favoritos
-            </Link>
-          </li> */}
             </ul>
-            <div className="buttons">
-              {/* <Link to="/login" className="btn btn-outline-dark">
-                <i className="fa fa-sign-in me-1"></i>login
-          </Link> */}
-
-              {/* <Link to="/logout" className="btn btn-outline-dark ms-2">
-                <i className="fa fa-user-plus me-1"></i>logout
-              </Link> */}
-              {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
+            <div className="buttons" >
+          
               <AuthenticationButton />
-
               <Profile />
+
               <Link to="/carrito" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i>Carrito (
                 {state.items?.length})
