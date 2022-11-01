@@ -27,6 +27,7 @@ import ProfileProducts from "./components/ProfileProducts";
 import ProfileActivities from "./components/ProfileActivities";
 import ProfileHistorial from "./components/ProfileHistorial";
 import ProfileUsers from "./components/ProfileUsers";
+import ListOfUsers from "./components/ListOfUsers";
 import Verify from "./components/Login/Verify";
 //import ProtectedRoute from "../src/auth/protected-route";
 //import { useAuth0 } from "@auth0/auth0-react"
@@ -64,6 +65,9 @@ function App() { //Agregar ruta de /detail/id
         <Route exact path="/profile/historial" element={<ProfileHistorial />} />
         <Route exact path="/profile/usuarios" element={<ProfileUsers />} />
         <Route exact path="/profile/productos" element={<ProfileProducts />} />
+        <Route exact path="/listUsers" element={<ListOfUsers />} />
+
+
       </Routes>
       <Footer />
     </>
