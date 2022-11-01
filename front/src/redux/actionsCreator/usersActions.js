@@ -9,7 +9,6 @@ import {
 
 // export const GET_USERS = "GET_USERS";
 // export const GET_USERS_BY_ID = "GET_USERS_BY_ID";
-// export const ADD_USERS = "ADD_USERS";
 // export const DELETE_USERS = "DELETE_USERS";
 
 export function get_users(name, lastname, email) {
@@ -39,6 +38,7 @@ export function get_users_by_id(id) {
   };
 }
 
+
 export function add_users(payload) {
   return function () {
     axios
@@ -51,6 +51,10 @@ export function add_users(payload) {
       });
   };
 }
+
+
+
+
 
 export const delete_users = (id) => {
   return async function (dispatch) {
