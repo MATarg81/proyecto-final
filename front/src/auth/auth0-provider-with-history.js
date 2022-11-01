@@ -16,7 +16,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
     <Auth0Provider
       domain={domain}
       clientId={clientId}
-      redirectUri={'http://localhost:3000/registro'}
+      redirectUri={'http://localhost:3000/verify'}
       onRedirectCallback={onRedirectCallback}
     >
       {children}

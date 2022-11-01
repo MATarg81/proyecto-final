@@ -14,18 +14,7 @@ function Register() {
   const navigate = useNavigate();
 
   const {user, isAuthenticated} = useAuth0()
-  console.log(isAuthenticated,' is authhhhhh')
-//const [usuario, setUsuario] = useState('')
-//checkUser  ? navigate(window.location.origin) :
-useEffect(() => {
-  if(isAuthenticated){
-    dispatch(get_users())
-  }
-}, []);
-const stateUser = useSelector( state => state.usersReducer.users)
-const checkUser = stateUser.find( u => u.email === user.email)
-console.log(checkUser,' chekeando usuario')
-console.log(user,' usuario auth0')
+
  
 
   const [error, setError] = useState({});
@@ -191,7 +180,7 @@ console.log(user,' usuario auth0')
   }
 
 
-  return (  checkUser ? <p>already register</p> :
+  return ( isAuthenticated &&
     <>
       <div class="container">
         <form

@@ -27,6 +27,7 @@ import ProfileProducts from "./components/ProfileProducts";
 import ProfileActivities from "./components/ProfileActivities";
 import ProfileHistorial from "./components/ProfileHistorial";
 import ProfileUsers from "./components/ProfileUsers";
+import Verify from "./components/Login/Verify";
 //import ProtectedRoute from "../src/auth/protected-route";
 //import { useAuth0 } from "@auth0/auth0-react"
 
@@ -54,6 +55,7 @@ function App() {
         <Route exact path="edituser" element={<EditProfile />} />
         <Route exact path="/comprasRealizadas" element={<PurchesesMaded />} />
         <Route exact path="/detalleComprasRealizadas/:id" element={<PurchesesDetail/>} />
+        <Route exact path="/verify" element={<Verify/>} />
 
 
 

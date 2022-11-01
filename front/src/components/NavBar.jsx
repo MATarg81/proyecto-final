@@ -76,11 +76,11 @@ function NavBar() {
               </li>
 
             </ul>
-            <div className="buttons">
+            <div className="buttons" >
           
               <AuthenticationButton />
-
               <Profile />
+
               <Link to="/carrito" className="btn btn-outline-dark ms-2">
                 <i className="fa fa-shopping-cart me-1"></i>Carrito (
                 {state.items?.length})

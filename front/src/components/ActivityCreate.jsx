@@ -7,7 +7,7 @@ import upImage from "./CreateProduct/cloudinary";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import LoginButton from '../components/Login/LoginButton';
 
- export default function ActivityCreate() {
+ const ActivityCreate = function () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const{ isAuthenticated, loginWithRedirect } = useAuth0()
@@ -240,6 +240,6 @@ import LoginButton from '../components/Login/LoginButton';
     </div> : <div><p>you must login, click here!</p><LoginButton/></div>
   ) ;
 }
-// export default withAuthenticationRequired(ActivityCreate, {
-//   onRedirecting: () => <p>is loading .....</p>,
-// });
+ export default withAuthenticationRequired(ActivityCreate, {
+   onRedirecting: () => <p>is loading .....</p>,
+ });
