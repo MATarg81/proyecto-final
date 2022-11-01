@@ -12,11 +12,25 @@ import "../node_modules/bootstrap/dist/js/bootstrap.bundle";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 import { Auth0Provider } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
+
+
+const Auth0ProviderWithHistory = ({ children }) => {
+  const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+  const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+
+  const navigate = useNavigate();
+
+  const onRedirectCallback = ( appState ) => {
+    navigate( appState?.returnTo || window.location.pathname)
+  }
+
+}
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,8 +40,10 @@ root.render(
         <Auth0Provider
           domain={domain}
           clientId={clientId}
-          redirectUri={window.location.origin}
+          redirectUri= "http://localhost:3000/registro"
+          onRedirectCallback={onRedirectCallback}
         >
+          {children}
           <Provider store={store}>
             <App />
           </Provider>
@@ -36,7 +52,7 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>
 );
-
+export default Auth0ProviderWithHistory;
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

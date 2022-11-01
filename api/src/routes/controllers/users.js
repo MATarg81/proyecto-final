@@ -21,7 +21,9 @@ async function getUsers(req, res) {
           password: u.password
         });
 
-        await newUser.setRole(3);
+
+        await newUser.setRole(1);
+
       });
       return res.status(200).send(allUsers)
     } else if (name || lastname || email) {
@@ -47,7 +49,7 @@ async function getUsers(req, res) {
       }
     } else {
       // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
-      User.findAll().then((r) => res.status(200).send(r));
+      User.findAll({include: Role}).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
@@ -132,7 +134,9 @@ async function updateUser(req, res) {
           id: Number(id),
         },
       }
+
     ).setRole(body.idRole);
+
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
     res.status(400).send(error.JSON);
