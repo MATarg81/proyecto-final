@@ -59,7 +59,7 @@ export const delAll = () => {
 // }
 
 export const postCart = (body) => {
-
+    console.log(body)
   return async function (dispatch) {
     try {
       const res = await axios.post("/cart", body);
