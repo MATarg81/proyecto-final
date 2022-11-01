@@ -27,8 +27,11 @@ import ProfileProducts from "./components/ProfileProducts";
 import ProfileActivities from "./components/ProfileActivities";
 import ProfileHistorial from "./components/ProfileHistorial";
 import ProfileUsers from "./components/ProfileUsers";
+//import ProtectedRoute from "../src/auth/protected-route";
+//import { useAuth0 } from "@auth0/auth0-react"
 
 function App() {
+
   return (
     <>
       <NavBar />
@@ -43,7 +46,7 @@ function App() {
         <Route exact path="/tienda/:id" element={<Product />} />
         <Route exact path="/actividades" element={<Activities />} /> 
         <Route exact path="/aboutTeam" element={<AboutTeam />} />
-        <Route exact path="/crearActividades" element={<ActivityCreate />} />
+        <Route  exact path="/crearActividades" element={ <ActivityCreate />} />
         <Route exact path="/crearProducto" element={<CreateProduct />} />
         <Route exact path="/reviews" element={<Reviews />} />
         <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />

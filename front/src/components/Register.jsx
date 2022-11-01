@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add_users, get_users } from "../redux/actionsCreator/usersActions";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+//import axios from "axios";
 
 
 import { useAuth0 } from "@auth0/auth0-react";
@@ -14,16 +14,18 @@ function Register() {
   const navigate = useNavigate();
 
   const {user, isAuthenticated} = useAuth0()
-  
-const [usuario, setUsuario] = useState('')
-console.log(usuario,' estadosuaurio')
-  useEffect(() => {
-    if(isAuthenticated){
-      dispatch(get_users(user.given_name, user.family_name, user.email))
-      setUsuario(data)
-    }
-  }, [dispatch]);
-
+  console.log(isAuthenticated,' is authhhhhh')
+//const [usuario, setUsuario] = useState('')
+//checkUser  ? navigate(window.location.origin) :
+useEffect(() => {
+  if(isAuthenticated){
+    dispatch(get_users())
+  }
+}, []);
+const stateUser = useSelector( state => state.usersReducer.users)
+const checkUser = stateUser.find( u => u.email === user.email)
+console.log(checkUser,' chekeando usuario')
+console.log(user,' usuario auth0')
  
 
   const [error, setError] = useState({});
@@ -189,7 +191,7 @@ console.log(usuario,' estadosuaurio')
   }
 
 
-  return (
+  return (  checkUser ? <p>already register</p> :
     <>
       <div class="container">
         <form

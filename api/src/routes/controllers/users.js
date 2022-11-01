@@ -89,7 +89,7 @@ async function addUser(req, res) {
         password: password
       });
 
-      const addRole = await newUser.setRole(3);
+      const addRole = await newUser.setRole(1);
       return res.status(200).send(newUser);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);
