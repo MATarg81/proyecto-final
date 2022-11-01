@@ -1,10 +1,14 @@
-import { GET_USERS , GET_USERS_BY_ID, EDIT_USERS, GET_ALL_ROLES } from "../actionsTypes/actionsTypesUsers"
+import { GET_USERS, GET_USERS_BY_ID, EDIT_USERS, GET_ALL_ROLES, ORDER_USERS_BY_NAME } from "../actionsTypes/actionsTypesUsers"
+import { orderUser } from "../actionsCreator/usersActions";
+
+
 
 export const initialState = {
   users: [],
   usersById: [],
-  usersEdited: [], 
-  roles: []
+  usersEdited: [],
+  roles: [],
+  //usersOrdered: [],
 }
 
 
@@ -23,11 +27,11 @@ const usersReducer = (state = initialState, action) => {
       };
     }
 
-    case EDIT_USERS: 
+    case EDIT_USERS:
       return {
         ...state,
         usersEdited: action.payload,
-        }
+      }
     case GET_ALL_ROLES: {
       return {
         ...state,
@@ -35,8 +39,26 @@ const usersReducer = (state = initialState, action) => {
       }
     }
 
+    case ORDER_USERS_BY_NAME: {
+      if (action.payload === "A/Z") {
+        return {
+          ...state,
+          users: state.users.slice().sort(orderUser),
+          
+        };
+      } else if (action.payload === "Z/A") {
+        return {
+          ...state,
+          users: state.users.slice().sort(orderUser).reverse(),
+          
+        };
+      }
+    }// eslint-disable-next-line
+
+
+
     default:
-      return { ...state };
+      return  state;
   }
 };
 

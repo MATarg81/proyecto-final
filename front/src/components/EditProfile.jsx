@@ -1,27 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react'
-import { get_users, get_users_by_id } from '../redux/actionsCreator/usersActions'
+import { get_users, get_users_by_id, get_roles } from '../redux/actionsCreator/usersActions'
 
 export default function EditProfile() {
     const usersState = useSelector((state) => state.usersReducer.usersById);
     //const [image, setImage] = React.useState(); //para cargar la imagen nueva (aunque deberiamos agregar imagen en la db)
     const dispatch = useDispatch();
+    const usersRoles = useSelector((state) => state.usersReducer.roles)
 
-    useEffect (() => {
+    //FALTA AGREGAR QUE EDITE LOS DATOS DEL USUARIO LOGUEADO 
+
+    const [input, setInput] = useState({ name: "", lastName: "", dateOfBirth: "", phoneNumber: "", email: "", adress: "", postalCode: "", password: "", roles: "" })
+
+    useEffect(() => {
+        if (usersRoles?.length) {
+            dispatch(get_roles())
+        }
+    }, [dispatch, usersRoles])
+
+    /* useEffect (() => {
        dispatch(get_users_by_id(7)) 
-    },[])
+    },[]) */
 
-    const editUser = (payload) => {
-        return { type: 'GET_USERS_BY_ID', payload };
-    };
 
-   /*  const imageOnChange = (file) => {
-        setImage(file);
-    }; */
+    /*  const imageOnChange = (file) => {
+         setImage(file);
+     }; */
     const handleOnChange = (e) => {
         dispatch(
-            editUser({
+            setInput({
                 ...usersState,
                 [e.target.name]: e.target.value,
 
@@ -36,6 +44,15 @@ export default function EditProfile() {
         //ACA IRIA LA LOGICA PARA AGREGAR IMAGEN
 
     };
+
+    function handleCheck(e) {
+        if (e.target.checked) {
+            setInput({
+                ...input,
+                roles: [...input.roles, e.target.value]
+            })
+        }
+    }
 
 
     return (
@@ -54,45 +71,45 @@ export default function EditProfile() {
                         <label>Nombre</label>
                         <input
                             name="name"
-                            onChange={(e) => handleOnChange(e.target.name, e.target?.value)}
-                            value={usersState?.name}
+                            onChange={(e) => handleOnChange(e)}
+                            value={input?.name}
                             type="text"
                         />
                         <label>Apellido</label>
                         <input
                             name="lastname"
-                            onChange={(e) => handleOnChange(e.target.name, e.target?.value)}
-                            value={usersState?.lastname}
+                            onChange={(e) => handleOnChange(e)}
+                            value={input?.lastname}
                             type="text"
                         />
                     </label>
                     <label>Teléfono</label>
                     <input
                         name="phone"
-                        onChange={(e) => handleOnChange(e.target.name, e.target?.value)}
-                        value={usersState?.phoneNumber}
+                        onChange={(e) => handleOnChange(e)}
+                        value={input?.phoneNumber}
                         type="text"
                     />
 
                     <label>E-mail</label>
                     <input
                         name="email"
-                        onChange={(e) => handleOnChange(e.target.name, e.target?.value)}
-                        value={usersState?.email}
+                        onChange={(e) => handleOnChange(e)}
+                        value={input?.email}
                         type="text"
                     />
                     <label>Direccion</label>
                     <input
                         name="adress"
                         onChange={(e) => handleOnChange(e.target.name, e.target.value)}
-                        value={usersState?.address}
+                        value={input?.address}
                         type="text"
                     />
                     <label>Codigo Postal</label>
                     <input
                         name="postalCode"
                         onChange={(e) => handleOnChange(e.target.name, e.target.value)}
-                        value={usersState?.postalCode}
+                        value={input?.postalCode}
                         type="text"
                     />
 
@@ -100,9 +117,28 @@ export default function EditProfile() {
                     <input
                         name="password"
                         onChange={(e) => handleOnChange(e.target.name, e.target.value)}
-                        value={usersState?.password}
+                        value={input?.password}
                         type="text"
                     />
+
+                    <div class="">
+
+                        {usersRoles.length > 0 &&
+                            usersRoles.map((roles) => (
+                                <label
+                                    htmlFor={roles.id}
+                                >
+                                    <input
+                                        key={roles.id}
+                                        type='checkbox'
+                                        value={roles.id}
+                                        name={roles.name}
+                                        onChange={handleCheck}
+                                    />
+                                    {roles.name}
+                                </label>
+                            ))}
+                    </div>
 
                     <div class="">
                         <button type="submit">Editar</button>
