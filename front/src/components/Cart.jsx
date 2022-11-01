@@ -36,10 +36,12 @@ const Cart = () => {
 
   const handleAdd = (item) => {
     dispatch(addCart(item));
+    setPrice(price + parseInt(item.price))
     setCart(state)
   };
   const handleDel = (item) => {
     dispatch(delCart(item));
+    setPrice(price - parseInt(item.price))
     setCart(state)
   };
   const handleDeleteAll = () => {
