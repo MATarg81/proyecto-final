@@ -5,6 +5,7 @@ import {
   DELETE_USERS,
   EDIT_USERS,
   GET_ALL_ROLES,
+  ORDER_USERS_BY_NAME,
 } from "../actionsTypes/actionsTypesUsers.js";
 
 // export const GET_USERS = "GET_USERS";
@@ -97,4 +98,17 @@ export function get_roles() {
         alert(e.response.data);
       });
   };
+}
+
+export function orderUsersByName(payload) {
+  return {
+    type: ORDER_USERS_BY_NAME,
+    payload,
+  };
+}
+
+export function orderUser(a, b) {
+  if(a.name < b.name) return -1
+  if(b.name < a.name) return 1 
+  return 0
 }

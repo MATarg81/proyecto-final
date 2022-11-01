@@ -13,7 +13,6 @@ const AuthenticationButton = () => {
     <div>
       <LogoutButton />
       <EditButton />
-      <ListOfUsers />
     </div> :
     <LoginButton />;
 

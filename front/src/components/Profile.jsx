@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import generica from "../imagesTeam/Santi.png";
@@ -41,49 +41,49 @@ export default function Perfil() {
               <span class="fs-5 d-none d-sm-inline">Menu</span>
             </a>
 
-            <ul 
-              
+            <ul
+
               class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
               id="menu"
             >
-              
+
               <li>
                 <label class="nav-link align-middle px-0">
                   <div class="ms-1 d-none d-sm-inline">Perfil</div>
                 </label>
               </li>
-              
+
               <li>
-              <Link to='/profile/actividades'>
-                <label class="nav-link align-middle px-0">
-                  <div class="ms-1 d-none d-sm-inline">Actividades</div>
-                </label>
-              </Link>
+                <Link to='/profile/actividades'>
+                  <label class="nav-link align-middle px-0">
+                    <div class="ms-1 d-none d-sm-inline">Actividades</div>
+                  </label>
+                </Link>
               </li>
 
               <li id="Historial de compras" >
-              <Link to='/profile/historial'>
-                <label class="nav-link align-middle px-0">
-                  <div class="ms-1 d-none d-sm-inline">
-                    Historial de compras
-                  </div>
-                </label>
+                <Link to='/profile/historial'>
+                  <label class="nav-link align-middle px-0">
+                    <div class="ms-1 d-none d-sm-inline">
+                      Historial de compras
+                    </div>
+                  </label>
                 </Link>
               </li>
 
               <li id="Usuarios">
-              <Link to='/profile/usuarios'>
-                <label class="nav-link align-middle px-0">
-                  <div class="ms-1 d-none d-sm-inline">Usuarios</div>
-                </label>
+                <Link to='/profile/usuarios'>
+                  <label class="nav-link align-middle px-0">
+                    <div class="ms-1 d-none d-sm-inline">Usuarios</div>
+                  </label>
                 </Link>
               </li>
 
               <li id="Productos">
-              <Link to='/profile/productos'>
-                <label class="nav-link align-middle px-0">
-                  <div class="ms-1 d-none d-sm-inline">Productos</div>
-                </label>
+                <Link to='/profile/productos'>
+                  <label class="nav-link align-middle px-0">
+                    <div class="ms-1 d-none d-sm-inline">Productos</div>
+                  </label>
                 </Link>
               </li>
             </ul>
@@ -91,35 +91,35 @@ export default function Perfil() {
         </div>
 
         <div class="col py-3">
-                <div>
-                  <img src={generica} alt="generica" />
-                </div>
-                <div>
-                  <h3> Nombre completo: </h3>
-                  <h2>
-                    {usersState?.name} {usersState?.lastname}
-                  </h2>
-                </div>
-                <div>
-                  <h3> Email: </h3>
-                  <h2>{usersState?.email}</h2>
-                </div>
-                <div>
-                  <h3> Fecha de nacimiento: </h3>
-                  <h2>{usersState?.dateOfBirth}</h2>
-                </div>
-                <div>
-                  <h3> Télefono: </h3>
-                  <h2>{usersState?.phoneNumber}</h2>
-                </div>
-                <div>
-                  <h3> Dirección: </h3>
-                  <h2>{usersState?.address}</h2>
-                </div>
-                <div>
-                  <h3> postalCode: </h3>
-                  <h2>{usersState?.postalCode}</h2>
-                </div>
+          <div>
+            <img src={generica} alt="generica" />
+          </div>
+          <div>
+            <h3> Nombre completo: </h3>
+            <h2>
+              {usersState?.name} {usersState?.lastname}
+            </h2>
+          </div>
+          <div>
+            <h3> Email: </h3>
+            <h2>{usersState?.email}</h2>
+          </div>
+          <div>
+            <h3> Fecha de nacimiento: </h3>
+            <h2>{usersState?.dateOfBirth}</h2>
+          </div>
+          <div>
+            <h3> Télefono: </h3>
+            <h2>{usersState?.phoneNumber}</h2>
+          </div>
+          <div>
+            <h3> Dirección: </h3>
+            <h2>{usersState?.address}</h2>
+          </div>
+          <div>
+            <h3> postalCode: </h3>
+            <h2>{usersState?.postalCode}</h2>
+          </div>
         </div>
       </div>
     </div>

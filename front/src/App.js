@@ -27,6 +27,7 @@ import ProfileProducts from "./components/ProfileProducts";
 import ProfileActivities from "./components/ProfileActivities";
 import ProfileHistorial from "./components/ProfileHistorial";
 import ProfileUsers from "./components/ProfileUsers";
+import ListOfUsers from "./components/ListOfUsers";
 
 function App() {
   return (
@@ -51,14 +52,14 @@ function App() {
         <Route exact path="edituser" element={<EditProfile />} />
         <Route exact path="/comprasRealizadas" element={<PurchesesMaded />} />
         <Route exact path="/detalleComprasRealizadas/:id" element={<PurchesesDetail/>} />
-
-
-
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/profile/actividades" element={<ProfileActivities />} />
         <Route exact path="/profile/historial" element={<ProfileHistorial />} />
         <Route exact path="/profile/usuarios" element={<ProfileUsers />} />
         <Route exact path="/profile/productos" element={<ProfileProducts />} />
+        <Route exact path="/listUsers" element={<ListOfUsers />} />
+
+
       </Routes>
       <Footer />
     </>
