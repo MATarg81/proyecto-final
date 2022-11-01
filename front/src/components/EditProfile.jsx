@@ -1,26 +1,32 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react'
-import { get_users, get_users_by_id } from '../redux/actionsCreator/usersActions'
+import { get_users, get_users_by_id, get_roles } from '../redux/actionsCreator/usersActions'
 
 export default function EditProfile() {
     const usersState = useSelector((state) => state.usersReducer.usersById);
     //const [image, setImage] = React.useState(); //para cargar la imagen nueva (aunque deberiamos agregar imagen en la db)
     const dispatch = useDispatch();
-    //const usersRoles = useSelector((state) => state.)
+    const usersRoles = useSelector((state) => state.usersReducer.roles)
 
-//FALTA AGREGAR QUE EDITE LOS DATOS DEL USUARIO LOGUEADO 
+    //FALTA AGREGAR QUE EDITE LOS DATOS DEL USUARIO LOGUEADO 
 
-    const [input, setInput] = useState({name:"" , lastName:"", dateOfBirth:"", phoneNumber:"", email:"", adress:"", postalCode:"", password:"" })
+    const [input, setInput] = useState({ name: "", lastName: "", dateOfBirth: "", phoneNumber: "", email: "", adress: "", postalCode: "", password: "", roles: "" })
+
+    useEffect(() => {
+        if (usersRoles?.length) {
+            dispatch(get_roles())
+        }
+    }, [dispatch, usersRoles])
 
     /* useEffect (() => {
        dispatch(get_users_by_id(7)) 
     },[]) */
 
-    
-   /*  const imageOnChange = (file) => {
-        setImage(file);
-    }; */
+
+    /*  const imageOnChange = (file) => {
+         setImage(file);
+     }; */
     const handleOnChange = (e) => {
         dispatch(
             setInput({
@@ -38,6 +44,15 @@ export default function EditProfile() {
         //ACA IRIA LA LOGICA PARA AGREGAR IMAGEN
 
     };
+
+    function handleCheck(e) {
+        if (e.target.checked) {
+            setInput({
+                ...input,
+                roles: [...input.roles, e.target.value]
+            })
+        }
+    }
 
 
     return (
@@ -105,6 +120,25 @@ export default function EditProfile() {
                         value={input?.password}
                         type="text"
                     />
+
+                    <div class="">
+
+                        {usersRoles.length > 0 &&
+                            usersRoles.map((roles) => (
+                                <label
+                                    htmlFor={roles.id}
+                                >
+                                    <input
+                                        key={roles.id}
+                                        type='checkbox'
+                                        value={roles.id}
+                                        name={roles.name}
+                                        onChange={handleCheck}
+                                    />
+                                    {roles.name}
+                                </label>
+                            ))}
+                    </div>
 
                     <div class="">
                         <button type="submit">Editar</button>
