@@ -139,7 +139,7 @@ async function updateUser(req, res) {
 
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
-    res.status(400).send(console.log(error));
+    res.status(400).send(error);
   }
 }
 
