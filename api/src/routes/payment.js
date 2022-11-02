@@ -6,8 +6,8 @@ const PaymentService = require("./controllers/paymentService");
 const PaymentInstance = new PaymentController(new PaymentService());
 
 const payment = async (req, res, next) => {
-  const products = req.body
-  PaymentInstance.getPaymentLink(req, res, products)
+  const prod = req.body
+  PaymentInstance.getPaymentLink(req, res, prod)
 }
 
 
@@ -19,11 +19,11 @@ const payment = async (req, res, next) => {
 //   });
 // });
 
-// router.get("/payment", function (req, res, next) {
+// router.post("/payment", function (req, res, next) {
 //   PaymentInstance.getPaymentLink(req, res);
 // });
 
-// router.get("/subscription", function (req, res, next) {
+// router.post("/subscription", function (req, res, next) {
 //   PaymentInstance.getSubscriptionLink(req, res);
 // });
 

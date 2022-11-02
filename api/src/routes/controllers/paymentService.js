@@ -1,25 +1,25 @@
 const axios = require("axios");
 
 class PaymentService {
-  async createPayment(req, res, products) {
+  async createPayment(req, res, prod) {
     const url = "https://api.mercadopago.com/checkout/preferences";
-    // let products = []
-    // products.forEach(p => {
-    //   let prod = {
-    //     id: p.id,
-    //     title: p.name,
-    //     description: p.detail,
-    //     category_id: p.category,
-    //     quantity: p.qty,
-    //     picture_url: p.image,
-    //     unit_price: p.price
-    //   }
-    //   products.push(prod)
-    // })
+    let allProducts = []
+    prod.forEach(p => {
+      let prod = {
+        id: p.id,
+        title: p.name,
+        description: p.detail,
+        category_id: p.category,
+        quantity: p.qty,
+        picture_url: p.image,
+        unit_price: p.price
+      }
+      allProducts.push(prod)
+    })
 
     const body = {
       payer_email: "test_user_10178403@testuser.com",
-      items: products,
+      items: prod,
       // items: [
       //   //Acá hay que traer los productos reales
       //   //También se pueden modificar las formas de pago

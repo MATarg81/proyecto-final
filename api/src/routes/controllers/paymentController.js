@@ -3,9 +3,9 @@ class PaymentController {
     this.subscriptionService = subscriptionService;
   }
 
-  async getPaymentLink(req, res, products) {
+  async getPaymentLink(req, res, prod) {
     try {
-      const payment = await this.subscriptionService.createPayment(req, res, products);
+      const payment = await this.subscriptionService.createPayment(req, res, prod);
 
       return res.json(payment);
     } catch (error) {
@@ -17,9 +17,9 @@ class PaymentController {
     }
   }
 
-  async getSubscriptionLink(req, res, products) {
+  async getSubscriptionLink(req, res, prod) {
     try {
-      const subscription = await this.subscriptionService.createSubscription(req, res, products);
+      const subscription = await this.subscriptionService.createSubscription(req, res, prod);
 
       return res.json(subscription);
     } catch (error) {

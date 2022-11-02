@@ -61,8 +61,8 @@ const Cart = () => {
   //-------PRUEBAS MP----------------------------------------------
 
   const handlePayment = async () => {
-    dispatch(postCart(allState));
-    let data = allState.items.map((p) => {
+    // dispatch(postCart(allState));
+    let data = allState.items.map(async (p) => {
       return {
         id: p.id,
         name: p.name,
