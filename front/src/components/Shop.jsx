@@ -279,7 +279,7 @@ function Shop() {
               }}
             >
               <div className="card h-100" style={{ border: "none" }}>
-                <div onClick={() => navigate("/tienda/" + p.id)}>
+                <div onClick={() => navigate(`/tienda/${p.id}`)}>
                   <div
                     style={{
                       width: "200px",

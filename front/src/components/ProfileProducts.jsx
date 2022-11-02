@@ -101,7 +101,14 @@ export default function ProfileProducts() {
             <th className="col-2">Detalle</th>
             <th className="col-1">Imagen</th>
             <th className="col-1">Stock</th>
-            <th className="col-1"></th>
+            <th className="col-1"><button
+                        type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editProduct"
+                      >
+                        Editar producto
+                      </button></th>
           </tr>
         </thead>
         <tbody>
@@ -128,14 +135,13 @@ export default function ProfileProducts() {
                     </td>
                     <td className="col-1">{p.stock}</td>
                     <td className="col-2">
-                      <button
-                        type="button"
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editProduct"
-                      >
-                        Editar
-                      </button>
+                      
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
+        </tbody>
                       <div
                         class="modal fade"
                         id="editProduct"
@@ -162,12 +168,6 @@ export default function ProfileProducts() {
                           </div>
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                </>
-              );
-            })}
-        </tbody>
       </table>
     </>
   );

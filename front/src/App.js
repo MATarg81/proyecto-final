@@ -32,12 +32,12 @@ import Verify from "./components/Login/Verify";
 //import ProtectedRoute from "../src/auth/protected-route";
 //import { useAuth0 } from "@auth0/auth0-react"
 
-function App() {
+function App() { //Agregar ruta de /detail/id
 
   return (
     <>
       <NavBar />
-      <Routes>
+      <Routes> 
         <Route exact path="/" element={<Landing />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/tienda" element={<Shop />} />

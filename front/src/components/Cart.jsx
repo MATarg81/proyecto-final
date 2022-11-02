@@ -1,61 +1,61 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addCart, delCart, delAll, postCart, totalPrice } from "../redux/actionsCreator/cartActions";
+import {
+  addCart,
+  delCart,
+  delAll,
+  postCart,
+  totalPrice,
+} from "../redux/actionsCreator/cartActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { useEffect } from "react";
 import { useState } from "react";
-
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.items);
   const allState = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
-  const [, setCart] = useLocalStorage('cart', state)
-  const [price, setPrice] = useState(0)
-
-  //console.log(statePrice)
-  useEffect(() => {
-    if(state) {
-      setCart(state)
-      //dispatch(totalPrice(state))
-    }
-  }, [state, setCart])
+  const [, setCart] = useLocalStorage("cart", state);
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
-    if(state){
-      let sum = 0
-      state?.map(i => {
-        return sum = sum + parseInt(i.price) * parseInt(i.qty)
-      })
-      setPrice(sum)
-        dispatch(totalPrice(sum))
-      
+    if (state) {
+      setCart(state);
     }
-  }, [])
+  }, [state, setCart]);
+
+  useEffect(() => {
+    if (state) {
+      let sum = 0;
+      state?.map((i) => {
+        return (sum = sum + parseInt(i.price) * parseInt(i.qty));
+      });
+      setPrice(sum);
+      dispatch(totalPrice(sum));
+    }
+  }, []);
 
   const handleAdd = (item) => {
     dispatch(addCart(item));
-    setPrice(price + parseInt(item.price))
-    setCart(state)
+    setPrice(price + parseInt(item.price));
+    setCart(state);
   };
   const handleDel = (item) => {
     dispatch(delCart(item));
-    setPrice(price - parseInt(item.price))
-    setCart(state)
+    setPrice(price - parseInt(item.price));
+    setCart(state);
   };
   const handleDeleteAll = () => {
     dispatch(delAll());
-    setCart([])
-  }
+    setCart([]);
+  };
 
   const handleCartDB = () => {
     dispatch(postCart(allState));
     setCart([]);
     dispatch(delAll());
-  }
-
-  
+  };
 
   const emptyCart = () => {
     return (
@@ -85,7 +85,8 @@ const Cart = () => {
               <div className="col-md-4">
                 <h3>{product.name}</h3>
                 <p className="lead fw-bold">
-                  {product.qty} x $ {product.price} = ${product.qty * product.price}
+                  {product.qty} x $ {product.price} = $
+                  {product.qty * product.price}
                 </p>
                 <hr />
                 <button
