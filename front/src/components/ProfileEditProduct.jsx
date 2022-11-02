@@ -18,6 +18,7 @@ export default function ProfileEditProduct() {
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
+    id: `${productId?.id}`,
     name: ``,
     price: ``,
     categories: [],
@@ -51,7 +52,7 @@ export default function ProfileEditProduct() {
     const findI = productId?.image.filter( i => i !== e.target.name)
     // productId.image.pop(e.target.name)
     //setInput(input.image = findI)
-    console.log(e.target.name)
+    console.log(input)
   }
 
   function handleChange(e) {

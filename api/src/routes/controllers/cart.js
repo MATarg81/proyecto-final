@@ -55,6 +55,9 @@ const postCart = async (req, res) => {
     try {
       const {id} = req.params
       const purhcesesMaded = await Cart.findAll({
+        include: {
+          model: Product
+        },
         where:{
           userId:id
         }
