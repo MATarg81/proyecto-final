@@ -77,7 +77,10 @@ function NavBar() {
 
             </ul>
             <div className="buttons" >
-          
+
+              <Link to="/listUsers" className="btn btn-outline-dark ms-2">
+                <i className="me-1"></i>Usuarios
+              </Link>
               <AuthenticationButton />
               <Profile />
 
