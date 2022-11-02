@@ -188,7 +188,7 @@ function Register() {
           onSubmit={handleSubmit}
           noValidate
         >
-          <h1 class="col-12">Registro</h1>
+          <h1 class="col-12">Complete yor data to proced</h1>
 
           {/* Nombre */}
           <div class="col-6">

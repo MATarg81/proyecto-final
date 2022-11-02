@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { get_categories } from "../../redux/actionsCreator/categoriesActions";
 import { createProduct } from "../../redux/actionsCreator/productsActions";
+import { get_users } from "../../redux/actionsCreator/usersActions";
 import { useState } from "react";
 import upImage from "./cloudinary";
 import validate from "./validate";
@@ -14,11 +15,17 @@ const CreateProduct = function () {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.productsReducer.categories);
   const [error, setError] = useState({});
-  const {isAuthenticated} = useAuth0()
+  const {isAuthenticated, user} = useAuth0()
 
   useEffect(() => {
     dispatch(get_categories());
   }, [dispatch]);
+
+
+
+const stateUser = useSelector( state => state.usersReducer.users)
+const findUser = stateUser.find( u => u.email === user.email)
+
 
   const [input, setInput] = useState({
     name: "",
@@ -90,7 +97,7 @@ const CreateProduct = function () {
     }
   };
 
-  return ( !isAuthenticated ?  <div><p>you must login, click here!</p><LoginButton/></div> :
+  return ( !findUser ?  <div><p>you must login or finish registration, click here!</p><LoginButton/></div> :
     <div>
       <div className="ProductCreate">
         <form onSubmit={(e) => handleSubmit(e)}>
