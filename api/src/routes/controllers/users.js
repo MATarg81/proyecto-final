@@ -21,7 +21,6 @@ async function getUsers(req, res) {
           password: u.password
         });
 
-
         await newUser.setRole(1);
 
       });
@@ -126,7 +125,8 @@ async function updateUser(req, res) {
         email: body.email,
         address: body.address,
         postalCode: body.postalCode,
-        password: body.password
+        password: body.password,
+        roleId: body.roleId,
 
       },
       {
@@ -135,11 +135,11 @@ async function updateUser(req, res) {
         },
       }
 
-    ).setRole(body.idRole);
+    );
 
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
-    res.status(400).send(error.JSON);
+    res.status(400).send(console.log(error));
   }
 }
 

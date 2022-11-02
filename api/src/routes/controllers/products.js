@@ -86,10 +86,10 @@ const getProducts = async (req, res) => {
       });
       res.status(200).send(results)
     } else if (dbData && qname) {
-      const productsWithName = jsonData.results.filter((r) =>
-        r.name.toLowerCase().includes(qname.toLowerCase())
-      );
-      productsWithName.length
+      const productsWithName = await Product.findAll({
+        where: { name: { [Op.iLike]: `%${qname}%` } },
+      });
+      productsWithName?.length
         ? res.status(200).send(productsWithName)
         : res.status(404).send("Producto no encontrada");
     } else {

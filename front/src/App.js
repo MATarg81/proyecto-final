@@ -36,7 +36,8 @@ import { get_users } from './redux/actionsCreator/usersActions'
 //import ProtectedRoute from "../src/auth/protected-route";
 //import { useAuth0 } from "@auth0/auth0-react"
 
-function App() {
+
+function App() { //Agregar ruta de /detail/id
   const dispatch = useDispatch();
   useEffect(()=>{
     dispatch(get_users())
@@ -45,7 +46,7 @@ function App() {
   return (
     <>
       <NavBar />
-      <Routes>
+      <Routes> 
         <Route exact path="/" element={<Landing />} />
         <Route exact path="/home" element={<Home />} />
         <Route exact path="/tienda" element={<Shop />} />
