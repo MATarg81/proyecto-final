@@ -22,7 +22,7 @@ function Product() {
     } else {
       dispatch(getDetail(id))
     }
-  }, [id, dispatch, product]);
+  }, []);
 
   const addProduct = (product) => {
     dispatch(addCart(product));

@@ -22,11 +22,11 @@ export default function ProfileEditProduct() {
     price: ``,
     categories: [],
     detail: ``,
-    image: [],
+    image: '',
     stock: ``,
   });
 
-  console.log(input)
+  
   //   const [newCategory, setNewCategory] = useState({
   //     name: "",
   //   });
@@ -41,11 +41,18 @@ export default function ProfileEditProduct() {
     if (allProducts?.length === 0) {
       dispatch(getProducts());
     }
-  }, [allProducts, dispatch, productId, stateCategories]);
+  }, [allProducts, dispatch, productId, stateCategories, input]);
 
   //   function handleDelete(e) {
   //     console.log(e.target.id);
   //   }
+
+  function handleClick(e) {
+    const findI = productId?.image.filter( i => i !== e.target.name)
+    // productId.image.pop(e.target.name)
+    //setInput(input.image = findI)
+    console.log(e.target.name)
+  }
 
   function handleChange(e) {
     setInput({
@@ -186,24 +193,22 @@ export default function ProfileEditProduct() {
                 <label className="col-12">Imágenes: </label>
                 <div>
                   {productId?.image ? productId.image.map((i, index) => {
-                    const findI = input.image.find(c => c !== i)
-                    if(!findI) {
-                      //completar
-                    }
+
                     return (
-                      <div className="" name={`image${index}`}>
+                      <div className=""  name={`${i}`}>
                         <img
-                        
+                          
                           key={index}
                           src={i}
                           className="img-fluid img-thumbnail col-12"
                           style={{ width: "15%", height: "75%" }}
                           alt=""
                         />
+
                         <button
                           type="button"
                           className="btn"
-                          onClick={() => {productId.image.pop(i)}}
+                          onClick={handleClick}
                           
                         >x</button>
                       </div>
