@@ -67,9 +67,8 @@ const Cart = () => {
         id: p.id,
         name: p.name,
         description: p.detail,
-        category: p.categories,
         quantity: p.qty,
-        price: p.price,
+        unit_price: Number(p.price),
       };
     });
     const response = await axios.post("/payment", data);
