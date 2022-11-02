@@ -21,4 +21,31 @@ async function getRoles(req, res) {
   }
 }
 
-module.exports = getRoles;
+async function updateRoles(req, res) {
+  const id = req.params.id;
+  const body = req.body;
+  console.log(id)
+
+  try {
+    await Role.update(
+      {
+        name: body.name,
+      },
+      {
+        where: {
+          id: Number(id),
+        },
+      }
+
+    )/* .setRole(body.idRole); */
+
+    res.status(200).send("Rol actualizado con éxito");
+  } catch (error) {
+    res.send(console.log(error));
+  }
+}
+
+module.exports = {
+  getRoles,
+  updateRoles,
+};
