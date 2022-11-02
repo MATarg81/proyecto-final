@@ -11,7 +11,7 @@ import { get_users } from "../redux/actionsCreator/usersActions";
  const ActivityCreate = function () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const{ isAuthenticated,user, loginWithRedirect } = useAuth0() 
+  const{ isAuthenticated,user } = useAuth0() 
 
 
 
