@@ -3,9 +3,7 @@ const { Cart, Product, User } = require("../../db");
 const { putProduct } = require("./products");
 
 const postCart = async (req, res) => {
-    console.log("entré a postCart")
     const { items, price } = req.body;
-    console.log(items)
     try {
 
       const newCartList = await Cart.create({
