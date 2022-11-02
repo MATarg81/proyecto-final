@@ -54,6 +54,10 @@ export default function EditProfile() {
         }
     }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+    }
+
 
     return (
         <div>
@@ -141,7 +145,7 @@ export default function EditProfile() {
                     </div>
 
                     <div class="">
-                        <button type="submit">Editar</button>
+                        <button type="submit" onClick={handleSubmit}>Editar</button>
                     </div>
                 </form>
             </div>
