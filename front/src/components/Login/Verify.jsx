@@ -6,24 +6,21 @@ import Profile from "./Views/Profile";
 import Register from "../Register";
 //import axios from "axios";
 
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 function Verify(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const {user, isAuthenticated, isLoading} = useAuth0()
-    console.log(isAuthenticated,' is authhhhhh')
-    //const [usuario, setUsuario] = useState('')
-    //checkUser  ? navigate(window.location.origin) :
-    useEffect( ()=> {
-        dispatch(get_users())
-    },[])
+    //console.log(isAuthenticated,' is authhhhhh')
+    
+    
     const stateUser = useSelector( state => state.usersReducer.users)
-    console.log(stateUser, 'state user useselector')
+    //console.log(stateUser, 'state user useselector')
 
     const checkUser = user && stateUser.find( u => u.email === user.email)
-    console.log(checkUser, 'encontrando usuario en db y auth')
+    //console.log(checkUser, 'encontrando usuario en db y auth')
  
     
     if(isLoading){
@@ -35,4 +32,7 @@ function Verify(props) {
     );
 }
 
-export default Verify;
+export default withAuthenticationRequired(Verify, {
+    onRedirecting: () => <p>is loading .....</p>,
+  });
+ 

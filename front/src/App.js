@@ -29,10 +29,18 @@ import ProfileHistorial from "./components/ProfileHistorial";
 import ProfileUsers from "./components/ProfileUsers";
 import ListOfUsers from "./components/ListOfUsers";
 import Verify from "./components/Login/Verify";
+
+import { useEffect } from "react";
+import { useDispatch} from "react-redux";
+import { get_users } from './redux/actionsCreator/usersActions'
 //import ProtectedRoute from "../src/auth/protected-route";
 //import { useAuth0 } from "@auth0/auth0-react"
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(get_users())
+  },[])
 
   return (
     <>
