@@ -72,12 +72,15 @@ export default function Perfil() {
               </li>
 
               <li id="Usuarios">
-                <Link to='/profile/usuarios'>
+                <Link to='/listUsers'>
                   <label class="nav-link align-middle px-0">
                     <div class="ms-1 d-none d-sm-inline">Usuarios</div>
                   </label>
                 </Link>
               </li>
+
+
+              
 
               <li id="Productos">
                 <Link to='/profile/productos'>
