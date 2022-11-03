@@ -52,15 +52,17 @@ const postCart = async (req, res) => {
       console.log("problema para realizar el post: " + err);
     }
   }; 
-
   const getCart = async (req, res) =>{
     try {
       const {id} = req.params
       const purhcesesMaded = await Cart.findAll({
+        include: {
+          model: Product
+        },
         where:{
           userId:id
         }
-  
+
       })
       return res.status(200).json(purhcesesMaded)
     } catch (error) {
@@ -68,6 +70,25 @@ const postCart = async (req, res) => {
     }
 
   }
+  // const getCart = async (req, res) =>{
+  //   try {
+  //     const {id} = req.params
+  //     const purchesesMaded = await Cart.findAll({
+  //       include:{
+  //         model: Product,
+  //         where:{
+  //           userId:id
+  //         },
+  //       }
+  
+  //     })
+     
+  //    purchesesMaded && res.status(200).json( purchesesMaded)
+  //   } catch (error) {
+  //     return res.status(400).json(error)
+  //   }
+
+  // }
 
   function getAllCart(req, res) {
     try{

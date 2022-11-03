@@ -1,7 +1,7 @@
 import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART, TOTAL_PRICE } from "../actionsTypes/actionsTypesCart";
 
 const inicialState = {
-  //purchesesMaded:[],
+  purchesesMaded:[],
   price: 0,
   items: localStorage.cart 
   ? JSON.parse(localStorage.cart)
