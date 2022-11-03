@@ -111,9 +111,8 @@ async function deleteUser(req, res) {
 }
 
 async function updateUser(req, res) {
-  const id = req.params.id;
+  //const id = req.params.id;
   const body = req.body;
-  console.log(id)
 
   try {
     await User.update(
@@ -131,7 +130,7 @@ async function updateUser(req, res) {
       },
       {
         where: {
-          id: Number(id),
+          id: Number(body.id),
         },
       }
 
