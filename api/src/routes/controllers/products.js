@@ -134,10 +134,9 @@ const deleteProduct = async (req, res) => {
 };
 
 const putProduct = async (req, res) => {
-  const idP = req.params.id;
-
-  const { name, price, detail, image, stock, qty } = req.body;
-
+  
+  const { id, name, price, detail, image, stock, qty } = req.body;
+  console.log(id)
   try {
     await Product.update(
       {
@@ -145,17 +144,17 @@ const putProduct = async (req, res) => {
         price,
         detail,
         image,
-        stock: stock - qty,
+        stock,
       },
       {
         where: {
-          id: Number(idP),
+          id: id,
         },
       }
     );
     res.status(200).send("Producto actualizado con éxito");
   } catch (error) {
-    res.status(400).send(error.JSON);
+    res.status(400).send(console.log(error));
   }
 };
 
