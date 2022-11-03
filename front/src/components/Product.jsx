@@ -7,11 +7,14 @@ import { useLocalStorage } from "../localStorage/useLocalStorage";
 import {
   getDetail,
 } from "../redux/actionsCreator/productsActions";
+// import reviewsReducer from "../redux/reducer/reviewsReducer";
+import { getReviewsProductId } from "../redux/actionsCreator/reviewsActions";
 
 function Product() {
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer.detail);
   const cart = useSelector((state) => state.cartReducer.items);
+  const detail = useSelector((state) => state.reviewsReducer.detail);
   //const [loading, setloading] = useState(false);
   const [, setCart] = useLocalStorage("cart", cart);
   const dispatch = useDispatch();
@@ -22,12 +25,20 @@ function Product() {
     } else {
       dispatch(getDetail(id))
     }
-  }, [id, dispatch, product]);
+  }, []);
 
   const addProduct = (product) => {
     dispatch(addCart(product));
     setCart(cart);
   };
+
+  useEffect(() => {
+    {
+      dispatch(getReviewsProductId(id));
+    }
+  }, [id, dispatch]);
+  
+  console.log(detail)
 
   // const Loading = () => {
   //   return (
@@ -133,6 +144,14 @@ function Product() {
         <Link to="/carrito" className="btn btn-dark ms-2 px-3 py-2">
           Ir al carrito
         </Link>
+        <div>
+            {detail?.map((r) => (
+              <div>
+                <h4>{r.content}</h4>
+                <h3>{r.score}</h3>
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );

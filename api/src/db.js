@@ -85,6 +85,8 @@ Activity.belongsToMany(Review, {through: 'Activity_Review'});
 
 Review.belongsTo(Product);
 Product.belongsToMany(Review, {through: 'Product_Review'});
+// Review.belongsTo(Product, { as: 'Product', foreignKey : 'ProductId'});
+// Product.hasMany(Review, { as: 'Product', foreignKey : 'ProductId'});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

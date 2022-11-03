@@ -1,0 +1,60 @@
+{
+    "results": [
+  
+        {
+            "content": "Me gusta, el ambiente es muy familiar, tienen categorias para todas las edades.",          
+            "score": 4,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 6
+        },
+  
+        {
+          "content": "No solo enseñan el deporte sino que también inculcan valores humanos y compañerismo a los peques.",
+          "score": 5,
+          "product": "Calza Deportiva Cocot Mujer",
+          "user": 6
+            
+        },
+  
+        {
+            "content": "Excelente club, exclusivo, con las mejores canchas de futbol de Baires",
+            "score": 4,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 7
+        },
+        {
+            "content": "Tiene la mejor pileta olímpica de la ciudad.",
+            "score": 4,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 5
+        },
+  
+        {
+            "content": "Excelente el equipo profesores y preparadores fisicos.",
+            "score": 5,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 4
+        },
+  
+        {
+            "content": "Un desastre lo que están haciendo las autoridades con el Club.",
+            "score": 1,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 1
+        },
+  
+        {
+            "content": "El voley es bastante competitivo internamente y si no tenes aptitudes te dejan de lado.",
+            "score": 2,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 3
+        },
+  
+        {
+            "content": "Son muy amables y súper responsables. Mi hija hizo colonia de verano. Lo recomiendo",
+            "score": 5,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 2
+        }
+    ]
+  }
