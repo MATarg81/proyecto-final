@@ -7,11 +7,16 @@ import { useLocalStorage } from "../localStorage/useLocalStorage";
 import {
   getDetail,
 } from "../redux/actionsCreator/productsActions";
+// import reviewsReducer from "../redux/reducer/reviewsReducer";
+import { getReviewsProductId } from "../redux/actionsCreator/reviewsActions";
+import Reviews from "./ReviewsProduct"
+import { AiOutlineVerticalAlignMiddle } from "react-icons/ai";
 
 function Product() {
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer.detail);
   const cart = useSelector((state) => state.cartReducer.items);
+  const detail = useSelector((state) => state.reviewsReducer.detail);
   //const [loading, setloading] = useState(false);
   const [, setCart] = useLocalStorage("cart", cart);
   const dispatch = useDispatch();
@@ -28,6 +33,21 @@ function Product() {
     dispatch(addCart(product));
     setCart(cart);
   };
+
+  useEffect(() => {
+    {
+      dispatch(getReviewsProductId(id));
+    }
+  }, [id, dispatch]);
+
+
+  const average = () => {
+    let a = 0;
+    for (let i = 0; i < detail.length; i++) {
+      a += detail[i].score; 
+    }
+    return a/detail.length
+  }
 
   // const Loading = () => {
   //   return (
@@ -133,6 +153,32 @@ function Product() {
         <Link to="/carrito" className="btn btn-dark ms-2 px-3 py-2">
           Ir al carrito
         </Link>
+        <div>
+          <div>
+            {average()}
+          </div>
+        <form>
+          <p class="clasificacion">
+            <input id="radio1" type="radio" name="estrellas" value="5"/>
+            <label for="radio2">★</label>
+            <input id="radio2" type="radio" name="estrellas" value="4"/>
+            <label for="radio1">★</label>
+            <input id="radio3" type="radio" name="estrellas" value="3"/>
+            <label for="radio3">★</label>
+            <input id="radio4" type="radio" name="estrellas" value="2"/>
+            <label for="radio4">★</label>
+            <input id="radio5" type="radio" name="estrellas" value="1"/>
+            <label for="radio5">★</label>
+          </p>
+        </form>
+            {detail?.map((r) => (
+              <div>
+                <h4>{r.score} ★</h4>
+                <p>{r.content}</p>
+              </div>
+            ))}
+        </div>
+        
       </div>
     </div>
   );

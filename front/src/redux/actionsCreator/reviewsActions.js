@@ -31,3 +31,20 @@ export function postReview(payload){
     }
   }
 };
+
+export function getReviewsProductId(id){
+  return async function(dispatch){
+    
+      try {
+        const url = await axios.get('/reviews/products/' + id);
+                
+        return dispatch({
+          type: 'GET_REVIEW_ID',
+          payload: url.data
+        })
+      } catch (err) {
+        console.log(err)
+        return err
+      }          
+  }
+};
