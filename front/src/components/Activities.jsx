@@ -138,6 +138,12 @@ export default function Activities() {
           <div>Loading Activities....</div>
         )}
       </div>
+      <Link to="/inscriptos">
+        {" "}
+        <button type="button" className="btn btn-outline-dark ms-2">
+          Usuarios inscriptos
+        </button>{" "}
+      </Link>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-const { User, Role } = require("../../db");
+const { User, Role, Activity } = require("../../db");
 const { Op } = require("sequelize");
 const jsonData = require("../../../users.json");
 
@@ -61,7 +61,10 @@ async function getUsersById(req, res) {
   const { id } = req.params;
 
   const findUser = await User.findOne({
-    where: { id: id }
+    where: { id: id },
+    include:{
+      model: Activity
+    }
   });
   if (findUser) {
     await findUser.save()
