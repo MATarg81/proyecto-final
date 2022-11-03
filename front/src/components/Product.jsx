@@ -69,16 +69,29 @@ function Product() {
   // };
 
   //  const ShowProduct = () => {
+
+  const allReviews = () => {
+    <div>
+      {detail?.map((r) => {
+        <div>
+          <h4>{detail[0]?.user?.name}</h4>
+          <h4>{detail[0]?.score} ★</h4>
+          <p>{detail[0]?.content}</p>
+        </div>
+      })}
+    </div>
+  }
+
   return (
     <div className="row">
 
       <div className="col-md-6">
         <div className="container">
-        <div
-          id="carouselExampleControls"
-          class="carousel slide w-50"
-          data-ride="carousel"
-        >
+          <div
+            id="carouselExampleControls"
+            class="carousel slide w-50"
+            data-ride="carousel"
+          >
           <div class="carousel-inner">
             {product?.image?.map((i, index) => {
               return (
@@ -123,8 +136,8 @@ function Product() {
               <span class="sr-only">Next</span>
             </a>
           </div>
+          </div>
         </div>
-      </div>
       </div>
 
       <div className="col-md-6">
@@ -152,33 +165,34 @@ function Product() {
 
         <Link to="/carrito" className="btn btn-dark ms-2 px-3 py-2">
           Ir al carrito
-        </Link>
-        <div>
-          <div>
-            {average()}
+        </Link>        
+      </div>
+      <div>
+        <Reviews/>
+        <h2>Opiniones del producto</h2>
+        <div className="row">
+          <div className="col-md-6">
+            <h3>{average()} Acá irían en realidad las estrellitas ({detail.length})</h3>
           </div>
-        <form>
-          <p class="clasificacion">
-            <input id="radio1" type="radio" name="estrellas" value="5"/>
-            <label for="radio2">★</label>
-            <input id="radio2" type="radio" name="estrellas" value="4"/>
-            <label for="radio1">★</label>
-            <input id="radio3" type="radio" name="estrellas" value="3"/>
-            <label for="radio3">★</label>
-            <input id="radio4" type="radio" name="estrellas" value="2"/>
-            <label for="radio4">★</label>
-            <input id="radio5" type="radio" name="estrellas" value="1"/>
-            <label for="radio5">★</label>
-          </p>
-        </form>
-            {detail?.map((r) => (
-              <div>
-                <h4>{r.score} ★</h4>
-                <p>{r.content}</p>
-              </div>
-            ))}
         </div>
-        
+        <div className="col-md-6">
+        <div>
+          <h4>{detail[0]?.user?.name}</h4>
+          <h4>{detail[0]?.score} ★</h4>
+          <p>{detail[0]?.content}</p>
+        </div>
+        <div>
+          <h4>{detail[1]?.user?.name}</h4>
+          <h4>{detail[1]?.score} ★</h4>
+          <p>{detail[1]?.content}</p>
+        </div>
+        <div>
+          <h4>{detail[2]?.user?.name}</h4>
+          <h4>{detail[2]?.score} ★</h4>
+          <p>{detail[2]?.content}</p>
+        </div>
+        <a onClick = {allReviews}>Ver todas las opiniones</a>
+        </div>
       </div>
     </div>
   );
