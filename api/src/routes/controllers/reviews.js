@@ -116,16 +116,18 @@ const allProductsReviews = async() => {
             // return results;
           const results = jsonDataProducts.results.map(async r => {
             const findProduct = await Product.findOne({where: {name: r.product}})
+            const findUser = await User.findOne({where: {id: r.user}})
             const newRev = await Review.create({
               score: r.score,
               content: r.content
             });
             await newRev.setProduct(findProduct?.id);
+            await newRev.setUser(findUser?.id)
           });
           return results;
         } else {
           
-            const dbReviews = await Review.findAll({include:[{model: Product, attributes: ['name']}]})
+            const dbReviews = await Review.findAll({include:[{model: Product, attributes: ['name']}, {model: User, attributes: ['name']}]})
             return dbReviews;
         }        
     } catch (error) {

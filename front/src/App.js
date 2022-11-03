@@ -28,7 +28,7 @@ import ProfileActivities from "./components/ProfileActivities";
 import ProfileHistorial from "./components/ProfileHistorial";
 import ProfileUsers from "./components/ProfileUsers";
 import ListOfUsers from "./components/ListOfUsers";
-import Verify from "./components/Login/Verify";
+
 import InscriptosActividades from "./components/InscriptosActividades";
 
 import { useEffect } from "react";
@@ -67,7 +67,7 @@ function App() { //Agregar ruta de /detail/id
         <Route exact path="edituser" element={<EditProfile />} />
         <Route exact path="/comprasRealizadas" element={<PurchesesMaded />} />
         <Route exact path="/detalleComprasRealizadas/:id" element={<PurchesesDetail/>} />
-        <Route exact path="/verify" element={<Verify/>} />
+        
 
 
 

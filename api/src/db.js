@@ -88,6 +88,9 @@ Activity.belongsToMany(Review, {through: 'Activity_Review'});
 
 Review.belongsTo(Product);
 Product.belongsToMany(Review, {through: 'Product_Review'});
+
+Review.belongsTo(User);
+User.belongsToMany(Review, {through: 'User_Review'});
 // Review.belongsTo(Product, { as: 'Product', foreignKey : 'ProductId'});
 // Product.hasMany(Review, { as: 'Product', foreignKey : 'ProductId'});
 
