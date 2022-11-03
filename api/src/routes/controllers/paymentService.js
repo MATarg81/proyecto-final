@@ -1,8 +1,10 @@
 const axios = require("axios");
 
 class PaymentService {
+
   async createPayment(req, res) {
     const url = "https://api.mercadopago.com/checkout/preferences";
+
     // let products = []
     // products.forEach(p => {
     //   let prod = {
@@ -19,7 +21,8 @@ class PaymentService {
 
     const body = {
       payer_email: "test_user_10178403@testuser.com",
-      items: req.body.items,
+      items: req.body,
+
       // items: [
       //   //Acá hay que traer los productos reales
       //   //También se pueden modificar las formas de pago

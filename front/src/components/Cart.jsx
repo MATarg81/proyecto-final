@@ -71,6 +71,7 @@ const Cart = () => {
         unit_price: Number(p.price),
       };
     });
+    console.log("esta es la data", data);
     const response = await axios.post("/payment", data);
     window.location.href = `${response.data.init_point}`;
   };

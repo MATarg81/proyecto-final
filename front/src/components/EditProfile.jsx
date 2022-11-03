@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react'
-import { get_users, get_users_by_id, get_roles } from '../redux/actionsCreator/usersActions'
+import { get_users, get_users_by_id, get_roles, update_user } from '../redux/actionsCreator/usersActions'
 
 export default function EditProfile() {
     const usersState = useSelector((state) => state.usersReducer.usersById);
@@ -9,34 +9,33 @@ export default function EditProfile() {
     const dispatch = useDispatch();
     const usersRoles = useSelector((state) => state.usersReducer.roles)
 
+
     //FALTA AGREGAR QUE EDITE LOS DATOS DEL USUARIO LOGUEADO 
 
-    const [input, setInput] = useState({ name: "", lastName: "", dateOfBirth: "", phoneNumber: "", email: "", adress: "", postalCode: "", password: "", roles: "" })
+    const [input, setInput] = useState({ id: usersState.id, name: "", lastName: "", dateOfBirth: "", phoneNumber: "", email: "", address: "", postalCode: "", password: "", roles: "" })
+
+
 
     useEffect(() => {
         if (usersRoles?.length) {
             dispatch(get_roles())
+            }
+        if (usersState?.length === 0) {
+            dispatch(get_users_by_id(3))
         }
-    }, [dispatch, usersRoles])
-
-    /* useEffect (() => {
-       dispatch(get_users_by_id(7)) 
-    },[]) */
+    }, [dispatch]
+    )
 
 
-    /*  const imageOnChange = (file) => {
-         setImage(file);
-     }; */
+
     const handleOnChange = (e) => {
         dispatch(
             setInput({
                 ...usersState,
                 [e.target.name]: e.target.value,
-
             })
         );
     };
-
 
     const onHandleSubmit = async (e) => {
         e.preventDefault();
@@ -56,6 +55,7 @@ export default function EditProfile() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        dispatch(update_user(input))
     }
 
 
