@@ -101,14 +101,16 @@ export default function ProfileProducts() {
             <th className="col-2">Detalle</th>
             <th className="col-1">Imagen</th>
             <th className="col-1">Stock</th>
-            <th className="col-1"><button
-                        type="button"
-                        class="btn btn-primary"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editProduct"
-                      >
-                        Editar
-                      </button></th>
+            <th className="col-1">
+              <button
+                type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#editProduct"
+              >
+                Editar
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -134,39 +136,37 @@ export default function ProfileProducts() {
                       })}
                     </td>
                     <td className="col-1">{p.stock}</td>
-                    <td className="col-2">
-                      
-                    </td>
+                    <td className="col-2"></td>
                   </tr>
                 </>
               );
             })}
-                      <div
-                        class="modal fade"
-                        id="editProduct"
-                        tabindex="-1"
-                        aria-labelledby="editProductLabel"
-                        aria-hidden="true"
-                      >
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="editProductLabel">
-                                Editar producto
-                              </h5>
-                              <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                              ></button>
-                            </div>
-                              <div class="modal-body">
-                                <ProfileEditProduct />
-                              </div>
-                          </div>
-                        </div>
-                      </div>
+          <div
+            class="modal fade"
+            id="editProduct"
+            tabindex="-1"
+            aria-labelledby="editProductLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editProductLabel">
+                    Editar producto
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <ProfileEditProduct />
+                </div>
+              </div>
+            </div>
+          </div>
         </tbody>
       </table>
     </>
