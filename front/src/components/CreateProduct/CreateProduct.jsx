@@ -9,6 +9,7 @@ import upImage from "./cloudinary";
 import validate from "./validate";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import LoginButton from '../Login/LoginButton';
+import { Link } from "react-router-dom";
 
 const CreateProduct = function () {
 
@@ -99,6 +100,9 @@ const findUser = stateUser.find( u => u.email === user.email)
 
   return ( !findUser ?  <div><p>you must login or finish registration, click here!</p><LoginButton/></div> :
     <div>
+        <Link to="/tienda">
+        <button> Go Back </button>
+      </Link>
       <div className="ProductCreate">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div
