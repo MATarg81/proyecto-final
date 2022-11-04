@@ -72,7 +72,7 @@ const postCart = async (req, res) => {
         where:{
           userId:id
         }
-  
+
       })
       return res.status(200).json(purhcesesMaded)
     } catch (error) {
@@ -80,6 +80,7 @@ const postCart = async (req, res) => {
     }
 
   }
+
 
   function getAllCart(req, res) {
     try{
