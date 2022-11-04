@@ -51,6 +51,17 @@ const postCart = async (req, res) => {
     }
   }; 
 
+
+  const cartDetail = async (req, res) => {
+    try {
+      const id = req.params.id;
+      const purchesesMaded = await Cart.findOne({where: {id: id}, include: [{model: Product}]});
+      purchesesMaded && res.status(200).json(purchesesMaded);
+    } catch (error) {
+      return res.status(400).json("El error: ", error);
+    }
+  };
+
   const getCart = async (req, res) =>{
     try {
       const {id} = req.params
@@ -80,4 +91,4 @@ const postCart = async (req, res) => {
     }
   }
 
-module.exports= {postCart, getCart, getAllCart};
+module.exports= {postCart, getCart, getAllCart, cartDetail};
