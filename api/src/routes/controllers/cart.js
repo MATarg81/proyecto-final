@@ -3,9 +3,7 @@ const { Cart, Product, User } = require("../../db");
 const { putProduct } = require("./products");
 
 const postCart = async (req, res) => {
-    console.log("entré a postCart")
     const { items, price } = req.body;
-    console.log(items)
     try {
 
       const newCartList = await Cart.create({
@@ -52,6 +50,18 @@ const postCart = async (req, res) => {
       console.log("problema para realizar el post: " + err);
     }
   }; 
+
+
+  const cartDetail = async (req, res) => {
+    try {
+      const id = req.params.id;
+      const purchesesMaded = await Cart.findOne({where: {id: id}, include: [{model: Product}]});
+      purchesesMaded && res.status(200).json(purchesesMaded);
+    } catch (error) {
+      return res.status(400).json("El error: ", error);
+    }
+  };
+
   const getCart = async (req, res) =>{
     try {
       const {id} = req.params
@@ -62,7 +72,7 @@ const postCart = async (req, res) => {
         where:{
           userId:id
         }
-
+  
       })
       return res.status(200).json(purhcesesMaded)
     } catch (error) {
@@ -70,25 +80,6 @@ const postCart = async (req, res) => {
     }
 
   }
-  // const getCart = async (req, res) =>{
-  //   try {
-  //     const {id} = req.params
-  //     const purchesesMaded = await Cart.findAll({
-  //       include:{
-  //         model: Product,
-  //         where:{
-  //           userId:id
-  //         },
-  //       }
-  
-  //     })
-     
-  //    purchesesMaded && res.status(200).json( purchesesMaded)
-  //   } catch (error) {
-  //     return res.status(400).json(error)
-  //   }
-
-  // }
 
   function getAllCart(req, res) {
     try{
@@ -100,4 +91,4 @@ const postCart = async (req, res) => {
     }
   }
 
-module.exports= {postCart, getCart, getAllCart};
+module.exports= {postCart, getCart, getAllCart, cartDetail};
