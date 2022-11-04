@@ -8,25 +8,21 @@ import { useState } from "react";
 import upImage from "./cloudinary";
 import validate from "./validate";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import LoginButton from '../Login/LoginButton';
+import LoginButton from "../Login/LoginButton";
 import { Link } from "react-router-dom";
 
 const CreateProduct = function () {
-
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.productsReducer.categories);
   const [error, setError] = useState({});
-  const {isAuthenticated, user} = useAuth0()
+  const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     dispatch(get_categories());
   }, [dispatch]);
 
-
-
-const stateUser = useSelector( state => state.usersReducer.users)
-const findUser = stateUser.find( u => u.email === user.email)
-
+  const stateUser = useSelector((state) => state.usersReducer.users);
+  const findUser = stateUser.find((u) => u.email === user.email);
 
   const [input, setInput] = useState({
     name: "",
@@ -37,7 +33,7 @@ const findUser = stateUser.find( u => u.email === user.email)
   });
   const handleImg = async (e) => {
     const upLoeadedImg = await upImage(e.target.files[0]);
-  
+
     setInput({
       ...input,
       image: upLoeadedImg.url,
@@ -98,9 +94,14 @@ const findUser = stateUser.find( u => u.email === user.email)
     }
   };
 
-  return ( !findUser ?  <div><p>you must login or finish registration, click here!</p><LoginButton/></div> :
+  return !findUser ? (
     <div>
-        <Link to="/tienda">
+      <p>you must login or finish registration, click here!</p>
+      <LoginButton />
+    </div>
+  ) : (
+    <div>
+      <Link to="/tienda">
         <button> Go Back </button>
       </Link>
       <div className="ProductCreate">
