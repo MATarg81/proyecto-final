@@ -21,7 +21,39 @@ export default function Searchbar({ setPage }) {
 
   return (
     <div>
-      <form onSubmit={onSubmit} className="d-flex" role="search">
+      <form onSubmit={onSubmit} className="d-flex" role="search" action="">
+        <div class="input-group">
+          <input onChange={onInputChange}
+            className="form-control me-2"
+            type="search"
+            placeholder="Búsqueda por nombre..."
+            aria-label="Buscar"
+            value={search} />
+          <div class="input-group-append">
+            <span onClick={onSubmit} class="input-group-text bg-transparent text-primary" >
+              <i class="fa fa-search"></i>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+/* 
+
+<form action="">
+              <div class="input-group">
+                <input type="text" class="form-control py-0" placeholder="Busqueda por nombre" />
+                <div class="input-group-append">
+                  <span class="input-group-text bg-transparent text-primary">
+                    <i class="fa fa-search"></i>
+                  </span>
+                </div>
+              </div>
+            </form>
+
+<form onSubmit={onSubmit} className="d-flex" role="search">
         <input
           onChange={onInputChange}
           className="form-control me-2"
@@ -33,14 +65,23 @@ export default function Searchbar({ setPage }) {
         <button
           className="btn btn-outline-dark ms-2"
           type="submit"
-          //   style={{
-          //     backgroundColor: "#FFFCF9",
-          //     color: "#352D39",
-          //   }}
         >
           Buscar
         </button>
       </form>
-    </div>
-  );
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
