@@ -138,7 +138,7 @@ const allProductsReviews = async() => {
 const reviewsProductsId = async(id) => {
   try {
       const totalReviews = await allProductsReviews();
-      const reviewsId = totalReviews.filter((r) => r.productId.toString() === id);
+      const reviewsId = totalReviews.filter((r) => r.productId?.toString() === id);
           
           return reviewsId;
   }
@@ -185,20 +185,23 @@ async function addProductsReviews(req, res) {
   const { 
     score, 
     content, 
-    product
+    product, 
+    user
   } = req.body;
-  const findProduct = Product.findOne({ where: { name: product}});
+  console.log(req.body)
+
+  const findProduct = await Product.findOne({ where: { id: product}});
+  const findUser = await User.findOne({where: { name: user }})
+  console.log("Este es el producto: ", findProduct, " y este es el user: ", findUser)
 
   try {
       const newReview = await Review.create({
-        score: score,
-        content: content,
-
+        score,
+        content,
       });
       
       newReview.setProduct(findProduct.id);
-
-      console.log(newReview)
+      newReview.setUser(findUser.id);
 
       return res
       .status(200)
@@ -206,7 +209,7 @@ async function addProductsReviews(req, res) {
   } catch (e) {
     return res
     .status(404)
-    .send(console.log(e));
+    .send(console.log("problemas: ", e));
   }
 }
 
