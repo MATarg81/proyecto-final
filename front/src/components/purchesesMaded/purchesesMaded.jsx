@@ -17,7 +17,7 @@ export default function PurchesesMaded() {
  }
     
   }, [dispatch, purchesesMaded]);
-let story = purchesesMaded.map((el)=>{
+let purchesStory = purchesesMaded.map((el)=>{
   return (
     <div>
 
@@ -34,7 +34,7 @@ let story = purchesesMaded.map((el)=>{
 })
   return (
     <div>
-      {story}
+      {purchesStory}
      
     </div>
   );
