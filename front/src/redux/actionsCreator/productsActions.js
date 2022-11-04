@@ -114,7 +114,7 @@ export function addCategories(body) {
 export function updateProduct(body) {
   return async function (dispatch) {
     try {
-      const res = await axios.patch(`/products/${body.id}`, body);
+      const res = await axios.patch(`/products`, body);
       return dispatch({
         type: EDIT_PRODUCT,
         payload: res,
