@@ -10,6 +10,61 @@ function NavBar() {
 
   return (
     <div>
+
+      <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container">
+          <Link to="/">
+            <img
+              src="/img/athenas_logo-removebg-preview.png"
+              alt="Logo"
+              height="80px"
+            />
+          </Link>
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <Link
+                className="nav-link"
+                aria-current="page"
+                to="/home"
+              >
+                Home
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link className="nav-link" to="/tienda">
+                Tienda
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Link className="nav-link" to="/actividades">
+                Actividades
+              </Link>              </li>
+            <li class="nav-item">
+              <Link className="nav-link" to="/nosotros">
+                Nosotros
+              </Link>              </li>
+          </ul>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-lg-auto">
+              <div class="ml-lg-4">
+
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+
+
+
+
+
+
+
+
       <nav
         className="navbar navbar-expand-md bg-light py-1 mr-0 "
         style={{
@@ -78,11 +133,11 @@ function NavBar() {
             </ul>
             <div className="buttons" >
 
-            <Link to="/profile" className="btn btn-outline-dark ms-2">
+              <Link to="/profile" className="btn btn-outline-dark ms-2">
                 <i className="me-1"></i>Perfil
               </Link>
 
-              
+
               <AuthenticationButton />
               <Profile />
 
