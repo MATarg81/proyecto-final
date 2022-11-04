@@ -244,7 +244,7 @@ function Shop() {
 
         {/* //////////////////////////////////////////// */}
 
-        <div class="container" style={{
+        <div class="container animate__animated animate__fadeInUp" style={{
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "3rem",
@@ -252,7 +252,7 @@ function Shop() {
         }}>
           {productsPage?.map((p) => (
             <div class="card product-item border-0" key={p.id}>
-              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 animate__animated animate__fadeInUp">
+              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
                 <div class="" onClick={() => navigate(`/tienda/${p.id}`)} >
 
                   <img class="img-fluid hover-zoom bg-image" src={p.image}/* className="card-img-top" */ alt={p.name} />
@@ -293,27 +293,6 @@ function Shop() {
 
         {/* PAGINACION */}
 
-        <div class="col-12 pb-1">
-          <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center mb-3">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">«</span>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">»</span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
 
 
 
