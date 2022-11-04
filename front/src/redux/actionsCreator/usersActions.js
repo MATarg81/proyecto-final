@@ -73,7 +73,7 @@ export const delete_users = (id) => {
 export function update_user(body) {
   return async function (dispatch) {
     try {
-      const res = await axios.patch(`/users/${body.id}`, body);
+      const res = await axios.patch(`/users`, body);
       return dispatch({
         type: EDIT_USERS,
         payload: res,

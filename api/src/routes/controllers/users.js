@@ -1,4 +1,4 @@
-const { User, Role } = require("../../db");
+const { User, Role, Activity } = require("../../db");
 const { Op } = require("sequelize");
 const jsonData = require("../../../users.json");
 
@@ -61,7 +61,10 @@ async function getUsersById(req, res) {
   const { id } = req.params;
 
   const findUser = await User.findOne({
-    where: { id: id }
+    where: { id: id },
+    include:{
+      model: Activity
+    }
   });
   if (findUser) {
     await findUser.save()
@@ -111,9 +114,8 @@ async function deleteUser(req, res) {
 }
 
 async function updateUser(req, res) {
-  const id = req.params.id;
+  //const id = req.params.id;
   const body = req.body;
-  console.log(id)
 
   try {
     await User.update(
@@ -131,7 +133,7 @@ async function updateUser(req, res) {
       },
       {
         where: {
-          id: Number(id),
+          id: Number(body.id),
         },
       }
 
@@ -139,7 +141,7 @@ async function updateUser(req, res) {
 
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
-    res.status(400).send(console.log(error));
+    res.status(400).send(error);
   }
 }
 

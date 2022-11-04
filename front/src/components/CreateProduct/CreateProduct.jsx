@@ -1,18 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { get_categories } from "../../redux/actionsCreator/categoriesActions";
 import { createProduct } from "../../redux/actionsCreator/productsActions";
-import { get_users } from "../../redux/actionsCreator/usersActions";
 import { useState } from "react";
 import upImage from "./cloudinary";
 import validate from "./validate";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import LoginButton from '../Login/LoginButton';
+import Register from "../Register";
+
 
 const CreateProduct = function () {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const categories = useSelector((state) => state.productsReducer.categories);
   const [error, setError] = useState({});
   const {isAuthenticated, user} = useAuth0()
@@ -97,7 +99,7 @@ const findUser = stateUser.find( u => u.email === user.email)
     }
   };
 
-  return ( !findUser ?  <div><p>you must login or finish registration, click here!</p><LoginButton/></div> :
+  return ( findUser ?
     <div>
       <div className="ProductCreate">
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -206,11 +208,11 @@ const findUser = stateUser.find( u => u.email === user.email)
           </div>
         </form>
       </div>
-    </div>
+    </div> : <Register/>
   );
 };
 export default withAuthenticationRequired(CreateProduct, {
-  onRedirecting: () => <p>is loading .....</p>,
+  onRedirecting: () => <h1>redirigiendo al login, aguarde..</h1>,
 });
 
 //export default CreateProduct;

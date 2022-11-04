@@ -107,7 +107,7 @@ export default function ProfileProducts() {
                         data-bs-toggle="modal"
                         data-bs-target="#editProduct"
                       >
-                        Editar producto
+                        Editar
                       </button></th>
           </tr>
         </thead>
@@ -141,7 +141,6 @@ export default function ProfileProducts() {
                 </>
               );
             })}
-        </tbody>
                       <div
                         class="modal fade"
                         id="editProduct"
@@ -168,6 +167,7 @@ export default function ProfileProducts() {
                           </div>
                         </div>
                       </div>
+        </tbody>
       </table>
     </>
   );
