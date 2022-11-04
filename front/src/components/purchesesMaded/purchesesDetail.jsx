@@ -19,16 +19,15 @@ export default function PurchesesDetail() {
     <div>
       {purchesDetail.products?.length &&
         purchesDetail.products.map((el) => {
-          return(
-          <div>
-
-          <h1>{el.name}</h1>
-          <h1>{el.price}</h1>
-          <h1>{el.detail}</h1>
-          <img src={el.image} alt=""/>
-          
-          </div>
-)        })}
+          return (
+            <div>
+              <h1>{el.name}</h1>
+              <h1>{el.price}</h1>
+              <h1>{el.detail}</h1>
+              <img src={el.image} alt="" />
+            </div>
+          );
+        })}
     </div>
   );
 }
