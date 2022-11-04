@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { postReview } from "../redux/actionsCreator/reviewsActions";
+import { postReview, getReviewsProductId } from "../redux/actionsCreator/reviewsActions";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const colors = {
     orange: "#FFBA5A",
@@ -15,6 +17,10 @@ function Reviews() {
 
     const dispatch = useDispatch();
 
+    const { id } = useParams(); 
+
+    const detail = useSelector((state) => state.reviewsReducer.detail);
+    console.log(detail)
     const product = useSelector((state) => state.productsReducer.detail); //product name me sirve también
     const [currentValue, setCurrentValue] = useState(0); //current Value me va a dar la puntuación (score)
     const [hoverValue, setHoverValue] = useState(undefined);
@@ -48,8 +54,109 @@ function Reviews() {
         dispatch(postReview(body));
         setCurrentValue(0);
         setContent("");
+    };
+
+    const average = () => {
+        let a = 0;
+        for (let i = 0; i < detail.length; i++) {
+          a += detail[i].score; 
+        }
+        return a/detail.length
+      }
+    
+      useEffect(() => {
+        {
+          dispatch(getReviewsProductId(id));
+        }
+      }, [id, dispatch]);
+
+    const score = (score) => {
+        switch(true) {
+            case (score < 1.25): return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>                    
+                </div>
+             ) 
+            case (score < 1.75): return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStarHalfAlt size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>  
+                </div>
+             ) 
+             case (score < 2.25): return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>  
+                </div>
+             ) 
+             case (score < 2.75): return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStarHalfAlt size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>  
+                </div>
+             ) 
+             case (score < 3.25): return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>  
+                </div>
+             ) 
+             case (score < 3.75): return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStarHalfAlt size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>  
+                </div>
+             ) 
+            case (score < 4.25): return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>  
+                </div>
+             ) 
+            case (score < 4.75):return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStarHalfAlt size={13} color={colors.orange} style={{marginRight: 10}}/>  
+                </div>
+             ) 
+            case (score <= 5):return(
+                <div>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>
+                <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>  
+                </div>
+             ) 
+        }
     }
 
+//--------------------------------------------------------------------
 
     return (
         <div style={styles.container}>
@@ -84,6 +191,24 @@ function Reviews() {
         >
             Enviar
         </button>
+
+        <h2>Opiniones del producto</h2>
+        <div>
+        <div className="row">
+          <div className="col-md-6">
+            <p>{average().toFixed(2)} {score(average())} ({detail.length})</p>
+          </div>
+        </div>
+        <div className="col-md-6">
+            {detail.map((r) => (
+                <div  style = {{border:"1px solid black", borderRadius:"1rem", margin: "2rem", padding: "2rem"}} key = {r.id}>
+                    <h5>{r.user.name}</h5>
+                    <h4>{score(r.score)}{r.score}</h4>
+                    <p>{r.content}</p>
+                </div>
+            ))}
+        </div>
+        </div>
         
         </div>
     );
@@ -92,6 +217,7 @@ function Reviews() {
 
     const styles = {
     container: {
+        margin: "2rem",
         display: "flex",
         flexDirection: "column",
     },
@@ -100,7 +226,7 @@ function Reviews() {
         flexDirection: "row",
     },
     textarea: {
-        border: "1px solid #a9a9a9",
+        border: "1px solid black",
         borderRadius: 5,
         padding: 10,
         margin: "20px 0",
