@@ -29,8 +29,8 @@ function Reviews() {
 
   return (
     <div style={styles.container}>
-      <h2> React Ratings </h2>
-      <div style={styles.stars}>
+      <h2> Dejá tu reseña </h2>
+      <div>
         {stars.map((_, index) => {
           return (
             <FaStar
@@ -49,14 +49,14 @@ function Reviews() {
         })}
       </div>
       <textarea
-        placeholder="What's your experience?"
+        placeholder="Escribe aquí tu comentario"
         style={styles.textarea}
       />
 
       <button
         style={styles.button}
       >
-        Submit
+        Enviar
       </button>
       
     </div>
@@ -68,7 +68,6 @@ const styles = {
   container: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
   },
   stars: {
     display: "flex",
