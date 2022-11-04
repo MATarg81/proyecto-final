@@ -1,0 +1,60 @@
+{
+    "results": [
+  
+        {
+            "content": "Buena calidad, cómoda y fresca.",          
+            "score": 4,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 6
+        },
+  
+        {
+          "content": "Excelente calidad!!! La super recomiendo.",
+          "score": 5,
+          "product": "Calza Deportiva Cocot Mujer",
+          "user": 6
+            
+        },
+  
+        {
+            "content": "Un poco cara pero muy buena",
+            "score": 4,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 7
+        },
+        {
+            "content": "me gustó mucho, la uso siempre para salir a correr",
+            "score": 4,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 5
+        },
+  
+        {
+            "content": "hermoso el diseño y a un precio razonable!",
+            "score": 5,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 4
+        },
+  
+        {
+            "content": "La compré y me gustó, pero a la semana estaba toda estirada, los elásticos súper de mala calidad.",
+            "score": 1,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 1
+        },
+  
+        {
+            "content": "Deja bastante que desear.",
+            "score": 2,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 3
+        },
+  
+        {
+            "content": "Excelente!!!!!!!",
+            "score": 5,
+            "product": "Calza Deportiva Cocot Mujer",
+            "user": 2
+        }
+    ]
+  }

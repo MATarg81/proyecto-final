@@ -1,5 +1,6 @@
 const { Review , User, Product, Activity } = require("../../db");
-const jsonData = require("../../../reviews.json");
+const jsonData = require("../../../reviewsActivities.json");
+const jsonDataProducts = require("../../../reviewsProducts.json");
 
 
 const allActivitiesReviews = async() => {
@@ -11,6 +12,7 @@ const allActivitiesReviews = async() => {
             // return results;
           const results = jsonData.results.map(async r => {
             const findAct = await Activity.findOne({where: {name: r.activity}});
+            console.log(findAct)
             const newRev = await Review.create({
               score: r.score,
               content: r.content
@@ -24,7 +26,7 @@ const allActivitiesReviews = async() => {
             return dbReviews;
         }        
     } catch (error) {
-        console.log('Problemas en la función dbReviews()' + error);
+        console.log('Problemas en la función dbReviews() ACA' + error);
     };
 }
 
@@ -103,7 +105,7 @@ async function addActivitiesReviews(req, res) {
   }
 }
 
-//------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------PRODUCTS-----------------------------------------------------------------------------------------------------------------------
 
 const allProductsReviews = async() => {
   const dbData = await Review.count();
@@ -112,29 +114,31 @@ const allProductsReviews = async() => {
         if (!dbData) {   
             // const results = await Review.bulkCreate(jsonData.results);
             // return results;
-          const results = jsonData.results.map(async r => {
+          const results = jsonDataProducts.results.map(async r => {
             const findProduct = await Product.findOne({where: {name: r.product}})
+            const findUser = await User.findOne({where: {id: r.user}})
             const newRev = await Review.create({
               score: r.score,
               content: r.content
             });
             await newRev.setProduct(findProduct?.id);
+            await newRev.setUser(findUser?.id)
           });
           return results;
         } else {
           
-            const dbReviews = await Product.findAll({include:[{model: Product, attributes: ['name'], include:[{model: User, attributes: ['name']}]}]})
+            const dbReviews = await Review.findAll({include:[{model: Product, attributes: ['name']}, {model: User, attributes: ['name']}]})
             return dbReviews;
         }        
     } catch (error) {
-        console.log('Problemas en la función dbReviews()' + error);
+        console.log("Problemas: " + error);
     };
 }
 
 const reviewsProductsId = async(id) => {
   try {
       const totalReviews = await allProductsReviews();
-      const reviewsId = totalReviews.find((r) => r.productId.toString() === id);
+      const reviewsId = totalReviews.filter((r) => r.productId?.toString() === id);
           
           return reviewsId;
   }
@@ -181,20 +185,23 @@ async function addProductsReviews(req, res) {
   const { 
     score, 
     content, 
-    product
+    product, 
+    user
   } = req.body;
-  const findProduct = Product.findOne({ where: { name: product}});
+  console.log(req.body)
+
+  const findProduct = await Product.findOne({ where: { id: product}});
+  const findUser = await User.findOne({where: { name: user }})
+  console.log("Este es el producto: ", findProduct, " y este es el user: ", findUser)
 
   try {
       const newReview = await Review.create({
-        score: score,
-        content: content,
-
+        score,
+        content,
       });
       
       newReview.setProduct(findProduct.id);
-
-      console.log(newReview)
+      newReview.setUser(findUser.id);
 
       return res
       .status(200)
@@ -202,10 +209,9 @@ async function addProductsReviews(req, res) {
   } catch (e) {
     return res
     .status(404)
-    .send(console.log(e));
+    .send(console.log("problemas: ", e));
   }
 }
-
 
 module.exports = {
   getActivitiesReviews,

@@ -8,7 +8,9 @@ router.post('/', postCart);
 
 router.get('/:id', getCart);
 router.get('/', getAllCart)
+
 router.get('/detail/:id', cartDetail)
+
 
 
 module.exports = router;

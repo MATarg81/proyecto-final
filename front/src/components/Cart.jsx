@@ -11,6 +11,7 @@ import {
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { useEffect } from "react";
 import { useState } from "react";
+import axios from "axios";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.items);
@@ -56,6 +57,26 @@ const Cart = () => {
     setCart([]);
     dispatch(delAll());
   };
+
+  //-------PRUEBAS MP----------------------------------------------
+
+  const handlePayment = async () => {
+    dispatch(postCart(allState));
+    let data = allState.items.map((p) => {
+      return {
+        id: p.id,
+        name: p.name,
+        description: p.detail,
+        quantity: p.qty,
+        unit_price: Number(p.price),
+      };
+    });
+    console.log("esta es la data", data);
+    const response = await axios.post("/payment", data);
+    window.location.href = `${response.data.init_point}`;
+  };
+
+  //-------PRUEBAS MP----------------------------------------------
 
   const emptyCart = () => {
     return (
@@ -121,7 +142,7 @@ const Cart = () => {
               Vaciar Carrito
             </button>
             <Link
-              onClick={handleCartDB}
+              onClick={handlePayment}
               to="/checkout"
               className="btn btn-outline-dark mb-5 w-25 mx-auto"
             >

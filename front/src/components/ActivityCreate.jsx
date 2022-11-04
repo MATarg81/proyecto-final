@@ -5,14 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { postActivity } from "../redux/actions/activitiesActions";
 import upImage from "./CreateProduct/cloudinary";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-import LoginButton from '../components/Login/LoginButton';
-import { get_users } from "../redux/actionsCreator/usersActions";
+
+import Register from "./Register";
 
  const ActivityCreate = function () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const{ isAuthenticated,user } = useAuth0() 
-
 
 
 const stateUser = useSelector( state => state.usersReducer.users)
@@ -243,9 +242,10 @@ const findUser = stateUser.find( u => u.email === user.email)
           </div>
         </form>
       </div>
-    </div> : <div><p>you must login or complete your profile, click here!</p><LoginButton/></div>
+    </div> : <Register/>
   ) ;
 }
  export default withAuthenticationRequired(ActivityCreate, {
-   onRedirecting: () => <p>is loading .....</p>,
+   onRedirecting: () => <h1> redirigiendo al login, aguarde..</h1>,
  });
+ //<div><p>you must login or complete your profile, click here!</p><LoginButton/></div>
