@@ -11,21 +11,31 @@ export default function PurchesesMaded() {
   // const { userId } = useParams();
 
   useEffect(() => {
-    if (purchesesMaded.length === 0) {
+   if(purchesesMaded.length === 0){
       dispatch(getCart(1)); //hardcodeo
       // dispatch(getCart(userId))
-    }
+ }
+    
   }, [dispatch, purchesesMaded]);
-
+let story = purchesesMaded.map((el)=>{
   return (
     <div>
-      <h6>total: {purchesesMaded[0]?.total}</h6>
-      <h6>fecha de compra: {purchesesMaded[0]?.createdAt.slice(0, 10)}</h6>
-      <h6>hora de compra: {purchesesMaded[0]?.createdAt.slice(11, 17)}</h6>
 
-      <Link to={`/detalleComprasRealizadas/:${purchesesMaded.id}`}>
+    
+    <h6>total: {el.total}</h6>
+      <h6>fecha de compra: {el.createdAt.slice(0, 10)}</h6>
+      <h6>hora de compra: {el.createdAt.slice(11, 17)}</h6>
+
+      <Link to={`/detalleComprasRealizadas/${el.id}`}>
         detalle de la compra
       </Link>
+      </div>
+  )
+})
+  return (
+    <div>
+      {story}
+     
     </div>
   );
 }
