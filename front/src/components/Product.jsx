@@ -2,19 +2,19 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import { Link, useParams } from "react-router-dom";
-//import Skeleton from "react-loading-skeleton";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
-import {
-  getDetail,
-} from "../redux/actionsCreator/productsActions";
+import { getDetail } from "../redux/actionsCreator/productsActions";
+import Reviews from "./ReviewsProduct"
+import { AiOutlineVerticalAlignMiddle } from "react-icons/ai";
+//import Skeleton from "react-loading-skeleton";
 
 function Product() {
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer.detail);
   const cart = useSelector((state) => state.cartReducer.items);
-  //const [loading, setloading] = useState(false);
   const [, setCart] = useLocalStorage("cart", cart);
   const dispatch = useDispatch();
+    //const [loading, setloading] = useState(false);
 
   useEffect(() => {
     if (product?.length === 0) {
@@ -22,7 +22,7 @@ function Product() {
     } else {
       dispatch(getDetail(id))
     }
-  }, [id, dispatch, product]);
+  }, []);
 
   const addProduct = (product) => {
     dispatch(addCart(product));
@@ -49,16 +49,18 @@ function Product() {
   // };
 
   //  const ShowProduct = () => {
+  
+
   return (
     <div className="row">
 
       <div className="col-md-6">
         <div className="container">
-        <div
-          id="carouselExampleControls"
-          class="carousel slide w-50"
-          data-ride="carousel"
-        >
+          <div
+            id="carouselExampleControls"
+            class="carousel slide w-50"
+            data-ride="carousel"
+          >
           <div class="carousel-inner">
             {product?.image?.map((i, index) => {
               return (
@@ -103,17 +105,13 @@ function Product() {
               <span class="sr-only">Next</span>
             </a>
           </div>
+          </div>
         </div>
-      </div>
       </div>
 
       <div className="col-md-6">
         <h4 className="text-uppercase text-black-50">{product?.categories}</h4>
         <h1 className="display-5">{product?.title}</h1>
-        {/* <p className="lead fw-bolder">
-            Rating {product.rating && product.rating.rate}
-            <i className="fa fa-star"></i>
-          </p> */}
         <h3 className="display-6 fw-bold my-4">$ {product?.price}</h3>
         <p className="lead">{product?.detail}</p>
         <p>
@@ -132,7 +130,10 @@ function Product() {
 
         <Link to="/carrito" className="btn btn-dark ms-2 px-3 py-2">
           Ir al carrito
-        </Link>
+        </Link>        
+      </div>
+      <div>
+        <Reviews/>
       </div>
     </div>
   );

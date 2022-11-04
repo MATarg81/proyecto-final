@@ -5,6 +5,7 @@
 
 export const initialState = {
   reviews: [],
+  detail: [],
 }
 
 const reviewsReducer = (state = initialState, action) => {
@@ -20,6 +21,12 @@ const reviewsReducer = (state = initialState, action) => {
         ...state,
       }
     };
+    case 'GET_REVIEW_ID': {
+      return  {
+        ...state,
+        detail: action.payload,
+      }
+    }
     default:
       return state;
   }
