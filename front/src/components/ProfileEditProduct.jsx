@@ -27,7 +27,7 @@ export default function ProfileEditProduct() {
     price: ``,
     categories: '',
     detail: ``,
-    image: '',
+    image: [],
     stock: ``,
   });
 
@@ -45,14 +45,18 @@ export default function ProfileEditProduct() {
     if (allProducts?.length === 0) {
       dispatch(getProducts());
     }
-  }, [allProducts, dispatch, productId.length, stateCategories, productId]);
+  }, [allProducts, dispatch, stateCategories, productId]);
 
   
   function deleteImg(e) {
     const findI = productId?.image.filter((i) => i !== e.target.name);
+
     productId.image.splice(e.target.id, 1)
+
     if (findI?.length > 0) {
-      setInput((input.image = findI));
+      findI.map(i => {
+        return input.image.push(i)
+      })
     }
   }
 
@@ -75,14 +79,14 @@ export default function ProfileEditProduct() {
 
   function handleSubmit(e) {
     setInput((input.id = productId.id));
-    if (!input?.image?.length && productId?.image?.length === 0) { setInput(input.image = []) }
-    if (!input?.image?.length && productId?.image?.length > 0) { setInput(input.image = productId.image) }
+    if (!input.image.length && productId.image.length === 0) { setInput(input.image = []) }
+    if (!input.image.length && productId.image.length > 0) { setInput(input.image = productId.image) }
     if (!input.name) { setInput((input.name = productId.name)) }
     //if (!input.categories) { setInput((input.categories = productId.categories)) }
     if (!input.price) { setInput((input.price = productId.price)) }
     if (!input.detail) { setInput((input.detail = productId.detail)) }
     if (!input.stock) { setInput((input.stock = productId.stock)) }
-    console.log(input)
+    console.log(input.image)
     dispatch(updateProduct(input));
   }
 
