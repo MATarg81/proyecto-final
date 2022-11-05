@@ -1,22 +1,14 @@
-<<<<<<< HEAD
-import { GET_USERS , GET_USERS_BY_ID, EDIT_USERS } from "../actionsTypes/actionsTypesUsers"
-=======
 import { GET_USERS, GET_USERS_BY_ID, EDIT_USERS, GET_ALL_ROLES, ORDER_USERS_BY_NAME } from "../actionsTypes/actionsTypesUsers"
 import { orderUser } from "../actionsCreator/usersActions";
 
 
->>>>>>> d1da99864c1da2e98cbb9fa4aa4740a29a70f772
 
 export const initialState = {
   users: [],
   usersById: [],
-<<<<<<< HEAD
-  usersEdited: [], 
-=======
   usersEdited: [],
   roles: [],
   //usersOrdered: [],
->>>>>>> d1da99864c1da2e98cbb9fa4aa4740a29a70f772
 }
 
 
@@ -35,19 +27,11 @@ const usersReducer = (state = initialState, action) => {
       };
     }
 
-<<<<<<< HEAD
-    case EDIT_USERS: {
-=======
     case EDIT_USERS:
->>>>>>> d1da99864c1da2e98cbb9fa4aa4740a29a70f772
       return {
         ...state,
         usersEdited: action.payload,
       }
-<<<<<<< HEAD
-    }
-
-=======
     case GET_ALL_ROLES: {
       return {
         ...state,
@@ -73,7 +57,6 @@ const usersReducer = (state = initialState, action) => {
 
 
 
->>>>>>> d1da99864c1da2e98cbb9fa4aa4740a29a70f772
     default:
       return  state;
   }
