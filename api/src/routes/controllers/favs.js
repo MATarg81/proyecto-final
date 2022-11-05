@@ -2,9 +2,9 @@ const { User, Product } = require("../../db");
 //const { getUsers, getUsersById } = require("./users");
 
 async function setFav(req, res) {
-    const  idU  = req.body.id;
-    const  idP  = req.params.id;
-
+    const  idU  = req.query.idU;
+    const  idP  = req.query.id;
+  console.log(idP, idU, 'ididididissss')
 try {
     const findUser = await User.findByPk(idU)
     const findProduct = await Product.findByPk(idP)
@@ -23,8 +23,8 @@ try {
 
 
   async function removeFav(req, res) {
-    const  idU  = req.body.id;
-    const  idP  = req.params.id;
+    const  idU  = req.query.idU;
+    const  idP  = req.query.id;
 
 try {
     const findUser = await User.findByPk(idU)

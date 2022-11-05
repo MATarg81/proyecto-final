@@ -83,13 +83,22 @@ function Shop() {
   //favs
   
   const favState = useSelector(state => state.usersReducer.users)
-  const userID = favState.find(u => u.email === user.email)
+  const findUser = user ? favState.find(u => u.email === user.email) : null
+  
   function handleAddtoFav(id) {
     //ADDtoFavs(p)
-    dispatch(addFav(id, userID.id));
+    if(findUser){
+      dispatch(addFav(id, findUser.id));
+      alert("Producto agregado a favoritos");
+    }
+    // else{
+    //   const findProd = products.find(p => p.id === id)
+    //   dispatch(addFav(findProd))
+    // }
+    //window.localStorage.setItem('favs', JSON.stringify(findProd))
     //localStorage.setItem('favs', JSON.stringify(favState))
     
-    alert("Producto agregado a favoritos");
+    
     
   }
 

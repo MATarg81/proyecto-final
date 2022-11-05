@@ -7,8 +7,8 @@ const {
 
 const router = Router();
 
-router.get("/:id", setFav);
-router.delete("/:id", removeFav);
+router.get("/", setFav);
+router.delete("/", removeFav);
 
 
 module.exports = router;
