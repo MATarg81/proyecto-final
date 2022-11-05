@@ -217,8 +217,7 @@ const CreateProduct = function () {
           </div>
         </form>
       </div>
-    </div> 
-    // : (<Register />)
+    </div>
   );
 };
 export default withAuthenticationRequired(CreateProduct, {
