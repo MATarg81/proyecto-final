@@ -90,18 +90,20 @@ export default function Perfil() {
 
               <li id="Historial de compras">
                 <label class="nav-link align-middle px-0">
-                  <button
-                    className="btn btn-outline-dark"
-                    id="v-pills-history-tab"
-                    data-bs-toggle="pill"
-                    data-bs-target="#v-pills-history"
-                    type="button"
-                    role="tab"
-                    aria-controls="v-pills-history"
-                    aria-selected="true"
-                  >
-                    Historial de compras
-                  </button>
+                  <Link to="/profile/historial">
+                    <button
+                      className="btn btn-outline-dark"
+                      id="v-pills-history-tab"
+                      data-bs-toggle="pill"
+                      data-bs-target="#v-pills-history"
+                      type="button"
+                      role="tab"
+                      aria-controls="v-pills-history"
+                      aria-selected="true"
+                    >
+                      Historial de compras
+                    </button>
+                  </Link>
                 </label>
               </li>
 
@@ -121,9 +123,6 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
-
-
-              
 
               <li id="Productos">
                 <label class="nav-link align-middle px-0">
@@ -146,7 +145,6 @@ export default function Perfil() {
         </div>
 
         <div className="tab-content" id="v-pills-tabContent">
-
           {/* Profile */}
           <div
             class="col py-3 tab-pane fade show active"
@@ -196,8 +194,6 @@ export default function Perfil() {
           >
             <ProfileProducts />
           </div>
-
-          
         </div>
       </div>
     </div>
