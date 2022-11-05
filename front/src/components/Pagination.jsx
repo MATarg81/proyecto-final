@@ -26,26 +26,31 @@ const Pagination = function ({ page, setPage, totalPages }) {
 
     <div class="col-12 pb-1">
       <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center mb-3">
-          <li class="page-item disabled">
-            <a class="page-link" aria-label="Previous" onClick={handlePrev}
-              disabled={page <= 1}>
-              <span aria-hidden="true">«</span>
-              <span class="sr-only">Previous</span>
+        <ul class="pagination justify-content-center mb-3 ">
+          <li class="page-item">
+            <a
+              onClick={handlePrev}
+              disabled={page <= 1}
+              className="page-link text-white "
+              data-mdb-ripple-color="dark"
+              aria-label="Next"
+              style={{ backgroundColor: "indigo" }}
+            >
+              «
             </a>
           </li>
           {pages.map((p) => (
-            <li class="page-item active"><a class="page-link" key={p}
+            <li class="page-item border-0"><a class="page-link text-white" key={p}
               onClick={() => {
                 setPage(p);
-              }} disabled={page === p}> {p}</a></li>
+              }} disabled={page === p} style={{ backgroundColor: "indigo" }} > {p}</a></li>
 
           ))}
           <li class="page-item" >
-            <a class="page-link" aria-label="Next" onClick={handleNext}
-              disabled={page >= totalPages} style={{backgroundColor: "indigo"}}>
+            <a class="page-link text-white" aria-label="Next" onClick={handleNext}
+              disabled={page >= totalPages} style={{ backgroundColor: "indigo" }}>
               <span aria-hidden="true">»</span>
-              <span class="sr-only">Next</span>
+
             </a>
           </li>
         </ul>
