@@ -140,7 +140,7 @@ export default function ProfileEditProduct() {
               ></input>
             </div>
 
-            <div className="">
+            {/* <div className="">
               <label className="col-12" htmlFor="categories">
                 Categorías:
               </label>
@@ -169,7 +169,7 @@ export default function ProfileEditProduct() {
                 ) : (
                   <div></div>
                 )}
-              </div>
+              </div> */}
               {/* <div className="">
               <label className="col-12" htmlFor="newCategory">
                 Agregar categoría:
@@ -274,7 +274,7 @@ export default function ProfileEditProduct() {
                 Guardar
               </button>
             </div>
-          </div>
+         
         </form>
       </div>
     </>

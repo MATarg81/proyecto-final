@@ -137,11 +137,11 @@ const putProduct = async (req, res) => {
   
   const { id, name, price, detail, image, stock, categories } = req.body;
   const findCats = await categories.map(async c => {
-    await Category.findOne({where: {name: c}})
+    await Category.findAll({where: {name: c}})
   })
-  console.log(findCats)
+
   try {
-    const productPatched = await Product.update(
+    await Product.update(
       {
         name,
         price,
@@ -155,7 +155,19 @@ const putProduct = async (req, res) => {
         },
       }
     );
-    findCats?.map( async c => { await productPatched.setCategory(c.id)})
+    
+    const updatedProduct = await Product.findAll({where:{id:id}, include:{model:Category}})
+    console.log(updatedProduct)
+    if(updatedProduct) {
+      updatedProduct?.categories.map( async c => {
+        await findCats.map(async f => {
+          if(c.name !== f.name) {
+            await updatedProduct.addCategory(f.id)
+          }
+        })
+      })
+    }
+ 
     res.status(200).send("Producto actualizado con éxito");
   } catch (error) {
     res.status(400).send(console.log(error));
