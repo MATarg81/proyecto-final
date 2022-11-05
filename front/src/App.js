@@ -64,8 +64,12 @@ function App() { //Agregar ruta de /detail/id
         <Route exact path="/reviews" element={<Reviews />} />
         <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />
         <Route exact path="/favorites" element={<Favorites />} />
-        <Route exact path="edituser" element={<EditProfile />} />
-        <Route exact path="/comprasRealizadas" element={<PurchesesMaded />} />
+
+
+        <Route exact path="/edituser" element={<EditProfile />} />
+        {/* <Route exact path="/comprasRealizadas" element={<PurchesesMaded />} /> */}
+
+
         <Route exact path="/detalleComprasRealizadas/:id" element={<PurchesesDetail/>} />
         
 
@@ -73,7 +77,7 @@ function App() { //Agregar ruta de /detail/id
 
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/profile/actividades" element={<ProfileActivities />} />
-        <Route exact path="/profile/historial" element={<ProfileHistorial />} />
+        <Route exact path="/profile/historial" element={<PurchesesMaded />} />
         <Route exact path="/profile/usuarios" element={<ProfileUsers />} />
         {/* <Route exact path="/profile/productos" element={<ProfileProducts />} /> */}
         <Route exact path="/listUsers" element={<ListOfUsers />} />
