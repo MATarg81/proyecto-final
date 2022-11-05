@@ -9,12 +9,9 @@ export default function EditProfile() {
     const dispatch = useDispatch();
     const usersRoles = useSelector((state) => state.usersReducer.roles)
 
-
-    //FALTA AGREGAR QUE EDITE LOS DATOS DEL USUARIO LOGUEADO 
+    //FALTA AGREGAR QUE EDITE LOS DATOS DEL USUARIO LOGUEADO
 
     const [input, setInput] = useState({ id: usersState.id, name: "", lastName: "", dateOfBirth: "", phoneNumber: "", email: "", address: "", postalCode: "", password: "", roles: "" })
-
-
 
     useEffect(() => {
         if (usersRoles?.length) {
