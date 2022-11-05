@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addCategories,
   getCategories,
   getDetail,
   getProducts,
@@ -45,6 +44,7 @@ export default function ProfileEditProduct() {
     if (allProducts?.length === 0) {
       dispatch(getProducts());
     }
+    
   }, [allProducts, dispatch, stateCategories, productId]);
 
   
@@ -55,8 +55,9 @@ export default function ProfileEditProduct() {
 
     if (findI?.length > 0) {
       findI.map(i => {
-        return input.image.push(i)
+        return setInput(input.image.push(i))
       })
+      setInput({...input})
     }
   }
 
@@ -71,10 +72,12 @@ export default function ProfileEditProduct() {
   // }
 
   function handleChange(e) {
-    setInput({
-      ...input,
-      [e.target.id]: e.target.value,
-    });
+    if(typeof (e.target.id) === 'string') {
+      setInput({
+        ...input,
+        [e.target.id]: e.target.value,
+      });
+    }
   }
 
   function handleSubmit(e) {
