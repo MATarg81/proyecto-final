@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART } from "../actionsTypes/actionsTypesCart";
+
+import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART, CART_DETAIL, TOTAL_PRICE } from "../actionsTypes/actionsTypesCart";
 
 // Agregar item al carro
 
@@ -13,18 +14,32 @@ export const addCart = (product) => {
 export const getCart = (userId) => {
   return async function (dispatch) {
     try {
-      const {data} = await axios.get(`http://localhost:3001/cart/${userId}` );//hardcodeo provisorio de user
+      const { data } = await axios.get(`/cart/${userId}`); //hardcodeo provisorio de user
       return dispatch({
         type: GET_CART,
         payload: data,
       });
     } catch (err) {
-      
-      alert(err)
+      alert(err);
     }
   };
+
 }
   
+export const cartDetail = ( id) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.get(`/cart/detail/${id}`); 
+      return dispatch({
+        type: CART_DETAIL,
+        payload: data,
+      });
+    } catch (err) {
+      alert(err);
+    }
+  };
+ 
+};
 
 
 export const delCart = (product) => {
@@ -34,13 +49,20 @@ export const delCart = (product) => {
   };
 };
 
-// Eliminar todo del carro 
+export function totalPrice(price) {
+  return {
+    type: TOTAL_PRICE,
+    payload: price,
+  };
+}
+
+// Eliminar todo del carro
 
 export const delAll = () => {
   return {
     type: DELETE_ALL,
-  }
-}
+  };
+};
 
 // Obtener cart del localStorage
 
@@ -52,7 +74,7 @@ export const delAll = () => {
 // }
 
 export const postCart = (body) => {
-
+    console.log(body)
   return async function (dispatch) {
     try {
       const res = await axios.post("/cart", body);

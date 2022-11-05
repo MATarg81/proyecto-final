@@ -1,32 +1,84 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { addCart, delCart, delAll, postCart } from "../redux/actionsCreator/cartActions";
+import {
+  addCart,
+  delCart,
+  delAll,
+  postCart,
+  totalPrice,
+} from "../redux/actionsCreator/cartActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 
 const Cart = () => {
-  const state = useSelector((state) => state.cartReducer);
+  const state = useSelector((state) => state.cartReducer.items);
+  const allState = useSelector((state) => state.cartReducer);
   const dispatch = useDispatch();
-  const [, setCart] = useLocalStorage('cart', state.items)
+  const [, setCart] = useLocalStorage("cart", state);
+  const [price, setPrice] = useState(0);
+
+  useEffect(() => {
+    if (state) {
+      setCart(state);
+    }
+  }, [state, setCart]);
+
+  useEffect(() => {
+    if (state) {
+      let sum = 0;
+      state?.map((i) => {
+        return (sum = sum + parseInt(i.price) * parseInt(i.qty));
+      });
+      setPrice(sum);
+      dispatch(totalPrice(sum));
+    }
+  }, []);
 
   const handleAdd = (item) => {
     dispatch(addCart(item));
-    setCart(state.items)
+    setPrice(price + parseInt(item.price));
+    setCart(state);
   };
   const handleDel = (item) => {
     dispatch(delCart(item));
-    setCart(state.items)
+    setPrice(price - parseInt(item.price));
+    setCart(state);
   };
   const handleDeleteAll = () => {
     dispatch(delAll());
-    setCart([])
-  }
+    setCart([]);
+  };
 
   const handleCartDB = () => {
-    dispatch(postCart(state));
+    dispatch(postCart(allState));
     setCart([]);
-  }
+    dispatch(delAll());
+  };
 
+  //-------PRUEBAS MP----------------------------------------------
+
+  const handlePayment = async () => {
+    dispatch(postCart(allState));
+    let data = allState.items.map((p) => {
+      return {
+        id: p.id,
+        name: p.name,
+        description: p.detail,
+        quantity: p.qty,
+        unit_price: Number(p.price),
+      };
+    });
+    setCart([]);
+    dispatch(delAll());
+    console.log("esta es la data", data);
+    const response = await axios.post("/payment", data);
+    window.location.href = `${response.data.init_point}`;
+  };
+
+  //-------PRUEBAS MP----------------------------------------------
 
   const emptyCart = () => {
     return (
@@ -56,7 +108,7 @@ const Cart = () => {
               <div className="col-md-4">
                 <h3>{product.name}</h3>
                 <p className="lead fw-bold">
-                  {product.qty} x $ {product.price} = ${" "}
+                  {product.qty} x $ {product.price} = $
                   {product.qty * product.price}
                 </p>
                 <hr />
@@ -84,7 +136,7 @@ const Cart = () => {
       <>
         <div className="container">
           <div className="row">
-            <h3>TOTAL: ${state.price}</h3>
+            <h3>TOTAL: ${price}</h3>
             <button
               className="btn btn-outline-dark mb-5 w-25 mx-auto"
               onClick={handleDeleteAll}
@@ -92,7 +144,7 @@ const Cart = () => {
               Vaciar Carrito
             </button>
             <Link
-              onClick={handleCartDB}
+              onClick={handlePayment}
               to="/checkout"
               className="btn btn-outline-dark mb-5 w-25 mx-auto"
             >
@@ -106,9 +158,9 @@ const Cart = () => {
 
   return (
     <div>
-      {state.items.length === 0 && emptyCart()}
-      {state.items.length !== 0 && state.items.map(cartItems)}
-      {state.items.length !== 0 && buttons()}
+      {state.length === 0 && emptyCart()}
+      {state.length !== 0 && state.map(cartItems)}
+      {state.length !== 0 && buttons()}
     </div>
   );
 };

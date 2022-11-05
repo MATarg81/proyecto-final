@@ -74,8 +74,8 @@ Role.belongsToMany(User, {through: 'User_Role'});
 Cart.belongsTo(User, { as: 'User', foreignKey : 'userId'});
 User.hasMany(Cart, { as: 'User', foreignKey : 'userId'});
 
-// Review.belongsTo(User);
-// User.belongsToMany(Review, {through: 'Review_User'});
+Cart.belongsToMany(Product, {through: 'Cart_Products'})
+Product.belongsToMany(Cart, {through: 'Cart_Products'})
 
 Cart.belongsTo(User); // una compra pertenece a un usuario
 User.belongsToMany(Cart, {through: "Cart_User"}); // un usuario puede realizar muchas compras
@@ -83,6 +83,13 @@ User.belongsToMany(Cart, {through: "Cart_User"}); // un usuario puede realizar m
 Review.belongsTo(Activity);
 Activity.belongsToMany(Review, {through: 'Activity_Review'});
 
+Review.belongsTo(Product);
+Product.belongsToMany(Review, {through: 'Product_Review'});
+
+Review.belongsTo(User);
+User.belongsToMany(Review, {through: 'User_Review'});
+// Review.belongsTo(Product, { as: 'Product', foreignKey : 'ProductId'});
+// Product.hasMany(Review, { as: 'Product', foreignKey : 'ProductId'});
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

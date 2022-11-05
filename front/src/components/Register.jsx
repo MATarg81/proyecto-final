@@ -1,13 +1,23 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { add_users } from "../redux/actionsCreator/usersActions";
+import React, { useState, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { add_users, get_users } from "../redux/actionsCreator/usersActions";
 import { useNavigate } from "react-router-dom";
+import Profile from './Profile'
+//import axios from "axios";
+
+
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
 //AGREGAR = 'dateOfBirth' y 'address'
 //La confirmación de contraseña no oculta los caracteres
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const {user, isAuthenticated} = useAuth0()
+  const stateUser = useSelector( state => state.usersReducer.users)
+  const checkUser = stateUser.find( u => u.email === user.email)
+  console.log(checkUser, 'eeeeeeeee')
 
   const [error, setError] = useState({});
 
@@ -171,7 +181,12 @@ function Register() {
     }
   }
 
-  return (
+  if(checkUser){
+    return (
+      <Profile/>
+    )
+  }
+  return ( 
     <>
       <div class="container">
         <form
@@ -179,7 +194,7 @@ function Register() {
           onSubmit={handleSubmit}
           noValidate
         >
-          <h1 class="col-12">Registro</h1>
+          <h1 class="col-12">Completar perfil para terminar registro</h1>
 
           {/* Nombre */}
           <div class="col-6">
@@ -401,8 +416,12 @@ function Register() {
           </div>
         </form>
       </div>
-    </>
+    </> 
   );
+              
+
 }
 
-export default Register;
+export default withAuthenticationRequired(Register, {
+  onRedirecting: () => <h1> redirigiendo al login, aguarde..</h1>,
+});

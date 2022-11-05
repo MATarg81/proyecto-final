@@ -1,6 +1,7 @@
-const { User, Role } = require("../../db");
+const { User, Role, Activity } = require("../../db");
 const { Op } = require("sequelize");
 const jsonData = require("../../../users.json");
+
 
 async function getUsers(req, res) {
   const { name, lastname, email } = req.query;
@@ -8,7 +9,7 @@ async function getUsers(req, res) {
 
   try {
     if (!dbData) {
-      jsonData.results.map(async u => {
+      const allUsers = jsonData.results.map(async u => {
         const newUser = await User.create({
           name: u.name,
           lastname: u.lastname,
@@ -20,9 +21,10 @@ async function getUsers(req, res) {
           password: u.password
         });
 
-        await newUser.setRole(5);
+        await newUser.setRole(1);
+
       });
-      return res.status(200).send("Users succefully charged")
+      return res.status(200).send(allUsers)
     } else if (name || lastname || email) {
       const userName = await User.findOne({
         where: { name: { [Op.iLike]: `%${name}%` } },
@@ -46,7 +48,7 @@ async function getUsers(req, res) {
       }
     } else {
       // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
-      User.findAll().then((r) => res.status(200).send(r));
+      User.findAll({include: Role}).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
@@ -59,7 +61,10 @@ async function getUsersById(req, res) {
   const { id } = req.params;
 
   const findUser = await User.findOne({
-    where: { id: id }
+    where: { id: id },
+    include:{
+      model: Activity
+    }
   });
   if (findUser) {
     await findUser.save()
@@ -86,7 +91,7 @@ async function addUser(req, res) {
         password: password
       });
 
-      const addRole = await newUser.setRole(5);
+      const addRole = await newUser.setRole(1);
       return res.status(200).send(newUser);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);
@@ -98,7 +103,8 @@ async function addUser(req, res) {
 
 async function deleteUser(req, res) {
   const { id } = req.params;
-  const findUser = await User.findOne({ where: { email: id } });
+
+  const findUser = await User.findOne({ where: { id: id } });
   if (findUser) {
     await findUser.destroy();
     return res.status(200).send(`User was deleted`);
@@ -108,10 +114,8 @@ async function deleteUser(req, res) {
 }
 
 async function updateUser(req, res) {
-  const id = req.params.id;
+  //const id = req.params.id;
   const body = req.body;
-  console.log(id)
-  console.log(id)
 
   try {
     await User.update(
@@ -123,18 +127,21 @@ async function updateUser(req, res) {
         email: body.email,
         address: body.address,
         postalCode: body.postalCode,
-        password: body.password
+        password: body.password,
+        roleId: body.roleId,
 
       },
       {
         where: {
-          id: Number(id),
+          id: Number(body.id),
         },
       }
-    ).setRole(body.idRole).setRole(body.roleId)
+
+    );
+
     res.status(200).send("Usuario actualizado con éxito");
   } catch (error) {
-    res.status(400).send(error.JSON);
+    res.status(400).send(error);
   }
 }
 

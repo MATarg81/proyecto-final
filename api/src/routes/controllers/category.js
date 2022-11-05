@@ -42,4 +42,22 @@ async function getAllCategories(req, res){
   }
 
 }
-module.exports = {getCategory, getAllCategories};
+
+async function addCategory(req, res) {
+  const {name} = req.body
+  const findCategory = await Category.findOne({where: {name: name}})
+  try{
+    if(!findCategory) {
+      const newcategory = await Category.create({
+        name: name
+      })
+      return res.status(200).send(newcategory);
+    } else {
+      return res.status(404).send(`Category "${name}" already exists`);
+    }
+  } catch(e) {
+    res.status(404).send(e);
+  }
+}
+
+module.exports = {getCategory, getAllCategories, addCategory};

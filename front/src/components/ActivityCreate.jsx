@@ -1,12 +1,21 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { postActivity } from "../redux/actions/activitiesActions";
 import upImage from "./CreateProduct/cloudinary";
-export default function ActivityCreate() {
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+
+import Register from "./Register";
+
+ const ActivityCreate = function () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const{ isAuthenticated,user } = useAuth0() 
+
+
+const stateUser = useSelector( state => state.usersReducer.users)
+const findUser = stateUser.find( u => u.email === user.email)
 
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
@@ -85,7 +94,7 @@ export default function ActivityCreate() {
     }
   }
 
-  return (
+  return (  findUser ?
     <div>
       <Link to="/actividades">
         <button> Go Back </button>
@@ -233,6 +242,10 @@ export default function ActivityCreate() {
           </div>
         </form>
       </div>
-    </div>
-  );
+    </div> : <Register/>
+  ) ;
 }
+ export default withAuthenticationRequired(ActivityCreate, {
+   onRedirecting: () => <h1> redirigiendo al login, aguarde..</h1>,
+ });
+ //<div><p>you must login or complete your profile, click here!</p><LoginButton/></div>

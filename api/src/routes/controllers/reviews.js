@@ -1,8 +1,9 @@
-const { Review , User, Activity } = require("../../db");
-const jsonData = require("../../../reviews.json");
+const { Review , User, Product, Activity } = require("../../db");
+const jsonData = require("../../../reviewsActivities.json");
+const jsonDataProducts = require("../../../reviewsProducts.json");
 
 
-const allReviews = async() => {
+const allActivitiesReviews = async() => {
   const dbData = await Review.count();
 
     try {
@@ -10,7 +11,8 @@ const allReviews = async() => {
             // const results = await Review.bulkCreate(jsonData.results);
             // return results;
           const results = jsonData.results.map(async r => {
-            const findAct = await Activity.findOne({where: {name: r.activity}})
+            const findAct = await Activity.findOne({where: {name: r.activity}});
+            console.log(findAct)
             const newRev = await Review.create({
               score: r.score,
               content: r.content
@@ -24,13 +26,13 @@ const allReviews = async() => {
             return dbReviews;
         }        
     } catch (error) {
-        console.log('Problemas en la función dbReviews()' + error);
+        console.log('Problemas en la función dbReviews() ACA' + error);
     };
 }
 
-const reviewsId = async(id) => {
+const reviewsActivitiesId = async(id) => {
   try {
-      const totalReviews = await allReviews();
+      const totalReviews = await allActivitiesReviews();
       const reviewsId = totalReviews.find((r) => r.activityId.toString() === id);
           
           return reviewsId;
@@ -41,10 +43,10 @@ const reviewsId = async(id) => {
 };
 
 
-async function getReviews(req, res) {
+async function getActivitiesReviews(req, res) {
 
 try{
-    const totalReviews = await allReviews();
+    const totalReviews = await allActivitiesReviews();
   
     if(totalReviews){
       return res.status(200).send(totalReviews);
@@ -57,12 +59,12 @@ try{
 };
 
 
-async function getReviewsId (req, res) {
+async function getActivitiesReviewsId (req, res) {
   try {
       const id = req.params.id;
 
       
-      const result = await reviewsId(id);
+      const result = await reviewsActivitiesId(id);
       if (result) {
           return res.status(200).send(result);
       } else {
@@ -74,7 +76,7 @@ async function getReviewsId (req, res) {
   }
 };
 
-async function addReviews(req, res) {
+async function addActivitiesReviews(req, res) {
   const { 
     score, 
     content, 
@@ -103,9 +105,119 @@ async function addReviews(req, res) {
   }
 }
 
+//-------------------PRODUCTS-----------------------------------------------------------------------------------------------------------------------
+
+const allProductsReviews = async() => {
+  const dbData = await Review.count();
+
+    try {
+        if (!dbData) {   
+            // const results = await Review.bulkCreate(jsonData.results);
+            // return results;
+          const results = jsonDataProducts.results.map(async r => {
+            const findProduct = await Product.findOne({where: {name: r.product}})
+            const findUser = await User.findOne({where: {id: r.user}})
+            const newRev = await Review.create({
+              score: r.score,
+              content: r.content
+            });
+            await newRev.setProduct(findProduct?.id);
+            await newRev.setUser(findUser?.id)
+          });
+          return results;
+        } else {
+          
+            const dbReviews = await Review.findAll({include:[{model: Product, attributes: ['name']}, {model: User, attributes: ['name']}]})
+            return dbReviews;
+        }        
+    } catch (error) {
+        console.log("Problemas: " + error);
+    };
+}
+
+const reviewsProductsId = async(id) => {
+  try {
+      const totalReviews = await allProductsReviews();
+      const reviewsId = totalReviews.filter((r) => r.productId?.toString() === id);
+          
+          return reviewsId;
+  }
+  catch(err) {
+      console.log('Problemas en /:id' + err);
+  }
+};
+
+
+async function getProductsReviews(req, res) {
+
+try{
+    const totalReviews = await allProductsReviews();
+  
+    if(totalReviews){
+      return res.status(200).send(totalReviews);
+    } else {
+      res.status(404).send('Producto no encontrada')
+  }
+  } catch (e) {
+    return res.status(404).send('Problemas en el controlador de la ruta GET/reviews' + e);
+  }
+};
+
+
+async function getProductsReviewsId (req, res) {
+  try {
+      const id = req.params.id;
+
+      
+      const result = await reviewsProductsId(id);
+      if (result) {
+          return res.status(200).send(result);
+      } else {
+          res.status(404).send('Id no existente')
+      };
+  }
+  catch(err) {
+      res.status(404).send('Problemas en el controlador de la ruta GET/reviews/:id');
+  }
+};
+
+async function addProductsReviews(req, res) {
+  const { 
+    score, 
+    content, 
+    product, 
+    user
+  } = req.body;
+  console.log(req.body)
+
+  const findProduct = await Product.findOne({ where: { id: product}});
+  const findUser = await User.findOne({where: { name: user }})
+  console.log("Este es el producto: ", findProduct, " y este es el user: ", findUser)
+
+  try {
+      const newReview = await Review.create({
+        score,
+        content,
+      });
+      
+      newReview.setProduct(findProduct.id);
+      newReview.setUser(findUser.id);
+
+      return res
+      .status(200)
+      .json(newReview); 
+  } catch (e) {
+    return res
+    .status(404)
+    .send(console.log("problemas: ", e));
+  }
+}
 
 module.exports = {
-  getReviews,
-  addReviews,
-  getReviewsId
+  getActivitiesReviews,
+  addActivitiesReviews,
+  getActivitiesReviewsId,
+  getProductsReviews,
+  addProductsReviews,
+  getProductsReviewsId
 };

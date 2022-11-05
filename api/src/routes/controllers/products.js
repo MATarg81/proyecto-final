@@ -74,7 +74,7 @@ const getProducts = async (req, res) => {
 
   try {
     if (!dbData) {
-      jsonData.results.map(async (p) => {
+      const results = jsonData.results.map(async (p) => {
         const newP = await Product.create({
           name: p.name,
           price: p.price,
@@ -84,15 +84,16 @@ const getProducts = async (req, res) => {
         });
         await newP.addCategories(p.categories);
       });
+      res.status(200).send(results)
     } else if (dbData && qname) {
-      const productsWithName = jsonData.results.filter((r) =>
-        r.name.toLowerCase().includes(qname.toLowerCase())
-      );
-      productsWithName.length
+      const productsWithName = await Product.findAll({
+        where: { name: { [Op.iLike]: `%${qname}%` } },
+      });
+      productsWithName?.length
         ? res.status(200).send(productsWithName)
         : res.status(404).send("Producto no encontrada");
     } else {
-      Product.findAll({where: {stock: {[Op.gte]: 1}}, include: Category})
+      Product.findAll({where: {stock: {[Op.gte]: 1}}, include: {model: Category}})
       .then(r => {res.status(200).send(r)})
     }
   } catch (err) {
@@ -104,7 +105,7 @@ const getProducts = async (req, res) => {
 const getProductsId = async (req, res) => {
   try {
     const id = req.params.id;
-    const productId= await Product.findByPk(id)
+    const productId= await Product.findByPk(id, {include: Category})
    
     if (productId) {
       return res.status(200).send(productId);
@@ -133,9 +134,8 @@ const deleteProduct = async (req, res) => {
 };
 
 const putProduct = async (req, res) => {
-  const idP = req.params.id;
-
-  const { name, price, detail, image, stock, qty } = req.body;
+  
+  const { id, name, price, detail, image, stock, categories } = req.body;
 
   try {
     await Product.update(
@@ -144,17 +144,18 @@ const putProduct = async (req, res) => {
         price,
         detail,
         image,
-        stock: stock - qty,
+        stock,
       },
       {
         where: {
-          id: Number(idP),
+          id: id,
         },
       }
     );
+ 
     res.status(200).send("Producto actualizado con éxito");
   } catch (error) {
-    res.status(400).send(error.JSON);
+    res.status(400).send(console.log(error));
   }
 };
 
