@@ -52,20 +52,19 @@ export default function ProfileEditProduct() {
     const findI = productId?.image.filter((i) => i !== e.target.name);
     productId.image.splice(e.target.id, 1)
     if (findI?.length > 0) {
-      setInput(input.image = findI);
+      setInput((input.image = findI));
     }
-      console.log(findI)
   }
 
-  function setCategories(e) {
-    const newcategories = []
-    newcategories.push(e.target.name)
-    if(newcategories?.length > 0 && !input.categories) {
-      setInput(input.categories = newcategories)
-    } else {
-      input.categories.push(e.target.name)
-    }
-  }
+  // function setCategories(e) {
+  //   const newcategories = []
+  //   newcategories.push(e.target.name)
+  //   if(newcategories?.length > 0 && !input.categories) {
+  //     setInput(input.categories = newcategories)
+  //   } else {
+  //     input.categories.push(e.target.name)
+  //   }
+  // }
 
   function handleChange(e) {
     setInput({
@@ -76,10 +75,10 @@ export default function ProfileEditProduct() {
 
   function handleSubmit(e) {
     setInput((input.id = productId.id));
-    if (!input.image && productId.image.length === 0) { setInput(input.image = []) }
-    if (!input.image && productId.image.length > 0) { setInput(input.image = productId.image) }
+    if (!input?.image?.length && productId?.image?.length === 0) { setInput(input.image = []) }
+    if (!input?.image?.length && productId?.image?.length > 0) { setInput(input.image = productId.image) }
     if (!input.name) { setInput((input.name = productId.name)) }
-    if (!input.categories) { setInput((input.categories = productId.categories)) }
+    //if (!input.categories) { setInput((input.categories = productId.categories)) }
     if (!input.price) { setInput((input.price = productId.price)) }
     if (!input.detail) { setInput((input.detail = productId.detail)) }
     if (!input.stock) { setInput((input.stock = productId.stock)) }

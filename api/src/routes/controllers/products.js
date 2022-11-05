@@ -136,9 +136,6 @@ const deleteProduct = async (req, res) => {
 const putProduct = async (req, res) => {
   
   const { id, name, price, detail, image, stock, categories } = req.body;
-  const findCats = await categories.map(async c => {
-    await Category.findAll({where: {name: c}})
-  })
 
   try {
     await Product.update(
@@ -155,18 +152,6 @@ const putProduct = async (req, res) => {
         },
       }
     );
-    
-    const updatedProduct = await Product.findAll({where:{id:id}, include:{model:Category}})
-    console.log(updatedProduct)
-    if(updatedProduct) {
-      updatedProduct?.categories.map( async c => {
-        await findCats.map(async f => {
-          if(c.name !== f.name) {
-            await updatedProduct.addCategory(f.id)
-          }
-        })
-      })
-    }
  
     res.status(200).send("Producto actualizado con éxito");
   } catch (error) {
