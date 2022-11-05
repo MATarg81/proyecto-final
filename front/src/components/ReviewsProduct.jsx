@@ -65,9 +65,9 @@ function Reviews() {
       }
     
       useEffect(() => {
-        {
+
           dispatch(getReviewsProductId(id));
-        }
+ 
       }, [id, dispatch]);
 
     const score = (score) => {
@@ -153,6 +153,9 @@ function Reviews() {
                 <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>  
                 </div>
              ) 
+             default : return(
+                <div></div>
+             )
         }
     }
 
