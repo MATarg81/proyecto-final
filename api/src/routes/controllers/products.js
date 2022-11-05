@@ -105,7 +105,7 @@ const getProducts = async (req, res) => {
 const getProductsId = async (req, res) => {
   try {
     const id = req.params.id;
-    const productId= await Product.findByPk(id)
+    const productId= await Product.findByPk(id, {include: Category})
    
     if (productId) {
       return res.status(200).send(productId);
@@ -135,8 +135,8 @@ const deleteProduct = async (req, res) => {
 
 const putProduct = async (req, res) => {
   
-  const { id, name, price, detail, image, stock, qty } = req.body;
-  console.log(id)
+  const { id, name, price, detail, image, stock, categories } = req.body;
+
   try {
     await Product.update(
       {
@@ -152,6 +152,7 @@ const putProduct = async (req, res) => {
         },
       }
     );
+ 
     res.status(200).send("Producto actualizado con éxito");
   } catch (error) {
     res.status(400).send(console.log(error));
