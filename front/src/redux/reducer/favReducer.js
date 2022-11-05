@@ -15,12 +15,7 @@ function favReducer(state= favsInitialState, action){
     switch (action.type) {
         case ADD_FAV: 
             const item = action.payload          
-            const product = state.favs.find(p => p.id === item.id); 
-            if (product) {
-              return {
-                ...state,  
-              }
-            }
+
             //localStorage.setItem('favs', JSON.stringify(item)) //setItem se usa para almacenar informacion
            
             return {

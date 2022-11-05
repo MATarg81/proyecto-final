@@ -16,7 +16,7 @@ import {
 import Favorites from "./Favorites";
 import SearchBar from "./SearchBar";
 //import cuore from "../imagesTeam/cuore.png"
-import { AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Login/LoginButton";
@@ -26,6 +26,7 @@ function Shop() {
   //----------- Utils -----------------
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth0();
 
   // --------- Global states ---------------
   const products = useSelector((state) => state.productsReducer.showProducts);
@@ -80,11 +81,16 @@ function Shop() {
   }, [dispatch, category]);
 
   //favs
+  
+  const favState = useSelector(state => state.usersReducer.users)
+  const userID = favState.find(u => u.email === user.email)
   function handleAddtoFav(id) {
     //ADDtoFavs(p)
-    dispatch(addFav(id));
+    dispatch(addFav(id, userID.id));
     //localStorage.setItem('favs', JSON.stringify(favState))
+    
     alert("Producto agregado a favoritos");
+    
   }
 
   // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
@@ -158,7 +164,7 @@ function Shop() {
     dispatch(filterByCategories([]));
   };
 
-  const { user, isAuthenticated } = useAuth0();
+
 
   return (
     // isAuthenticated?
@@ -325,7 +331,7 @@ function Shop() {
                     className="btn btn-outline-dark px-4 py-2"
                     onClick={() => handleAddtoFav(p.id)}
                   >
-                    <AiFillHeart />
+                     <AiOutlineHeart /> 
                   </button>
                 </div>
               </div>

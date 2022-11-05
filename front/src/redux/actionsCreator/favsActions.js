@@ -7,10 +7,10 @@ import {
 
 // const BACK_URL = "http://localhost:3001";
 
-export function addFav(id) {
+export function addFav(id, idU) {
     return async function (dispatch) {
         try {
-            const url = await axios.get("/products/" + id);
+            const url = await axios.get("/favorites/" + id, idU);
             return dispatch({
                 type: ADD_FAV,
                 payload: url.data,

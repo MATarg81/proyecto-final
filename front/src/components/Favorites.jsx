@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AiFillHeart } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 import { addCart } from "../redux/actionsCreator/cartActions";
 import { deleteFav, getFavs } from "../redux/actionsCreator/favsActions";
@@ -83,12 +83,14 @@ function Favorites() {
                     Agregar al carrito
                   </button>
                 </div>
+                <div>
                 <button
                   className="btn btn-outline-dark px-4 py-2"
                   onClick={() => handleDeleteFav(p.id)}
-                >
-                  <AiFillHeart />
+                  >
+                  <AiOutlineClose />
                 </button>
+                  </div>
               </div>
             </div>
           ))}
