@@ -74,6 +74,9 @@ Role.belongsToMany(User, {through: 'User_Role'});
 Cart.belongsTo(User, { as: 'User', foreignKey : 'userId'});
 User.hasMany(Cart, { as: 'User', foreignKey : 'userId'});
 
+Product.belongsToMany(User, {through: 'Produts_User_Favs'});
+User.belongsToMany(Product, {through: 'Produts_User_Favs'});
+
 Cart.belongsToMany(Product, {through: 'Cart_Products'})
 Product.belongsToMany(Cart, {through: 'Cart_Products'})
 
