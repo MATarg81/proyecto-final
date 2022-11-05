@@ -90,5 +90,5 @@ const postCart = async (req, res) => {
       return res.status(404).send(e)
     }
   }
-
+  
 module.exports= {postCart, getCart, getAllCart, cartDetail};

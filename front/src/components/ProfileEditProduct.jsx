@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addCategories,
   getCategories,
   getDetail,
   getProducts,
@@ -11,23 +10,26 @@ import {
 
 export default function ProfileEditProduct() {
   //Buscar por ID
-  const stateCategories = useSelector((state) => state.productsReducer.categories);
+  const stateCategories = useSelector(
+    (state) => state.productsReducer.categories
+  );
   const productId = useSelector((state) => state.productsReducer.detail);
-  const allProducts = useSelector((state) => state.productsReducer.showProducts);
+  const allProducts = useSelector(
+    (state) => state.productsReducer.showProducts
+  );
 
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
-    id: `${productId?.id}`,
+    id: ``,
     name: ``,
     price: ``,
-    categories: [],
+    categories: '',
     detail: ``,
-    image: '',
+    image: [],
     stock: ``,
   });
 
-  
   //   const [newCategory, setNewCategory] = useState({
   //     name: "",
   //   });
@@ -42,41 +44,64 @@ export default function ProfileEditProduct() {
     if (allProducts?.length === 0) {
       dispatch(getProducts());
     }
-  }, [allProducts, dispatch, productId, stateCategories, input]);
+    
+  }, [allProducts, dispatch, stateCategories, productId]);
 
-  //   function handleDelete(e) {
-  //     console.log(e.target.id);
-  //   }
+  
+  function deleteImg(e) {
+    const findI = productId?.image.filter((i) => i !== e.target.name);
 
-  function handleClick(e) {
-    const findI = productId?.image.filter( i => i !== e.target.name)
-    // productId.image.pop(e.target.name)
-    //setInput(input.image = findI)
-    console.log(input)
+    productId.image.splice(e.target.id, 1)
+
+    if (findI?.length > 0) {
+      findI.map(i => {
+        return setInput(input.image.push(i))
+      })
+      setInput({...input})
+    }
   }
 
+  // function setCategories(e) {
+  //   const newcategories = []
+  //   newcategories.push(e.target.name)
+  //   if(newcategories?.length > 0 && !input.categories) {
+  //     setInput(input.categories = newcategories)
+  //   } else {
+  //     input.categories.push(e.target.name)
+  //   }
+  // }
+
   function handleChange(e) {
-    setInput({
-      ...input,
-      [e.target.id]: e.target.value,
-    });
+    if(typeof (e.target.id) === 'string') {
+      setInput({
+        ...input,
+        [e.target.id]: e.target.value,
+      });
+    }
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(updateProduct(input))
-
+    setInput((input.id = productId.id));
+    if (!input.image.length && productId.image.length === 0) { setInput(input.image = []) }
+    if (!input.image.length && productId.image.length > 0) { setInput(input.image = productId.image) }
+    if (!input.name) { setInput((input.name = productId.name)) }
+    //if (!input.categories) { setInput((input.categories = productId.categories)) }
+    if (!input.price) { setInput((input.price = productId.price)) }
+    if (!input.detail) { setInput((input.detail = productId.detail)) }
+    if (!input.stock) { setInput((input.stock = productId.stock)) }
+    console.log(input.image)
+    dispatch(updateProduct(input));
   }
 
   return (
     <>
-      <div >
+      <div>
         <label htmlFor="chooseProduct">Elige un producto</label>
         <select
           id="chooseProduct"
           className="col-12"
           onChange={(e) => {
-            dispatch(getDetail(e.target.value));            
+            dispatch(getDetail(e.target.value));
           }}
           disabled={productId?.name ? true : false}
         >
@@ -100,7 +125,7 @@ export default function ProfileEditProduct() {
               <input
                 className="col-12"
                 type="text"
-                placeholder={productId ? productId.name : ''}
+                placeholder={productId ? productId.name : ""}
                 id="name"
                 value={input.name}
                 onChange={handleChange}
@@ -114,28 +139,29 @@ export default function ProfileEditProduct() {
               <input
                 className="col-12"
                 type="text"
-                placeholder={productId ? productId.price : ''}
+                placeholder={productId ? productId.price : ""}
                 id="price"
                 value={input.price}
                 onChange={handleChange}
               ></input>
             </div>
 
-            <div className="">
+            {/* <div className="">
               <label className="col-12" htmlFor="categories">
                 Categorías:
               </label>
 
               <div className="form-check">
-                {stateCategories?.length > 0 ? stateCategories.map((c, index) => {
+                {stateCategories?.length > 0 ? (
+                  stateCategories.map((c, index) => {
                     return (
                       <div>
                         <input
-                          key={index}
+                          id={index}
                           className="form-check-input"
                           type="checkbox"
-                          value={input.categories}
-                          id="categories"
+                          name={c.name}
+                          onClick={setCategories}
                         ></input>
                         <label
                           className="form-check-label"
@@ -145,8 +171,11 @@ export default function ProfileEditProduct() {
                         </label>
                       </div>
                     );
-                  }):  <div></div>}
-              </div>
+                  })
+                ) : (
+                  <div></div>
+                )}
+              </div> */}
               {/* <div className="">
               <label className="col-12" htmlFor="newCategory">
                 Agregar categoría:
@@ -168,7 +197,7 @@ export default function ProfileEditProduct() {
                 </label>
                 <textarea
                   className="col-12"
-                  placeholder={productId ? productId.detail : ''}
+                  placeholder={productId ? productId.detail : ""}
                   rows="3"
                   id="detail"
                   value={input.detail}
@@ -183,7 +212,7 @@ export default function ProfileEditProduct() {
                 <input
                   className="col-12"
                   type="text"
-                  placeholder={productId ? productId.stock : ''}
+                  placeholder={productId ? productId.stock : ""}
                   id="stock"
                   value={input.stock}
                   onChange={handleChange}
@@ -191,43 +220,56 @@ export default function ProfileEditProduct() {
               </div>
 
               <div>
-                <label className="col-12">Imágenes: </label>
-                <div>
-                  {productId?.image ? productId.image.map((i, index) => {
-
-                    return (
-                      <div className=""  name={`${i}`}>
-                        <img
-                          
-                          key={index}
-                          src={i}
-                          className="img-fluid img-thumbnail col-12"
-                          style={{ width: "15%", height: "75%" }}
-                          alt=""
-                        />
-
-                        <button
-                          type="button"
-                          className="btn"
-                          onClick={handleClick}
-                          
-                        >x</button>
-                      </div>
-                    );
-                  }): <div></div>}
+                <label className="col-12 " for="image">
+                  Imágenes:{" "}
+                </label>
+                <div className="d-inline-flex ">
+                  {productId?.image ? (
+                    productId.image.map((i, index) => {
+                      return (i === undefined ? (<></>) :
+                      (
+                        <div className="" id="image">
+                          <div className="position-relative">
+                            <button
+                              id={index}
+                              name={`${i}`}
+                              type="button"
+                              className="btn position-absolute btn-sm"
+                              style={{
+                                right: "0",
+                                padding: "0",
+                                paddingRight: "5px",
+                              }}
+                              onClick={deleteImg}
+                            >
+                              x
+                            </button>
+                            <img
+                              key={index}
+                              src={i}
+                              style={{ width: "70px", height: "70px" }}
+                              className="img-fluid img-thumbnail "
+                              alt=""
+                            />
+                          </div>
+                        </div>
+                      )
+                    )})
+                  ) : (
+                    <div></div>
+                  )}
                 </div>
               </div>
-
+                  {/*Esto va con cloudinary */}
               <div className="">
-            <label className="col-12" htmlFor="newImage">
-              Agregar imagen{" "}
-            </label>
-            <input
-              className="col-12"
-              type="file"   
-              id="newImage"
-            ></input>
-          </div>
+                <label className="col-12" htmlFor="newImage">
+                  Agregar imagen{" "}
+                </label>
+                <input className="col-12" type="file" id="newImage" onChange={(e) => {
+                  input.image.push(e.target.id)
+                    console.log(input.image)
+                  }}></input>
+              </div>
             </div>
             <div className="d-flex flex-row-reverse">
               <button
@@ -238,7 +280,7 @@ export default function ProfileEditProduct() {
                 Guardar
               </button>
             </div>
-          </div>
+         
         </form>
       </div>
     </>
