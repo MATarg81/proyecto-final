@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { searchProducts } from "../redux/actionsCreator/productsActions";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom"
 
 export default function Searchbar({ setPage }) {
   const [search, setSearch] = useState("");
@@ -21,19 +22,24 @@ export default function Searchbar({ setPage }) {
 
   return (
     <div>
-      <form onSubmit={onSubmit} className="d-flex" role="search" action="">
+      <form onSubmit={onSubmit} className="d-flex " role="search" action="">
         <div class="input-group">
           <input onChange={onInputChange}
-            className="form-control me-2"
+            className="form-control me-2 rounded-pill"
             type="search"
             placeholder="Búsqueda por nombre..."
             aria-label="Buscar"
             value={search} />
-          <div class="input-group-append">
-            <span onClick={onSubmit} class="input-group-text bg-transparent text-primary" >
-              <i class="fa fa-search"></i>
+          <div class="input-group-append my-1 " >
+            <span onClick={onSubmit} class="input-group-text bg-transparent text-primary rounded-pill " >
+              <i class="fa fa-search" style={{color: "indigo"}}></i>
             </span>
           </div>
+          <button className="btn border ms-2 rounded-pill text-white" style={{backgroundColor: "indigo"}}>
+              <Link className="nav-link" to="/crearProducto">
+                Crear Producto
+              </Link>
+            </button>
         </div>
       </form>
     </div>

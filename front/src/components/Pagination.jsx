@@ -41,9 +41,9 @@ const Pagination = function ({ page, setPage, totalPages }) {
               }} disabled={page === p}> {p}</a></li>
 
           ))}
-          <li class="page-item">
+          <li class="page-item" >
             <a class="page-link" aria-label="Next" onClick={handleNext}
-              disabled={page >= totalPages}>
+              disabled={page >= totalPages} style={{backgroundColor: "indigo"}}>
               <span aria-hidden="true">»</span>
               <span class="sr-only">Next</span>
             </a>
@@ -51,40 +51,6 @@ const Pagination = function ({ page, setPage, totalPages }) {
         </ul>
       </nav>
     </div>
- 
-
-
-
-
-   {/*  <div className="d-flex justify-content-around p-1">
-      <button
-        onClick={handlePrev}
-        disabled={page <= 1}
-        className="btn btn-outline-danger btn-rounded "
-        data-mdb-ripple-color="dark"
-      >
-        Prev.
-      </button>
-      {pages.map((p) => (
-        <button
-          className="btn btn-outline-danger btn-rounded"
-          key={p}
-          onClick={() => {
-            setPage(p);
-          }}
-          disabled={page === p}
-        >
-          {p}
-        </button>
-      ))}
-      <button
-        className="btn btn-outline-danger btn-rounded"
-        onClick={handleNext}
-        disabled={page >= totalPages}
-      >
-        Next
-      </button>
-    </div> */}
 
   </div>
   );
