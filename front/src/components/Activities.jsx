@@ -32,7 +32,7 @@ export default function Activities() {
       dispatch(deleteActivity(id));
     }
   }
-
+  
   return (
     <div>
       <div className="container p-3">
@@ -72,11 +72,16 @@ export default function Activities() {
       >
         <Link to="/crearActividades">
           {" "}
-          { findUser.roleId === 2 &&
+          {/* { findUser?.roleId === 2 &&
           <button type="button" className="btn btn-outline-dark ms-2">
             Crear Actividad
           </button>
-          }
+          } */}
+          <div className={findUser?.roleId === 2 ? `d-none` : ``}>
+          <button type="button" className="btn btn-outline-dark ms-2">
+            Crear Actividad
+          </button>
+          </div>
           {" "}
         </Link>
       </div>
