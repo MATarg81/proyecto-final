@@ -12,7 +12,7 @@ const EditButton = () => {
 
         return (
             <Link to="/edituser">
-                <button className="btn btn-outline-dark rounded-pill" /* onClick={() => handleOnClick(e)} */>
+                <button className="btn btn-outline-dark rounded-pill text-white border-white" /* onClick={() => handleOnClick(e)} */>
                     <i class=""></i>Editar Perfil
                 </button>
             </Link>

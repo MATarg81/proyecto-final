@@ -37,7 +37,7 @@ export default function Perfil() {
   return (
     <div class="container-fluid">
       <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style={{backgroundColor:"Indigo"}}>
           <div
             class="d-flex flex-column justify-content-between align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 nav-pills me-3"
             id="v-pills-tab"
@@ -48,7 +48,7 @@ export default function Perfil() {
               href="/"
               class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none"
             >
-              <span class="fs-5 d-none d-sm-inline">Menu</span>
+              <span class="fs-5 d-none d-sm-inline text-white">Menu</span>
             </a>
 
             <ul
@@ -56,9 +56,9 @@ export default function Perfil() {
               id="menu"
             >
               <li>
-                <label class="nav-link align-middle px-0">
+                <label class="nav-link align-middle px-0 ">
                   <button
-                    className="btn btn-outline-dark rounded-pill"
+                    className="btn btn-outline-dark rounded-pill text-white border-white"
                     id="v-pills-profile-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-profile"
@@ -73,9 +73,9 @@ export default function Perfil() {
               </li>
 
               <li>
-                <label class="nav-link align-middle px-0">
+                <label class="nav-link align-middle px-0 ">
                   <button
-                    className="btn btn-outline-dark rounded-pill"
+                    className="btn btn-outline-dark rounded-pill text-white border-white"
                     id="v-pills-activities-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-activities"
@@ -90,10 +90,10 @@ export default function Perfil() {
               </li>
 
               <li id="Historial de compras">
-                <label class="nav-link align-middle px-0">
+                <label class="nav-link align-middle px-0 ">
                   <Link to="/profile/historial">
                     <button
-                      className="btn btn-outline-dark rounded-pill"
+                      className="btn btn-outline-dark rounded-pill text-white border-white"
                       id="v-pills-history-tab"
                       data-bs-toggle="pill"
                       data-bs-target="#v-pills-history"
@@ -109,9 +109,9 @@ export default function Perfil() {
               </li>
 
               <li id="Usuarios">
-                <label class="nav-link align-middle px-0">
+                <label class="nav-link align-middle px-0 ">
                   <button
-                    className="btn btn-outline-dark rounded-pill"
+                    className="btn btn-outline-dark rounded-pill text-white border-white"
                     id="v-pills-users-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-users"
@@ -128,7 +128,7 @@ export default function Perfil() {
               <li id="Productos">
                 <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark rounded-pill"
+                    className="btn btn-outline-dark rounded-pill text-white border-white"
                     id="v-pills-products-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-products"
@@ -164,34 +164,32 @@ export default function Perfil() {
               <div class="container">
                 <div class="row align-items-center flex-row" >
                   <div class="col-lg-6">
-                    <div class="about-text go-to rounded-2" style={{backgroundColor: "Indigo"}}>
-                      <h3 class="text-white"> {usersState?.name} {usersState?.lastname}</h3>
+                    <div class="about-text go-to border border-5 rounded shadow-lg" >
+                      <h3 class="dark-color"> {usersState?.name} {usersState?.lastname}</h3>
                       <div class="row about-list">
                         <div class="col-md-6">
                           <div class="media">
-                            <label style={{fontWeight: "bold", color: "White"}}>Fecha de nacimiento</label>
-                            <p class="text-white">{usersState?.dateOfBirth}</p>
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Fecha de nacimiento</label>
+                            <p >{usersState?.dateOfBirth}</p>
                           </div>
                           <div class="media">
-                            <label style={{fontWeight: "bold", color: "White"}}>Domicilio</label>
-                            <p class="text-white">{usersState?.address}</p>
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Domicilio</label>
+                            <p>{usersState?.address}</p>
                           </div>
                           <div class="media">
-                            <label style={{fontWeight: "bold", color: "White"}}>Codigo Postal</label>
-                            <p class="text-white">{usersState?.postalCode}</p>
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Codigo Postal</label>
+                            <p>{usersState?.postalCode}</p>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="media">
-                            <label style={{fontWeight: "bold", color: "White"}}>E-mail</label>
-                            <p class="text-white">{usersState?.email}</p>
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>E-mail</label>
+                            <p>{usersState?.email}</p>
                           </div>
                           <div class="media">
-                            <label style={{fontWeight: "bold", color: "White"}}>Telefono</label>
-                            <p class="text-white">{usersState?.phoneNumber}</p>
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Telefono</label>
+                            <p>{usersState?.phoneNumber}</p>
                           </div>
-                          
-
                         </div>
                       </div>
                     </div>
@@ -216,7 +214,7 @@ export default function Perfil() {
 
 
           {/* Profile */}
-         
+
 
 
 

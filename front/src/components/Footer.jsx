@@ -7,9 +7,9 @@ function Footer() {
     <div style={{ background: "#352d39" }}>
       <footer
         className="text-center text-white"
-        style={{ background: "#352d39" }}
+        style={{ background: "Indigo" }}
       >
-        <div className="container p-4" style={{ background: "#352d39" }}>
+        <div className="container p-4" style={{ background: "Indigo" }}>
           <section className="">
             <form action="">
               <div className="row d-flex justify-content-center">
