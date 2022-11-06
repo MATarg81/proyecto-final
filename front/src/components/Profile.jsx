@@ -159,12 +159,12 @@ export default function Perfil() {
                 <label class="nav-link align-middle px-0">
                   <button
                     className="btn btn-outline-dark rounded-pill text-white border-white p-1"
-                    id="v-pills-activities-tab"
+                    id="v-pills-allActivities-tab"
                     data-bs-toggle="pill"
-                    data-bs-target="#v-pills-activities"
+                    data-bs-target="#v-pills-allActivities"
                     type="button"
                     role="tab"
-                    aria-controls="v-pills-activities"
+                    aria-controls="v-pills-allActivities"
                     aria-selected="true"
                   >
                     Actividades
@@ -271,9 +271,9 @@ export default function Perfil() {
           </div>
           <div
             class="tab-pane fade"
-            id="v-pills-activities"
+            id="v-pills-allActivities"
             role="tabpanel"
-            aria-labelledby="v-pills-activities-tab"
+            aria-labelledby="v-pills-allActivities-tab"
             tabIndex="0"
           >
             <ProfileAllActivities />
