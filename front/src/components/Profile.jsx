@@ -9,6 +9,7 @@ import {
   get_users_by_id,
 } from "../redux/actionsCreator/usersActions";
 import ProfileProducts from "./ProfileProducts";
+import EditButton from './Login/EditButton'
 //import { useAuth0 } from '@auth0/auth0-react'; LO DEJO COMENTADO PERO ENTIENDO QUE LO VAMOS A USAR CUANDO ESTE TODO OK
 
 export default function Perfil() {
@@ -57,7 +58,7 @@ export default function Perfil() {
               <li>
                 <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-dark rounded-pill"
                     id="v-pills-profile-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-profile"
@@ -74,7 +75,7 @@ export default function Perfil() {
               <li>
                 <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-dark rounded-pill"
                     id="v-pills-activities-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-activities"
@@ -92,7 +93,7 @@ export default function Perfil() {
                 <label class="nav-link align-middle px-0">
                   <Link to="/profile/historial">
                     <button
-                      className="btn btn-outline-dark"
+                      className="btn btn-outline-dark rounded-pill"
                       id="v-pills-history-tab"
                       data-bs-toggle="pill"
                       data-bs-target="#v-pills-history"
@@ -110,7 +111,7 @@ export default function Perfil() {
               <li id="Usuarios">
                 <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-dark rounded-pill"
                     id="v-pills-users-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-users"
@@ -127,7 +128,7 @@ export default function Perfil() {
               <li id="Productos">
                 <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark"
+                    className="btn btn-outline-dark rounded-pill"
                     id="v-pills-products-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-products"
@@ -140,6 +141,12 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
+              <li id="Productos">
+                <label class="nav-link align-middle px-0 ">                  
+                    <EditButton/>                 
+                </label>
+              </li>
+
             </ul>
           </div>
         </div>
