@@ -89,8 +89,17 @@ export default function ProfileEditProduct() {
     if (!input.price) { setInput((input.price = productId.price)) }
     if (!input.detail) { setInput((input.detail = productId.detail)) }
     if (!input.stock) { setInput((input.stock = productId.stock)) }
-    console.log(input.image)
     dispatch(updateProduct(input));
+    dispatch(getProducts())
+    setInput({
+      id: ``,
+      name: ``,
+      price: ``,
+      categories: '',
+      detail: ``,
+      image: [],
+      stock: ``,
+    })
   }
 
   return (
@@ -103,7 +112,6 @@ export default function ProfileEditProduct() {
           onChange={(e) => {
             dispatch(getDetail(e.target.value));
           }}
-          disabled={productId?.name ? true : false}
         >
           <option value="-">Elegí un producto a editar</option>
           {allProducts?.map((p) => {
@@ -115,7 +123,7 @@ export default function ProfileEditProduct() {
           })}
         </select>
       </div>
-      <div disabled={productId ? false : true}>
+      <div>
         <form className="container">
           <div className="row mt-3 g-2 " onChange={handleChange} noValidate>
             <div className="">
