@@ -37,16 +37,16 @@ export default function Perfil() {
   return (
     <div class="container-fluid">
       <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 " style={{backgroundColor:"Indigo"}}>
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 pr-0 " style={{ backgroundColor: "Indigo" }}>
           <div
-            class="d-flex flex-column justify-content-between align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 nav-pills me-3"
+            class="d-flex flex-column justify-content-between align-items-center align-items-sm-start text-white nav-pills"
             id="v-pills-tab"
             role="tablist"
             aria-orientation="vertical"
           >
             <a
               href="/"
-              class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none"
+              class="d-flex align-items-center mb-md-0 me-md-auto text-black text-decoration-none"
             >
               <span class="fs-5 d-none d-sm-inline text-white">Menu</span>
             </a>
@@ -58,7 +58,7 @@ export default function Perfil() {
               <li>
                 <label class="nav-link align-middle px-0 ">
                   <button
-                    className="btn btn-outline-dark rounded-pill text-white border-white"
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                     id="v-pills-profile-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-profile"
@@ -75,7 +75,7 @@ export default function Perfil() {
               <li>
                 <label class="nav-link align-middle px-0 ">
                   <button
-                    className="btn btn-outline-dark rounded-pill text-white border-white"
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                     id="v-pills-activities-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-activities"
@@ -90,10 +90,10 @@ export default function Perfil() {
               </li>
 
               <li id="Historial de compras">
-                <label class="nav-link align-middle px-0 ">
+                <label class="nav-link align-middle px-0">
                   <Link to="/profile/historial">
                     <button
-                      className="btn btn-outline-dark rounded-pill text-white border-white"
+                      className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                       id="v-pills-history-tab"
                       data-bs-toggle="pill"
                       data-bs-target="#v-pills-history"
@@ -102,16 +102,18 @@ export default function Perfil() {
                       aria-controls="v-pills-history"
                       aria-selected="true"
                     >
-                      Historial de compras
+                      Historial de  <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "white" }} width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                      </svg>
                     </button>
                   </Link>
                 </label>
               </li>
 
               <li id="Usuarios">
-                <label class="nav-link align-middle px-0 ">
+                <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark rounded-pill text-white border-white"
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                     id="v-pills-users-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-users"
@@ -128,7 +130,7 @@ export default function Perfil() {
               <li id="Productos">
                 <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark rounded-pill text-white border-white"
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                     id="v-pills-products-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-products"
