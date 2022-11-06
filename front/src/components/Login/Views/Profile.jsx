@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { get_users } from '../../../redux/actionsCreator/usersActions';
+import { Link } from "react-router-dom"
 
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
 
@@ -19,17 +20,22 @@ const findUser = user? stateUser.find( u => u.email === user.email) : null
 
   return (
 
-    isAuthenticated && findUser && (<div>
-      <div style={{display: 'flex' }} >
-        <div className="col-md-2 mb-3">
+    isAuthenticated && (<div>
+      <div className="row align-items-center profile-header" style={{ width: '20rem' }}>
+        <div className="col-md-2 mb-3 m-1">
+          <Link to="/profile">
+          
           <img
             src={user?.picture}
             alt="Profile"
             className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
+            data-toggle="tooltip" data-placement="bottom" title="Ingresar al perfil"
           />
+          </Link>
         </div>
-        <div >
-          <h2>{findUser?.name}</h2>
+        <div className="col-md text-center text-md-left">
+          <h5>{user?.nickname || user?.name}</h5>
+          <h6 className="lead text-muted">{user?.email}</h6>
         </div>
       </div>
       <div className="row">

@@ -7,9 +7,9 @@ function Footer() {
     <div style={{ background: "#352d39" }}>
       <footer
         className="text-center text-white"
-        style={{ background: "#352d39" }}
+        style={{ background: "Indigo" }}
       >
-        <div className="container p-4" style={{ background: "#352d39" }}>
+        <div className="container p-4" style={{ background: "Indigo" }}>
           <section className="">
             <form action="">
               <div className="row d-flex justify-content-center">
@@ -23,33 +23,25 @@ function Footer() {
                 </div>
 
                 <div className="col-md-5 col-12">
-                  <div className="form-outline form-white mb-4">
+                  <div className="form-outline form-white">
                     <input
                       type="email"
                       id="form5Example21"
                       className="form-control"
                     />
-                    <label className="form-label" htmlFor="form5Example21">
+                    <label className="form-label m-0" htmlFor="form5Example21">
                       Dirección de email
                     </label>
                   </div>
                 </div>
 
                 <div className="col-auto">
-                  <button type="submit" className="btn btn-outline-light mb-4">
+                  <button type="button" class="btn btn-outline-light mb-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#myModal">
                     Suscribirse
                   </button>
                 </div>
               </div>
             </form>
-          </section>
-
-          <section className="mb-4">
-            {/*  <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-              repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-              eum harum corrupti dicta, aliquam sequi voluptate quas.
-            </p> */}
           </section>
 
           <section className="">
@@ -82,46 +74,27 @@ function Footer() {
 
                 <ul className="list-unstyled mb-0">
                   <li>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.farmaciagomezmardelplata.com/" className="text-white">
                       Farmacia Gomez
                     </a>
                   </li>
                   <li>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.bicyshop.com.ar/" className="text-white">
                       Bicyshop
                     </a>
                   </li>
                   <li>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.tiomario.com/" className="text-white">
                       Jugueterias Tio Mario
                     </a>
                   </li>
                   <li>
-                    <a href="#!" className="text-white">
+                    <a href="https://www.ripsa.com.ar/" className="text-white">
                       Ripsa
                     </a>
                   </li>
                 </ul>
               </div>
-
-              {/* <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-                <h5 className="text-uppercase">Links</h5>
-
-                <ul className="list-unstyled mb-0">
-                  <li>
-                    <a href="#!" className="text-white">Link 1</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 2</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 3</a>
-                  </li>
-                  <li>
-                    <a href="#!" className="text-white">Link 4</a>
-                  </li>
-                </ul>
-              </div> */}
 
               <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
                 <h5 className="text-capitalize">Contacto</h5>
@@ -158,7 +131,33 @@ function Footer() {
           </a>
         </div>
       </footer>
+
+
+
+      <div class="modal" id="myModal">
+        <div class="modal-dialog bg-white">
+          <div class="modal-header">
+            <h4 class="modal-title">Gracias por suscribirte!</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            Todos los días sabados recibiras un email con todas las novedades del club.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+
+
+
+
+
+
+
   );
 }
 

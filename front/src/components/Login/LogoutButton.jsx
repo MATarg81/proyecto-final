@@ -6,7 +6,7 @@ const LogoutButton = () => {
     const {logout} = useAuth0();
 
     return (
-        <button className="btn btn-outline-dark ms-2" onClick={() => logout({returnTo: window.location.origin})}> 
+        <button className="btn btn-outline-dark ms-2 rounded-pill" onClick={() => logout( {returnTo: window.location.origin })}> 
             <i className="fa fa-sign-out"></i>Salir
         </button>
     )
