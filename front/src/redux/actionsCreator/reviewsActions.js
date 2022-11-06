@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export function getReviews(){
     return async function(dispatch){
         try {

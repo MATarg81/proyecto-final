@@ -1,17 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AiFillHeart } from 'react-icons/ai';
+import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom'
 import { addCart } from "../redux/actionsCreator/cartActions";
 import { deleteFav, getFavs } from "../redux/actionsCreator/favsActions";
 import { useLocalStorage} from "../localStorage/useLocalStorage";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Favorites() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth0();
   const favoritos = useSelector( state => state.favReducer.favs)
+  const favLS = useSelector( state => state.favReducer.favsLs)
   const cart = useSelector(state => state.cartReducer.items)
   
   const [, setCart] = useLocalStorage('cart', cart)
@@ -21,9 +24,15 @@ function Favorites() {
       setCart(cart);
     };
 
+  const favState = useSelector(state => state.usersReducer.users)
+  const findUser = user ? favState.find(u => u.email === user.email) : null
+  const products = useSelector((state) => state.productsReducer.showProducts);
+
   const handleDeleteFav = (id) => {
-    dispatch(deleteFav(id));
-    alert("Producto eliminado de favoritos");
+    if(findUser){
+      dispatch(deleteFav(id, findUser.id));
+      alert("Producto eliminado de favoritos");
+    }
   };
 
   return (
@@ -38,7 +47,7 @@ function Favorites() {
         }}
       >
 
-        {favoritos?.map((p) => (          
+        { favoritos?.map((p) => (          
 
             <div key={p.id} className="col card border-info mb-3" style={{
               border: "none",
@@ -83,12 +92,14 @@ function Favorites() {
                     Agregar al carrito
                   </button>
                 </div>
+                <div>
                 <button
                   className="btn btn-outline-dark px-4 py-2"
                   onClick={() => handleDeleteFav(p.id)}
-                >
-                  <AiFillHeart />
+                  >
+                  <AiOutlineClose />
                 </button>
+                  </div>
               </div>
             </div>
           ))}

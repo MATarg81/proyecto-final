@@ -1,12 +1,13 @@
-const { User, Role, Activity } = require("../../db");
+const { User, Role, Activity, Product } = require("../../db");
 const { Op } = require("sequelize");
 const jsonData = require("../../../users.json");
 
 
 async function getUsers(req, res) {
   const { name, lastname, email } = req.query;
+  
   const dbData = await User.count();
-
+  
   try {
     if (!dbData) {
       const allUsers = jsonData.results.map(async u => {
@@ -20,7 +21,7 @@ async function getUsers(req, res) {
           postalCode: u.postalCode.toString(),
           password: u.password
         });
-
+        
         await newUser.setRole(1);
 
       });
@@ -46,9 +47,9 @@ async function getUsers(req, res) {
       } else {
         return res.status(404).send("User can't be found");
       }
-    } else {
+    } else { 
       // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
-      User.findAll({include: Role}).then((r) => res.status(200).send(r));
+      User.findAll({include:{model: Role}, include:{model:Product}} ).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
