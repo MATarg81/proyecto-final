@@ -9,6 +9,7 @@ import {
   get_users_by_id,
 } from "../redux/actionsCreator/usersActions";
 import ProfileProducts from "./ProfileProducts";
+import PurchesesDetail from "./purchesesMaded/purchesesDetail";
 //import { useAuth0 } from '@auth0/auth0-react'; LO DEJO COMENTADO PERO ENTIENDO QUE LO VAMOS A USAR CUANDO ESTE TODO OK
 
 export default function Perfil() {
@@ -90,7 +91,6 @@ export default function Perfil() {
 
               <li id="Historial de compras">
                 <label class="nav-link align-middle px-0">
-                  <Link to="/profile/historial">
                     <button
                       className="btn btn-outline-dark"
                       id="v-pills-history-tab"
@@ -103,7 +103,6 @@ export default function Perfil() {
                     >
                       Historial de compras
                     </button>
-                  </Link>
                 </label>
               </li>
 
@@ -193,6 +192,15 @@ export default function Perfil() {
             tabIndex="0"
           >
             <ProfileProducts />
+          </div>
+          <div
+            class="tab-pane fade"
+            id="v-pills-history"
+            role="tabpanel"
+            aria-labelledby="v-pills-history-tab"
+            tabIndex="0"
+          >
+            <PurchesesDetail />
           </div>
         </div>
       </div>
