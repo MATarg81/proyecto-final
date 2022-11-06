@@ -198,7 +198,7 @@ export default function Perfil() {
                   </div>
                   <div class="w-auto">
                     <div class="about-avatar">
-                      <img src={generica} title="" alt="hjhj" />
+                      <img src={generica} title="santi" alt="hjhj" />
                     </div>
                   </div>
                 </div>
