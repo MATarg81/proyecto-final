@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { getDetail } from "../redux/actionsCreator/productsActions";
 import Reviews from "./ReviewsProduct"
-import { AiOutlineVerticalAlignMiddle } from "react-icons/ai";
+// import { AiOutlineVerticalAlignMiddle } from "react-icons/ai";
 //import Skeleton from "react-loading-skeleton";
 
 function Product() {
@@ -15,7 +15,7 @@ function Product() {
   const [, setCart] = useLocalStorage("cart", cart);
   const dispatch = useDispatch();
     //const [loading, setloading] = useState(false);
-
+console.log(product)
   useEffect(() => {
     if (product?.length === 0) {
       dispatch(getDetail(id));
@@ -110,7 +110,7 @@ function Product() {
       </div>
 
       <div className="col-md-6">
-        <h4 className="text-uppercase text-black-50">{product?.categories}</h4>
+        <h4 className="text-uppercase text-black-50">{product?.categories.map(c => c.name)}</h4>
         <h1 className="display-5">{product?.title}</h1>
         <h3 className="display-6 fw-bold my-4">$ {product?.price}</h3>
         <p className="lead">{product?.detail}</p>

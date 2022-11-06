@@ -20,7 +20,6 @@ function Reviews() {
     const { id } = useParams(); 
 
     const detail = useSelector((state) => state.reviewsReducer.detail);
-    console.log(detail)
     const product = useSelector((state) => state.productsReducer.detail); //product name me sirve también
     const [currentValue, setCurrentValue] = useState(0); //current Value me va a dar la puntuación (score)
     const [hoverValue, setHoverValue] = useState(undefined);
@@ -65,9 +64,7 @@ function Reviews() {
       }
     
       useEffect(() => {
-        {
-          dispatch(getReviewsProductId(id));
-        }
+        dispatch(getReviewsProductId(id));
       }, [id, dispatch]);
 
     const score = (score) => {
@@ -153,7 +150,15 @@ function Reviews() {
                 <FaStar size={13} color={colors.orange} style={{marginRight: 10}}/>  
                 </div>
              ) 
-        }
+            default: return (
+            <div>
+            <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+            <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+            <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+            <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>
+            <FaStar size={13} color={colors.grey} style={{marginRight: 10}}/>  
+            </div>)
+        };
     }
 
 //--------------------------------------------------------------------
