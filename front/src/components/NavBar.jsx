@@ -1,14 +1,26 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+
 import AuthenticationButton from "./Login/authentication-button";
 import Profile from "./Login/Views/Profile";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { get_users } from '../redux/actionsCreator/usersActions'
 
 function NavBar() {
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.cartReducer);
+  const{ isAuthenticated,user } = useAuth0() 
 
-  return (
+  useEffect(()=>{
+    dispatch(get_users())
+  },[])
+  const stateUser = useSelector( state => state.usersReducer.users)
+const findUser = user? stateUser.find( u => u.email === user.email) : null
+
+  return ( 
     <div>
 
       <nav class="navbar navbar-expand-sm navbar-light">
@@ -76,12 +88,11 @@ function NavBar() {
           <div id="navbarNav">
             <ul class="navbar-nav ml-lg-auto">
               <div class="ml-lg-4">
+                { findUser &&
                 <Link to="/profile" className="btn btn-outline-secondary ms-2">
                   <i className="me-1"></i>Perfil
                 </Link>
-
-
-
+                }
                 <AuthenticationButton />
                 <Profile />
 

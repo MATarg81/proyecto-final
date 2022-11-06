@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import generica from "../imagesTeam/Santi.png";
+import EditButton from "./Login/EditButton";
 import {
   get_roles,
   get_users,
@@ -70,7 +71,9 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
-
+              <li>
+              <EditButton />
+              </li>
               <li>
                 <label class="nav-link align-middle px-0">
                   <button

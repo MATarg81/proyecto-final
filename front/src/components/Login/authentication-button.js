@@ -12,7 +12,6 @@ const AuthenticationButton = () => {
   return isAuthenticated ?
     <div>
       <LogoutButton />
-      <EditButton />
     </div> :
     <LoginButton />;
 

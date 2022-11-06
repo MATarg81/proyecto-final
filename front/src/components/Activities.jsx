@@ -21,7 +21,7 @@ export default function Activities() {
   }, [dispatch]);
 
   const stateUser = useSelector( state => state.usersReducer.users)
-  const findUser = stateUser.find( u => u.email === user.email)
+  const findUser =  user ? stateUser.find( u => u.email === user.email) : null
 
   const allActivities = useSelector(
     (state) => state.activitiesReducer.activities
@@ -72,11 +72,13 @@ export default function Activities() {
       >
         <Link to="/crearActividades">
           {" "}
-          { findUser.roleId === 2 &&
+           {
+           findUser?.roleId === 2 &&
           <button type="button" className="btn btn-outline-dark ms-2">
             Crear Actividad
           </button>
-          }
+           }
+          
           {" "}
         </Link>
       </div>
