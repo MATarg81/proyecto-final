@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import generica from "../imagesTeam/Santi.png";
+import generica from "../imagesTeam/avatar7.png";
 import {
   get_roles,
   get_users,
@@ -37,18 +37,18 @@ export default function Perfil() {
   return (
     <div class="container-fluid">
       <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 pr-0 " style={{ backgroundColor: "Indigo" }}>
           <div
-            class="d-flex flex-column justify-content-between align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 nav-pills me-3"
+            class="d-flex flex-column justify-content-between align-items-center align-items-sm-start text-white nav-pills"
             id="v-pills-tab"
             role="tablist"
             aria-orientation="vertical"
           >
             <a
               href="/"
-              class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none"
+              class="d-flex align-items-center mb-md-0 me-md-auto text-black text-decoration-none"
             >
-              <span class="fs-5 d-none d-sm-inline">Menu</span>
+              <span class="fs-5 d-none d-sm-inline text-white">Menu</span>
             </a>
 
             <ul
@@ -56,9 +56,9 @@ export default function Perfil() {
               id="menu"
             >
               <li>
-                <label class="nav-link align-middle px-0">
+                <label class="nav-link align-middle px-0 ">
                   <button
-                    className="btn btn-outline-dark rounded-pill"
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                     id="v-pills-profile-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-profile"
@@ -73,9 +73,9 @@ export default function Perfil() {
               </li>
 
               <li>
-                <label class="nav-link align-middle px-0">
+                <label class="nav-link align-middle px-0 ">
                   <button
-                    className="btn btn-outline-dark rounded-pill"
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                     id="v-pills-activities-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-activities"
@@ -93,7 +93,7 @@ export default function Perfil() {
                 <label class="nav-link align-middle px-0">
                   <Link to="/profile/historial">
                     <button
-                      className="btn btn-outline-dark rounded-pill"
+                      className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                       id="v-pills-history-tab"
                       data-bs-toggle="pill"
                       data-bs-target="#v-pills-history"
@@ -102,7 +102,9 @@ export default function Perfil() {
                       aria-controls="v-pills-history"
                       aria-selected="true"
                     >
-                      Historial de compras
+                      Historial de  <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "white" }} width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                      </svg>
                     </button>
                   </Link>
                 </label>
@@ -111,7 +113,7 @@ export default function Perfil() {
               <li id="Usuarios">
                 <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark rounded-pill"
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                     id="v-pills-users-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-users"
@@ -128,7 +130,7 @@ export default function Perfil() {
               <li id="Productos">
                 <label class="nav-link align-middle px-0">
                   <button
-                    className="btn btn-outline-dark rounded-pill"
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                     id="v-pills-products-tab"
                     data-bs-toggle="pill"
                     data-bs-target="#v-pills-products"
@@ -142,8 +144,8 @@ export default function Perfil() {
                 </label>
               </li>
               <li id="Productos">
-                <label class="nav-link align-middle px-0 ">                  
-                    <EditButton/>                 
+                <label class="nav-link align-middle px-0 ">
+                  <EditButton />
                 </label>
               </li>
 
@@ -152,7 +154,7 @@ export default function Perfil() {
         </div>
 
         <div className="tab-content" id="v-pills-tabContent">
-          {/* Profile */}
+
           <div
             class="col py-3 tab-pane fade show active"
             id="v-pills-profile"
@@ -160,36 +162,80 @@ export default function Perfil() {
             aria-labelledby="v-pills-profile-tab"
             tabIndex="0"
           >
-            <div>
-              <img src={generica} alt="generica" />
-            </div>
-            <div>
-              <h3> Nombre completo: </h3>
-              <h2>
-                {usersState?.name} {usersState?.lastname}
-              </h2>
-            </div>
-            <div>
-              <h3> Email: </h3>
-              <h2>{usersState?.email}</h2>
-            </div>
-            <div>
-              <h3> Fecha de nacimiento: </h3>
-              <h2>{usersState?.dateOfBirth}</h2>
-            </div>
-            <div>
-              <h3> Télefono: </h3>
-              <h2>{usersState?.phoneNumber}</h2>
-            </div>
-            <div>
-              <h3> Dirección: </h3>
-              <h2>{usersState?.address}</h2>
-            </div>
-            <div>
-              <h3> postalCode: </h3>
-              <h2>{usersState?.postalCode}</h2>
-            </div>
+            <section class="section about-section gray-bg" id="about">
+              <div class="container">
+                <div class="row align-items-center flex-row" >
+                  <div class="col-lg-6">
+                    <div class="about-text go-to border border-5 rounded shadow-lg" >
+                      <h3 class="dark-color"> {usersState?.name} {usersState?.lastname}</h3>
+                      <div class="row about-list">
+                        <div class="col-md-6">
+                          <div class="media">
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Fecha de nacimiento</label>
+                            <p >{usersState?.dateOfBirth}</p>
+                          </div>
+                          <div class="media">
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Domicilio</label>
+                            <p>{usersState?.address}</p>
+                          </div>
+                          <div class="media">
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Codigo Postal</label>
+                            <p>{usersState?.postalCode}</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="media">
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>E-mail</label>
+                            <p>{usersState?.email}</p>
+                          </div>
+                          <div class="media">
+                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Telefono</label>
+                            <p>{usersState?.phoneNumber}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-auto">
+                    <div class="about-avatar">
+                      <img src={generica} title="" alt="hjhj" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
+
+
+
+
+
+
+
+
+
+
+          {/* Profile */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           {/* Products */}
           <div
