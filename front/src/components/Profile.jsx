@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import generica from "../imagesTeam/Santi.png";
+import generica from "../imagesTeam/avatar7.png";
 import {
   get_roles,
   get_users,
@@ -142,8 +142,8 @@ export default function Perfil() {
                 </label>
               </li>
               <li id="Productos">
-                <label class="nav-link align-middle px-0 ">                  
-                    <EditButton/>                 
+                <label class="nav-link align-middle px-0 ">
+                  <EditButton />
                 </label>
               </li>
 
@@ -152,7 +152,7 @@ export default function Perfil() {
         </div>
 
         <div className="tab-content" id="v-pills-tabContent">
-          {/* Profile */}
+
           <div
             class="col py-3 tab-pane fade show active"
             id="v-pills-profile"
@@ -160,36 +160,82 @@ export default function Perfil() {
             aria-labelledby="v-pills-profile-tab"
             tabIndex="0"
           >
-            <div>
-              <img src={generica} alt="generica" />
-            </div>
-            <div>
-              <h3> Nombre completo: </h3>
-              <h2>
-                {usersState?.name} {usersState?.lastname}
-              </h2>
-            </div>
-            <div>
-              <h3> Email: </h3>
-              <h2>{usersState?.email}</h2>
-            </div>
-            <div>
-              <h3> Fecha de nacimiento: </h3>
-              <h2>{usersState?.dateOfBirth}</h2>
-            </div>
-            <div>
-              <h3> Télefono: </h3>
-              <h2>{usersState?.phoneNumber}</h2>
-            </div>
-            <div>
-              <h3> Dirección: </h3>
-              <h2>{usersState?.address}</h2>
-            </div>
-            <div>
-              <h3> postalCode: </h3>
-              <h2>{usersState?.postalCode}</h2>
-            </div>
+            <section class="section about-section gray-bg" id="about">
+              <div class="container">
+                <div class="row align-items-center flex-row" >
+                  <div class="col-lg-6">
+                    <div class="about-text go-to rounded-2" style={{backgroundColor: "Indigo"}}>
+                      <h3 class="text-white"> {usersState?.name} {usersState?.lastname}</h3>
+                      <div class="row about-list">
+                        <div class="col-md-6">
+                          <div class="media">
+                            <label style={{fontWeight: "bold", color: "White"}}>Fecha de nacimiento</label>
+                            <p class="text-white">{usersState?.dateOfBirth}</p>
+                          </div>
+                          <div class="media">
+                            <label style={{fontWeight: "bold", color: "White"}}>Domicilio</label>
+                            <p class="text-white">{usersState?.address}</p>
+                          </div>
+                          <div class="media">
+                            <label style={{fontWeight: "bold", color: "White"}}>Codigo Postal</label>
+                            <p class="text-white">{usersState?.postalCode}</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="media">
+                            <label style={{fontWeight: "bold", color: "White"}}>E-mail</label>
+                            <p class="text-white">{usersState?.email}</p>
+                          </div>
+                          <div class="media">
+                            <label style={{fontWeight: "bold", color: "White"}}>Telefono</label>
+                            <p class="text-white">{usersState?.phoneNumber}</p>
+                          </div>
+                          
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="w-auto">
+                    <div class="about-avatar">
+                      <img src={generica} title="" alt="hjhj" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
+
+
+
+
+
+
+
+
+
+
+          {/* Profile */}
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           {/* Products */}
           <div
