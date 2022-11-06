@@ -7,14 +7,21 @@ import {
   getActivities,
   deleteActivity,
 } from "../redux/actions/activitiesActions";
+import { get_users } from "../redux/actionsCreator/usersActions";
 import ReviewsCreate from "./ReviewsCreate";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+
 
 export default function Activities() {
   const dispatch = useDispatch();
-
+  const{ isAuthenticated,user } = useAuth0() 
   useEffect(() => {
     dispatch(getActivities());
+    dispatch(get_users())
   }, [dispatch]);
+
+  const stateUser = useSelector( state => state.usersReducer.users)
+  const findUser = stateUser.find( u => u.email === user.email)
 
   const allActivities = useSelector(
     (state) => state.activitiesReducer.activities
@@ -65,9 +72,12 @@ export default function Activities() {
       >
         <Link to="/crearActividades">
           {" "}
+          { findUser.roleId === 2 &&
           <button type="button" className="btn btn-outline-dark ms-2">
             Crear Actividad
-          </button>{" "}
+          </button>
+          }
+          {" "}
         </Link>
       </div>
 

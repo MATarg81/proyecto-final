@@ -8,19 +8,15 @@ import {
 // aca aplico cosas de Local Storage, aun no se si funciona 
 
 const favsInitialState = { 
-    favs: [] 
+    favs: [] ,
+    favsLs: [localStorage.getItem('favs')]
 }
 
 function favReducer(state= favsInitialState, action){
     switch (action.type) {
         case ADD_FAV: 
             const item = action.payload          
-            const product = state.favs.find(p => p.id === item.id); 
-            if (product) {
-              return {
-                ...state,  
-              }
-            }
+
             //localStorage.setItem('favs', JSON.stringify(item)) //setItem se usa para almacenar informacion
            
             return {
@@ -28,13 +24,18 @@ function favReducer(state= favsInitialState, action){
                 favs: [...state.favs, item] 
               }
 
+        // case 'ADD_FAV_LS':
+        //   const item2 = action.payload
+        //   localStorage.setItem('favs', JSON.stringify(item))
+        //   return {
+        //     ...state,
+        //     favsLs: [localStorage.getItem('favs')]
+        //   }
+
         case REMOVE_FAV:
-            const favoritos = state.favs;
-            
+            const favoritos = state.favs;    
             const filtro = favoritos.filter((item) => item.id !== action.payload); //aca borro
             
-            
-
             return {
               ...state,
               favs: filtro
