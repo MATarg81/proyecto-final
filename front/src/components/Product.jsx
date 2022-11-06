@@ -110,7 +110,7 @@ console.log(product)
       </div>
 
       <div className="col-md-6">
-        <h4 className="text-uppercase text-black-50">{product?.categories.map(c => c.name)}</h4>
+        <h4 className="text-uppercase text-black-50">{product?.categories?.map(c => c.name)}</h4>
         <h1 className="display-5">{product?.title}</h1>
         <h3 className="display-6 fw-bold my-4">$ {product?.price}</h3>
         <p className="lead">{product?.detail}</p>
