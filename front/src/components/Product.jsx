@@ -137,32 +137,31 @@ console.log(product)
       </div>
     </div>
   );
-  //};
-
-  // return (
-  //   <div>
-  //     <div className="container py-5">
-  //       <div className="row py-4">
-  //         {loading ? <Loading /> : <ShowProduct />}
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
-
-  // return (
-  //   <div>
-  //     <div>
-  //       <h4>{props.name}</h4>
-  //       <h4>{props.price}</h4>
-  //       <div>
-  //         <div>
-  //           <img src={props.img} alt={props.names} width="200px" />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 }
+//};
+
+// return (
+//   <div>
+//     <div className="container py-5">
+//       <div className="row py-4">
+//         {loading ? <Loading /> : <ShowProduct />}
+//       </div>
+//     </div>
+//   </div>
+// );
+
+// return (
+//   <div>
+//     <div>
+//       <h4>{props.name}</h4>
+//       <h4>{props.price}</h4>
+//       <div>
+//         <div>
+//           <img src={props.img} alt={props.names} width="200px" />
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// );
 
 export default Product;
-//
