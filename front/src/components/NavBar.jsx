@@ -1,17 +1,28 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+
 import AuthenticationButton from "./Login/authentication-button";
 import Profile from "./Login/Views/Profile";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { get_users } from '../redux/actionsCreator/usersActions'
+
 
 
 function NavBar() {
-  const { isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
   const state = useSelector((state) => state.cartReducer);
+  const{ isAuthenticated,user } = useAuth0() 
 
-  return (
+  useEffect(()=>{
+    dispatch(get_users())
+  },[])
+  const stateUser = useSelector( state => state.usersReducer.users)
+const findUser = user? stateUser.find( u => u.email === user.email) : null
+
+  return ( 
     <div>
 
       <nav class="navbar navbar-expand-sm navbar-light">
@@ -100,4 +111,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavBar

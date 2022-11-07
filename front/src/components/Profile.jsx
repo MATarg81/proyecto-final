@@ -86,7 +86,6 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
-
               <li>
                 <label class="nav-link align-middle px-0 ">
                   <button

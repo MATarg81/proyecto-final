@@ -80,12 +80,13 @@ const Cart = () => {
 
   //-------PRUEBAS MP----------------------------------------------
 
+
   const emptyCart = () => {
     return (
       <div className="px-4 my-5 bg-light rounded-3 py-5">
         <div className="container py-4">
           <div className="row">
-            <h3>Tu carrito está vacío</h3>
+            <h3 class="display-5">Tu carrito está vacío</h3>
           </div>
         </div>
       </div>
@@ -94,7 +95,53 @@ const Cart = () => {
   const cartItems = (product) => {
     return (
       <>
-        <div className="px-4 my-5 bg-light rounded-3 py-5">
+
+        <div class="d-flex justify-content-start">
+          <div class="p-2 border border-4 rounded shadow p-3 mb-5 bg-body rounded">
+            <img src={product.image} alt={product.name} height="200px" width="180px" />
+          </div>
+          <div class="p-2 shadow-sm p-3 mb-5">
+            <h3 class="display-5">{product.name}</h3>
+            <p className="display-6">
+              {product.qty} x $ {product.price} = $
+              {product.qty * product.price}
+            </p>
+            <hr />
+            <div class="lead">
+
+              <button
+                className="btn rounded-pill text-white m-3"
+                style={{ backgroundColor: "indigo" }}
+                onClick={() => handleDel(product)}
+              >
+                <i className="fa fa-minus"></i>
+              </button>
+              {product.qty}
+              <button
+                className="btn rounded-pill text-white m-3"
+                style={{ backgroundColor: "indigo" }}
+                onClick={() => handleAdd(product)}
+              >
+                <i className="fa fa-plus"></i>
+              </button>
+            </div>
+          </div>
+{/*           <div class="p-2">Flex item 3</div>
+ */}
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+       {/*  <div className="px-4 my-5 bg-light rounded-3 py-5">
           <div className="container py-4">
             <div className="row justify-content-center">
               <div className="col-md-4">
@@ -127,7 +174,7 @@ const Cart = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </>
     );
   };
@@ -136,17 +183,19 @@ const Cart = () => {
       <>
         <div className="container">
           <div className="row">
-            <h3>TOTAL: ${price}</h3>
+            <h3 class="display-6">Total: ${price}</h3>
             <button
-              className="btn btn-outline-dark mb-5 w-25 mx-auto"
+              className="btn btn-outline-dark rounded-pill text-white border-white p-1"
               onClick={handleDeleteAll}
+              style={{ backgroundColor: "Indigo" }}
             >
               Vaciar Carrito
             </button>
             <Link
               onClick={handlePayment}
               to="/checkout"
-              className="btn btn-outline-dark mb-5 w-25 mx-auto"
+              className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+              style={{ backgroundColor: "Indigo" }}
             >
               Proceder al pago
             </Link>
@@ -166,3 +215,69 @@ const Cart = () => {
 };
 
 export default Cart;
+
+
+
+/* 
+
+<div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th class="mob-hide"></th>
+                <th class="mob-hide">Precio unitario</th>
+                <th class="table-qty">Unidades</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            /* --------------------------------------------------------- */
+/*
+<tbody>
+  {state && state?.map((i) => {
+    return (
+      <>
+        <tr>
+          <td>
+            {i.name}                        
+          </td>
+          <td class="text-center mob-hide">
+            <img src={i.image} alt={product.name} style={{ width: "80px" }} />
+          </td>
+          <td class="mob-hide">
+
+            <span class="order-product-price">${i.price}</span>
+
+          </td>
+          <td>
+            <button
+              className="btn btn-outline-dark me-2"
+              onClick={() => handleDel(product)}
+            >
+              <i className="fa fa-minus"></i>
+            </button>
+            {i.qty}
+            <button
+              className="btn btn-outline-dark"
+              onClick={() => handleAdd(product)}
+            >
+              <i className="fa fa-plus"></i>
+            </button>
+          </td>
+          <td>
+            <span class="order-product-subtotal">$ {i.qty * i.price}</span>
+          </td>
+          <td clas="text-right"> <a href="/cart/remove_product/120956782" class="cart-product-remove"
+            title="Remove Product"><i class="fas fa-times-circle"></i></a></td>
+        </tr>
+
+      </>
+    );
+    })}
+</tbody>
+</table>
+</div>
+
+
+
+*/
