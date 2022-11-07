@@ -19,6 +19,7 @@ async function getUsers(req, res) {
           phoneNumber: u.phoneNumber,
           address: u.address,
           postalCode: u.postalCode.toString(),
+          image: u.image
           
         });
         
@@ -78,7 +79,7 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode } = req.body;
+  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode, image } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
 
   try {
@@ -91,6 +92,7 @@ async function addUser(req, res) {
         phoneNumber: phoneNumber,
         address: address,
         postalCode: postalCode.toString(),
+        image: image
         
       });
 
