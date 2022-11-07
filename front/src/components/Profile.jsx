@@ -25,6 +25,7 @@ export default function Perfil() {
 
   const stateUser = useSelector( state => state.usersReducer.users)
   const findUser =  user ? stateUser.find( u => u.email === user.email) : null
+  console.log(user)
 
   useEffect(() => {
     if (allUsers?.length === 0) {
@@ -259,8 +260,8 @@ export default function Perfil() {
                     </div>
                   </div>
                   <div class="w-auto">
-                    <div class="about-avatar">
-                      <img src={generica} title="" alt="hjhj" />
+                    <div class="about-avatar" >
+                      <img src={user.picture} title="" alt="hjhj"/>
                     </div>
                   </div>
                 </div>
