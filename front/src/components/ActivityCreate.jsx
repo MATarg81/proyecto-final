@@ -86,7 +86,7 @@ const ActivityCreate = function () {
         times: "",
         img: "",
       });
-      navigate("/");
+      navigate("/actividades");
     }
   }
 
