@@ -15,8 +15,11 @@ const Profile = () => {
   useEffect(()=>{
     dispatch(get_users())
   },[])
+
   const stateUser = useSelector( state => state.usersReducer.users)
-const findUser = user? stateUser.find( u => u.email === user.email) : null
+  const findUser = user? stateUser.find( u => u.email === user.email) : null
+  console.log(stateUser, 'stado de userrrrrrss')
+  console.log(findUser, 'userrrrrr')
 
   return (
 

@@ -13,6 +13,7 @@ function Register() {
 
   const stateUser = useSelector( state => state.usersReducer.users)
   const checkUser = stateUser.find( u => u.email === user.email)
+  //console.log(checkUser, 'eeeeeeeee')
 
   const [error, setError] = useState({});
 
@@ -21,7 +22,7 @@ function Register() {
     lastname: "",
     email: "",
     phoneNumber: "",
-    password: "",
+    
     validatePass: "",
     dateOfBirth: "",
     address: "",
@@ -88,26 +89,26 @@ function Register() {
     }
 
     //Validate password
-    if (input.password) {
-      if (input.password.length < 8) {
-        error.password = "La contraseña es demasiado corta";
-      } else if (!input.password.match(/[A-Z]/)) {
-        error.password = "Debe contener al menos una mayúscula";
-      } else if (!input.password.match(/\d/)) {
-        error.password = "Debe tener al menos un número";
-      } else if (
-        !input.password.match(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/)
-      ) {
-        error.password = "Debe tener al menos un símbolo";
-      }
-    }
+    // if (input.password) {
+    //   if (input.password.length < 8) {
+    //     error.password = "La contraseña es demasiado corta";
+    //   } else if (!input.password.match(/[A-Z]/)) {
+    //     error.password = "Debe contener al menos una mayúscula";
+    //   } else if (!input.password.match(/\d/)) {
+    //     error.password = "Debe tener al menos un número";
+    //   } else if (
+    //     !input.password.match(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/)
+    //   ) {
+    //     error.password = "Debe tener al menos un símbolo";
+    //   }
+    // }
 
     //Confirm password
-    if (input.validatePass && pass) {
-      if (pass !== input.validatePass) {
-        error.validatePass = "Las contraseñas no coinciden";
-      }
-    }
+    // if (input.validatePass && pass) {
+    //   if (pass !== input.validatePass) {
+    //     error.validatePass = "Las contraseñas no coinciden";
+    //   }
+    // }
 
     //Validate dirección
     if (input.address) {
@@ -162,8 +163,8 @@ function Register() {
       !input.name ||
       !input.lastname ||
       !input.email ||
-      !input.password ||
-      !input.validatePass ||
+      
+      
       !input.phoneNumber ||
       !input.dateOfBirth ||
       !input.address ||
@@ -172,15 +173,16 @@ function Register() {
       alert("Por favor completa todos los campos");
     } else {
       dispatch(add_users(input));
+      dispatch(get_users())
       navigate("/home");
     }
   }
 
-  if(checkUser?.length > 0){
-    return (
-      <Profile/>
-    )
-  } else {
+  // if(checkUser){
+  //   return (
+  //     <Profile/>
+  //   )
+  // }
   return ( 
     <>
       <div class="container">
@@ -189,8 +191,36 @@ function Register() {
           onSubmit={handleSubmit}
           noValidate
         >
-          <h1 class="col-12">Completar perfil para terminar registro</h1>
+          <h1 class="col-12">Bienvenido!, Completa tus datos para continuar</h1>
 
+
+                {/* Email */}
+                <div class="col-4">
+            <label for="emailInput" class="form-label">
+              Email
+            </label>
+            <div>
+              <h3>
+              {user?.email}
+              </h3>
+            </div>
+            {/* <input
+              type="email"
+              id="emailInput"
+              placeholder="Email..."
+              onChange={handleChange}
+              name="email"
+              value={input.email}
+              class={
+                input.email && !error.email
+                  ? "form-control is-valid"
+                  : "form-control is-invalid"
+              }
+            ></input>
+            <div class="invalid-feedback">
+              {error.email ? error.email : "Este campo es obligatorio"}
+            </div> */}
+          </div>
           {/* Nombre */}
           <div class="col-6">
             <label for="nameInput" class="form-label">
@@ -237,31 +267,10 @@ function Register() {
             </div>
           </div>
 
-          {/* Email */}
-          <div class="col-4">
-            <label for="emailInput" class="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              id="emailInput"
-              placeholder="Email..."
-              onChange={handleChange}
-              name="email"
-              value={input.email}
-              class={
-                input.email && !error.email
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
-              }
-            ></input>
-            <div class="invalid-feedback">
-              {error.email ? error.email : "Este campo es obligatorio"}
-            </div>
-          </div>
+
 
           {/* Contraseña */}
-          <div class="col-4">
+          {/* <div class="col-4">
             <label for="passwordInput" class="form-label">
               Contraseña
             </label>
@@ -281,10 +290,10 @@ function Register() {
             <div class="invalid-feedback">
               {error.password ? error.password : "Este campo es obligatorio"}
             </div>
-          </div>
+          </div> */}
 
           {/* Confirmacion de contraseña */}
-          <div class="col-4">
+          {/* <div class="col-4">
             <label for="validatePassInput" class="form-label">
               Confirmación
             </label>
@@ -306,7 +315,7 @@ function Register() {
                 ? error.validatePass
                 : "Este campo es obligatorio"}
             </div>
-          </div>
+          </div> */}
 
           {/* Dirección */}
           <div class="col-4">
@@ -418,5 +427,5 @@ function Register() {
 }
 
 export default withAuthenticationRequired(Register, {
-  onRedirecting: () => <h1> redirigiendo al login, aguarde..</h1>,
+  onRedirecting: () => <h1> Loading ...</h1>,
 });

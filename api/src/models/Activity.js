@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       times: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       

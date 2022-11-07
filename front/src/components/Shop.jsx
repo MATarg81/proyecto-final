@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
 //import { addCart } from "../redux/actions/index";
-import { addFav } from "../redux/actionsCreator/favsActions";
+import { addFav, deleteFav } from "../redux/actionsCreator/favsActions";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import {
   getProducts,
@@ -107,23 +107,24 @@ function Shop() {
     if(findUser){
       const findFav = fav_state.find( prod => prod.id === product.id)
       if(findFav){
-          alert("El producto ya esta agreagado a favoritos")
+          dispatch(deleteFav(findFav, findUser.id))
+         
       }else{
-        dispatch(addFav(product, findUser.id));
-       alert("Producto agregado a favoritos")
-    }
+        dispatch(addFav(product, findUser.id))
+      }
     }
     else{
       const findFavLs = fav_LS_state.find(p => p === product)
       if(findFavLs){
-        alert("El producto ya esta agreagado a favoritos")
+        dispatch(deleteFav(findFavLs))
+        
       }else{ 
       dispatch(addFav(product))
       setFav(fav_LS_state)
-      alert("Producto agregado a favoritos")
+      
+      }
     }
-    }
-    
+  }
     /* toast('🦄 Producto añadido a favoritos', {
       position: "top-right",
       autoClose: 800,
@@ -133,7 +134,8 @@ function Shop() {
       draggable: true,
       progress: undefined,
     }); */
-  }
+
+  
  const stateOrLs = findUser? fav_state : fav_LS_state
   // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
   //   localStorage.setItem('favs', JSON.stringify(favState))

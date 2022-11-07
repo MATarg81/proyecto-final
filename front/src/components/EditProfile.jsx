@@ -198,15 +198,13 @@ export default function EditProfile() {
                     type="text"
                   />
 
-                  <label>Contraseña</label>
-                  <input
-                    name="password"
-                    onChange={(e) =>
-                      handleOnChange(e.target.name, e.target.value)
-                    }
-                    value={input?.password}
-                    type="password"
-                  />
+          {/* <label>Contraseña</label>
+          <input
+            name="password"
+            onChange={(e) => handleOnChange(e.target.name, e.target.value)}
+            value={input?.password}
+            type="text"
+          /> */}
 
                   <label>Confirmar contraseña</label>
                   <input
