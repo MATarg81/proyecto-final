@@ -72,9 +72,6 @@ export default function Perfil() {
                 </label>
               </li>
               <li>
-              <EditButton />
-              </li>
-              <li>
                 <label class="nav-link align-middle px-0 ">
                   <button
                     className="btn btn-outline-dark rounded-pill text-white border-white p-1"

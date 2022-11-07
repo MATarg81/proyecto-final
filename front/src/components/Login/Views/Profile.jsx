@@ -34,8 +34,7 @@ const findUser = user? stateUser.find( u => u.email === user.email) : null
           </Link>
         </div>
         <div className="col-md text-center text-md-left">
-          <h5>{user?.nickname || user?.name}</h5>
-          <h6 className="lead text-muted">{user?.email}</h6>
+          <h5>{findUser?.name}</h5>
         </div>
       </div>
       <div className="row">
