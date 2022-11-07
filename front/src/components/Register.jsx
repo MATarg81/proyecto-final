@@ -182,11 +182,11 @@ function Register() {
     }
   }
 
-  if(checkUser){
-    return (
-      <Profile/>
-    )
-  }
+  // if(checkUser){
+  //   return (
+  //     <Profile/>
+  //   )
+  // }
   return ( 
     <>
       <div class="container">

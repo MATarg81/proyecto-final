@@ -5,8 +5,8 @@ module.exports = (sequelize) => {
     "user",
     {
       id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
       email: {
@@ -34,6 +34,10 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       postalCode: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      image: {
         type: DataTypes.STRING,
         allowNull: false,
       },
