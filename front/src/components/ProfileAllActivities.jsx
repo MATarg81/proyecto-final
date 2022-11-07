@@ -1,22 +1,25 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getActivities, orderByPrice } from "../redux/actions/activitiesActions";
+import {
+  getActivities,
+  orderByPrice,
+} from "../redux/actions/activitiesActions";
 import { orderByName } from "../redux/actionsCreator/productsActions";
+import ActivityCreate from "./ActivityCreate";
 import ProfileEditActivities from "./ProfileEditActivities";
 
 export default function ProfileAllActivities() {
+  const activities = useSelector((state) => state.activitiesReducer.activities);
+  const [order, setOrder] = useState("");
 
-  const activities = useSelector(state => state.activitiesReducer.activities)
-  const [order, setOrder] = useState('')
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if(activities?.length === 0) {
-      dispatch(getActivities())
+    if (activities?.length === 0) {
+      dispatch(getActivities());
     }
-  })
+  });
 
   useEffect(() => {
     if (order === "A/Z") {
@@ -33,22 +36,23 @@ export default function ProfileAllActivities() {
     }
   }, [order, dispatch]);
 
-
   return (
     <div className="container-fluid">
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        data-bs-toggle="modal"
-        data-bs-target="#editActivities"
-      >
-        Editar
-      </button>
+      <div>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#editActivities"
+        >
+          Editar
+        </button>
+        <ActivityCreate />
+      </div>
       <div>
         <table className="table table-responsive-sm table-striped table-hover">
-          <thead >
+          <thead>
             <tr className="d-flex col-sm-10">
-
               <th className="col-sm-1">
                 Nombre
                 <select
@@ -76,7 +80,7 @@ export default function ProfileAllActivities() {
                   <option value="MAX/MIN">Desc.</option>
                 </select>
               </th>
-            
+
               <th className="col-sm-2">Detalle</th>
               <th className="col-sm-1">Días</th>
               <th className="col-sm-1">Horarios</th>
@@ -96,12 +100,12 @@ export default function ProfileAllActivities() {
                       <td className="col-sm-1 text-truncate">{a.days}</td>
                       <td className="col-sm-1 text-truncate">{a.times}</td>
                       <td className="col-sm-1 text-truncate">
-                        <img 
+                        <img
                           src={a.img}
                           className="img-fluid img-thumbnail"
                           alt=""
                         />
-                        </td>
+                      </td>
                     </tr>
                   </>
                 );

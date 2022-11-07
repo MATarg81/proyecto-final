@@ -12,14 +12,20 @@ import ProfileProducts from "./ProfileProducts";
 import PurchesesDetail from "./purchesesMaded/purchesesDetail";
 import ProfileAllActivities from "./ProfileAllActivities";
 import ProfileUsers from "./ProfileUsers";
-//import { useAuth0 } from '@auth0/auth0-react'; LO DEJO COMENTADO PERO ENTIENDO QUE LO VAMOS A USAR CUANDO ESTE TODO OK
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Perfil() {
   //NO DEBERIA GUARDARME EN UNA CONSTANTE UN ESTADO DONDE ESTE LA DATA DEL USUARIO¿¿
   const usersState = useSelector((state) => state.usersReducer.usersById);
   const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
+  const{ isAuthenticated, user } = useAuth0()
+
   const dispatch = useDispatch();
+
+  const stateUser = useSelector( state => state.usersReducer.users)
+  const findUser =  user ? stateUser.find( u => u.email === user.email) : null
+  console.log(user)
 
   useEffect(() => {
     if (allUsers?.length === 0) {
@@ -122,6 +128,9 @@ export default function Perfil() {
                 </label>
               </li>
 
+              {/* Admins only */}
+              { findUser?.roleId === 2 &&
+              <div>
               <li id="Usuarios">
                 <label class="nav-link align-middle px-0">
                   <button
@@ -171,6 +180,9 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
+              </div>
+              }
+
             </ul>
           </div>
         </div>
@@ -190,7 +202,7 @@ export default function Perfil() {
                     <div class="about-text go-to border border-5 rounded shadow-lg">
                       <h3 class="dark-color">
                         {" "}
-                        {usersState?.name} {usersState?.lastname}
+                        {findUser?.name} {findUser?.lastname}
                       </h3>
                       <div class="row about-list">
                         <div class="col-md-6">
@@ -200,7 +212,7 @@ export default function Perfil() {
                             >
                               Fecha de nacimiento
                             </label>
-                            <p>{usersState?.dateOfBirth}</p>
+                            <p>{findUser?.dateOfBirth}</p>
                           </div>
                           <div class="media">
                             <label
@@ -208,7 +220,7 @@ export default function Perfil() {
                             >
                               Domicilio
                             </label>
-                            <p>{usersState?.address}</p>
+                            <p>{findUser?.address}</p>
                           </div>
                           <div class="media">
                             <label
@@ -216,7 +228,7 @@ export default function Perfil() {
                             >
                               Codigo Postal
                             </label>
-                            <p>{usersState?.postalCode}</p>
+                            <p>{findUser?.postalCode}</p>
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -226,7 +238,7 @@ export default function Perfil() {
                             >
                               E-mail
                             </label>
-                            <p>{usersState?.email}</p>
+                            <p>{findUser?.email}</p>
                           </div>
                           <div class="media">
                             <label
@@ -234,7 +246,7 @@ export default function Perfil() {
                             >
                               Telefono
                             </label>
-                            <p>{usersState?.phoneNumber}</p>
+                            <p>{findUser?.phoneNumber}</p>
                           </div>
                           <div class="media">
                             <Link to="/edituser">
@@ -248,8 +260,8 @@ export default function Perfil() {
                     </div>
                   </div>
                   <div class="w-auto">
-                    <div class="about-avatar">
-                      <img src={generica} title="" alt="hjhj" />
+                    <div class="about-avatar" >
+                      <img src={user.picture ? user.picture : generica} title="" alt="hjhj"/>
                     </div>
                   </div>
                 </div>

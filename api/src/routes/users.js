@@ -18,7 +18,7 @@ const router = Router();
 router.get("/", getUsers);
 router.get("/:id", getUsersById); 
 router.post("/", addUser);
-router.delete("/:id",verifyAdmin(), deleteUser);
+router.delete("/:id", deleteUser);
 router.patch("/", updateUser)
 
 module.exports = router;

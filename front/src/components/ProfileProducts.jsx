@@ -7,6 +7,7 @@ import {
   getProducts,
   orderByName,
 } from "../redux/actionsCreator/productsActions";
+import CreateProduct from "./CreateProduct/CreateProduct";
 import ProfileEditProduct from "./ProfileEditProduct";
 
 export default function ProfileProducts() {
@@ -52,14 +53,18 @@ export default function ProfileProducts() {
 
   return (
     <div className="container-fluid">
+      <div className="container-fluid">
+
       <button
         type="button"
         class="btn btn-outline-dark"
         data-bs-toggle="modal"
         data-bs-target="#editProduct"
-      >
+        >
         Editar
       </button>
+      <CreateProduct />
+        </div>
       <div>
         <table className="table table-responsive-sm table-striped table-hover">
           <thead >

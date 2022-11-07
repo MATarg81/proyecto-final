@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  delete_users,
   get_roles,
   get_users,
   get_users_by_id,
@@ -36,6 +37,13 @@ export default function EditProfileAdmin() {
       dispatch(get_users());
     }
   }, [users, userId, roles, dispatch, input]);
+
+  function handleDeleteUser(id) {
+    if (window.confirm(`Are you sure you want to delete the activity?`)) {
+      dispatch(delete_users(id));
+      console.log(id)
+    }
+  }
 
   function handleCheck(e) {
     if (e.target.checked) {
@@ -242,6 +250,18 @@ export default function EditProfileAdmin() {
               onClick={handleSubmit}
             >
               Guardar
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary mt-3 btn-dark"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onClick={() => {
+                handleDeleteUser(userId.id);
+                dispatch(get_users());
+              }}
+            >
+              Eliminar usuario
             </button>
           </div>
         </form>
