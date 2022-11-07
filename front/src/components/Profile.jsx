@@ -15,7 +15,6 @@ import ProfileUsers from "./ProfileUsers";
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Perfil() {
-  //NO DEBERIA GUARDARME EN UNA CONSTANTE UN ESTADO DONDE ESTE LA DATA DEL USUARIO¿¿
   const usersState = useSelector((state) => state.usersReducer.usersById);
   const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
@@ -25,7 +24,7 @@ export default function Perfil() {
 
   const stateUser = useSelector( state => state.usersReducer.users)
   const findUser =  user ? stateUser.find( u => u.email === user.email) : null
-  console.log(user)
+
 
   useEffect(() => {
     if (allUsers?.length === 0) {
@@ -212,7 +211,12 @@ export default function Perfil() {
                             >
                               Fecha de nacimiento
                             </label>
-                            <p>{findUser?.dateOfBirth}</p>
+                            <p>{
+                              findUser.dateOfBirth[0] + findUser.dateOfBirth[1] + '-' +
+                              findUser.dateOfBirth[2] + findUser.dateOfBirth[3] + '-' +
+                              findUser.dateOfBirth[4] + findUser.dateOfBirth[5] +
+                              findUser.dateOfBirth[6] + findUser.dateOfBirth[7]
+                            }</p>
                           </div>
                           <div class="media">
                             <label
