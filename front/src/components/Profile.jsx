@@ -201,7 +201,7 @@ export default function Perfil() {
                     <div class="about-text go-to border border-5 rounded shadow-lg">
                       <h3 class="dark-color">
                         {" "}
-                        {usersState?.name} {usersState?.lastname}
+                        {findUser?.name} {findUser?.lastname}
                       </h3>
                       <div class="row about-list">
                         <div class="col-md-6">
@@ -211,7 +211,7 @@ export default function Perfil() {
                             >
                               Fecha de nacimiento
                             </label>
-                            <p>{usersState?.dateOfBirth}</p>
+                            <p>{findUser?.dateOfBirth}</p>
                           </div>
                           <div class="media">
                             <label
@@ -219,7 +219,7 @@ export default function Perfil() {
                             >
                               Domicilio
                             </label>
-                            <p>{usersState?.address}</p>
+                            <p>{findUser?.address}</p>
                           </div>
                           <div class="media">
                             <label
@@ -227,7 +227,7 @@ export default function Perfil() {
                             >
                               Codigo Postal
                             </label>
-                            <p>{usersState?.postalCode}</p>
+                            <p>{findUser?.postalCode}</p>
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -237,7 +237,7 @@ export default function Perfil() {
                             >
                               E-mail
                             </label>
-                            <p>{usersState?.email}</p>
+                            <p>{findUser?.email}</p>
                           </div>
                           <div class="media">
                             <label
@@ -245,7 +245,7 @@ export default function Perfil() {
                             >
                               Telefono
                             </label>
-                            <p>{usersState?.phoneNumber}</p>
+                            <p>{findUser?.phoneNumber}</p>
                           </div>
                           <div class="media">
                             <Link to="/edituser">
