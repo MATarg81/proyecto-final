@@ -9,7 +9,7 @@
             "address": "Matheu 3156",
             "postalCode": "B2345",
             "password": "alskndA1!",
-            "image":"foto"
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Laura",
@@ -20,7 +20,7 @@
             "address": "Rosalia 6668",
             "postalCode": "B2345",
             "password": "alskndA1!",
-            "image":"foto"
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Brenda",
@@ -31,7 +31,7 @@
             "address": "Av. Perales 5463",
             "postalCode": "B2345",
             "password": "alskndA1!",
-            "image":"foto"
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Cinthya",
@@ -42,7 +42,7 @@
             "address": "Guerra Galactica 422",
             "postalCode": "B2345",
             "password": "alskndA1!",
-            "image":"foto"
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Juan",
@@ -53,7 +53,7 @@
             "address": "Fernando 3070",
             "postalCode": "B2345",
             "password": "alskndA1!",
-            "image":"foto"
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Matias",
@@ -64,7 +64,7 @@
             "address": "Padelnator 775",
             "postalCode": "B2345",
             "password": "alskndA1!",
-            "image":"foto"
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Sebastian Lucas",
@@ -75,7 +75,7 @@
             "address": "Calle Falsa 123",
             "postalCode": "B2345",
             "password": "alskndA1!",
-            "image":"foto"
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         }
     ]
 }

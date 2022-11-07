@@ -2,49 +2,51 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
-  get_users,
-  get_users_by_id,
-  get_roles,
   update_user,
+  get_users,
 } from "../redux/actionsCreator/usersActions";
+import upImage from "./CreateProduct/cloudinary";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function EditProfile() {
-  const usersState = useSelector((state) => state.usersReducer.usersById);
-  //const [image, setImage] = React.useState(); //para cargar la imagen nueva (aunque deberiamos agregar imagen en la db)
-  const dispatch = useDispatch();
-  const usersRoles = useSelector((state) => state.usersReducer.roles);
+  const usersState = useSelector((state) => state.usersReducer.users);
+  const{ isAuthenticated, user } = useAuth0()
 
-  //FALTA AGREGAR QUE EDITE LOS DATOS DEL USUARIO LOGUEADO
+  const dispatch = useDispatch();
+  
+  const findUser = user ? usersState?.find(u => u.email === user.email) : null
+
+  useEffect(() => {
+    if (usersState?.length === 0) {
+      dispatch(get_users());
+    }
+  }, [dispatch, usersState, findUser]);
+
 
   const [input, setInput] = useState({
-    id: usersState.id,
+    id: findUser?.id,
     name: "",
-    lastName: "",
+    lastname: "",
     dateOfBirth: "",
     phoneNumber: "",
     email: "",
     address: "",
     postalCode: "",
-    password: "",
-    roles: "",
+    image: ''
   });
 
-  useEffect(() => {
-    if (usersRoles?.length) {
-      dispatch(get_roles());
-    }
-    if (usersState?.length === 0) {
-      dispatch(get_users_by_id(3));
-    }
-  }, [dispatch]);
+
+  function addImage(e) {
+    upImage(e.target.files[0]).then((res) => {
+      setInput({ ...input, img: res.url });
+    });
+  }
 
   const handleOnChange = (e) => {
-    dispatch(
-      setInput({
-        ...usersState,
-        [e.target.name]: e.target.value,
-      })
-    );
+    setInput({
+      ...usersState,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const onHandleSubmit = async (e) => {
@@ -52,109 +54,162 @@ export default function EditProfile() {
 
     //ACA IRIA LA LOGICA PARA AGREGAR IMAGEN
   };
-
-  function handleCheck(e) {
-    if (e.target.checked) {
-      setInput({
-        ...input,
-        roles: [...input.roles, e.target.value],
-      });
-    }
-  }
+  console.log(findUser)
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!input.name) {
+      setInput((input.name = findUser?.name));
+    }
+    if (!input.lastname) {
+      setInput((input.lastname = findUser?.lastname));
+    }
+    if (!input.email) {
+      setInput((input.email = findUser?.email));
+    }
+    if (!input.dateOfBirth) {
+      setInput((input.dateOfBirth = findUser?.dateOfBirth));
+    }
+    if (!input.phoneNumber) {
+      setInput((input.phoneNumber = findUser?.phoneNumber));
+    }
+    if (!input.postalCode) {
+      setInput((input.postalCode = findUser?.postalCode));
+    }
+    if (!input.address) {
+      setInput((input.address = findUser?.address));
+    }
     dispatch(update_user(input));
+    dispatch(get_users());
+    setInput({
+      ...input,
+      name: "",
+      lastname: "",
+      dateOfBirth: "",
+      phoneNumber: "",
+      email: "",
+      address: "",
+      postalCode: "",
+      image:''
+    });
   }
 
   return (
     <div>
-      <title>Actualizar Perfil</title>
-      <div class="">
-        <h1 class="">Actualizar Perfil</h1>
-        <form onSubmit={(e) => onHandleSubmit(e)}>
-          <label class="">
-            {/*  <label>Foto de Perfil </label>
-                        <input
-                            type="file"
-                            multiple
-                            onChange={(e) => imageOnChange(e.target.files)}
-                        /> */}
-            <label>Nombre</label>
-            <input
-              name="name"
-              onChange={(e) => handleOnChange(e)}
-              value={input?.name}
-              type="text"
-            />
-            <label>Apellido</label>
-            <input
-              name="lastname"
-              onChange={(e) => handleOnChange(e)}
-              value={input?.lastname}
-              type="text"
-            />
-          </label>
-          <label>Teléfono</label>
-          <input
-            name="phone"
-            onChange={(e) => handleOnChange(e)}
-            value={input?.phoneNumber}
-            type="text"
-          />
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        data-bs-toggle="modal"
+        data-bs-target="#editProfile"
+      >
+        Editar perfil
+      </button>
+      <div
+        class="modal fade"
+        id="editProfile"
+        tabindex="-1"
+        aria-labelledby="editProfileLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editProfileLabel">
+                Editar perfil
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
 
-          <label>E-mail</label>
-          <input
-            name="email"
-            onChange={(e) => handleOnChange(e)}
-            value={input?.email}
-            type="text"
-          />
-          <label>Direccion</label>
-          <input
-            name="adress"
-            onChange={(e) => handleOnChange(e.target.name, e.target.value)}
-            value={input?.address}
-            type="text"
-          />
-          <label>Codigo Postal</label>
-          <input
-            name="postalCode"
-            onChange={(e) => handleOnChange(e.target.name, e.target.value)}
-            value={input?.postalCode}
-            type="text"
-          />
-
-          {/* <label>Contraseña</label>
-          <input
-            name="password"
-            onChange={(e) => handleOnChange(e.target.name, e.target.value)}
-            value={input?.password}
-            type="text"
-          /> */}
-
-          <div class="">
-            {usersRoles.length > 0 &&
-              usersRoles.map((roles) => (
-                <label htmlFor={roles.id}>
+            <div class="modal-body">
+              <title>Actualizar Perfil</title>
+              <div class="">
+                <h1 class="">Actualizar Perfil</h1>
+                <form
+                  className="row mt-3 g-2"
+                  onSubmit={(e) => onHandleSubmit(e)}
+                >
+                  <label>Nombre</label>
                   <input
-                    key={roles.id}
-                    type="checkbox"
-                    value={roles.id}
-                    name={roles.name}
-                    onChange={handleCheck}
+                    name="name"
+                    onChange={(e) => handleOnChange(e)}
+                    value={input?.name}
+                    type="text"
                   />
-                  {roles.name}
-                </label>
-              ))}
-          </div>
+                  <label>Apellido</label>
+                  <input
+                    name="lastname"
+                    onChange={(e) => handleOnChange(e)}
+                    value={input?.lastname}
+                    type="text"
+                  />
 
-          <div class="">
-            <button type="submit" onClick={handleSubmit}>
-              Editar
-            </button>
+                  <label>Teléfono</label>
+                  <input
+                    name="phone"
+                    onChange={(e) => handleOnChange(e)}
+                    value={input?.phoneNumber}
+                    type="text"
+                  />
+
+                  <label>E-mail</label>
+                  <input
+                    name="email"
+                    onChange={(e) => handleOnChange(e)}
+                    value={input?.email}
+                    type="text"
+                  />
+                  <label>Direccion</label>
+                  <input
+                    name="adress"
+                    onChange={(e) =>
+                      handleOnChange(e.target.name, e.target.value)
+                    }
+                    value={input?.address}
+                    type="text"
+                  />
+                  <label>Codigo Postal</label>
+                  <input
+                    name="postalCode"
+                    onChange={(e) =>
+                      handleOnChange(e.target.name, e.target.value)
+                    }
+                    value={input?.postalCode}
+                    type="text"
+                  />
+                  
+                  <div className="">
+                    <label className="col-12" htmlFor="newImage">
+                      Cambiar imagen de perfil{" "}
+                    </label>
+                    <input
+                      className="col-12"
+                      type="file"
+                      id="newImage"
+                      onChange={addImage}
+                    ></input>
+                  </div>
+
+                  <div class="">
+                    <button
+                      type="submit"
+                      className="btn btn-primary mt-3"
+                      onClick={handleSubmit}
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Editar
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ export default function ProfileUsers() {
         type="button"
         class="btn btn-outline-dark"
         data-bs-toggle="modal"
-        data-bs-target="#editProfile"
+        data-bs-target="#editProfileAdmin"
       >
         Editar
       </button>
@@ -79,13 +79,12 @@ export default function ProfileUsers() {
               <th className="col-sm-1">Teléfono</th>
               <th className="col-sm-2">Dirección</th>
               <th className="col-sm-1">C.P.</th>
-              <th className="col-sm-1">Contraseña</th>
               <th className="col-sm-1">Rol</th>
             </tr>
           </thead>
           <tbody>
             {users &&
-              users.map((u) => {
+              users?.map((u) => {
                 return (
                   <>
                     <tr className="d-flex col-sm-11">
@@ -96,23 +95,22 @@ export default function ProfileUsers() {
                       <td className="col-sm-1">{u.phoneNumber}</td>
                       <td className="col-sm-2">{u.address}</td>
                       <td className="col-sm-1">{u.postalCode}</td>
-                      <td className="col-sm-1">{u.password}</td>
-                      <td className="col-sm-1">{u.role.name}</td>
+                      <td className="col-sm-1">{u.role?.name}</td>
                     </tr>
                   </>
                 );
               })}
             <div
               class="modal fade"
-              id="editProfile"
+              id="editProfileAdmin"
               tabindex="-1"
-              aria-labelledby="editProfileLabel"
+              aria-labelledby="editProfileAdminLabel"
               aria-hidden="true"
             >
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileLabel">
+                    <h5 class="modal-title" id="editProfileAdminLabel">
                       Editar usuario
                     </h5>
                     <button

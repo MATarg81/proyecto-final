@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import generica from "../imagesTeam/avatar7.png";
+//import generica from "../imagesTeam/avatar7.png";
 import {
   get_roles,
   get_users,
@@ -13,9 +13,9 @@ import PurchesesDetail from "./purchesesMaded/purchesesDetail";
 import ProfileAllActivities from "./ProfileAllActivities";
 import ProfileUsers from "./ProfileUsers";
 import { useAuth0 } from '@auth0/auth0-react';
+import EditProfile from "./EditProfile";
 
 export default function Perfil() {
-  //NO DEBERIA GUARDARME EN UNA CONSTANTE UN ESTADO DONDE ESTE LA DATA DEL USUARIO¿¿
   const usersState = useSelector((state) => state.usersReducer.usersById);
   const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
@@ -23,24 +23,22 @@ export default function Perfil() {
 
   const dispatch = useDispatch();
 
-  const stateUser = useSelector( state => state.usersReducer.users)
-  const findUser =  user ? stateUser.find( u => u.email === user.email) : null
-  console.log(user)
-
   useEffect(() => {
-    if (allUsers?.length === 0) {
-      dispatch(get_users());
-    }
     if (roles?.length === 0) {
       dispatch(get_roles());
     }
-    if (usersState?.length === 0) {
-      dispatch(get_users_by_id(7));
+    if (allUsers?.length === 0) {
+      dispatch(get_users());
     }
-  }, [dispatch, allUsers, roles, usersState]);
-  /*
-  className="d-flex justify-content-between nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical"
-  */
+  }, [dispatch, allUsers, usersState, roles]);
+
+  const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
+
+  useEffect(() => {
+    if (usersState?.length === 0) {
+      dispatch(get_users_by_id(findUser?.id));
+    }
+  }, [dispatch, findUser, usersState])
 
   return (
     <div class="container-fluid">
@@ -211,7 +209,12 @@ export default function Perfil() {
                             >
                               Fecha de nacimiento
                             </label>
-                            <p>{findUser?.dateOfBirth}</p>
+                            <p>{
+                              findUser?.dateOfBirth[0] + findUser?.dateOfBirth[1] + '-' +
+                              findUser?.dateOfBirth[2] + findUser?.dateOfBirth[3] + '-' +
+                              findUser?.dateOfBirth[4] + findUser?.dateOfBirth[5] +
+                              findUser?.dateOfBirth[6] + findUser?.dateOfBirth[7]
+                            }</p>
                           </div>
                           <div class="media">
                             <label
@@ -248,11 +251,7 @@ export default function Perfil() {
                             <p>{findUser?.phoneNumber}</p>
                           </div>
                           <div class="media">
-                            <Link to="/edituser">
-                              <button className="btn btn-outline-dark rounded-pill text-black border-black p-1">
-                                Editar Perfil
-                              </button>
-                            </Link>
+                            <EditProfile />
                           </div>
                         </div>
                       </div>
@@ -260,7 +259,7 @@ export default function Perfil() {
                   </div>
                   <div class="w-auto">
                     <div class="about-avatar" >
-                      <img src={user.picture ? user.picture : generica} title="" alt="hjhj"/>
+                      <img src={user?.picture ? user?.picture : findUser?.image} title="" alt="hjhj"/>
                     </div>
                   </div>
                 </div>
