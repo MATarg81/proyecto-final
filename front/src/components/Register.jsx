@@ -3,18 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { add_users, get_users } from "../redux/actionsCreator/usersActions";
 import { useNavigate } from "react-router-dom";
 import Profile from './Profile'
-//import axios from "axios";
-
-
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 
-//AGREGAR = 'dateOfBirth' y 'address'
-//La confirmación de contraseña no oculta los caracteres
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {user, isAuthenticated} = useAuth0()
+  const { isAuthenticated, user } = useAuth0()
+
   const stateUser = useSelector( state => state.usersReducer.users)
   const checkUser = stateUser.find( u => u.email === user.email)
   //console.log(checkUser, 'eeeeeeeee')
@@ -24,7 +20,7 @@ function Register() {
   const [input, setInput] = useState({
     name: "",
     lastname: "",
-    email: "",
+    email: user.email,
     phoneNumber: "",
     
     validatePass: "",
@@ -182,11 +178,11 @@ function Register() {
     }
   }
 
-  // if(checkUser){
-  //   return (
-  //     <Profile/>
-  //   )
-  // }
+  if(checkUser){
+    return (
+      <Profile/>
+    )
+  }
   return ( 
     <>
       <div class="container">
@@ -426,9 +422,9 @@ function Register() {
       </div>
     </> 
   );
-              
+ }             
 
-}
+
 
 export default withAuthenticationRequired(Register, {
   onRedirecting: () => <h1> Loading ...</h1>,

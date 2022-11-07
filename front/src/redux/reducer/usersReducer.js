@@ -54,9 +54,6 @@ const usersReducer = (state = initialState, action) => {
         };
       }
     }// eslint-disable-next-line
-
-
-
     default:
       return  state;
   }
