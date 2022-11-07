@@ -22,7 +22,7 @@ async function getUsers(req, res) {
           
         });
         
-        await newUser.setRole(1);
+        await newUser.setRole(2);
 
       });
       return res.status(200).send(allUsers)
