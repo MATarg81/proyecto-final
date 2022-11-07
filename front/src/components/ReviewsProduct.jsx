@@ -252,10 +252,11 @@ function Reviews() {
         borderRadius: 5,
         width: 300,
         padding: 10,
+        dffddf
     } */
 
 
-    
+
 
 
 
