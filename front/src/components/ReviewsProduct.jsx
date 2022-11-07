@@ -164,47 +164,48 @@ function Reviews() {
     //--------------------------------------------------------------------
 
     return (
-        <div style={styles.container}>
-            <h2> Dejá tu reseña </h2>
-            <div>
-                {stars.map((_, index) => {
-                    return (
-                        <FaStar
-                            key={index}
-                            size={24}
-                            onClick={() => handleClick(index + 1)}
-                            onMouseOver={() => handleMouseOver(index + 1)}
-                            onMouseLeave={handleMouseLeave}
-                            color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                            style={{
-                                marginRight: 10,
-                                cursor: "pointer"
-                            }}
-                        />
-                    )
-                })}
-            </div>
-            <textarea
-                onChange={handleChange}
-                placeholder="Escribe aquí tu comentario"
-                style={styles.textarea}
-            />
+        <div class="" /* style={styles.container} */>
 
-            <button
-                style={styles.button}
-                onClick={handleSubmit}
-            >
-                Enviar
-            </button>
-
-            <h2>Opiniones del producto</h2>
-            <div>
-                <div className="row">
-                    <div className="col-md-6">
-                        <p>{average().toFixed(2)} {score(average())} ({detail.length})</p>
-                    </div>
+            <div class="d-flex flex-row ">
+                <h5 class="" style={{ paddingRight: "20px" }}> Dejanos tu reseña </h5>
+                <div >
+                    {stars.map((_, index) => {
+                        return (
+                            <FaStar
+                                key={index}
+                                size={24}
+                                onClick={() => handleClick(index + 1)}
+                                onMouseOver={() => handleMouseOver(index + 1)}
+                                onMouseLeave={handleMouseLeave}
+                                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                                style={{
+                                    marginRight: 10,
+                                    cursor: "pointer"
+                                }}
+                            />
+                        )
+                    })}
                 </div>
-                <div className="col-md-6">
+            </div>
+
+            <div class="d-flex flex-column">
+                <textarea class="form-control" onChange={handleChange} placeholder="Escribe aquí tu comentario" rows="8"/* style={styles.textarea} */ />
+                <button /*  style={styles.button} */ class="btn border ms-2 rounded-pill text-white" style={{ backgroundColor: "indigo" }}
+                    onClick={handleSubmit}>
+                    Enviar
+                </button>
+            </div>
+
+            <h5>Opiniones del producto</h5>
+            <div>
+                <div className="d-flex flex-row">
+                    
+                        <div className="p-2">{average().toFixed(2)}  </div>
+                        <div className="p-2">({detail.length})</div>
+                        <div className="p-2">{score(average())}</div>
+                    
+                </div>
+                <div className="p-2">
                     {detail.map((r) => (
                         <div style={{ border: "1px solid black", borderRadius: "1rem", margin: "2rem", padding: "2rem" }} key={r.id}>
                             <h5>{r.user.name}</h5>
