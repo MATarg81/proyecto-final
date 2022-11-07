@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import {
-  get_users_by_id,
-  get_roles,
   update_user,
   get_users,
 } from "../redux/actionsCreator/usersActions";
@@ -12,7 +10,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function EditProfile() {
   const usersState = useSelector((state) => state.usersReducer.users);
-  const usersRoles = useSelector((state) => state.usersReducer.roles);
   const{ isAuthenticated, user } = useAuth0()
 
   const dispatch = useDispatch();
@@ -20,16 +17,10 @@ export default function EditProfile() {
   const findUser = user ? usersState?.find(u => u.email === user.email) : null
 
   useEffect(() => {
-    if (usersRoles?.length) {
-      dispatch(get_roles());
-    }
     if (usersState?.length === 0) {
       dispatch(get_users());
     }
-    if(findUser?.length > 0) {
-      dispatch(get_users_by_id(findUser.id))
-    }
-  }, [dispatch, usersRoles, usersState, findUser]);
+  }, [dispatch, usersState, findUser]);
 
 
   const [input, setInput] = useState({
@@ -41,8 +32,7 @@ export default function EditProfile() {
     email: "",
     address: "",
     postalCode: "",
-    password: "",
-    roles: "",
+    image: ''
   });
 
 
@@ -64,35 +54,30 @@ export default function EditProfile() {
 
     //ACA IRIA LA LOGICA PARA AGREGAR IMAGEN
   };
+  console.log(findUser)
 
   function handleSubmit(e) {
     e.preventDefault();
     if (!input.name) {
-      setInput((input.name = usersState.name));
+      setInput((input.name = findUser?.name));
     }
     if (!input.lastname) {
-      setInput((input.lastname = usersState.lastname));
+      setInput((input.lastname = findUser?.lastname));
     }
     if (!input.email) {
-      setInput((input.email = usersState.email));
+      setInput((input.email = findUser?.email));
     }
     if (!input.dateOfBirth) {
-      setInput((input.dateOfBirth = usersState.dateOfBirth));
+      setInput((input.dateOfBirth = findUser?.dateOfBirth));
     }
     if (!input.phoneNumber) {
-      setInput((input.phoneNumber = usersState.phoneNumber));
+      setInput((input.phoneNumber = findUser?.phoneNumber));
     }
     if (!input.postalCode) {
-      setInput((input.postalCode = usersState.postalCode));
+      setInput((input.postalCode = findUser?.postalCode));
     }
     if (!input.address) {
-      setInput((input.address = usersState.address));
-    }
-    if (!input.password) {
-      setInput((input.password = usersState.password));
-    }
-    if (!input.roles) {
-      setInput((input.roles = usersState.role));
+      setInput((input.address = findUser?.address));
     }
     dispatch(update_user(input));
     dispatch(get_users());
@@ -105,8 +90,7 @@ export default function EditProfile() {
       email: "",
       address: "",
       postalCode: "",
-      password: "",
-      roles: "",
+      image:''
     });
   }
 
@@ -197,25 +181,7 @@ export default function EditProfile() {
                     value={input?.postalCode}
                     type="text"
                   />
-
-          {/* <label>Contraseña</label>
-          <input
-            name="password"
-            onChange={(e) => handleOnChange(e.target.name, e.target.value)}
-            value={input?.password}
-            type="text"
-          /> */}
-
-                  <label>Confirmar contraseña</label>
-                  <input
-                    name="confirmPassword"
-                    onChange={(e) =>
-                      handleOnChange(e.target.name, e.target.value)
-                    }
-                    value={input?.confirmPassword}
-                    type="password"
-                  />
-
+                  
                   <div className="">
                     <label className="col-12" htmlFor="newImage">
                       Cambiar imagen de perfil{" "}

@@ -25,8 +25,8 @@ export default function EditProfileAdmin() {
     email: "",
     address: "",
     postalCode: "",
-    password: "",
     roles: "",
+    image:''
   });
 
   useEffect(() => {
@@ -45,14 +45,14 @@ export default function EditProfileAdmin() {
     }
   }
 
-  function handleCheck(e) {
-    if (e.target.checked) {
-      setInput({
-        ...input,
-        roles: [e.target.value],
-      });
-    }
-  }
+  // function handleCheck(e) {
+  //   if (e.target.checked) {
+  //     setInput({
+  //       ...input,
+  //       roles: [e.target.value],
+  //     });
+  //   }
+  // }
 
   function handleChange(e) {
     setInput({
@@ -62,6 +62,7 @@ export default function EditProfileAdmin() {
   }
 
   function handleSubmit() {
+    
     setInput((input.id = userId.id));
     if (!input.name) { setInput(input.name = userId.name) }
     if (!input.lastname) { setInput((input.lastname = userId.lastname)) }
@@ -70,7 +71,6 @@ export default function EditProfileAdmin() {
     if (!input.phoneNumber) { setInput((input.phoneNumber = userId.phoneNumber)) }
     if (!input.postalCode) { setInput((input.postalCode = userId.postalCode)) }
     if (!input.address) { setInput((input.address = userId.address)) }
-    // if (!input.password) { setInput((input.password = userId.password)) }
     if (!input.roles) { setInput((input.roles = userId.role)) }
     dispatch(update_user(input));
     dispatch(get_users())
@@ -83,7 +83,6 @@ export default function EditProfileAdmin() {
     email: "",
     address: "",
     postalCode: "",
-    password: "",
     roles: "",
     })
   }
@@ -211,30 +210,17 @@ export default function EditProfileAdmin() {
               ></input>
             </div>
 
-            {/* <div className="">
-              <label className="col-12" htmlFor="password">
-                Contraseña:{" "}
-              </label>
-              <input
-                className="col-12"
-                type="text"
-                placeholder={userId ? userId.password : ""}
-                id="password"
-                value={input?.password}
-                onChange={handleChange}
-              ></input>
-            </div> */}
-
             <div class="">
-              {roles.length > 0 &&
-                roles.map((roles) => (
-                  <label htmlFor={roles.id}>
+              {roles?.length > 0 &&
+                roles?.map((roles) => (
+                  <label htmlFor='rol'>
                     <input
+                      id='rol'
                       key={roles.id}
                       type="checkbox"
-                      value={roles.id}
+                      value={input.id}
                       name={roles.name}
-                      onChange={handleCheck}
+                      onChange={handleChange}
                     />
                     {roles.name}
                   </label>

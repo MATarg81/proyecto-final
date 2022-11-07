@@ -20,7 +20,7 @@ function Register() {
   const [input, setInput] = useState({
     name: "",
     lastname: "",
-    email: "",
+    email: user.email,
     phoneNumber: "",
     
     validatePass: "",
@@ -178,11 +178,11 @@ function Register() {
     }
   }
 
-  // if(checkUser){
-  //   return (
-  //     <Profile/>
-  //   )
-  // }
+  if(checkUser){
+    return (
+      <Profile/>
+    )
+  }
   return ( 
     <>
       <div class="container">
@@ -424,7 +424,7 @@ function Register() {
   );
  }             
 
-}
+
 
 export default withAuthenticationRequired(Register, {
   onRedirecting: () => <h1> Loading ...</h1>,

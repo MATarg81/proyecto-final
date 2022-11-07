@@ -20,7 +20,6 @@ async function getUsers(req, res) {
           address: u.address,
           postalCode: u.postalCode.toString(),
           image: u.image
-          
         });
         
         await newUser.setRole(2);
@@ -49,18 +48,16 @@ async function getUsers(req, res) {
         return res.status(404).send("User can't be found");
       }
     } else { 
-      // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
-      User.findAll({include: Role, include:[{
-        model:Activity
-      }]}).then((r) => res.status(200).send(r));
+      User.findAll({ include: Role }).then((r) => res.status(200).send(r));
+      // User.findAll({include: Role, include:[{
+      //   model:Activity
+      // }]}).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
   }
 }
 
-//Debería poder guardar los datos si se editan en el front. 
-// Por ejemplo: {name: Laura} --> front: usuario.name = Sofía --> Tabla: {name: Sofía}
 async function getUsersById(req, res) {
   const { id } = req.params;
 

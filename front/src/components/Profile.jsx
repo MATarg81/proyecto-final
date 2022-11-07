@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import generica from "../imagesTeam/avatar7.png";
+//import generica from "../imagesTeam/avatar7.png";
 import {
   get_roles,
   get_users,
@@ -17,20 +17,20 @@ import EditProfile from "./EditProfile";
 
 export default function Perfil() {
   const usersState = useSelector((state) => state.usersReducer.usersById);
-  //const roles = useSelector((state) => state.usersReducer.roles);
+  const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
   const{ isAuthenticated, user } = useAuth0()
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (roles?.length === 0) {
-    //   dispatch(get_roles());
-    // }
+    if (roles?.length === 0) {
+      dispatch(get_roles());
+    }
     if (allUsers?.length === 0) {
       dispatch(get_users());
     }
-  }, [dispatch, allUsers, usersState]);
+  }, [dispatch, allUsers, usersState, roles]);
 
   const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
 
@@ -39,12 +39,6 @@ export default function Perfil() {
       dispatch(get_users_by_id(findUser?.id));
     }
   }, [dispatch, findUser, usersState])
-
-  console.log(findUser)
-
-  /*
-  className="d-flex justify-content-between nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical"
-  */
 
   return (
     <div class="container-fluid">
@@ -265,7 +259,7 @@ export default function Perfil() {
                   </div>
                   <div class="w-auto">
                     <div class="about-avatar" >
-                      <img src={user?.picture ? user?.picture : generica} title="" alt="hjhj"/>
+                      <img src={user?.picture ? user?.picture : findUser?.image} title="" alt="hjhj"/>
                     </div>
                   </div>
                 </div>
