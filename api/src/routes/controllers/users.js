@@ -49,7 +49,7 @@ async function getUsers(req, res) {
       }
     } else { 
       // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
-      User.findAll({include:{model: Role}, include:{model:Product}} ).then((r) => res.status(200).send(r));
+      User.findAll({include:{model: Role}} ).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
@@ -115,7 +115,6 @@ async function deleteUser(req, res) {
 }
 
 async function updateUser(req, res) {
-  //const id = req.params.id;
   const body = req.body;
 
   try {

@@ -1,37 +1,21 @@
 import React from "react";
-// import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getActivities,
-  deleteActivity,
-} from "../redux/actions/activitiesActions";
+import { getActivities } from "../redux/actions/activitiesActions";
 import { get_users } from "../redux/actionsCreator/usersActions";
-import ReviewsCreate from "./ReviewsCreate";
-import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
-
 
 export default function Activities() {
   const dispatch = useDispatch();
-  const{ isAuthenticated,user } = useAuth0() 
+
   useEffect(() => {
     dispatch(getActivities());
-    dispatch(get_users())
+    dispatch(get_users());
   }, [dispatch]);
-
-  const stateUser = useSelector( state => state.usersReducer.users)
-  const findUser =  user ? stateUser.find( u => u.email === user.email) : null
 
   const allActivities = useSelector(
     (state) => state.activitiesReducer.activities
   );
-
-  function handleDeleteActivity(id) {
-    if (window.confirm(`Are you sure you want to delete the activity?`)) {
-      dispatch(deleteActivity(id));
-    }
-  }
 
   return (
     <div>
@@ -65,22 +49,6 @@ export default function Activities() {
         <div></div>
 
         <div></div>
-      </div>
-
-      <div
-        className="d-flex flex-column px-4" /* style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}} */
-      >
-        <Link to="/crearActividades">
-          {" "}
-           {
-           findUser?.roleId === 2 &&
-          <button type="button" className="btn btn-outline-dark ms-2">
-            Crear Actividad
-          </button>
-           }
-          
-          {" "}
-        </Link>
       </div>
 
       <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
@@ -119,24 +87,15 @@ export default function Activities() {
                     <button type="button" className="btn btn-secondary">
                       Inscribirse
                     </button>
-                    <button
-                      type="button"
-                      className="btn btn-dark"
-                      style={{
-                        width: "100px",
-                        position: "absolute",
-                        right: "4px",
-                      }}
-                      onClick={() => handleDeleteActivity(a.id)}
-                    >
-                      Delete X
-                    </button>
                     <div
                       className="d-flex flex-column px-4" /* style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}} */
                     >
                       <Link to="/crearCalificacion">
                         {" "}
-                        <button type="button" className="btn btn-outline-dark ms-2">
+                        <button
+                          type="button"
+                          className="btn btn-outline-dark ms-2"
+                        >
                           Deja tu reseña
                         </button>{" "}
                       </Link>

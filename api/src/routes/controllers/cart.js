@@ -58,7 +58,7 @@ const postCart = async (req, res) => {
       const purchesesMaded = await Cart.findOne({where: {id: id}, include: [{model: Product}]});
       purchesesMaded && res.status(200).json(purchesesMaded);
     } catch (error) {
-      return res.status(400).json("El error: ", error);
+      return res.status(400).send(error);
     }
   };
 

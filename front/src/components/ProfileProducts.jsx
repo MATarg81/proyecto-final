@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { orderByPrice } from "../redux/actions/activitiesActions";
 import {
   filterByCategories,
   getCategories,
   getProducts,
   orderByName,
-  updateProduct,
 } from "../redux/actionsCreator/productsActions";
+import CreateProduct from "./CreateProduct/CreateProduct";
 import ProfileEditProduct from "./ProfileEditProduct";
-//import Pagination from "./Pagination";
 
 export default function ProfileProducts() {
   const products = useSelector((state) => state.productsReducer.showProducts);
@@ -39,10 +39,10 @@ export default function ProfileProducts() {
       dispatch(orderByName(order));
     }
     if (order === "MIN/MAX") {
-      dispatch(orderByName(order));
+      dispatch(orderByPrice(order));
     }
     if (order === "MAX/MIN") {
-      dispatch(orderByName(order));
+      dispatch(orderByPrice(order));
     }
   }, [order, dispatch]);
 
@@ -53,14 +53,18 @@ export default function ProfileProducts() {
 
   return (
     <div className="container-fluid">
+      <div className="container-fluid">
+
       <button
         type="button"
         class="btn btn-outline-dark"
         data-bs-toggle="modal"
         data-bs-target="#editProduct"
-      >
+        >
         Editar
       </button>
+      <CreateProduct />
+        </div>
       <div>
         <table className="table table-responsive-sm table-striped table-hover">
           <thead >

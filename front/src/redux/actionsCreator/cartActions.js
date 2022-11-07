@@ -20,7 +20,7 @@ export const getCart = (userId) => {
         payload: data,
       });
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
 
@@ -35,7 +35,7 @@ export const cartDetail = ( id) => {
         payload: data,
       });
     } catch (err) {
-      alert(err);
+      console.log(err);
     }
   };
  
