@@ -13,7 +13,6 @@ import LoginButton from "../Login/LoginButton";
 
 import Register from "../Register";
 
-
 const CreateProduct = function () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -98,130 +97,155 @@ const CreateProduct = function () {
     }
   };
 
-
-  return !findUser ? (
+  return (
     <div>
-      <p>you must login or finish registration, click here!</p>
-      <LoginButton />
-    </div>
-  ) : (
+      <div className="container-fluid">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#createProducts"
+        >
+          Crear producto
+        </button>
+        <div
+          class="modal fade"
+          id="createProducts"
+          tabindex="-1"
+          aria-labelledby="createProductLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="createProductLabel">
+                  Editar producto
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div className="ProductCreate">
+                  <form onSubmit={(e) => handleSubmit(e)}>
+                    <div
+                      className="mb-3 row mt-3 g-2"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      <label for="name" className="form-label">
+                        Nombre del producto
+                      </label>
+                      <input
+                        style={{ width: "600px" }}
+                        type="text"
+                        className="form-control mb-3"
+                        id="name"
+                        aria-describedby="name"
+                        placeholder="Name..."
+                        value={input.name}
+                        name="name"
+                        required
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
+                      />
+                      {error.name && <p>{error.name}</p>}
 
-    <div>
-      <Link to="/tienda">
-        <button> Go Back </button>
-      </Link>
-      <div className="ProductCreate">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div
-            className="mb-3"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <label for="name" className="form-label">
-              Nombre del producto
-            </label>
-            <input
-              style={{ width: "600px" }}
-              type="text"
-              className="form-control mb-3"
-              id="name"
-              aria-describedby="name"
-              placeholder="Name..."
-              value={input.name}
-              name="name"
-              required
-              onChange={(e) => {
-                handleChange(e);
-              }}
-            />
-            {error.name && <p>{error.name}</p>}
+                      <label for="times" className="form-label">
+                        Precio
+                      </label>
+                      <input
+                        style={{ width: "600px" }}
+                        type="number"
+                        className="form-control mb-3"
+                        id="price"
+                        placeholder="Precio..."
+                        value={input.price}
+                        name="price"
+                        required
+                        onChange={(e) => handleChange(e)}
+                      />
+                      {error.price && <p>{error.price}</p>}
 
-            <label for="times" className="form-label">
-              Precio
-            </label>
-            <input
-              style={{ width: "600px" }}
-              type="number"
-              className="form-control mb-3"
-              id="price"
-              placeholder="Precio..."
-              value={input.price}
-              name="price"
-              required
-              onChange={(e) => handleChange(e)}
-            />
-            {error.price && <p>{error.price}</p>}
+                      <label for="image" className="form-label">
+                        Imagen
+                      </label>
+                      <input
+                        style={{
+                          width: "600px",
+                          boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)",
+                        }}
+                        type="file"
+                        // className="form-control"
+                        className="col card border-info mb-3"
+                        id="image"
+                        placeholder="Imagen..."
+                        // value={input.image}
+                        name="image"
+                        onChange={(e) => {
+                          handleImg(e);
+                        }}
+                      />
+                      {error.image && <p>{error.image}</p>}
+                      <label for="name" className="form-label">
+                        Detalles del producto:
+                      </label>
+                      <input
+                        style={{ width: "600px" }}
+                        type="text"
+                        className="form-control mb-3"
+                        id="detail"
+                        aria-describedby="detail"
+                        placeholder="Detalles..."
+                        value={input.detail}
+                        name="detail"
+                        required
+                        onChange={(e) => handleChange(e)}
+                      />
+                      {error.detail && <p>{error.detail}</p>}
 
-            <label for="image" className="form-label">
-              Imagen
-            </label>
-            <input
-              style={{
-                width: "600px",
-                boxShadow: "25px 30px 70px -20px rgba(0,0,0,0.5)",
-              }}
-              type="file"
-              // className="form-control"
-              className="col card border-info mb-3"
-              id="image"
-              placeholder="Imagen..."
-              // value={input.image}
-              name="image"
-              onChange={(e) => {
-                handleImg(e);
-              }}
-            />
-            {error.image && <p>{error.image}</p>}
-            <label for="name" className="form-label">
-              Detalles del producto:
-            </label>
-            <input
-              style={{ width: "600px" }}
-              type="text"
-              className="form-control mb-3"
-              id="detail"
-              aria-describedby="detail"
-              placeholder="Detalles..."
-              value={input.detail}
-              name="detail"
-              required
-              onChange={(e) => handleChange(e)}
-            />
-            {error.detail && <p>{error.detail}</p>}
+                      <label>Categorias:</label>
+                      <div>
+                        {categories?.map((el) => (
+                          <label htmlFor={el.name} key={el.name}>
+                            <div>
+                              <input
+                                onClick={handleCheck}
+                                key={el.name}
+                                type="checkbox"
+                                value={el.name}
+                              />
+                              <span>{el.name + "    "} </span>
+                            </div>
+                          </label>
+                        ))}
+                        {error.categories && <p>{error.categories}</p>}
+                      </div>
 
-            <label>Categorias:</label>
-            <div>
-              {categories?.map((el) => (
-                <label htmlFor={el.name} key={el.name}>
-                  <div>
-                    <input
-                      onClick={handleCheck}
-                      key={el.name}
-                      type="checkbox"
-                      value={el.name}
-                    />
-                    <span>{el.name + "    "} </span>
-                  </div>
-                </label>
-              ))}
-              {error.categories && <p>{error.categories}</p>}
+                      <hr />
+                      <button type="submit" className="btn btn-primary">
+                        Crear
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-
-            <hr />
-            <button type="submit" className="btn btn-primary">
-              Crear
-            </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
 };
-export default withAuthenticationRequired(CreateProduct, {
-  onRedirecting: () => <h1>redirigiendo al login, aguarde..</h1>,
-});
+// export default withAuthenticationRequired(CreateProduct, {
+//   onRedirecting: () => <h1>redirigiendo al login, aguarde..</h1>,
+// });
 
-//export default CreateProduct;
+export default CreateProduct;

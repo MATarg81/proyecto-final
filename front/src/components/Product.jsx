@@ -284,4 +284,7 @@ export default Product;
         <Reviews/>
       </div>
 
-*/
+
+
+export default Product;
+

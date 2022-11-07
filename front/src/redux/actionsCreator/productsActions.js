@@ -12,7 +12,8 @@ import {
   GET_PRODUCTS_BY_NAME,
   FILTER_BY_PRICE,
   EDIT_PRODUCT,
-  POST_CATEGORY
+  POST_CATEGORY,
+  DELETE_PRODUCTS
 } from "../actionsTypes/actionsTypesProducts";
 
 // const BACK_URL = "http://localhost:3001";
@@ -125,6 +126,17 @@ export function updateProduct(body) {
     }
   };
 }
+
+export const delete_products = (id) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.delete(`/products/${id}`);
+      return dispatch({ type: DELETE_PRODUCTS, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export function orderByName(payload) {
   return {

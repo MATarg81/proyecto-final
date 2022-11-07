@@ -62,7 +62,6 @@ export const delete_users = (id) => {
   return async function (dispatch) {
     try {
       const { data } = await axios.delete(`/users/${id}`);
-      console.log("soy ID " + data);
       return dispatch({ type: DELETE_USERS, payload: data });
     } catch (error) {
       console.log(error);
