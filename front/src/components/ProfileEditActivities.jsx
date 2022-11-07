@@ -242,7 +242,7 @@ export default function ProfileEditActivities() {
                 dispatch(getActivities())
               }}
             >
-              Delete X
+              Eliminar actividad
             </button>
           </div>
         </form>

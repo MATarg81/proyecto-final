@@ -325,7 +325,7 @@ export default function ProfileEditProduct() {
                 dispatch(getProducts());
               }}
             >
-              Delete X
+              Eliminar producto
             </button>
           </div>
         </form>

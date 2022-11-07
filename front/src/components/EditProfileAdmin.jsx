@@ -261,7 +261,7 @@ export default function EditProfileAdmin() {
                 dispatch(get_users());
               }}
             >
-              Delete X
+              Eliminar usuario
             </button>
           </div>
         </form>
