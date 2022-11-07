@@ -125,13 +125,13 @@ export default function EditProfile() {
             type="text"
           />
 
-          <label>Contraseña</label>
+          {/* <label>Contraseña</label>
           <input
             name="password"
             onChange={(e) => handleOnChange(e.target.name, e.target.value)}
             value={input?.password}
             type="text"
-          />
+          /> */}
 
           <div class="">
             {usersRoles.length > 0 &&

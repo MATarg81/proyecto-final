@@ -70,7 +70,7 @@ export default function EditProfileAdmin() {
     if (!input.phoneNumber) { setInput((input.phoneNumber = userId.phoneNumber)) }
     if (!input.postalCode) { setInput((input.postalCode = userId.postalCode)) }
     if (!input.address) { setInput((input.address = userId.address)) }
-    if (!input.password) { setInput((input.password = userId.password)) }
+    // if (!input.password) { setInput((input.password = userId.password)) }
     if (!input.roles) { setInput((input.roles = userId.role)) }
     dispatch(update_user(input));
     dispatch(get_users())
@@ -211,7 +211,7 @@ export default function EditProfileAdmin() {
               ></input>
             </div>
 
-            <div className="">
+            {/* <div className="">
               <label className="col-12" htmlFor="password">
                 Contraseña:{" "}
               </label>
@@ -223,7 +223,7 @@ export default function EditProfileAdmin() {
                 value={input?.password}
                 onChange={handleChange}
               ></input>
-            </div>
+            </div> */}
 
             <div class="">
               {roles.length > 0 &&
