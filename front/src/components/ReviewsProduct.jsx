@@ -229,7 +229,7 @@ function Reviews() {
 };
 
 
-const styles = {
+/* const styles = {
     container: {
         margin: "2rem",
         display: "flex",
@@ -252,9 +252,10 @@ const styles = {
         borderRadius: 5,
         width: 300,
         padding: 10,
-    }
+    } */
 
-};
+
+    
 
 
 
