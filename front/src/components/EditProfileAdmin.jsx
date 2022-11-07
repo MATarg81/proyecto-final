@@ -49,7 +49,7 @@ export default function EditProfileAdmin() {
     if (e.target.checked) {
       setInput({
         ...input,
-        roles: [...input.roles, e.target.value],
+        roles: [e.target.value],
       });
     }
   }
@@ -61,7 +61,7 @@ export default function EditProfileAdmin() {
     })
   }
 
-  async function handleSubmit() {
+  function handleSubmit() {
     setInput((input.id = userId.id));
     if (!input.name) { setInput(input.name = userId.name) }
     if (!input.lastname) { setInput((input.lastname = userId.lastname)) }

@@ -13,30 +13,35 @@ import PurchesesDetail from "./purchesesMaded/purchesesDetail";
 import ProfileAllActivities from "./ProfileAllActivities";
 import ProfileUsers from "./ProfileUsers";
 import { useAuth0 } from '@auth0/auth0-react';
+import EditProfile from "./EditProfile";
 
 export default function Perfil() {
   const usersState = useSelector((state) => state.usersReducer.usersById);
-  const roles = useSelector((state) => state.usersReducer.roles);
+  //const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
   const{ isAuthenticated, user } = useAuth0()
 
   const dispatch = useDispatch();
 
-  const stateUser = useSelector( state => state.usersReducer.users)
-  const findUser =  user ? stateUser.find( u => u.email === user.email) : null
-
-
   useEffect(() => {
+    // if (roles?.length === 0) {
+    //   dispatch(get_roles());
+    // }
     if (allUsers?.length === 0) {
       dispatch(get_users());
     }
-    if (roles?.length === 0) {
-      dispatch(get_roles());
-    }
+  }, [dispatch, allUsers, usersState]);
+
+  const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
+
+  useEffect(() => {
     if (usersState?.length === 0) {
-      dispatch(get_users_by_id(7));
+      dispatch(get_users_by_id(findUser?.id));
     }
-  }, [dispatch, allUsers, roles, usersState]);
+  }, [dispatch, findUser, usersState])
+
+  console.log(findUser)
+
   /*
   className="d-flex justify-content-between nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical"
   */
@@ -212,10 +217,10 @@ export default function Perfil() {
                               Fecha de nacimiento
                             </label>
                             <p>{
-                              findUser.dateOfBirth[0] + findUser.dateOfBirth[1] + '-' +
-                              findUser.dateOfBirth[2] + findUser.dateOfBirth[3] + '-' +
-                              findUser.dateOfBirth[4] + findUser.dateOfBirth[5] +
-                              findUser.dateOfBirth[6] + findUser.dateOfBirth[7]
+                              findUser?.dateOfBirth[0] + findUser?.dateOfBirth[1] + '-' +
+                              findUser?.dateOfBirth[2] + findUser?.dateOfBirth[3] + '-' +
+                              findUser?.dateOfBirth[4] + findUser?.dateOfBirth[5] +
+                              findUser?.dateOfBirth[6] + findUser?.dateOfBirth[7]
                             }</p>
                           </div>
                           <div class="media">
@@ -253,11 +258,7 @@ export default function Perfil() {
                             <p>{findUser?.phoneNumber}</p>
                           </div>
                           <div class="media">
-                            <Link to="/edituser">
-                              <button className="btn btn-outline-dark rounded-pill text-black border-black p-1">
-                                Editar Perfil
-                              </button>
-                            </Link>
+                            <EditProfile />
                           </div>
                         </div>
                       </div>
@@ -265,7 +266,7 @@ export default function Perfil() {
                   </div>
                   <div class="w-auto">
                     <div class="about-avatar" >
-                      <img src={user.picture ? user.picture : generica} title="" alt="hjhj"/>
+                      <img src={user?.picture ? user?.picture : generica} title="" alt="hjhj"/>
                     </div>
                   </div>
                 </div>

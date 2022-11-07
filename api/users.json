@@ -8,17 +8,19 @@
             "email": "nahueljabon@gmai.com",
             "address": "Matheu 3156",
             "postalCode": "B2345",
-            "password": "alskndA1!"
+            "password": "alskndA1!",
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Laura",
             "lastname": "Marcenaro",
             "dateOfBirth": 19061997,
             "phoneNumber": 116987456,
-            "email": "lauramarcenaro@gmail.com",
+            "email": "lausofimarce@gmail.com",
             "address": "Rosalia 6668",
             "postalCode": "B2345",
-            "password": "alskndA1!"
+            "password": "alskndA1!",
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Brenda",
@@ -28,7 +30,8 @@
             "email": "cecilia@yahoo.com",
             "address": "Av. Perales 5463",
             "postalCode": "B2345",
-            "password": "alskndA1!"
+            "password": "alskndA1!",
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Cinthya",
@@ -38,7 +41,8 @@
             "email": "cinthyamolina@gmail.com",
             "address": "Guerra Galactica 422",
             "postalCode": "B2345",
-            "password": "alskndA1!"
+            "password": "alskndA1!",
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Juan",
@@ -48,7 +52,8 @@
             "email": "juanculia@gmail.com",
             "address": "Fernando 3070",
             "postalCode": "B2345",
-            "password": "alskndA1!"
+            "password": "alskndA1!",
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Matias",
@@ -58,7 +63,8 @@
             "email": "matiastula@gmail.com",
             "address": "Padelnator 775",
             "postalCode": "B2345",
-            "password": "alskndA1!"
+            "password": "alskndA1!",
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         },
         {
             "name": "Sebastian Lucas",
@@ -68,7 +74,8 @@
             "email": "sebasebasebado@gmail.com",
             "address": "Calle Falsa 123",
             "postalCode": "B2345",
-            "password": "alskndA1!"
+            "password": "alskndA1!",
+            "image": "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         }
     ]
 }
