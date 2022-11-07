@@ -62,10 +62,20 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Role, Product, Category, User, Activity, Cart, Review, Buy, BuyItems } =
-  sequelize.models;
+const {
+  Role,
+  Product,
+  Category,
+  User,
+  Activity,
+  Review,
+  Buy,
+  Buyitem,
+  Favorite,
+} = sequelize.models;
 
 // RELACIONES:
+
 Product.belongsToMany(Category, { through: "Category_Product" });
 Category.belongsToMany(Product, { through: "Category_Product" });
 
@@ -73,36 +83,25 @@ Activity.belongsToMany(User, { through: "Activity_User" });
 User.belongsToMany(Activity, { through: "Activity_User" });
 
 User.belongsTo(Role);
-Role.belongsToMany(User, { through: "User_Role" });
-
-Cart.belongsTo(User, { as: "User", foreignKey: "userId" });
-User.hasMany(Cart, { as: "User", foreignKey: "userId" });
-
-Product.belongsToMany(User, { through: "Produts_User_Favs" });
-User.belongsToMany(Product, { through: "Produts_User_Favs" });
-
-Cart.belongsToMany(Product, { through: "Cart_Products" });
-Product.belongsToMany(Cart, { through: "Cart_Products" });
-
-Cart.belongsTo(User); // una compra pertenece a un usuario
-User.belongsToMany(Cart, { through: "Cart_User" }); // un usuario puede realizar muchas compras
-
-Review.belongsTo(Activity);
-Activity.belongsToMany(Review, { through: "Activity_Review" });
+Role.hasMany(User);
 
 Review.belongsTo(Product);
-Product.belongsToMany(Review, { through: "Product_Review" });
+Product.hasMany(Review);
 
 Review.belongsTo(User);
-User.belongsToMany(Review, { through: "User_Review" });
-// Review.belongsTo(Product, { as: 'Product', foreignKey : 'ProductId'});
-// Product.hasMany(Review, { as: 'Product', foreignKey : 'ProductId'});
+User.hasMany(Review);
 
-Buy.hasMany(BuyItems);
-BuyItems.belongsTo(Buy);
+Buy.hasMany(Buyitem);
+Buyitem.belongsTo(Buy);
 
-Product.hasMany(BuyItems);
-BuyItems.belongsTo(Product);
+Product.hasMany(Buyitem);
+Buyitem.belongsTo(Product);
+
+Favorite.belongsTo(User);
+User.hasMany(Favorite);
+
+Favorite.belongsTo(Product);
+Product.hasMany(Favorite);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

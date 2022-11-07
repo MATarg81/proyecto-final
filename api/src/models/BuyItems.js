@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    quantity: {
+    cantidad: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

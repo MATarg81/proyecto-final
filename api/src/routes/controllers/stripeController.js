@@ -18,6 +18,15 @@ const stripePay = async (req, res) => {
 
     console.log("Payment: ", payment);
 
+    const result = {
+      id: payment.id,
+      description: payment.description,
+      amount: payment.amount,
+      currency: payment.currency
+    }
+    console.log("result stripe: ", result)
+
+
     return res.status(200).json({ message: "Pago exitoso" });
   } catch (error) {
     console.log(error);

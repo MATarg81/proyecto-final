@@ -16,8 +16,8 @@ function Register() {
 
   const {user, isAuthenticated} = useAuth0()
   const stateUser = useSelector( state => state.usersReducer.users)
-  const checkUser = stateUser.find( u => u.email === user.email)
-  console.log(checkUser, 'eeeeeeeee')
+  // const checkUser = stateUser.find( u => u.email === user.email)
+  // console.log(checkUser, 'eeeeeeeee')
 
   const [error, setError] = useState({});
 
@@ -181,11 +181,11 @@ function Register() {
     }
   }
 
-  if(checkUser){
-    return (
-      <Profile/>
-    )
-  }
+  // if(checkUser){
+  //   return (
+  //     <Profile/>
+  //   )
+  // }
   return ( 
     <>
       <div class="container">
