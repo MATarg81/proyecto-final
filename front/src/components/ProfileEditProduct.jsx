@@ -2,14 +2,15 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  delete_products,
   getCategories,
   getDetail,
   getProducts,
   updateProduct,
 } from "../redux/actionsCreator/productsActions";
+import upImage from "./CreateProduct/cloudinary";
 
 export default function ProfileEditProduct() {
-  //Buscar por ID
   const stateCategories = useSelector(
     (state) => state.productsReducer.categories
   );
@@ -24,7 +25,7 @@ export default function ProfileEditProduct() {
     id: ``,
     name: ``,
     price: ``,
-    categories: '',
+    categories: "",
     detail: ``,
     image: [],
     stock: ``,
@@ -44,20 +45,30 @@ export default function ProfileEditProduct() {
     if (allProducts?.length === 0) {
       dispatch(getProducts());
     }
-    
   }, [allProducts, dispatch, stateCategories, productId]);
 
-  
+  function handleDeleteProduct(id) {
+    if (window.confirm(`Are you sure you want to delete the activity?`)) {
+      dispatch(delete_products(id));
+    }
+  }
+
+  function addImage(e) {
+    upImage(e.target.files[0]).then((res) => {
+      input.image.push(res.url);
+    });
+  }
+
   function deleteImg(e) {
     const findI = productId?.image.filter((i) => i !== e.target.name);
 
-    productId.image.splice(e.target.id, 1)
+    productId.image.splice(e.target.id, 1);
 
     if (findI?.length > 0) {
-      findI.map(i => {
-        return setInput(input.image.push(i))
-      })
-      setInput({...input})
+      findI.map((i) => {
+        return setInput(input.image.push(i));
+      });
+      setInput({ ...input });
     }
   }
 
@@ -72,7 +83,7 @@ export default function ProfileEditProduct() {
   // }
 
   function handleChange(e) {
-    if(typeof (e.target.id) === 'string') {
+    if (typeof e.target.id === "string") {
       setInput({
         ...input,
         [e.target.id]: e.target.value,
@@ -82,24 +93,36 @@ export default function ProfileEditProduct() {
 
   function handleSubmit(e) {
     setInput((input.id = productId.id));
-    if (!input.image.length && productId.image.length === 0) { setInput(input.image = []) }
-    if (!input.image.length && productId.image.length > 0) { setInput(input.image = productId.image) }
-    if (!input.name) { setInput((input.name = productId.name)) }
+    if (!input.image.length && productId.image.length === 0) {
+      setInput((input.image = []));
+    }
+    if (!input.image.length && productId.image.length > 0) {
+      setInput((input.image = productId.image));
+    }
+    if (!input.name) {
+      setInput((input.name = productId.name));
+    }
     //if (!input.categories) { setInput((input.categories = productId.categories)) }
-    if (!input.price) { setInput((input.price = productId.price)) }
-    if (!input.detail) { setInput((input.detail = productId.detail)) }
-    if (!input.stock) { setInput((input.stock = productId.stock)) }
+    if (!input.price) {
+      setInput((input.price = productId.price));
+    }
+    if (!input.detail) {
+      setInput((input.detail = productId.detail));
+    }
+    if (!input.stock) {
+      setInput((input.stock = productId.stock));
+    }
     dispatch(updateProduct(input));
-    dispatch(getProducts())
+    dispatch(getProducts());
     setInput({
       id: ``,
       name: ``,
       price: ``,
-      categories: '',
+      categories: "",
       detail: ``,
       image: [],
       stock: ``,
-    })
+    });
   }
 
   return (
@@ -125,7 +148,7 @@ export default function ProfileEditProduct() {
       </div>
       <div>
         <form className="container">
-          <div className="row mt-3 g-2 " onChange={handleChange} noValidate>
+          <div className="row mt-3 g-2" onChange={handleChange} noValidate>
             <div className="">
               <label className="col-12" htmlFor="name">
                 Nombre:{" "}
@@ -184,7 +207,7 @@ export default function ProfileEditProduct() {
                   <div></div>
                 )}
               </div> */}
-              {/* <div className="">
+            {/* <div className="">
               <label className="col-12" htmlFor="newCategory">
                 Agregar categoría:
               </label>
@@ -199,96 +222,112 @@ export default function ProfileEditProduct() {
             </div>
           </div> */}
 
-              <div className=" text-wrap">
-                <label className="col-12" htmlFor="detail">
-                  Detalle:{" "}
-                </label>
-                <textarea
-                  className="col-12"
-                  placeholder={productId ? productId.detail : ""}
-                  rows="3"
-                  id="detail"
-                  value={input.detail}
-                  onChange={handleChange}
-                ></textarea>
-              </div>
+            <div className=" text-wrap">
+              <label className="col-12" htmlFor="detail">
+                Detalle:{" "}
+              </label>
+              <textarea
+                className="col-12"
+                placeholder={productId ? productId.detail : ""}
+                rows="3"
+                id="detail"
+                value={input.detail}
+                onChange={handleChange}
+              ></textarea>
+            </div>
 
-              <div className="">
-                <label className="col-12" htmlFor="stock">
-                  Stock:{" "}
-                </label>
-                <input
-                  className="col-12"
-                  type="text"
-                  placeholder={productId ? productId.stock : ""}
-                  id="stock"
-                  value={input.stock}
-                  onChange={handleChange}
-                ></input>
-              </div>
+            <div className="">
+              <label className="col-12" htmlFor="stock">
+                Stock:{" "}
+              </label>
+              <input
+                className="col-12"
+                type="text"
+                placeholder={productId ? productId.stock : ""}
+                id="stock"
+                value={input.stock}
+                onChange={handleChange}
+              ></input>
+            </div>
 
-              <div>
-                <label className="col-12 " for="image">
-                  Imágenes:{" "}
-                </label>
-                <div className="d-inline-flex ">
-                  {productId?.image ? (
-                    productId.image.map((i, index) => {
-                      return (i === undefined ? (<></>) :
-                      (
-                        <div className="" id="image">
-                          <div className="position-relative">
-                            <button
-                              id={index}
-                              name={`${i}`}
-                              type="button"
-                              className="btn position-absolute btn-sm"
-                              style={{
-                                right: "0",
-                                padding: "0",
-                                paddingRight: "5px",
-                              }}
-                              onClick={deleteImg}
-                            >
-                              x
-                            </button>
-                            <img
-                              key={index}
-                              src={i}
-                              style={{ width: "70px", height: "70px" }}
-                              className="img-fluid img-thumbnail "
-                              alt=""
-                            />
-                          </div>
+            <div>
+              <label className="col-12 " for="image">
+                Imágenes:{" "}
+              </label>
+              <div className="d-inline-flex ">
+                {productId?.image ? (
+                  productId.image.map((i, index) => {
+                    return i === undefined ? (
+                      <></>
+                    ) : (
+                      <div className="" id="image">
+                        <div className="position-relative">
+                          <button
+                            id={index}
+                            name={`${i}`}
+                            type="button"
+                            className="btn position-absolute btn-sm"
+                            style={{
+                              right: "0",
+                              padding: "0",
+                              paddingRight: "5px",
+                            }}
+                            onClick={deleteImg}
+                          >
+                            x
+                          </button>
+                          <img
+                            key={index}
+                            src={i}
+                            style={{ width: "70px", height: "70px" }}
+                            className="img-fluid img-thumbnail "
+                            alt=""
+                          />
                         </div>
-                      )
-                    )})
-                  ) : (
-                    <div></div>
-                  )}
-                </div>
-              </div>
-                  {/*Esto va con cloudinary */}
-              <div className="">
-                <label className="col-12" htmlFor="newImage">
-                  Agregar imagen{" "}
-                </label>
-                <input className="col-12" type="file" id="newImage" onChange={(e) => {
-                  input.image.push(e.target.id)
-                    console.log(input.image)
-                  }}></input>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div></div>
+                )}
               </div>
             </div>
-            <div className="d-flex flex-row-reverse">
-              <button
-                type="button"
-                className=" btn btn-primary mt-3"
-                onClick={handleSubmit}
-              >
-                Guardar
-              </button>
+
+            <div className="">
+              <label className="col-12" htmlFor="newImage">
+                Agregar imagen{" "}
+              </label>
+              <input
+                className="col-12"
+                type="file"
+                id="newImage"
+                onChange={addImage}
+              ></input>
             </div>
-         
+          </div>
+          <div className="d-flex flex-row-reverse">
+            <button
+              type="button"
+              className=" btn btn-primary mt-3"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onClick={handleSubmit}
+            >
+              Guardar
+            </button>
+            <button
+              type="button"
+              className="btn btn-primary mt-3 btn-dark"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onClick={() => {
+                handleDeleteProduct(productId.id);
+                dispatch(getProducts());
+              }}
+            >
+              Delete X
+            </button>
+          </div>
         </form>
       </div>
     </>

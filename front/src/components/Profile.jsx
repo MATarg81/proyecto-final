@@ -12,14 +12,19 @@ import ProfileProducts from "./ProfileProducts";
 import PurchesesDetail from "./purchesesMaded/purchesesDetail";
 import ProfileAllActivities from "./ProfileAllActivities";
 import ProfileUsers from "./ProfileUsers";
-//import { useAuth0 } from '@auth0/auth0-react'; LO DEJO COMENTADO PERO ENTIENDO QUE LO VAMOS A USAR CUANDO ESTE TODO OK
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Perfil() {
   //NO DEBERIA GUARDARME EN UNA CONSTANTE UN ESTADO DONDE ESTE LA DATA DEL USUARIO¿¿
   const usersState = useSelector((state) => state.usersReducer.usersById);
   const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
+  const{ isAuthenticated, user } = useAuth0()
+
   const dispatch = useDispatch();
+
+  const stateUser = useSelector( state => state.usersReducer.users)
+  const findUser =  user ? stateUser.find( u => u.email === user.email) : null
 
   useEffect(() => {
     if (allUsers?.length === 0) {
@@ -122,6 +127,9 @@ export default function Perfil() {
                 </label>
               </li>
 
+              {/* Admins only */}
+              { findUser?.roleId === 2 &&
+              <div>
               <li id="Usuarios">
                 <label class="nav-link align-middle px-0">
                   <button
@@ -171,6 +179,9 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
+              </div>
+              }
+
             </ul>
           </div>
         </div>

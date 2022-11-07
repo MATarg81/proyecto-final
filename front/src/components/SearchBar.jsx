@@ -35,11 +35,6 @@ export default function Searchbar({ setPage }) {
               <i class="fa fa-search" style={{color: "indigo"}}></i>
             </span>
           </div>
-          <button className="btn border ms-2 rounded-pill text-white" style={{backgroundColor: "indigo"}}>
-              <Link className="nav-link" to="/crearProducto">
-                Crear Producto
-              </Link>
-            </button>
         </div>
       </form>
     </div>
