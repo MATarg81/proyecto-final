@@ -14,8 +14,8 @@ function Product() {
   const cart = useSelector((state) => state.cartReducer.items);
   const [, setCart] = useLocalStorage("cart", cart);
   const dispatch = useDispatch();
-    //const [loading, setloading] = useState(false);
-console.log(product)
+  //const [loading, setloading] = useState(false);
+  console.log(product)
   useEffect(() => {
     if (product?.length === 0) {
       dispatch(getDetail(id));
@@ -49,12 +49,160 @@ console.log(product)
   // };
 
   //  const ShowProduct = () => {
-  
+
 
   return (
-    <div className="row">
 
-      <div className="col-md-6">
+
+    <div class="container-fluid py-5">
+      <div class="row px-xl-5">
+        <div class="col-lg-5 pb-5">
+          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner border">
+              {product?.image?.map((i, index) => {
+                return (
+                  <div className={index === 0 ? "carousel-item active " : "carousel-item "}>
+                    <img className="w-100 h-100" src={i} alt={`${index} slide`} key={index} /* height="300px" width="300px" */ />
+                  </div>
+                );
+              })}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" data-slide="prev" role="button" data-bs-slide="prev">
+              <i class="fa fa-2x fa-angle-left text-dark"></i>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" data-slide="next" role="button" data-bs-slide="next">
+              <i class="fa fa-2x fa-angle-right text-dark"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-7 pb-5">
+          <h6 class="font-weight-semi-bold">{product?.categories?.map(c => c.name)}</h6>
+          <h1 className="display-5 border-bottom">{product?.name}</h1>
+
+          {/*  <div class="d-flex mb-3">
+              <div class="text-primary mr-2">
+                <small class="fas fa-star"></small>
+                <small class="fas fa-star"></small>
+                <small class="fas fa-star"></small>
+                <small class="fas fa-star-half-alt"></small>
+                <small class="far fa-star"></small>
+              </div>
+              <small class="pt-1">(50 Reviews)</small>
+            </div> */}
+          <h3 class="font-weight-semi-bold mb-4">$  {product?.price}</h3>
+          <p class="mb-4">{product?.detail}</p>
+          <p>
+            {product?.stock > 0
+              ? `Stock disponible: ${product?.stock}`
+              : "El producto no se encuentra disponible en este momento"}
+          </p>
+          {/*  <div class="d-flex mb-3">
+              <p class="text-dark font-weight-medium mb-0 mr-3">Talles:</p>
+              <form>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="size-1" name="size" />
+                  <label class="custom-control-label" for="size-1">XS</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="size-2" name="size" />
+                  <label class="custom-control-label" for="size-2">S</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="size-3" name="size" />
+                  <label class="custom-control-label" for="size-3">M</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="size-4" name="size" />
+                  <label class="custom-control-label" for="size-4">L</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="size-5" name="size" />
+                  <label class="custom-control-label" for="size-5">XL</label>
+                </div>
+              </form>
+            </div>
+            <div class="d-flex mb-4">
+              <p class="text-dark font-weight-medium mb-0 mr-3">Colores:</p>
+              <form>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="color-1" name="color" />
+                  <label class="custom-control-label" for="color-1">Negro</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="color-2" name="color" />
+                  <label class="custom-control-label" for="color-2">Blanco</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="color-3" name="color" />
+                  <label class="custom-control-label" for="color-3">Rojo</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="color-4" name="color" />
+                  <label class="custom-control-label" for="color-4">Azul</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input type="radio" class="custom-control-input" id="color-5" name="color" />
+                  <label class="custom-control-label" for="color-5">Verde</label>
+                </div>
+              </form>
+            </div */}
+          <div class="d-flex align-items-center mb-4 pt-2">
+            <button
+              className="btn border ms-2 rounded-pill text-white" style={{ backgroundColor: "indigo" }}
+              onClick={() => addProduct(product)}
+              disabled={product.stock > 0 ? false : true}>
+              Agregar al <i class="fa fa-shopping-cart mr-1"></i>
+            </button>
+
+            <Link to="/carrito">
+              <button className="btn border ms-2 rounded-pill text-white" style={{ backgroundColor: "indigo" }} > Ir al <i class="fa fa-shopping-cart mr-1"></i> </button>
+            </Link>
+
+
+          </div>
+          <div>
+            <Reviews />
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  );
+}
+//};
+
+// return (
+//   <div>
+//     <div className="container py-5">
+//       <div className="row py-4">
+//         {loading ? <Loading /> : <ShowProduct />}
+//       </div>
+//     </div>
+//   </div>
+// );
+
+// return (
+//   <div>
+//     <div>
+//       <h4>{props.name}</h4>
+//       <h4>{props.price}</h4>
+//       <div>
+//         <div>
+//           <img src={props.img} alt={props.names} width="200px" />
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// );
+
+export default Product;
+
+
+/* 
+
+ <div className="col-md-6">
         <div className="container">
           <div
             id="carouselExampleControls"
@@ -135,33 +283,8 @@ console.log(product)
       <div>
         <Reviews/>
       </div>
-    </div>
-  );
-}
-//};
 
-// return (
-//   <div>
-//     <div className="container py-5">
-//       <div className="row py-4">
-//         {loading ? <Loading /> : <ShowProduct />}
-//       </div>
-//     </div>
-//   </div>
-// );
 
-// return (
-//   <div>
-//     <div>
-//       <h4>{props.name}</h4>
-//       <h4>{props.price}</h4>
-//       <div>
-//         <div>
-//           <img src={props.img} alt={props.names} width="200px" />
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// );
 
 export default Product;
+
