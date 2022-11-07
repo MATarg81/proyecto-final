@@ -199,19 +199,27 @@ function Reviews() {
             <h5>Opiniones del producto</h5>
             <div>
                 <div className="d-flex flex-row">
-                    
-                        <div className="p-2">{average().toFixed(2)}  </div>
-                        <div className="p-2">({detail.length})</div>
-                        <div className="p-2">{score(average())}</div>
-                    
+
+                    <div className="p-2 border-bottom">{average().toFixed(2)}  </div>
+                    <div className="p-2 border-bottom" >({detail.length})</div>
+                    <div className="p-2 border-bottom">{score(average())}</div>
+
                 </div>
                 <div className="p-2">
                     {detail.map((r) => (
-                        <div style={{ border: "1px solid black", borderRadius: "1rem", margin: "2rem", padding: "2rem" }} key={r.id}>
-                            <h5>{r.user.name}</h5>
-                            <h4>{score(r.score)}{r.score}</h4>
-                            <p>{r.content}</p>
+                        <div class="d-flex flex-column border border-5 rounded-start m-1">
+
+                            <div class="d-flex flex-row" key={r.id}>
+                                <h5 class="d-flex flex-row">{r.user.name}</h5>
+                                <h4 class="d-flex flex-row" >{score(r.score)}{r.score}</h4>
+                            </div>
+                            <div class="d-flex flex-column">
+                                <p class="d-flex flex-column">{r.content}</p>
+                            </div>
+
                         </div>
+
+
                     ))}
                 </div>
             </div>
