@@ -261,7 +261,7 @@ export default function Perfil() {
                   </div>
                   <div class="w-auto">
                     <div class="about-avatar" >
-                      <img src={user.picture} title="" alt="hjhj"/>
+                      <img src={user.picture ? user.picture : generica} title="" alt="hjhj"/>
                     </div>
                   </div>
                 </div>
