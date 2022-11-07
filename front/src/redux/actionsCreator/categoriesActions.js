@@ -10,7 +10,7 @@ export function get_categories() {
       return dispatch({ 
         type: GET_CATEGORIES, payload: data });
     } catch (error) {
-    alert(error)
+    console.log(error)
     }
   };
 }

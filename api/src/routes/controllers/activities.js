@@ -27,7 +27,8 @@ const allActivities = async() => {
               detail: a.detail,
               days: a.days,
               times: a.times,
-              img: a.img
+              img: a.img,
+              price: a.price
             });
             await newRev.addUser(a.user);
           });
@@ -113,7 +114,8 @@ const addActivity = async(req, res) => {
     days,
     times,
     img,
-    email
+    email,
+    price
   } = req.body;
  
   const dbActivity = await Activity.count();
@@ -126,6 +128,7 @@ const addActivity = async(req, res) => {
         days: days,
         times: times,
         img: img || "https://eltarget.com/wp-content/uploads/2018/03/%C2%A1Los-10-deportes-mas-practicados-en-todo-el-mundo-696x339.jpg",
+        price
       });
       
       newActivity.addUser(email);
@@ -140,9 +143,37 @@ const addActivity = async(req, res) => {
       }
 };
 
+const patchActivity = async (req, res) => {
+  const body = req.body;
+
+  try {
+    await Activity.update(
+      {
+        name: body.name,
+        detail: body.detail,
+        days: body.days,
+        times: body.times,
+        price: body.price,
+        img: body.img
+      },
+      {
+        where: {
+          id: Number(body.id),
+        },
+      }
+
+    );
+
+    res.status(200).send("Usuario actualizado con éxito");
+  } catch (error) {
+    res.status(400).send(error);
+  }
+}
+
 module.exports = {
   getActivities, 
   getActivitiesId,
   deleteActivity,
-  addActivity
+  addActivity,
+  patchActivity
 };

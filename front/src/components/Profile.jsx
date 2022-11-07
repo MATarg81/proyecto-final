@@ -9,7 +9,9 @@ import {
   get_users_by_id,
 } from "../redux/actionsCreator/usersActions";
 import ProfileProducts from "./ProfileProducts";
-import EditButton from './Login/EditButton'
+import PurchesesDetail from "./purchesesMaded/purchesesDetail";
+import ProfileAllActivities from "./ProfileAllActivities";
+import ProfileUsers from "./ProfileUsers";
 //import { useAuth0 } from '@auth0/auth0-react'; LO DEJO COMENTADO PERO ENTIENDO QUE LO VAMOS A USAR CUANDO ESTE TODO OK
 
 export default function Perfil() {
@@ -37,7 +39,10 @@ export default function Perfil() {
   return (
     <div class="container-fluid">
       <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 pr-0 " style={{ backgroundColor: "Indigo" }}>
+        <div
+          class="col-auto col-md-3 col-xl-2 px-sm-2 pr-0 "
+          style={{ backgroundColor: "Indigo" }}
+        >
           <div
             class="d-flex flex-column justify-content-between align-items-center align-items-sm-start text-white nav-pills"
             id="v-pills-tab"
@@ -91,22 +96,29 @@ export default function Perfil() {
 
               <li id="Historial de compras">
                 <label class="nav-link align-middle px-0">
-                  <Link to="/profile/historial">
-                    <button
-                      className="btn btn-outline-dark rounded-pill text-white border-white p-1"
-                      id="v-pills-history-tab"
-                      data-bs-toggle="pill"
-                      data-bs-target="#v-pills-history"
-                      type="button"
-                      role="tab"
-                      aria-controls="v-pills-history"
-                      aria-selected="true"
+                  <button
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+                    id="v-pills-history-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-history"
+                    type="button"
+                    role="tab"
+                    aria-controls="v-pills-history"
+                    aria-selected="true"
+                  >
+                    Historial de{" "}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ color: "white" }}
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-cart"
+                      viewBox="0 0 16 16"
                     >
-                      Historial de  <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "white" }} width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-                      </svg>
-                    </button>
-                  </Link>
+                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                    </svg>
+                  </button>
                 </label>
               </li>
 
@@ -143,18 +155,27 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
-              <li id="Productos">
-                <label class="nav-link align-middle px-0 ">
-                  <EditButton />
+              <li id="Actividades">
+                <label class="nav-link align-middle px-0">
+                  <button
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+                    id="v-pills-allActivities-tab"
+                    data-bs-toggle="pill"
+                    data-bs-target="#v-pills-allActivities"
+                    type="button"
+                    role="tab"
+                    aria-controls="v-pills-allActivities"
+                    aria-selected="true"
+                  >
+                    Actividades
+                  </button>
                 </label>
               </li>
-
             </ul>
           </div>
         </div>
 
         <div className="tab-content" id="v-pills-tabContent">
-
           <div
             class="col py-3 tab-pane fade show active"
             id="v-pills-profile"
@@ -164,33 +185,63 @@ export default function Perfil() {
           >
             <section class="section about-section gray-bg" id="about">
               <div class="container">
-                <div class="row align-items-center flex-row" >
+                <div class="row align-items-center flex-row">
                   <div class="col-lg-6">
-                    <div class="about-text go-to border border-5 rounded shadow-lg" >
-                      <h3 class="dark-color"> {usersState?.name} {usersState?.lastname}</h3>
+                    <div class="about-text go-to border border-5 rounded shadow-lg">
+                      <h3 class="dark-color">
+                        {" "}
+                        {usersState?.name} {usersState?.lastname}
+                      </h3>
                       <div class="row about-list">
                         <div class="col-md-6">
                           <div class="media">
-                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Fecha de nacimiento</label>
-                            <p >{usersState?.dateOfBirth}</p>
+                            <label
+                              style={{ fontWeight: "bold", color: "Indigo" }}
+                            >
+                              Fecha de nacimiento
+                            </label>
+                            <p>{usersState?.dateOfBirth}</p>
                           </div>
                           <div class="media">
-                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Domicilio</label>
+                            <label
+                              style={{ fontWeight: "bold", color: "Indigo" }}
+                            >
+                              Domicilio
+                            </label>
                             <p>{usersState?.address}</p>
                           </div>
                           <div class="media">
-                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Codigo Postal</label>
+                            <label
+                              style={{ fontWeight: "bold", color: "Indigo" }}
+                            >
+                              Codigo Postal
+                            </label>
                             <p>{usersState?.postalCode}</p>
                           </div>
                         </div>
                         <div class="col-md-6">
                           <div class="media">
-                            <label style={{ fontWeight: "bold", color: "Indigo" }}>E-mail</label>
+                            <label
+                              style={{ fontWeight: "bold", color: "Indigo" }}
+                            >
+                              E-mail
+                            </label>
                             <p>{usersState?.email}</p>
                           </div>
                           <div class="media">
-                            <label style={{ fontWeight: "bold", color: "Indigo" }}>Telefono</label>
+                            <label
+                              style={{ fontWeight: "bold", color: "Indigo" }}
+                            >
+                              Telefono
+                            </label>
                             <p>{usersState?.phoneNumber}</p>
+                          </div>
+                          <div class="media">
+                            <Link to="/edituser">
+                              <button className="btn btn-outline-dark rounded-pill text-black border-black p-1">
+                                Editar Perfil
+                              </button>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -206,36 +257,7 @@ export default function Perfil() {
             </section>
           </div>
 
-
-
-
-
-
-
-
-
-
           {/* Profile */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           {/* Products */}
           <div
@@ -246,6 +268,33 @@ export default function Perfil() {
             tabIndex="0"
           >
             <ProfileProducts />
+          </div>
+          <div
+            class="tab-pane fade"
+            id="v-pills-allActivities"
+            role="tabpanel"
+            aria-labelledby="v-pills-allActivities-tab"
+            tabIndex="0"
+          >
+            <ProfileAllActivities />
+          </div>
+          <div
+            class="tab-pane fade"
+            id="v-pills-users"
+            role="tabpanel"
+            aria-labelledby="v-pills-users-tab"
+            tabIndex="0"
+          >
+            <ProfileUsers />
+          </div>
+          <div
+            class="tab-pane fade"
+            id="v-pills-history"
+            role="tabpanel"
+            aria-labelledby="v-pills-history-tab"
+            tabIndex="0"
+          >
+            <PurchesesDetail />
           </div>
         </div>
       </div>
