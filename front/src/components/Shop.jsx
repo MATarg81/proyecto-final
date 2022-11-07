@@ -16,7 +16,7 @@ import {
 import Favorites from "./Favorites";
 import SearchBar from "./SearchBar";
 //import cuore from "../imagesTeam/cuore.png"
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Login/LoginButton";
@@ -51,10 +51,13 @@ function Shop() {
     (state) => state.productsReducer.byCategories
   );
   const cart_state = useSelector((state) => state.cartReducer);
-  const fav_state = useSelector((state) => state.favReducer)
-
+  const fav_state = useSelector((state) => state.favReducer.favs)
+  const fav_LS_state = useSelector((state) => state.favReducer.favsLs)
+  const users_state = useSelector((state) => state.usersReducer.users)
+    
   const [, setCart] = useLocalStorage("cart", cart);
-  //const favState = useSelector(state => state.FavReducer.favs)
+  const [, setFav] = useLocalStorage("favs", fav_LS_state);
+
   // --------------- Pagination --------------
   const productsPerPage = 12;
 
@@ -98,23 +101,28 @@ function Shop() {
   }, [dispatch, category]);
 
   //favs
-  
-  const favState = useSelector(state => state.usersReducer.users)
-  const findUser = user ? favState.find(u => u.email === user.email) : null
-  
-  function handleAddtoFav(id) {
-    //ADDtoFavs(p)
+   const findUser = user ? users_state.find(u => u.email === user.email) : null
+ 
+   function handleAddtoFav(product) {
     if(findUser){
-      dispatch(addFav(id, findUser.id));
-      alert("Producto agregado a favoritos");
+      const findFav = fav_state.find( prod => prod.id === product.id)
+      if(findFav){
+          alert("El producto ya esta agreagado a favoritos")
+      }else{
+        dispatch(addFav(product, findUser.id));
+       alert("Producto agregado a favoritos")
     }
-    // else{
-    //   const findProd = products.find(p => p.id === id)
-    //   dispatch(addFav(findProd))
-    // }
-    //window.localStorage.setItem('favs', JSON.stringify(findProd))
-    //localStorage.setItem('favs', JSON.stringify(favState))
-    alert("Producto agregado a favoritos")
+    }
+    else{
+      const findFavLs = fav_LS_state.find(p => p === product)
+      if(findFavLs){
+        alert("El producto ya esta agreagado a favoritos")
+      }else{ 
+      dispatch(addFav(product))
+      setFav(fav_LS_state)
+      alert("Producto agregado a favoritos")
+    }
+    }
     
     /* toast('🦄 Producto añadido a favoritos', {
       position: "top-right",
@@ -126,7 +134,7 @@ function Shop() {
       progress: undefined,
     }); */
   }
-
+ const stateOrLs = findUser? fav_state : fav_LS_state
   // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
   //   localStorage.setItem('favs', JSON.stringify(favState))
   // }, [favState])
@@ -198,7 +206,7 @@ function Shop() {
     dispatch(filterByCategories([]));
   };
 
-
+  
 
   return (
     // isAuthenticated?    
@@ -255,7 +263,7 @@ function Shop() {
               <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "indigo" }} width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
               </svg>
-              <span class="badge text-dark ">({fav_state.favs?.length})</span>
+              <span class="badge text-dark ">({stateOrLs?.length})</span>
             </Link>
             <Link to="/carrito" data-toggle="tooltip" data-placement="bottom" title="Carrito">
               <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "indigo" }} width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -305,14 +313,13 @@ function Shop() {
                     </svg>
                   </i>
                 </a>
-                <a onClick={() => handleAddtoFav(p.id)} class="btn btn-sm  p-0 ">
+                <a onClick={() => handleAddtoFav(p)} class="btn btn-sm  p-0 ">
                   <i data-toggle="tooltip" data-placement="bottom" title="Agregar a favoritos">
-                    <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "indigo" }} data-toggle="tooltip" data-placement="bottom" title="Agregar a favoritos" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                      <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                    </svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill={ stateOrLs.find(pr=> pr.id === p.id ) ? 'red'  : "currentColor"} class="bi bi-heart-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+</svg>
                   </i>
                 </a>
-
               </div>
             </div>
           ))}

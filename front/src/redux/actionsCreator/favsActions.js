@@ -7,24 +7,24 @@ import {
 
 // const BACK_URL = "http://localhost:3001";
 
-export function addFav(id, idU, product) {
-    console.log(id, idU)
+export function addFav(prod, idU) {
+   
     return async function (dispatch) {
         try {
             if(idU){
-                const url = await axios.get(`/favorites?id=${id}&idU=${idU}`);
+                const url = await axios.get(`/favorites?id=${prod.id}&idU=${idU}`);
                 console.log(url.data, 'axios')
                 return dispatch({
                     type: ADD_FAV,
                     payload: url.data,
                 });
             }
-            // else{
-            //     return dispatch({
-            //         type: 'ADD_FAV_LS',
-            //         payload: product,
-            //     });
-            // }
+            else if(!idU){
+                return dispatch({
+                    type: 'ADD_FAV_LS',
+                    payload: prod,
+                });
+            }
 
         } catch (err) {
             console.log(err);
@@ -34,23 +34,23 @@ export function addFav(id, idU, product) {
 }
 
 
-export function deleteFav(id, idU) {
+export function deleteFav(p, idU) {
     return async function (dispatch) {
         try {
             if(idU){
-                const url = await axios.delete(`/favorites?id=${id}&idU=${idU}`);
-                console.log(url.data, 'axios')
+                const url = await axios.delete(`/favorites?id=${p.id}&idU=${idU}`);
+                
                 return dispatch({
                     type: REMOVE_FAV,
-                    payload: id,
+                    payload: p.id,
                 });
             }
-            // else{
-            //     return dispatch({
-            //         type: REMOVE_FAV,
-            //         payload: id,
-            //     });
-            // }
+            else if(!idU){
+                return dispatch({
+                    type: 'REMOVE_FAV_LS',
+                    payload: p,
+                });
+            }
 
         } catch (err) {
             console.log(err);
