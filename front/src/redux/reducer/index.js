@@ -5,6 +5,7 @@ import categoriesReducer from './categoriesReducer'
 import reviewsReducer from './reviewsReducer'
 import favReducer from "./favReducer";
 import usersReducer from "./usersReducer"
+import registerActivityReducer from "./registerActivityReducer"
 
 import { combineReducers } from "redux";
 
@@ -16,7 +17,7 @@ const rootReducers = combineReducers({
   reviewsReducer,
   favReducer,
   usersReducer,
-
+  registerActivityReducer
 });
 
 export default rootReducers;

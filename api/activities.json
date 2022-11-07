@@ -6,7 +6,7 @@
             "days":"Lunes, Jueves, Domingos",
             "times": "19:00",
             "img": "https://cdn.pixabay.com/photo/2016/06/29/09/28/football-1486353__340.jpg",
-            "user" : 7,
+            "user" : [1 , 7],
             "price": 5000
         },
         {
@@ -24,7 +24,7 @@
             "days":"Lunes, Miercoles, Domingos",
             "times": "16:00",
             "img": "https://cdn.pixabay.com/photo/2016/06/29/09/28/football-1486353__340.jpg",
-            "user" : 3,
+            "user" : [3, 2],
             "price": 5000
         },
         {
@@ -33,7 +33,7 @@
             "days":"Jueves, Domingos",
             "times": "11:00",
             "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvkSIx9-FMWTUTj4OMvPZECJQyeCOqU3cKfA&usqp=CAU",
-            "user" : 4,
+            "user" : [4, 7],
             "price": 5000
         },
         {
@@ -42,7 +42,7 @@
             "days":"Miercoles, Viernes, Domingos",
             "times": "14:00",
             "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHBq0UhudtRZgN03MUHenWy5qQVeOhHSx7xg&usqp=CAU",
-            "user" : 1,
+            "user" : [5, 3],
             "price": 5000
         }
     ]

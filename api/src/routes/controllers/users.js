@@ -19,11 +19,10 @@ async function getUsers(req, res) {
           phoneNumber: u.phoneNumber,
           address: u.address,
           postalCode: u.postalCode.toString(),
-          password: u.password,
-          image: u.image
+          
         });
         
-        await newUser.setRole(1);
+        await newUser.setRole(2);
 
       });
       return res.status(200).send(allUsers)
@@ -50,7 +49,9 @@ async function getUsers(req, res) {
       }
     } else { 
       // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
-      User.findAll({include:{model: Role}} ).then((r) => res.status(200).send(r));
+      User.findAll({include: Role, include:[{
+        model:Activity
+      }]}).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
@@ -77,7 +78,7 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode, password, image } = req.body;
+  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
 
   try {
@@ -90,8 +91,7 @@ async function addUser(req, res) {
         phoneNumber: phoneNumber,
         address: address,
         postalCode: postalCode.toString(),
-        password: password,
-        image: image
+        
       });
 
       const addRole = await newUser.setRole(2);
@@ -129,7 +129,6 @@ async function updateUser(req, res) {
         email: body.email,
         address: body.address,
         postalCode: body.postalCode,
-        password: body.password,
         roleId: body.roleId,
         image: body.image
 

@@ -10,8 +10,8 @@ const activities = require("./activities");
 const reviews = require("./reviews");
 const cart = require("./cart");
 const { payment } = require("./payment");
-const favs = require("./favs");
-const stripe = require("./stripe")
+const favs = require("./favs")
+const registerActivity = require("./registerActivity");
 
 const router = Router();
 
@@ -26,6 +26,6 @@ router.use("/reviews", reviews);
 router.use("/cart", cart);
 router.use("/payment", payment);
 router.use("/favorites", favs);
-router.use("/stripe", stripe)
+router.use("/profile/actividades", registerActivity);
 
 module.exports = router;
