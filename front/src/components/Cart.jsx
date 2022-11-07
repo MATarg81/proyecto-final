@@ -61,7 +61,6 @@ const Cart = () => {
   //-------PRUEBAS MP----------------------------------------------
 
   const handlePayment = async () => {
-    dispatch(postCart(allState));
     let data = allState.items.map((p) => {
       return {
         id: p.id,
@@ -71,9 +70,7 @@ const Cart = () => {
         unit_price: Number(p.price),
       };
     });
-    setCart([]);
-    dispatch(delAll());
-    console.log("esta es la data", data);
+    console.log("Orden de compra: ", data);
     const response = await axios.post("/payment", data);
     window.location.href = `${response.data.init_point}`;
   };

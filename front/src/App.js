@@ -36,6 +36,7 @@ import { useDispatch} from "react-redux";
 import { get_users } from './redux/actionsCreator/usersActions'
 import Stripe from "./components/Stripe";
 import Error404 from "./components/Error404";
+import MpSuccess from "./components/MpSuccess";
 //import ProtectedRoute from "../src/auth/protected-route";
 //import { useAuth0 } from "@auth0/auth0-react"
 
@@ -87,6 +88,8 @@ function App() { //Agregar ruta de /detail/id
         <Route exact path="/stripe" element={<Stripe />} />
 
         <Route path="*" element={<Error404 />} />
+
+        <Route exact path="/success" element={<MpSuccess />} />
 
 
       </Routes>
