@@ -3,19 +3,56 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../redux/actions/activitiesActions";
-import { get_users } from "../redux/actionsCreator/usersActions";
+import { 
+  get_users,
+  get_roles,
+  get_users_by_id
+} from "../redux/actionsCreator/usersActions";
+import { addUserActivity } from "../redux/actionsCreator/registerActivityActions";
 
 export default function Activities() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getActivities());
-    dispatch(get_users());
-  }, [dispatch]);
 
-  const allActivities = useSelector(
-    (state) => state.activitiesReducer.activities
-  );
+
+  const allActivities = useSelector((state) => state.activitiesReducer.activities);
+  const usersState = useSelector((state) => state.usersReducer.usersById);
+  const roles = useSelector((state) => state.usersReducer.roles);
+  const allUsers = useSelector((state) => state.usersReducer.users);
+  const register = useSelector((state) => state.registerActivityReducer.registerActivity)
+ 
+
+// Add activities to a user - Register in an activity
+
+useEffect(() => {
+  dispatch(getActivities());
+  dispatch(get_users());
+}, [dispatch]);
+
+  //User
+  useEffect(() => {
+    if (allUsers?.length === 0) {
+      dispatch(get_users());
+    }
+    if (roles?.length === 0) {
+      dispatch(get_roles());
+    }
+    if (usersState?.length === 0) {
+      dispatch(get_users_by_id(7));
+    }
+  }, [dispatch, allUsers, roles, usersState]);
+
+function handleAddtoAct(activities) {
+  if(usersState){
+    const findReg = register.find( a => a.id === activities.id)
+    if(findReg){
+        alert("El usuario ya esta registrado")
+    }else{
+      dispatch(addUserActivity(activities, usersState.id));
+     alert("Usuario registrado")
+   }
+ }}
+
 
   return (
     <div>
@@ -84,11 +121,11 @@ export default function Activities() {
                     <p className="card-text">
                       <small className="text-muted">Horario: {a.times}</small>
                     </p>
-                    <button type="button" className="btn btn-secondary">
+                    <button type="button" className="btn btn-secondary" onClick={() => handleAddtoAct(a.id)}>
                       Inscribirse
                     </button>
                     <div
-                      className="d-flex flex-column px-4" /* style={{background: "linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(191,173,183,1) 52%, rgba(255,173,182,1) 66%, rgba(255,255,255,1) 83%)"}} */
+                      className="d-flex flex-column px-4"
                     >
                       <Link to="/crearCalificacion">
                         {" "}

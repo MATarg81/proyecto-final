@@ -29,7 +29,7 @@ import ProfileHistorial from "./components/ProfileHistorial";
 import ProfileUsers from "./components/ProfileUsers";
 import ListOfUsers from "./components/ListOfUsers";
 
-import InscriptosActividades from "./components/InscriptosActividades";
+import RegisteredActivity from "./components/RegisteredActivity";
 
 import { useEffect } from "react";
 import { useDispatch} from "react-redux";
@@ -58,8 +58,8 @@ function App() { //Agregar ruta de /detail/id
         <Route exact path="/tienda/:id" element={<Product />} />
         <Route exact path="/actividades" element={<Activities />} /> 
         <Route exact path="/aboutTeam" element={<AboutTeam />} />
-        <Route  exact path="/crearActividades" element={ <ActivityCreate />} />
-        <Route  exact path="/inscriptos" element={ <InscriptosActividades />} />
+        <Route exact path="/crearActividades" element={ <ActivityCreate />} />
+        <Route exact path="/inscriptos" element={ <RegisteredActivity />} />
         <Route exact path="/crearProducto" element={<CreateProduct />} />
         <Route exact path="/reviews" element={<Reviews />} />
         <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />

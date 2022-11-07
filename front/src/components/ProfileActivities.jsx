@@ -30,15 +30,22 @@ export default function ProfileActivities() {
 
     return(
         <div>
-        <div class="card">
-            <div class="card-header">
+        <div className="card">
+            <div className="card-header">
                 Actividades
             </div>
-            <div class="card-body">
-                <h5 class="card-title">{usersState?.activities?.map(e => e.name)} </h5>
-                <p class="card-text">Dias: {usersState?.activities?.map(e => e.days)}</p>
-                <p class="card-text">Horarios: {usersState?.activities?.map(e => e.times)} hs.</p>
+            <div className="card-body">
+            {usersState?.activities?.map(e => 
+              <div
+              key={e.name}
+              >
+                <h5 className="card-title"> {e.name} </h5>
+                <p className="card-text"> Dias: {e.days} </p>
+                <p className="card-text"> Horarios: {e.times}</p>
+                <br />
+                </div>
+                )}
             </div>
-            </div>
+          </div>
       </div> 
 )};
