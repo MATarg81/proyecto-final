@@ -80,6 +80,7 @@ const Cart = () => {
 
   //-------PRUEBAS MP----------------------------------------------
 
+
   const emptyCart = () => {
     return (
       <div className="px-4 my-5 bg-light rounded-3 py-5">
@@ -94,6 +95,74 @@ const Cart = () => {
   const cartItems = (product) => {
     return (
       <>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th class="mob-hide"></th>
+                <th class="mob-hide">Precio unitario</th>
+                <th class="table-qty">Unidades</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            {/* --------------------------------------------------------- */}
+            <tbody>
+              {state && state?.map((i) => {
+                return (
+                  <>
+                    <tr>
+                      <td>
+                        {i.name}                        
+                      </td>
+                      <td class="text-center mob-hide">
+                        <img src={i.image} alt={product.name} style={{ width: "80px" }} />
+                      </td>
+                      <td class="mob-hide">
+
+                        <span class="order-product-price">${i.price}</span>
+
+                      </td>
+                      <td>
+                        <button
+                          className="btn btn-outline-dark me-2"
+                          onClick={() => handleDel(product)}
+                        >
+                          <i className="fa fa-minus"></i>
+                        </button>
+                        {i.qty}
+                        <button
+                          className="btn btn-outline-dark"
+                          onClick={() => handleAdd(product)}
+                        >
+                          <i className="fa fa-plus"></i>
+                        </button>
+                      </td>
+                      <td>
+                        <span class="order-product-subtotal">$ {i.qty * i.price}</span>
+                      </td>
+                      <td clas="text-right"> <a href="/cart/remove_product/120956782" class="cart-product-remove"
+                        title="Remove Product"><i class="fas fa-times-circle"></i></a></td>
+                    </tr>
+
+                  </>
+                );
+                })}
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        {/* 
         <div className="px-4 my-5 bg-light rounded-3 py-5">
           <div className="container py-4">
             <div className="row justify-content-center">
@@ -127,7 +196,7 @@ const Cart = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </>
     );
   };
