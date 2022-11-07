@@ -19,7 +19,7 @@ async function getUsers(req, res) {
           phoneNumber: u.phoneNumber,
           address: u.address,
           postalCode: u.postalCode.toString(),
-          password: u.password
+          
         });
         
         await newUser.setRole(1);
@@ -76,7 +76,7 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode, password } = req.body;
+  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
 
   try {
@@ -89,7 +89,7 @@ async function addUser(req, res) {
         phoneNumber: phoneNumber,
         address: address,
         postalCode: postalCode.toString(),
-        password: password
+        
       });
 
       const addRole = await newUser.setRole(1);
@@ -127,7 +127,6 @@ async function updateUser(req, res) {
         email: body.email,
         address: body.address,
         postalCode: body.postalCode,
-        password: body.password,
         roleId: body.roleId,
 
       },

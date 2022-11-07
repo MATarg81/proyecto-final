@@ -230,7 +230,7 @@ const ActivityCreate = function () {
   );
 };
 // export default withAuthenticationRequired(ActivityCreate, {
-//   onRedirecting: () => <h1> redirigiendo al login, aguarde..</h1>,
+//   onRedirecting: () => <h1>Loading ...</h1>,
 // });
 //<div><p>you must login or complete your profile, click here!</p><LoginButton/></div>
 
