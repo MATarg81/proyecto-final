@@ -4,7 +4,7 @@
             "name": "Futbol 5",
             "detail": "Entrenamiento fisico individual y en grupo. Practica de tecnicas de equipo. Partidos los fines de semana",
             "days":"Lunes, Jueves, Domingos",
-            "times": 19.00,
+            "times": "19:00",
             "img": "https://cdn.pixabay.com/photo/2016/06/29/09/28/football-1486353__340.jpg",
             "user" : 7,
             "price": 5000
@@ -13,7 +13,7 @@
             "name": "Natacion",
             "detail": "Pileta libre o entrenamiento guiado. Pileta de 25 y 50 metros disponibles",
             "days":"Martes, Miecoles, Viernes",
-            "times": 17.00,
+            "times": "17:00",
             "img": "https://static8.depositphotos.com/1437210/950/i/450/depositphotos_9501246-stock-photo-athletic-swimmer-in-action-in.jpg",
             "user" : 4,
             "price": 5000
@@ -22,7 +22,7 @@
             "name": "Futbol 11",
             "detail": "Entrenamiento fisico individual y en grupo. Practica de tecnicas de equipo. Partidos los fines de semana",
             "days":"Lunes, Miercoles, Domingos",
-            "times": 16.00,
+            "times": "16:00",
             "img": "https://cdn.pixabay.com/photo/2016/06/29/09/28/football-1486353__340.jpg",
             "user" : 3,
             "price": 5000
@@ -31,7 +31,7 @@
             "name": "Atletismo",
             "detail": "Preparacion para medio maraton y 10K. Entrenamiento fisico y tecnico.",
             "days":"Jueves, Domingos",
-            "times": 11.00,
+            "times": "11:00",
             "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvkSIx9-FMWTUTj4OMvPZECJQyeCOqU3cKfA&usqp=CAU",
             "user" : 4,
             "price": 5000
@@ -40,7 +40,7 @@
             "name": "Basquet",
             "detail": "Entrenamiento fisico individual y en grupo. Practica de tecnicas de equipo. Partidos los fines de semana",
             "days":"Miercoles, Viernes, Domingos",
-            "times": 14.00,
+            "times": "14:00",
             "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHBq0UhudtRZgN03MUHenWy5qQVeOhHSx7xg&usqp=CAU",
             "user" : 1,
             "price": 5000
