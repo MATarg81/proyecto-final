@@ -75,7 +75,7 @@ export default function ProfileProducts() {
                 <select
                   type="button"
                   className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
-                  style={{ width: "30%" }}
+                  style={{ width: "250px" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
                   <option value="-">⇅</option>
@@ -83,7 +83,7 @@ export default function ProfileProducts() {
                   <option value="Z/A">Z-A</option>
                 </select>
               </th>
-              <th className="col-sm-1">
+              <th className="col-sm-1" style={{width:"120px"}}>
                 Precio
                 <select
                   type="button"
@@ -96,7 +96,7 @@ export default function ProfileProducts() {
                   <option value="MAX/MIN">Desc.</option>
                 </select>
               </th>
-              <th className="col-sm-1">
+              <th className="col-sm-1" style={{width:"120px"}}>
                 Categoría
                 <select
                   type="button"
@@ -112,8 +112,8 @@ export default function ProfileProducts() {
                   ))}
                 </select>
               </th>
-              <th className="col-sm-1">Detalle</th>
-              <th className="col-sm-1">Imagen</th>
+              <th className="col-sm-1"  style={{width:"420px"}}>Detalle</th>
+              <th className="col-sm-1" style={{width:"84px"}}>Imagen</th>
               <th className="col-sm-1">Stock</th>
             </tr>
           </thead>
@@ -124,19 +124,19 @@ export default function ProfileProducts() {
                   <>
                     <tr className="d-flex col-sm-10">
                       <td className="col-sm-2 text-truncate">{p.name}</td>
-                      <td className="col-sm-1">{p.price}</td>
-                      <td className="col-sm-1">
+                      <td className="col-sm-1" style={{width:"120px"}}>{p.price}</td>
+                      <td className="col-sm-1" style={{width:"120px"}}>
                         {p.categories.map((c) => c.name)}
                       </td>
-                      <td className="col-sm-1 text-truncate">{p.detail}</td>
-                      <td className="col-sm-1">
+                      <td className="col-sm-1 text-truncate" style={{width:"420px"}}>{p.detail}</td>
+                      <td className="col-sm-1" >
                         {p.image.map((i) => {
                           return (
                             <img
                               src={i}
                               className="img-fluid img-thumbnail"
-                              style={{ width: "15%", height: "75%" }}
-                              alt=""
+                              style={{width:"30px"}}
+                              alt="Foto producto"
                             />
                           );
                         })}
