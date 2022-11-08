@@ -43,7 +43,7 @@ export default function ProfileUsers() {
         Editar
       </button>
       <div>
-        <table className="table table-responsive-sm table-striped table-hover">
+        <table className="table table-responsive-sm table-striped table-hover table-primary">
           <thead >
             <tr className="d-flex col-sm-11">
 
@@ -65,7 +65,7 @@ export default function ProfileUsers() {
                 Apellido
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0 w-25"
+                  className="btn btn-outline-dark rounded-pill btn-sm border-0 w-25"
                   style={{ width: "30%" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
