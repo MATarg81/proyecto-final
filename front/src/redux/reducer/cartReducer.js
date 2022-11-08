@@ -20,7 +20,8 @@ const cartReducer = (state = inicialState, action) => {
 
       if (exist) {
         // Incrementar cantidad
-        const newState = state.items.map((x) => x.id === product.id ? { ...x, qty: (x.qty + 1) } : x);
+        const newState = state.items.map((x) => 
+          (x.id === product.id) && x.stock > x.qty ? { ...x, qty: (x.qty + 1) } : x);
                 
         return {
           ...state,
