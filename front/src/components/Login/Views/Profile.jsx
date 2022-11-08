@@ -11,12 +11,13 @@ const Profile = () => {
   const dispatch = useDispatch();
   //console.log(user)
   // const { name, picture, email } = user;
-  useEffect(() => {
-    dispatch(get_users());
-  }, []);
-
   const stateUser = useSelector((state) => state.usersReducer.users);
   const findUser = user ? stateUser.find((u) => u.email === user.email) : null;
+
+  useEffect(() => {
+    dispatch(get_users());
+  }, [dispatch]);
+
   // console.log(stateUser, 'stado de userrrrrrss')
   // console.log(findUser, 'userrrrrr')
 

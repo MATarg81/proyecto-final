@@ -19,9 +19,9 @@ function Register() {
   const [input, setInput] = useState({
     name: "",
     lastname: "",
-    email: user.email,
+    email: user?.email,
     phoneNumber: "",
-    image: user.picture,
+    image: user?.picture,
     dateOfBirth: "",
     address: "",
     postalCode: "",
@@ -145,9 +145,9 @@ function Register() {
     ) {
       alert("Por favor completa todos los campos");
     } else {
-      dispatch(add_users(input));
+      dispatch(add_users(input))
       dispatch(get_users())
-      navigate("/profile");
+      navigate("/profile")
     }
   }
 

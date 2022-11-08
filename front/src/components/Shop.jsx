@@ -345,11 +345,11 @@ function Shop() {
   );
 }
 
-//export default Shop;
+export default Shop;
 
-export default withAuthenticationRequired(Shop, {
-  onRedirecting: () => <h1> Loading ...</h1>,
-});
+// export default withAuthenticationRequired(Shop, {
+//   onRedirecting: () => <h1> Loading ...</h1>,
+// });
 
 
 
