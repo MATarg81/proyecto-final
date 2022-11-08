@@ -20,9 +20,10 @@ export const addCart = (product) => {
 };
 
 export const getCart = (userId) => {
+  console.log("Userid: ", userId)
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`/cart/${userId}`); //hardcodeo provisorio de user
+      const { data } = await axios.get(`/cart`, userId); //hardcodeo provisorio de user
       return dispatch({
         type: GET_CART,
         payload: data,
