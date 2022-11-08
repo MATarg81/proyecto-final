@@ -53,27 +53,28 @@ export default function ProfileProducts() {
 
   return (
     <div className="container-fluid">
-      <div className="container-fluid">
+      <div className="d-flex flex-row">
 
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        data-bs-toggle="modal"
-        data-bs-target="#editProduct"
+        <button
+          type="button"
+          class="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          style={{backgroundColor:"indigo"}}
+          data-bs-toggle="modal"
+          data-bs-target="#editProduct"
         >
-        Editar
-      </button>
-      <CreateProduct />
-        </div>
+          Editar
+        </button>
+        <CreateProduct />
+      </div>
       <div>
-        <table className="table table-responsive-sm table-striped table-hover">
+        <table className="table table-responsive-sm table-striped table-hover table-success">
           <thead >
             <tr className="d-flex col-sm-10">
               <th className="col-sm-2">
                 Nombre
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0"
+                  className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
                   style={{ width: "30%" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
@@ -86,7 +87,7 @@ export default function ProfileProducts() {
                 Precio
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0"
+                  className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
                   style={{ width: "30%" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
@@ -99,7 +100,7 @@ export default function ProfileProducts() {
                 Categoría
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0"
+                  className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
                   style={{ width: "30%" }}
                   onChange={filterCategories}
                 >

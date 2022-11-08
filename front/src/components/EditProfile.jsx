@@ -98,9 +98,10 @@ export default function EditProfile() {
     <div>
       <button
         type="button"
-        class="btn btn-outline-dark"
+        class="btn btn-outline-dark rounded-pill text-white border-white p-1"
         data-bs-toggle="modal"
         data-bs-target="#editProfile"
+        style={{backgroundColor:"indigo"}}
       >
         Editar perfil
       </button>
