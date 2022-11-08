@@ -209,12 +209,7 @@ export default function Perfil() {
                             >
                               Fecha de nacimiento
                             </label>
-                            <p>{
-                              findUser?.dateOfBirth[0] + findUser?.dateOfBirth[1] + '-' +
-                              findUser?.dateOfBirth[2] + findUser?.dateOfBirth[3] + '-' +
-                              findUser?.dateOfBirth[4] + findUser?.dateOfBirth[5] +
-                              findUser?.dateOfBirth[6] + findUser?.dateOfBirth[7]
-                            }</p>
+                            <p>{findUser?.dateOfBirth}</p>
                           </div>
                           <div class="media">
                             <label

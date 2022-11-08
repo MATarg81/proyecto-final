@@ -18,7 +18,7 @@ import SearchBar from "./SearchBar";
 //import cuore from "../imagesTeam/cuore.png"
 import { AiFillHeart } from "react-icons/ai";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import LoginButton from "./Login/LoginButton";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import "animate.css/animate.min.css"
@@ -345,7 +345,11 @@ function Shop() {
   );
 }
 
-export default Shop;
+//export default Shop;
+
+export default withAuthenticationRequired(Shop, {
+  onRedirecting: () => <h1> Loading ...</h1>,
+});
 
 
 

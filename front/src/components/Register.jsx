@@ -21,8 +21,7 @@ function Register() {
     lastname: "",
     email: user.email,
     phoneNumber: "",
-    
-    validatePass: "",
+    image: user.picture,
     dateOfBirth: "",
     address: "",
     postalCode: "",
@@ -139,8 +138,6 @@ function Register() {
       !input.name ||
       !input.lastname ||
       !input.email ||
-      
-      
       !input.phoneNumber ||
       !input.dateOfBirth ||
       !input.address ||
@@ -150,7 +147,7 @@ function Register() {
     } else {
       dispatch(add_users(input));
       dispatch(get_users())
-      navigate("/home");
+      navigate("/profile");
     }
   }
 

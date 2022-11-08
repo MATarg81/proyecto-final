@@ -24,6 +24,7 @@ export default function Activities() {
   );
   const { isAuthenticated, user } = useAuth0();
 
+    //hola
 
   const dispatch = useDispatch();
 
@@ -47,8 +48,10 @@ export default function Activities() {
     }
   }, [dispatch, allUsers, roles, usersState]);
 
+  const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
+
   function handleAddtoAct(activities) {
-    if (!isAuthenticated) {
+    if (!findUser) {
       return (
         <>
           {/* <div className="col-auto">
@@ -152,7 +155,7 @@ export default function Activities() {
                       <small className="text-muted">Horario: {a.times}</small>
                     </p>
 
-                    {!isAuthenticated ? (
+                    {!findUser ? (
                       <>
                         <div className="col-auto">
                           <button
@@ -198,7 +201,7 @@ export default function Activities() {
                     )}
 
                     <div className="d-flex flex-column px-4">
-                      {!isAuthenticated ? (
+                      {!findUser ? (
                         <>
                           <div className="col-auto">
                             <button
