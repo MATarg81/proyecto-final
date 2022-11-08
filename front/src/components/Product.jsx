@@ -36,7 +36,7 @@ function Product() {
     }
   }, [dispatch, allUsers, roles, usersState]);
 
-  console.log(product)
+  // console.log(product)
   useEffect(() => {
     if (product?.length === 0) {
       dispatch(getDetail(id));

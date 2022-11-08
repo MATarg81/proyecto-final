@@ -209,11 +209,11 @@ function Shop() {
     <>
       <>
         {/* --------------------------------------------------------------------------------- */}
-        <div class="container position-relative d-block text-center m-1 p-0 ">
+        <div className="container position-relative d-block text-center m-1 p-0 ">
           <img src={banner} alt="banner"></img>
-          <div class="text-center text-white position-absolute top-50 start-50">
-            <h1 class="display-4 fw-bolder">Shop Athenas</h1>
-            <p class="lead fw-normal text-white mb-0">
+          <div className="text-center text-white position-absolute top-50 start-50">
+            <h1 className="display-4 fw-bolder">Shop Athenas</h1>
+            <p className="lead fw-normal text-white mb-0">
               <b>Todo</b> para mejorar tu rendimiento
             </p>
           </div>
@@ -221,11 +221,11 @@ function Shop() {
 
         {/* //////////////////////////////////////// */}
 
-        <div class="row align-items-center py-3 px-xl-5">
-          <div class="col-lg-3 d-none d-lg-block">
-            <h1 class="m-0 display-5 font-weight-semi-bold">
+        <div className="row align-items-center py-3 px-xl-5">
+          <div className="col-lg-3 d-none d-lg-block">
+            <h1 className="m-0 display-5 font-weight-semi-bold">
               <span
-                class="font-weight-bold border px-1 mr-1"
+                className="font-weight-bold border px-1 mr-1"
                 style={{ color: "indigo" }}
               >
                 T
@@ -233,7 +233,7 @@ function Shop() {
               ienda
             </h1>
           </div>
-          <div class="col-lg-6 col-6 text-left ">
+          <div className="col-lg-6 col-6 text-left ">
             <SearchBar setPage={setPage} />
             <select
               onChange={order}
@@ -266,7 +266,7 @@ function Shop() {
             </button>
           </div>
           <div
-            class="col-lg-3 col-6 text-right"
+            className="col-lg-3 col-6 text-right"
             data-toggle="tooltip"
             data-placement="bottom"
             title="Favoritos"
@@ -278,12 +278,12 @@ function Shop() {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-heart"
+                className="bi bi-heart"
                 viewBox="0 0 16 16"
               >
                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
               </svg>
-              <span class="badge text-dark ">({stateOrLs?.length})</span>
+              <span className="badge text-dark ">({stateOrLs?.length})</span>
             </Link>
             <Link
               to="/carrito"
@@ -297,20 +297,20 @@ function Shop() {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-cart"
+                className="bi bi-cart"
                 viewBox="0 0 16 16"
               >
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
               </svg>
             </Link>
-            <span class="badge text-dark">({cart_state.items?.length})</span>
+            <span className="badge text-dark">({cart_state.items?.length})</span>
           </div>
         </div>
 
         {/* //////////////////////////////////////////// */}
 
         <div
-          class="container animate__animated animate__fadeInUp"
+          className="container animate__animated animate__fadeInUp"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(4, 1fr)",
@@ -318,27 +318,27 @@ function Shop() {
             margin: "2rem",
           }}
         >
-          {productsPage?.map((p) => (
-            <div class="card product-item border-0" key={p.id}>
-              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
-                <div class="" onClick={() => navigate(`/tienda/${p.id}`)}>
+          {productsPage?.map((p, index) => (
+            <div className="card product-item border-0" key={index}>
+              <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
+                <div className="" onClick={() => navigate(`/tienda/${p.id}`)}>
                   <img
-                    class="img-fluid hover-zoom bg-image"
+                    className="img-fluid hover-zoom bg-image"
                     src={p.image}
                     /* className="card-img-top" */ alt={p.name}
                   />
                 </div>
               </div>
-              <div class="card-body border-left border-right text-center">
-                <h6 class="text-truncate ">{p.name}</h6>
-                <div class="d-flex justify-content-center">
+              <div className="card-body border-left border-right text-center">
+                <h6 className="text-truncate ">{p.name}</h6>
+                <div className="d-flex justify-content-center">
                   <h6>$ {p.price}</h6>
                 </div>
               </div>
-              <div class="card-footer d-flex justify-content-between border text-primary">
+              <div className="card-footer d-flex justify-content-between border text-primary">
                 <a
                   onClick={() => navigate(`/tienda/${p.id}`)}
-                  class="btn btn-sm  p-0"
+                  className="btn btn-sm  p-0"
                 >
                   <i
                     data-toggle="tooltip"
@@ -351,7 +351,7 @@ function Shop() {
                       height="16"
                       style={{ color: "indigo" }}
                       fill="currentColor"
-                      class="bi bi-eye"
+                      className="bi bi-eye"
                       viewBox="0 0 16 16"
                     >
                       <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
@@ -359,7 +359,7 @@ function Shop() {
                     </svg>
                   </i>
                 </a>
-                <a onClick={() => addProduct(p)} class="btn btn-sm  p-0">
+                <a onClick={() => addProduct(p)} className="btn btn-sm  p-0">
                   <i
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -374,14 +374,14 @@ function Shop() {
                       width="16"
                       height="16"
                       fill="currentColor"
-                      class="bi bi-cart"
+                      className="bi bi-cart"
                       viewBox="0 0 16 16"
                     >
                       <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
                   </i>
                 </a>
-                <a onClick={() => handleAddtoFav(p)} class="btn btn-sm  p-0 ">
+                <a onClick={() => handleAddtoFav(p)} className="btn btn-sm  p-0 ">
                   <i
                     data-toggle="tooltip"
                     data-placement="bottom"
@@ -396,11 +396,11 @@ function Shop() {
                           ? "red"
                           : "currentColor"
                       }
-                      class="bi bi-heart-fill"
+                      className="bi bi-heart-fill"
                       viewBox="0 0 16 16"
                     >
                       <path
-                        fill-rule="evenodd"
+                        fillRule="evenodd"
                         d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
                       />
                     </svg>
