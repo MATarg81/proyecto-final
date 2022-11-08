@@ -24,7 +24,7 @@ export default function Activities() {
   );
   const { isAuthenticated, user } = useAuth0();
 
-
+    //hola
 
   const dispatch = useDispatch();
 
