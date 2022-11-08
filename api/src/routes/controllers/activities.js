@@ -30,7 +30,7 @@ const allActivities = async() => {
               img: a.img,
               price: a.price
             });
-            // await newRev.addUser(a.user);
+            await newRev.addUser(a.user);
           });
           return results;
         } else {
