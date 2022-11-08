@@ -1,24 +1,19 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineClose } from "react-icons/ai";
-import { Link } from "react-router-dom";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import { deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Reviews from "./ReviewsProduct";
 import { get_users } from "../redux/actionsCreator/usersActions";
 
 function Favorites() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useAuth0();
-  const fav_state = useSelector((state) => state.favReducer.favs);
   const favLS = useSelector((state) => state.favReducer.favsLs);
   const cart = useSelector((state) => state.cartReducer.items);
-  const product = useSelector((state) => state.productsReducer.detail);
   const [, setCart] = useLocalStorage("cart", cart);
   const [, setFav] = useLocalStorage("favs", favLS);
   const fav_users = useSelector((state) => state.favReducer.userFavs);
