@@ -3,31 +3,36 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../redux/actions/activitiesActions";
-import { 
+import {
   get_users,
   get_roles,
-  get_users_by_id
+  get_users_by_id,
 } from "../redux/actionsCreator/usersActions";
 import { addUserActivity } from "../redux/actionsCreator/registerActivityActions";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./Login/LoginButton";
 
 export default function Activities() {
-  const dispatch = useDispatch();
-
-
-
-  const allActivities = useSelector((state) => state.activitiesReducer.activities);
+  const allActivities = useSelector(
+    (state) => state.activitiesReducer.activities
+  );
   const usersState = useSelector((state) => state.usersReducer.usersById);
   const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
-  const register = useSelector((state) => state.registerActivityReducer.registerActivity)
- 
+  const register = useSelector(
+    (state) => state.registerActivityReducer.registerActivity
+  );
+  const { isAuthenticated, user } = useAuth0();
 
-// Add activities to a user - Register in an activity
 
-useEffect(() => {
-  dispatch(getActivities());
-  dispatch(get_users());
-}, [dispatch]);
+  const dispatch = useDispatch();
+
+  // Add activities to a user - Register in an activity
+
+  useEffect(() => {
+    dispatch(getActivities());
+    dispatch(get_users());
+  }, [dispatch]);
 
   //User
   useEffect(() => {
@@ -42,17 +47,42 @@ useEffect(() => {
     }
   }, [dispatch, allUsers, roles, usersState]);
 
-function handleAddtoAct(activities) {
-  if(usersState){
-    const findReg = register.find( a => a.id === activities.id)
-    if(findReg){
-        alert("El usuario ya esta registrado")
-    }else{
-      dispatch(addUserActivity(activities, usersState.id));
-     alert("Usuario registrado")
-   }
- }}
-
+  function handleAddtoAct(activities) {
+    if (!isAuthenticated) {
+      return (
+        <>
+          {/* <div className="col-auto">
+                  <button type="button" class="btn btn-outline-light mb-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#myModal">
+                    Suscribirse
+                  </button>
+                </div>
+      <div class="modal" id="myModal">
+        <div class="modal-dialog bg-white">
+          <div class="modal-header">
+            <h4 class="modal-title">Gracias por suscribirte!</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            Todos los días sabados recibiras un email con todas las novedades del club.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div> */}
+        </>
+      );
+    }
+    if (usersState) {
+      const findReg = register.find((a) => a.id === activities.id);
+      if (findReg) {
+        alert("El usuario ya esta registrado");
+      } else {
+        dispatch(addUserActivity(activities, usersState.id));
+        alert("Usuario registrado");
+      }
+    }
+  }
 
   return (
     <div>
@@ -121,21 +151,99 @@ function handleAddtoAct(activities) {
                     <p className="card-text">
                       <small className="text-muted">Horario: {a.times}</small>
                     </p>
-                    <button type="button" className="btn btn-secondary" onClick={() => handleAddtoAct(a.id)}>
-                      Inscribirse
-                    </button>
-                    <div
-                      className="d-flex flex-column px-4"
-                    >
-                      <Link to="/crearCalificacion">
-                        {" "}
-                        <button
-                          type="button"
-                          className="btn btn-outline-dark ms-2"
-                        >
-                          Deja tu reseña
-                        </button>{" "}
-                      </Link>
+
+                    {!isAuthenticated ? (
+                      <>
+                        <div className="col-auto">
+                          <button
+                            type="button"
+                            class="btn btn-outline-light mb-4 rounded-pill"
+                            data-bs-toggle="modal"
+                            data-bs-target="#inscriptionActivities"
+                          >
+                            Ingresar
+                          </button>
+                        </div>
+                        <div class="modal fade" id="inscriptionActivities">
+                          <div class="modal-dialog bg-white">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h4 class="modal-title">Ingresar</h4>
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                  ></button>
+                                </div>
+                                <div class="modal-body">
+                                  Por favor ingresa para inscribirte
+                                </div>
+                                <div class="modal-footer">
+                                  <LoginButton />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => handleAddtoAct(a.id)}
+                      >
+                        Inscribirse
+                      </button>
+                    )}
+
+                    <div className="d-flex flex-column px-4">
+                      {!isAuthenticated ? (
+                        <>
+                          <div className="col-auto">
+                            <button
+                              type="button"
+                              class="btn btn-outline-light mb-4 rounded-pill"
+                              data-bs-toggle="modal"
+                              data-bs-target="#inscriptionActivities"
+                            >
+                              Ingresar
+                            </button>
+                          </div>
+                          <div class="modal fade" id="inscriptionActivities">
+                            <div class="modal-dialog bg-white">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">Inscripción</h4>
+                                    <button
+                                      type="button"
+                                      class="btn-close"
+                                      data-bs-dismiss="modal"
+                                    ></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Por favor ingresa para dejar reseña
+                                  </div>
+                                  <div class="modal-footer">
+                                    <LoginButton />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <Link to="/crearCalificacion">
+                          {" "}
+                          <button
+                            type="button"
+                            className="btn btn-outline-dark ms-2"
+                          >
+                            Deja tu reseña
+                          </button>{" "}
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>

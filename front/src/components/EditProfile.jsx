@@ -7,6 +7,7 @@ import {
 } from "../redux/actionsCreator/usersActions";
 import upImage from "./CreateProduct/cloudinary";
 import { useAuth0 } from "@auth0/auth0-react";
+import EditProfileAdmin from "./EditProfileAdmin";
 
 export default function EditProfile() {
   const usersState = useSelector((state) => state.usersReducer.users);
@@ -54,7 +55,6 @@ export default function EditProfile() {
 
     //ACA IRIA LA LOGICA PARA AGREGAR IMAGEN
   };
-  console.log(findUser)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -126,7 +126,8 @@ export default function EditProfile() {
             </div>
 
             <div class="modal-body">
-              <title>Actualizar Perfil</title>
+              <EditProfileAdmin />
+              {/* <title>Actualizar Perfil</title>
               <div class="">
                 <h1 class="">Actualizar Perfil</h1>
                 <form
@@ -207,6 +208,7 @@ export default function EditProfile() {
                   </div>
                 </form>
               </div>
+            */}
             </div>
           </div>
         </div>

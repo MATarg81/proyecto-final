@@ -28,7 +28,6 @@ export function get_users(name, lastname, email) {
   };
 }
 export function get_users_by_id(id) {
-  console.log("get_users_by_id" + id);
   return async function (dispatch) {
     try {
       const { data } = await axios.get(`/users/${id}`);
