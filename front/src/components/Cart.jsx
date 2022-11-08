@@ -14,19 +14,24 @@ import { useState } from "react";
 import axios from "axios";
 import LoginButton from "./Login/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { get_users } from "../redux/actionsCreator/usersActions";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.items);
   const allState = useSelector((state) => state.cartReducer);
+  const allUsers = useSelector((state) => state.usersReducer.users);
   const dispatch = useDispatch();
   const [, setCart] = useLocalStorage("cart", state);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(0); //eslint-disable-next-line
   const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     if (state) {
       setCart(state);
     }
+    if(allUsers?.length === 0) {
+      dispatch(get_users())
+    } //eslint-disable-next-line
   }, [state, setCart]);
 
   useEffect(() => {
@@ -37,8 +42,11 @@ const Cart = () => {
       });
       setPrice(sum);
       dispatch(totalPrice(sum));
-    }
+    } //eslint-disable-next-line
   }, []);
+
+  const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
+
 
   const handleAdd = (item) => {
     dispatch(addCart(item));
@@ -55,11 +63,11 @@ const Cart = () => {
     setCart([]);
   };
 
-  const handleCartDB = () => {
-    dispatch(postCart(allState));
-    setCart([]);
-    dispatch(delAll());
-  };
+  // const handleCartDB = () => {
+  //   dispatch(postCart(allState));
+  //   setCart([]);
+  //   dispatch(delAll());
+  // };
 
   //-------PRUEBAS MP----------------------------------------------
 
@@ -181,7 +189,7 @@ const Cart = () => {
             >
               Vaciar Carrito
             </button>
-            {!isAuthenticated ? (
+            {!findUser ? (
               <>
                 <div className="col-auto">
                   <button
