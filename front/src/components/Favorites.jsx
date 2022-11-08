@@ -4,11 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { addCart } from "../redux/actionsCreator/cartActions";
-import { deleteFav, getFavs } from "../redux/actionsCreator/favsActions";
+import { deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Reviews from "./ReviewsProduct";
+import { get_users } from "../redux/actionsCreator/usersActions";
 
 function Favorites() {
   const dispatch = useDispatch();
@@ -20,14 +21,22 @@ function Favorites() {
   const product = useSelector((state) => state.productsReducer.detail);
   const [, setCart] = useLocalStorage("cart", cart);
   const [, setFav] = useLocalStorage("favs", favLS);
+  const fav_users = useSelector((state) => state.favReducer.userFavs);
+  
+  const stateUser = useSelector((state) => state.usersReducer.users);
+  const findUser = user ? stateUser.find((u) => u.email === user.email) : null;
 
+  console.log(findUser)
+  useEffect(() => {
+    dispatch(getAllfavs(findUser.id));
+    dispatch(get_users());
+  }, [dispatch]);
+  
   const addProduct = (product) => {
     dispatch(addCart(product));
     setCart(cart);
   };
 
-  const stateUser = useSelector((state) => state.usersReducer.users);
-  const findUser = user ? stateUser.find((u) => u.email === user.email) : null;
 
   const handleDeleteFav = (p) => {
     if (findUser) {
@@ -40,7 +49,9 @@ function Favorites() {
     }
   };
 
-  const stateOrLs = findUser ? fav_state : favLS;
+  const stateOrLs = findUser ? fav_users : favLS;
+ //console.log(stateOrLs)
+
   return (
     <div>
       <button
