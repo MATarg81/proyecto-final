@@ -4,7 +4,7 @@ const { putProduct } = require("./products");
 
 const postCart = async (req, res) => {
   const { items } = req.body;
-  console.log(items)
+  // console.log(items)
   let finalPrice = 0;
   items?.forEach((i) => {
     finalPrice = finalPrice + Number(i.price) * Number(i.qty)
@@ -43,7 +43,7 @@ const cartDetail = async (req, res) => {
 
 const getCart = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
     const purhcesesMaded = await Cart.findAll({
       include: {
         model: Product,
@@ -54,7 +54,7 @@ const getCart = async (req, res) => {
     });
     return res.status(200).json(purhcesesMaded);
   } catch (error) {
-    return res.status(400).json(error);
+    return res.status(400).send(console.log(error));
   }
 };
 

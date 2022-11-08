@@ -95,7 +95,8 @@ const ActivityCreate = function () {
       <div className="container-fluid">
         <button
           type="button"
-          class="btn btn-outline-dark"
+          class="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#createActivities"
         >

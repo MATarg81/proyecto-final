@@ -12,7 +12,7 @@ function MpSuccess() {
 
     useEffect(() => {
       posteo()
-      // setCart([]);
+      setCart([]);
       dispatch(delAll());
   }, []);
 
