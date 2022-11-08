@@ -29,7 +29,7 @@ const Profile = () => {
           <Link to="/profile">
           
           <img
-            src={user?.picture}
+            src={user?.picture ? user?.picture : findUser?.image}
             alt="Profile"
             className="rounded-circle img-fluid profile-picture mb-3 mb-md-0"
             data-toggle="tooltip" data-placement="bottom" title="Ingresar al perfil"
@@ -37,7 +37,7 @@ const Profile = () => {
           </Link>
         </div>
         <div className="col-md text-center text-md-left">
-          <h5>{findUser?.name}</h5>
+          <h5>{findUser?.name} {findUser?.lastname}</h5>
         </div>
       </div>
       <div className="row">

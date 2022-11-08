@@ -13,7 +13,6 @@ function Register() {
 
   const stateUser = useSelector( state => state.usersReducer.users)
   const checkUser = stateUser.find( u => u.email === user.email)
-  //console.log(checkUser, 'eeeeeeeee')
 
   const [error, setError] = useState({});
 
@@ -29,7 +28,6 @@ function Register() {
     postalCode: "",
   });
 
-  let pass = input.password;
   //let CP = input.postalCode
 
   const hours = [];
@@ -87,28 +85,6 @@ function Register() {
         error.email = "El email ingresado no es válido";
       }
     }
-
-    //Validate password
-    // if (input.password) {
-    //   if (input.password.length < 8) {
-    //     error.password = "La contraseña es demasiado corta";
-    //   } else if (!input.password.match(/[A-Z]/)) {
-    //     error.password = "Debe contener al menos una mayúscula";
-    //   } else if (!input.password.match(/\d/)) {
-    //     error.password = "Debe tener al menos un número";
-    //   } else if (
-    //     !input.password.match(/[!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/)
-    //   ) {
-    //     error.password = "Debe tener al menos un símbolo";
-    //   }
-    // }
-
-    //Confirm password
-    // if (input.validatePass && pass) {
-    //   if (pass !== input.validatePass) {
-    //     error.validatePass = "Las contraseñas no coinciden";
-    //   }
-    // }
 
     //Validate dirección
     if (input.address) {

@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,11 +14,12 @@ export default function EditProfileAdmin() {
   const userId = useSelector((state) => state.usersReducer.usersById);
   const users = useSelector((state) => state.usersReducer.users);
   const roles = useSelector((state) => state.usersReducer.roles);
+  const { isAuthenticated, user } = useAuth0();
 
   const dispatch = useDispatch();
 
   const [input, setInput] = useState({
-    id: '',
+    id: "",
     name: "",
     lastname: "",
     dateOfBirth: "",
@@ -25,8 +27,8 @@ export default function EditProfileAdmin() {
     email: "",
     address: "",
     postalCode: "",
-    roles: "",
-    image:''
+    roleId: "",
+    image: "",
   });
 
   useEffect(() => {
@@ -38,80 +40,93 @@ export default function EditProfileAdmin() {
     }
   }, [users, userId, roles, dispatch, input]);
 
+  const verifiedUser = users?.find((u) => user?.email === u.email);
+
   function handleDeleteUser(id) {
     if (window.confirm(`Are you sure you want to delete the activity?`)) {
       dispatch(delete_users(id));
-      console.log(id)
+      console.log(id);
     }
   }
-
-  // function handleCheck(e) {
-  //   if (e.target.checked) {
-  //     setInput({
-  //       ...input,
-  //       roles: [e.target.value],
-  //     });
-  //   }
-  // }
 
   function handleChange(e) {
     setInput({
       ...input,
       [e.target.id]: e.target.value,
-    })
+    });
   }
 
   function handleSubmit() {
-    
     setInput((input.id = userId.id));
-    if (!input.name) { setInput(input.name = userId.name) }
-    if (!input.lastname) { setInput((input.lastname = userId.lastname)) }
-    if (!input.email) { setInput((input.email = userId.email)) }
-    if (!input.dateOfBirth) { setInput((input.dateOfBirth = userId.dateOfBirth)) }
-    if (!input.phoneNumber) { setInput((input.phoneNumber = userId.phoneNumber)) }
-    if (!input.postalCode) { setInput((input.postalCode = userId.postalCode)) }
-    if (!input.address) { setInput((input.address = userId.address)) }
-    if (!input.roles) { setInput((input.roles = userId.role)) }
+    if (!input.name) {
+      setInput((input.name = userId.name));
+    }
+    if (!input.lastname) {
+      setInput((input.lastname = userId.lastname));
+    }
+    if (!input.email) {
+      setInput((input.email = userId.email));
+    }
+    if (!input.dateOfBirth) {
+      setInput((input.dateOfBirth = userId.dateOfBirth));
+    }
+    if (!input.phoneNumber) {
+      setInput((input.phoneNumber = userId.phoneNumber));
+    }
+    if (!input.postalCode) {
+      setInput((input.postalCode = userId.postalCode));
+    }
+    if (!input.address) {
+      setInput((input.address = userId.address));
+    }
+    if (!input.roleId) {
+      setInput((input.roleId = userId.roleId));
+    }
+    if (!input.image) {
+      setInput((input.image = userId.image));
+    }
     dispatch(update_user(input));
-    dispatch(get_users())
+    dispatch(get_users());
     setInput({
-    id: '',
-    name: "",
-    lastname: "",
-    dateOfBirth: "",
-    phoneNumber: "",
-    email: "",
-    address: "",
-    postalCode: "",
-    roles: "",
-    })
+      id: "",
+      name: "",
+      lastname: "",
+      dateOfBirth: "",
+      phoneNumber: "",
+      email: "",
+      address: "",
+      postalCode: "",
+      roleId: "",
+      image: "",
+    });
   }
 
   return (
     <>
-      <div>
-        <label htmlFor="chooseUser">Elige un usuario</label>
-        <select
-          id="chooseUser"
-          className="col-12"
-          onChange={(e) => {
-            dispatch(get_users_by_id(e.target.value));
-          }}
-        >
-          <option value="-">Elegí un usuario a editar</option>
-          {users?.map((u) => {
-            return (
-              <option key={`${u.id}`} value={`${u.id}`}>
-                {u.name}
-              </option>
-            );
-          })}
-        </select>
-      </div>
+      {verifiedUser?.roleId === 2 ? (
+        <div>
+          <label htmlFor="chooseUser">Elige un usuario</label>
+          <select
+            id="chooseUser"
+            className="col-12"
+            onChange={(e) => {
+              dispatch(get_users_by_id(e.target.value));
+            }}
+          >
+            <option value="-">Elegí un usuario a editar</option>
+            {users?.map((u) => {
+              return (
+                <option key={`${u.id}`} value={`${u.id}`}>
+                  {u.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      ) : null}
       <div>
         <form className="container">
           <div className="row mt-3 g-2 " onChange={handleChange} noValidate>
-
             <div className="">
               <label className="col-12" htmlFor="name">
                 Nombre:{" "}
@@ -210,22 +225,20 @@ export default function EditProfileAdmin() {
               ></input>
             </div>
 
-            <div class="">
-              {roles?.length > 0 &&
-                roles?.map((roles) => (
-                  <label htmlFor='rol'>
-                    <input
-                      id='rol'
-                      key={roles.id}
-                      type="checkbox"
-                      value={input.id}
-                      name={roles.name}
-                      onChange={handleChange}
-                    />
-                    {roles.name}
-                  </label>
-                ))}
-            </div>
+            {verifiedUser?.roleId === 2 ? (
+              <div class="">
+                <label className="col-12">Rol:</label>
+                <select id="roleId" onChange={handleChange}>
+                  <option value="-">Elige el rol</option>
+                  {roles?.length > 0 &&
+                    roles?.map((roles) => (
+                      <option key={roles.id} value={roles.id}>
+                        {roles.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            ) : null}
           </div>
           <div className="d-flex flex-row-reverse">
             <button
