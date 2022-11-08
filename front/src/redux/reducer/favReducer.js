@@ -27,7 +27,7 @@ function favReducer(state= favsInitialState, action){
             const item = action.payload          
             return {
               ...state,
-                favs: [...state.favs, item] 
+              userFavs: [...state.favs, item] 
               }
 
         case 'ADD_FAV_LS':
@@ -44,7 +44,7 @@ function favReducer(state= favsInitialState, action){
             
             return {
               ...state,
-              favs: filtro
+              userFavs: filtro
             };
 
         case 'REMOVE_FAV_LS':

@@ -8,12 +8,10 @@ import {
 // const BACK_URL = "http://localhost:3001";
 
 export function addFav(prod, idU) {
-   
     return async function (dispatch) {
         try {
             if(idU){
                 const url = await axios.post(`/favorites?id=${prod.id}&idU=${idU}`);
-                console.log(url.data, 'axios')
                 return dispatch({
                     type: ADD_FAV,
                     payload: url.data,
@@ -53,7 +51,7 @@ export function deleteFav(p, idU) {
     return async function (dispatch) {
         try {
             if(idU){
-                const url = await axios.delete(`/favorites?id=${p.id}&idU=${idU}`);
+                const url = await axios.delete(`/favorites?id=${p}&idU=${idU}`);
                 
                 return dispatch({
                     type: REMOVE_FAV,

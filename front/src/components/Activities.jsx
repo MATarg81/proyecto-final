@@ -166,7 +166,7 @@ export default function Activities() {
                             data-bs-toggle="modal"
                             data-bs-target="#inscriptionActivities"
                           >
-                            Ingresar
+                            Inscribirse
                           </button>
                         </div>
                         <div class="modal fade" id="inscriptionActivities">
@@ -212,7 +212,7 @@ export default function Activities() {
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
-                              Ingresar
+                              Deja tu reseña
                             </button>
                           </div>
                           <div class="modal fade" id="inscriptionActivities">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
 //import { addCart } from "../redux/actions/index";
-import { addFav, deleteFav } from "../redux/actionsCreator/favsActions";
+import { addFav, deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import {
   getProducts,
@@ -23,6 +23,7 @@ import LoginButton from "./Login/LoginButton";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import "animate.css/animate.min.css";
 import banner from "../imagesTeam/deportistacrop.jpg";
+import { get_users } from "../redux/actionsCreator/usersActions";
 
 function Shop() {
   //-----------------hover --------------- no se usa, estoy probando como implementarlo bien
@@ -50,7 +51,7 @@ function Shop() {
     (state) => state.productsReducer.byCategories
   );
   const cart_state = useSelector((state) => state.cartReducer);
-  const fav_state = useSelector((state) => state.favReducer.favs);
+  const fav_state = useSelector((state) => state.favReducer.userFavs);
   const fav_LS_state = useSelector((state) => state.favReducer.favsLs);
   const users_state = useSelector((state) => state.usersReducer.users);
 
@@ -97,12 +98,22 @@ function Shop() {
     if (category?.length > 0) {
       dispatch(getProducts());
     }
-  }, [dispatch, category]);
+    if(users_state?.length === 0) {
+      dispatch(get_users())
+    }
+  }, [dispatch, category, users_state]);
 
+  
   //favs
   const findUser = user
-    ? users_state.find((u) => u.email === user.email)
-    : null;
+  ? users_state.find((u) => u.email === user.email)
+  : null;
+  
+  useEffect(() => {
+    if(fav_state?.length === 0) {
+      dispatch(getAllfavs(findUser?.id))
+    }
+  }, [dispatch, fav_state, findUser])
 
   function handleAddtoFav(product) {
     if (findUser) {
@@ -132,7 +143,8 @@ function Shop() {
       progress: undefined,
     }); */
 
-  const stateOrLs = findUser ? fav_state : fav_LS_state;
+  const stateOrLs = user ? fav_state : fav_LS_state;
+
   // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
   //   localStorage.setItem('favs', JSON.stringify(favState))
   // }, [favState])
