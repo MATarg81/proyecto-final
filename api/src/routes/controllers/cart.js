@@ -4,7 +4,7 @@ const { putProduct } = require("./products");
 
 const postCart = async (req, res) => {
   const { items } = req.body;
-  console.log(items)
+  // console.log(items)
   let finalPrice = 0;
   items?.forEach((i) => {
     finalPrice = finalPrice + Number(i.price) * Number(i.qty)
