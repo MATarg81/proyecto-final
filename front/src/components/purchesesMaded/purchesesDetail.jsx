@@ -14,7 +14,6 @@ export default function PurchesesDetail() {
   }, [dispatch, id]);
 
   const purchesDetail = useSelector((state) => state.cartReducer.purchesDetail);
-  console.log(purchesDetail, " soy purches detail");
 
   return (
     <div>
