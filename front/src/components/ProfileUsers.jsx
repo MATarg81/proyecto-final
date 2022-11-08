@@ -13,15 +13,15 @@ export default function ProfileUsers() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if(roles?.length === 0) {
+    if (roles?.length === 0) {
       dispatch(get_roles())
     }
-    if(users?.length === 0) {
+    if (users?.length === 0) {
       dispatch(get_users())
     }
   }, [users, roles, dispatch])
 
- useEffect(() => {
+  useEffect(() => {
     if (order === "A/Z") {
       dispatch(orderUsersByName(order));
     }
@@ -35,7 +35,8 @@ export default function ProfileUsers() {
     <div className="container-fluid">
       <button
         type="button"
-        class="btn btn-outline-dark"
+        class="btn btn-outline-dark rounded-pill text-white border-white p-1"
+        style={{ backgroundColor: "indigo" }}
         data-bs-toggle="modal"
         data-bs-target="#editProfileAdmin"
       >
@@ -50,8 +51,8 @@ export default function ProfileUsers() {
                 Nombre
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0 w-25"
-                  style={{ width: "30%"}}
+                  className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
+                  style={{ width: "30%" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
                   <option value="-">⇅</option>
