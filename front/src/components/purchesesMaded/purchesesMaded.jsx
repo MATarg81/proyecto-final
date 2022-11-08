@@ -11,13 +11,13 @@ export default function PurchesesMaded() {
   // const { userId } = useParams();
 
   useEffect(() => {
-   if(purchesesMaded.length === 0){
+   if(purchesesMaded?.length === 0){
       dispatch(getCart(1)); //hardcodeo
       // dispatch(getCart(userId))
  }
     
   }, [dispatch, purchesesMaded]);
-let purchesStory = purchesesMaded.map((el)=>{
+let purchesStory = purchesesMaded?.map((el)=>{
   return (
     <div>
 
