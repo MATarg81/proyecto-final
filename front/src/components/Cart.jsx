@@ -9,8 +9,7 @@ import {
   totalPrice,
 } from "../redux/actionsCreator/cartActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import LoginButton from "./Login/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -43,14 +42,14 @@ const Cart = () => {
       setPrice(sum);
       dispatch(totalPrice(sum));
     } //eslint-disable-next-line
-  }, []);
+  }, [state]);
 
   const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
 
 
   const handleAdd = (item) => {
     dispatch(addCart(item));
-    setPrice(price + parseInt(item.price));
+    // setPrice(price + parseInt(item.price));
     setCart(state);
   };
   const handleDel = (item) => {
