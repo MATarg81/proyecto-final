@@ -12,6 +12,8 @@ import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import LoginButton from "./Login/LoginButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Cart = () => {
   const state = useSelector((state) => state.cartReducer.items);
@@ -19,6 +21,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const [, setCart] = useLocalStorage("cart", state);
   const [price, setPrice] = useState(0);
+  const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
     if (state) {
@@ -80,7 +83,6 @@ const Cart = () => {
 
   //-------PRUEBAS MP----------------------------------------------
 
-
   const emptyCart = () => {
     return (
       <div className="px-4 my-5 bg-light rounded-3 py-5">
@@ -95,20 +97,22 @@ const Cart = () => {
   const cartItems = (product) => {
     return (
       <>
-
         <div class="d-flex justify-content-start">
           <div class="p-2 border border-4 rounded shadow p-3 mb-5 bg-body rounded">
-            <img src={product.image} alt={product.name} height="200px" width="180px" />
+            <img
+              src={product.image}
+              alt={product.name}
+              height="200px"
+              width="180px"
+            />
           </div>
           <div class="p-2 shadow-sm p-3 mb-5">
             <h3 class="display-5">{product.name}</h3>
             <p className="display-6">
-              {product.qty} x $ {product.price} = $
-              {product.qty * product.price}
+              {product.qty} x $ {product.price} = ${product.qty * product.price}
             </p>
             <hr />
             <div class="lead">
-
               <button
                 className="btn rounded-pill text-white m-3"
                 style={{ backgroundColor: "indigo" }}
@@ -126,22 +130,11 @@ const Cart = () => {
               </button>
             </div>
           </div>
-{/*           <div class="p-2">Flex item 3</div>
- */}
-
+          {/*           <div class="p-2">Flex item 3</div>
+           */}
         </div>
 
-
-
-
-
-
-
-
-
-
-
-       {/*  <div className="px-4 my-5 bg-light rounded-3 py-5">
+        {/*  <div className="px-4 my-5 bg-light rounded-3 py-5">
           <div className="container py-4">
             <div className="row justify-content-center">
               <div className="col-md-4">
@@ -191,14 +184,51 @@ const Cart = () => {
             >
               Vaciar Carrito
             </button>
-            <Link
-              onClick={handlePayment}
-              to="/checkout"
-              className="btn btn-outline-dark rounded-pill text-white border-white p-1"
-              style={{ backgroundColor: "Indigo" }}
-            >
-              Proceder al pago
-            </Link>
+            {!isAuthenticated ? (
+              <>
+                <div className="col-auto">
+                  <button
+                    type="button"
+                    class="btn btn-outline-dark mb-4 rounded-pill"
+                    data-bs-toggle="modal"
+                    data-bs-target="#procederPago"
+                  >
+                    Proceder al pago
+                  </button>
+                </div>
+                <div class="modal fade" id="procederPago">
+                  <div class="modal-dialog bg-white">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Ingresar</h4>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          Por favor ingresa para proceder al pago
+                        </div>
+                        <div class="modal-footer">
+                          <LoginButton />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <Link
+                onClick={handlePayment}
+                to="/checkout"
+                className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+                style={{ backgroundColor: "Indigo" }}
+              >
+                Proceder al pago
+              </Link>
+            )}
           </div>
         </div>
       </>
@@ -215,8 +245,6 @@ const Cart = () => {
 };
 
 export default Cart;
-
-
 
 /* 
 
