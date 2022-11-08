@@ -55,21 +55,21 @@ export default function Activities() {
       return (
         <>
           {/* <div className="col-auto">
-                  <button type="button" class="btn btn-outline-light mb-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#myModal">
+                  <button type="button" className="btn btn-outline-light mb-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#myModal">
                     Suscribirse
                   </button>
                 </div>
-      <div class="modal" id="myModal">
-        <div class="modal-dialog bg-white">
-          <div class="modal-header">
-            <h4 class="modal-title">Gracias por suscribirte!</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      <div className="modal" id="myModal">
+        <div className="modal-dialog bg-white">
+          <div className="modal-header">
+            <h4 className="modal-title">Gracias por suscribirte!</h4>
+            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             Todos los días sabados recibiras un email con todas las novedades del club.
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div> */}
@@ -167,29 +167,29 @@ export default function Activities() {
                       <div class="d-flex flex-column px-4">
                           <button
                             type="button"
-                            class="btn btn-outline-light mb-4 rounded-pill"
+                            className="btn btn-outline-light mb-4 rounded-pill"
                             data-bs-toggle="modal"
                             data-bs-target="#inscriptionActivities"
                           >
                             Ingresar
                           </button>
-                      </div>
-                        <div class="modal fade" id="inscriptionActivities">
-                          <div class="modal-dialog bg-white">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h4 class="modal-title">Ingresar</h4>
+                        </div>
+                        <div className="modal fade" id="inscriptionActivities">
+                          <div className="modal-dialog bg-white">
+                            <div className="modal-dialog">
+                              <div className="modal-content">
+                                <div className="modal-header">
+                                  <h4 className="modal-title">Ingresar</h4>
                                   <button
                                     type="button"
-                                    class="btn-close"
+                                    className="btn-close"
                                     data-bs-dismiss="modal"
                                   ></button>
                                 </div>
-                                <div class="modal-body">
+                                <div className="modal-body">
                                   Por favor ingresa para inscribirte
                                 </div>
-                                <div class="modal-footer">
+                                <div className="modal-footer">
                                   <LoginButton />
                                 </div>
                               </div>
@@ -214,28 +214,29 @@ export default function Activities() {
                           
                             <button
                               type="button"
-                              class="btn btn-outline-light mb-4 rounded-pill"
+                              className="btn btn-outline-light mb-4 rounded-pill"
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
                               Deja tu reseña
                             </button>
-                          <div class="modal fade" id="inscriptionActivities">
-                            <div class="modal-dialog bg-white">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h4 class="modal-title">Inscripción</h4>
+                          </div>
+                          <div className="modal fade" id="inscriptionActivities">
+                            <div className="modal-dialog bg-white">
+                              <div className="modal-dialog">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h4 className="modal-title">Inscripción</h4>
                                     <button
                                       type="button"
-                                      class="btn-close"
+                                      className="btn-close"
                                       data-bs-dismiss="modal"
                                     ></button>
                                   </div>
-                                  <div class="modal-body">
+                                  <div className="modal-body">
                                     Por favor ingresa para dejar reseña
                                   </div>
-                                  <div class="modal-footer">
+                                  <div className="modal-footer">
                                     <LoginButton />
                                   </div>
                                 </div>

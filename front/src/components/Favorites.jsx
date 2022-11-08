@@ -48,13 +48,13 @@ function Favorites() {
         style={{ margin: "5px" }}
         onClick={() => navigate("/tienda")}
       >
-        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Volver
+        <i className="fa fa-arrow-circle-left" aria-hidden="true"></i> Volver
       </button>
 
-      <div class="col-lg-3 d-none d-lg-block">
-        <h1 class="m-0 display-5 font-weight-semi-bold">
+      <div className="col-lg-3 d-none d-lg-block">
+        <h1 className="m-0 display-5 font-weight-semi-bold">
           <span
-            class="font-weight-bold border px-1 mr-1"
+            className="font-weight-bold border px-1 mr-1"
             style={{ color: "indigo" }}
           >
             F
@@ -65,7 +65,7 @@ function Favorites() {
       <hr />
 
       <div
-        class="container animate__animated animate__fadeInUp"
+        className="container animate__animated animate__fadeInUp"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
@@ -74,26 +74,26 @@ function Favorites() {
         }}
       >
         {stateOrLs?.map((p, index) => (
-          <div class="card product-item border-0" key={index}>
-            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
-              <div class="" onClick={() => navigate(`/tienda/${p.id}`)}>
+          <div className="card product-item border-0" key={index}>
+            <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
+              <div className="" onClick={() => navigate(`/tienda/${p.id}`)}>
                 <img
-                  class="img-fluid hover-zoom bg-image"
+                  className="img-fluid hover-zoom bg-image"
                   src={p.image}
                   /* className="card-img-top" */ alt={p.name}
                 />
               </div>
             </div>
-            <div class="card-body border-left border-right text-center">
-              <h6 class="text-truncate ">{p.name}</h6>
-              <div class="d-flex justify-content-center">
+            <div className="card-body border-left border-right text-center">
+              <h6 className="text-truncate ">{p.name}</h6>
+              <div className="d-flex justify-content-center">
                 <h6>$ {p.price}</h6>
               </div>
             </div>
-            <div class="card-footer d-flex justify-content-between border text-primary">
+            <div className="card-footer d-flex justify-content-between border text-primary">
               <a
                 onClick={() => navigate(`/tienda/${p.id}`)}
-                class="btn btn-sm  p-0"
+                className="btn btn-sm  p-0"
               >
                 <i
                   data-toggle="tooltip"
@@ -106,7 +106,7 @@ function Favorites() {
                     height="16"
                     style={{ color: "indigo" }}
                     fill="currentColor"
-                    class="bi bi-eye"
+                    className="bi bi-eye"
                     viewBox="0 0 16 16"
                   >
                     <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
@@ -114,7 +114,7 @@ function Favorites() {
                   </svg>
                 </i>
               </a>
-              <a onClick={() => addProduct(p)} class="btn btn-sm  p-0">
+              <a onClick={() => addProduct(p)} className="btn btn-sm  p-0">
                 <i
                   data-toggle="tooltip"
                   data-placement="bottom"
@@ -129,7 +129,7 @@ function Favorites() {
                     width="16"
                     height="16"
                     fill="currentColor"
-                    class="bi bi-cart"
+                    className="bi bi-cart"
                     viewBox="0 0 16 16"
                   >
                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
@@ -138,10 +138,10 @@ function Favorites() {
               </a>
               <a
                 onClick={() => handleDeleteFav(p)}
-                class="btn btn-sm  p-0"
+                className="btn btn-sm  p-0"
                 style={{ color: "indigo" }}
               >
-                <i class="fa fa-trash" aria-hidden="true"></i>
+                <i className="fa fa-trash" aria-hidden="true"></i>
               </a>
             </div>
           </div>

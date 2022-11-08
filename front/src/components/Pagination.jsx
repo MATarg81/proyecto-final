@@ -17,50 +17,54 @@ const Pagination = function ({ page, setPage, totalPages }) {
     n++;
   }
 
-  return (<div>
-
-
-
-
-
-
-    <div class="col-12 pb-1">
-      <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center mb-3 ">
-          <li class="page-item">
-            <a
-              onClick={handlePrev}
-              disabled={page <= 1}
-              className="page-link text-white "
-              data-mdb-ripple-color="dark"
-              aria-label="Next"
-              style={{ backgroundColor: "indigo" }}
-            >
-              «
-            </a>
-          </li>
-          {pages.map((p, index) => (
-            <li class="page-item border-0"><a class="page-link text-white" key={index}
-              onClick={() => {
-                setPage(p);
-              }} disabled={page === p} style={{ backgroundColor: "indigo" }} > {p}</a></li>
-
-          ))}
-          <li class="page-item" >
-            <a class="page-link text-white" aria-label="Next" onClick={handleNext}
-              disabled={page >= totalPages} style={{ backgroundColor: "indigo" }}>
-              <span aria-hidden="true">»</span>
-
-            </a>
-          </li>
-        </ul>
-      </nav>
+  return (
+    <div>
+      <div className="col-12 pb-1">
+        <nav aria-label="Page navigation">
+          <ul className="pagination justify-content-center mb-3 ">
+            <li className="page-item">
+              <a
+                onClick={handlePrev}
+                disabled={page <= 1}
+                className="page-link text-white "
+                data-mdb-ripple-color="dark"
+                aria-label="Next"
+                style={{ backgroundColor: "indigo" }}
+              >
+                «
+              </a>
+            </li>
+            {pages.map((p, index) => (
+              <li key={index} className="page-item border-0">
+                <a
+                  className="page-link text-white"
+                  onClick={() => {
+                    setPage(p);
+                  }}
+                  disabled={page === p}
+                  style={{ backgroundColor: "indigo" }}
+                >
+                  {" "}
+                  {p}
+                </a>
+              </li>
+            ))}
+            <li className="page-item">
+              <a
+                className="page-link text-white"
+                aria-label="Next"
+                onClick={handleNext}
+                disabled={page >= totalPages}
+                style={{ backgroundColor: "indigo" }}
+              >
+                <span aria-hidden="true">»</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
-
-  </div>
   );
 };
 
 export default Pagination;
-
-

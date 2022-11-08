@@ -175,12 +175,12 @@ function About() {
               </div>
             </div>
 
-            <div class="card mb-3" max-width="540px">
-              <div class="row g-0">
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">MÁS QUE TALENTO</h5>
-                    <p class="card-text">
+            <div className="card mb-3" max-width="540px">
+              <div className="row g-0">
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <h5 className="card-title">MÁS QUE TALENTO</h5>
+                    <p className="card-text">
                       texto comentario etc....
                     </p>
                   </div>
