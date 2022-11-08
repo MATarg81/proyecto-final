@@ -39,8 +39,8 @@ const Pagination = function ({ page, setPage, totalPages }) {
               «
             </a>
           </li>
-          {pages.map((p) => (
-            <li class="page-item border-0"><a class="page-link text-white" key={p}
+          {pages.map((p, index) => (
+            <li class="page-item border-0"><a class="page-link text-white" key={index}
               onClick={() => {
                 setPage(p);
               }} disabled={page === p} style={{ backgroundColor: "indigo" }} > {p}</a></li>

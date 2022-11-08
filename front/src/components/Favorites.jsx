@@ -73,8 +73,8 @@ function Favorites() {
           margin: "2rem",
         }}
       >
-        {stateOrLs?.map((p) => (
-          <div class="card product-item border-0" key={p.id}>
+        {stateOrLs?.map((p, index) => (
+          <div class="card product-item border-0" key={index}>
             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
               <div class="" onClick={() => navigate(`/tienda/${p.id}`)}>
                 <img
