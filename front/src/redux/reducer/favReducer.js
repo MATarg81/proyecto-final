@@ -9,6 +9,7 @@ import {
 
 const favsInitialState = { 
     favs: [] ,
+    userFavs: [],
     favsLs: localStorage.favs 
     ? JSON.parse(localStorage.favs)
     : [],
@@ -16,6 +17,12 @@ const favsInitialState = {
 
 function favReducer(state= favsInitialState, action){
     switch (action.type) {
+        case 'GET_FAVS':
+          return {
+            ...state,
+            userFavs: action.payload
+          }
+
         case ADD_FAV: 
             const item = action.payload          
             return {
