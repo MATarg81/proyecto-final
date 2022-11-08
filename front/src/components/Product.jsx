@@ -4,6 +4,11 @@ import { addCart } from "../redux/actionsCreator/cartActions";
 import { Link, useParams } from "react-router-dom";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { getDetail } from "../redux/actionsCreator/productsActions";
+import {
+  get_users,
+  get_roles,
+  get_users_by_id,
+} from "../redux/actionsCreator/usersActions";
 import Reviews from "./ReviewsProduct"
 // import { AiOutlineVerticalAlignMiddle } from "react-icons/ai";
 //import Skeleton from "react-loading-skeleton";
@@ -12,9 +17,25 @@ function Product() {
   const { id } = useParams();
   const product = useSelector((state) => state.productsReducer.detail);
   const cart = useSelector((state) => state.cartReducer.items);
+  const usersState = useSelector((state) => state.usersReducer.usersById);
+  const roles = useSelector((state) => state.usersReducer.roles);
+  const allUsers = useSelector((state) => state.usersReducer.users);
   const [, setCart] = useLocalStorage("cart", cart);
   const dispatch = useDispatch();
   //const [loading, setloading] = useState(false);
+
+  useEffect(() => {
+    if (allUsers?.length === 0) {
+      dispatch(get_users());
+    }
+    if (roles?.length === 0) {
+      dispatch(get_roles());
+    }
+    if (usersState?.length === 0) {
+      dispatch(get_users_by_id(7));
+    }
+  }, [dispatch, allUsers, roles, usersState]);
+
   console.log(product)
   useEffect(() => {
     if (product?.length === 0) {

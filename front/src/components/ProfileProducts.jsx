@@ -118,7 +118,7 @@ export default function ProfileProducts() {
           </thead>
           <tbody>
             {allProducts &&
-              allProducts.map((p) => {
+              allProducts?.map((p) => {
                 return (
                   <>
                     <tr className="d-flex col-sm-10">

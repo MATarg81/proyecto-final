@@ -72,6 +72,7 @@ const {
   Buy,
   Buyitem,
   Favorite,
+  Cart,
 } = sequelize.models;
 
 // RELACIONES:
@@ -79,8 +80,14 @@ const {
 Product.belongsToMany(Category, { through: "Category_Product" });
 Category.belongsToMany(Product, { through: "Category_Product" });
 
+Product.belongsToMany(Cart, { through: "Cart_Product" });
+Cart.belongsToMany(Product, { through: "Cart_Product" });
+
 Activity.belongsToMany(User, { through: "Activity_User" });
 User.belongsToMany(Activity, { through: "Activity_User" });
+
+Cart.belongsTo(User);
+User.hasMany(Cart);
 
 User.belongsTo(Role);
 Role.hasMany(User);
