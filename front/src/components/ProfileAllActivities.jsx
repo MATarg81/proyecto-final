@@ -38,10 +38,11 @@ export default function ProfileAllActivities() {
 
   return (
     <div className="container-fluid">
-      <div>
+      <div class="d-flex flex-row">
         <button
           type="button"
-          class="btn btn-outline-dark"
+          class="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#editActivities"
         >
@@ -50,10 +51,10 @@ export default function ProfileAllActivities() {
         <ActivityCreate />
       </div>
       <div>
-        <table className="table table-responsive-sm table-striped table-hover">
+        <table className="table table-responsive-sm table-striped table-hover table-danger">
           <thead>
             <tr className="d-flex col-sm-10">
-              <th className="col-sm-1">
+              <th className="col-sm-1" style={{width:"150px"}}>
                 Nombre
                 <select
                   type="button"
@@ -81,8 +82,8 @@ export default function ProfileAllActivities() {
                 </select>
               </th>
 
-              <th className="col-sm-2">Detalle</th>
-              <th className="col-sm-1">Días</th>
+              <th className="col-sm-2" style={{width:"300px"}}>Detalle</th>
+              <th className="col-sm-1" style={{width:"150px"}}>Días</th>
               <th className="col-sm-1">Horarios</th>
               <th className="col-sm-1">Imágen</th>
             </tr>
@@ -94,10 +95,10 @@ export default function ProfileAllActivities() {
                 return (
                   <>
                     <tr className="d-flex col-sm-10">
-                      <td className="col-sm-1 text-truncate">{a.name}</td>
+                      <td className="col-sm-1 text-truncate" style={{width:"150px"}}>{a.name}</td>
                       <td className="col-sm-1">{a.price}</td>
-                      <td className="col-sm-2 text-truncate">{a.detail}</td>
-                      <td className="col-sm-1 text-truncate">{a.days}</td>
+                      <td className="col-sm-2 text-truncate" style={{width:"300px"}}>{a.detail}</td>
+                      <td className="col-sm-1 text-truncate" style={{width:"150px"}}>{a.days}</td>
                       <td className="col-sm-1 text-truncate">{a.times}</td>
                       <td className="col-sm-1 text-truncate">
                         <img
