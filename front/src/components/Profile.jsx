@@ -254,7 +254,7 @@ export default function Perfil() {
                   </div>
                   <div class="w-auto">
                     <div class="about-avatar" >
-                      <img src={user?.picture ? user?.picture : findUser?.image} title="" alt="hjhj"/>
+                      <img src={user?.picture ? user?.picture : findUser?.image} title="" alt="Foto de perfil"/>
                     </div>
                   </div>
                 </div>
