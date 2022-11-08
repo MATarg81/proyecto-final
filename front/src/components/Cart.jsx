@@ -225,14 +225,14 @@ const Cart = () => {
                 </div>
               </>
             ) : (
-              <Link
+              <button
                 onClick={handlePayment}
                 to="/checkout"
                 className="btn btn-outline-dark rounded-pill text-white border-white p-1"
                 style={{ backgroundColor: "Indigo" }}
               >
                 Proceder al pago
-              </Link>
+              </button>
             )}
           </div>
         </div>
