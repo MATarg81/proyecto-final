@@ -4,13 +4,15 @@ const { putProduct } = require("./products");
 
 const postCart = async (req, res) => {
   const { items } = req.body;
-  let sum = 0;
-  const price = items?.map((i) => {
-    return (sum = sum + parseInt(i.price) * parseInt(i.qty));
-  });
+  console.log(items)
+  let finalPrice = 0;
+  items?.forEach((i) => {
+    finalPrice = finalPrice + Number(i.price) * Number(i.qty)
+  })
+
   try {
     const newCartList = await Cart.create({
-      total: price,
+      total: finalPrice,
       userId: 1,
       productQty: items?.map((i) => [i.id, i.qty]),
     });
