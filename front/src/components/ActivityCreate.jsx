@@ -95,7 +95,7 @@ const ActivityCreate = function () {
       <div className="container-fluid">
         <button
           type="button"
-          class="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          className="btn btn-outline-dark rounded-pill text-white border-white p-1"
           style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#createActivities"
@@ -103,26 +103,26 @@ const ActivityCreate = function () {
           Crear actividad
         </button>
         <div
-          class="modal fade"
+          className="modal fade"
           id="createActivities"
           tabindex="-1"
           aria-labelledby="createActivityLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="createActivityLabel">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="createActivityLabel">
                   Editar producto
                 </h5>
                 <button
                   type="button"
-                  class="btn-close"
+                  className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                 ></button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <div className="activityCreate">
                   <form onSubmit={(e) => handleSubmit(e)}>
                     <div

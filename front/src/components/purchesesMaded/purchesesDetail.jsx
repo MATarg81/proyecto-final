@@ -18,7 +18,7 @@ export default function PurchesesDetail() {
   return (
     <div>
       <Link to="/profile/historial">
-        <button class="btn btn-outline-dark rounded-pill text-white border-white p-1" style={{backgroundColor: "indigo"}}> Go Back </button>
+        <button className="btn btn-outline-dark rounded-pill text-white border-white p-1" style={{backgroundColor: "indigo"}}> Go Back </button>
       </Link>
       {purchesDetail.products?.length &&
         purchesDetail.products.map((el) => {
