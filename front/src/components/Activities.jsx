@@ -24,7 +24,7 @@ export default function Activities() {
   );
   const { isAuthenticated, user } = useAuth0();
 
-    //hola
+  //hola
 
   const dispatch = useDispatch();
 
@@ -50,7 +50,7 @@ export default function Activities() {
     }
   }, [dispatch, allUsers, roles, usersState]);
 
-  const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
+  const findUser = user ? allUsers?.find((u) => u.email === user.email) : null;
 
   function handleAddtoAct(activities) {
     if (!findUser) {
@@ -125,9 +125,9 @@ export default function Activities() {
 
       <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
         {allActivities ? (
-          allActivities.map((a) => {
+          allActivities.map((a, index) => {
             return (
-              <div className="col" key={a.name}>
+              <div className="col" key={index}>
                 <div
                   className="card h-100 m-2"
                   style={{

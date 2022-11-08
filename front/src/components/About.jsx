@@ -86,7 +86,7 @@ function About() {
           id="v-pills-profile"
           role="tabpanel"
           aria-labelledby="v-pills-profile-tab"
-          tabindex="0"          >
+          tabIndex="0"          >
           <div className="card mb-3" max-width="540px">
             <div className="row g-0">
               <div className="col-md-4">
@@ -149,7 +149,7 @@ function About() {
           id="v-pills-more"
           role="tabpanel"
           aria-labelledby="v-pills-more-tab"
-          tabindex="0">
+          tabIndex="0">
           <div>
             <h1> MÁS QUE UN CLUB </h1>
 
