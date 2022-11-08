@@ -14,6 +14,7 @@ import ProfileAllActivities from "./ProfileAllActivities";
 import ProfileUsers from "./ProfileUsers";
 import { useAuth0 } from '@auth0/auth0-react';
 import EditProfile from "./EditProfile";
+import PurchesesMaded from "./purchesesMaded/purchesesMaded"
 
 export default function Perfil() {
   const usersState = useSelector((state) => state.usersReducer.usersById);
@@ -254,7 +255,7 @@ export default function Perfil() {
                   </div>
                   <div class="w-auto">
                     <div class="about-avatar" >
-                      <img src={user?.picture ? user?.picture : findUser?.image} title="" alt="hjhj"/>
+                      <img src={user?.picture ? user?.picture : findUser?.image} title="" alt="Foto"/>
                     </div>
                   </div>
                 </div>
@@ -299,7 +300,7 @@ export default function Perfil() {
             aria-labelledby="v-pills-history-tab"
             tabIndex="0"
           >
-            <PurchesesDetail />
+            <PurchesesMaded />
           </div>
         </div>
       </div>
