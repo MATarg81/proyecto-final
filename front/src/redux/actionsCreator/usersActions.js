@@ -42,8 +42,7 @@ export function get_users_by_id(id) {
 
 export function add_users(payload) {
   return function () {
-    axios
-      .post(`/users`, payload)
+    axios.post(`/users`, payload)
       .then((res) => {
         console.log(res.data);
       })

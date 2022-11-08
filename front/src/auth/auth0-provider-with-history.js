@@ -19,6 +19,8 @@ const Auth0ProviderWithHistory = ({ children }) => {
       //redirectUri={ window.location.origin }
       redirectUri={'http://localhost:3000/registro'}
       //onRedirectCallback={onRedirectCallback}
+      useRefreshTokens = {true}
+      cacheLocation="localstorage"
     >
       {children}
     </Auth0Provider>
