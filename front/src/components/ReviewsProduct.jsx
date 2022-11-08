@@ -164,10 +164,10 @@ function Reviews() {
     //--------------------------------------------------------------------
 
     return (
-        <div class="" /* style={styles.container} */>
+        <div className="" /* style={styles.container} */>
 
-            <div class="d-flex flex-row ">
-                <h5 class="" style={{ paddingRight: "20px" }}> Dejanos tu reseña </h5>
+            <div className="d-flex flex-row ">
+                <h5 className="" style={{ paddingRight: "20px" }}> Dejanos tu reseña </h5>
                 <div >
                     {stars.map((_, index) => {
                         return (
@@ -188,9 +188,9 @@ function Reviews() {
                 </div>
             </div>
 
-            <div class="d-flex flex-column">
-                <textarea class="form-control" onChange={handleChange} placeholder="Escribe aquí tu comentario" rows="8"/* style={styles.textarea} */ />
-                <button /*  style={styles.button} */ class="btn border ms-2 rounded-pill text-white" style={{ backgroundColor: "indigo" }}
+            <div className="d-flex flex-column">
+                <textarea className="form-control" onChange={handleChange} placeholder="Escribe aquí tu comentario" rows="8"/* style={styles.textarea} */ />
+                <button /*  style={styles.button} */ className="btn border ms-2 rounded-pill text-white" style={{ backgroundColor: "indigo" }}
                     onClick={handleSubmit}>
                     Enviar
                 </button>
@@ -207,14 +207,14 @@ function Reviews() {
                 </div>
                 <div className="p-2">
                     {detail.map((r) => (
-                        <div class="d-flex flex-column border border-5 rounded-start m-1">
+                        <div className="d-flex flex-column border border-5 rounded-start m-1">
 
-                            <div class="d-flex flex-row" key={r.id}>
-                                <h5 class="d-flex flex-row">{r.user.name}</h5>
-                                <h4 class="d-flex flex-row" >{score(r.score)}{r.score}</h4>
+                            <div className="d-flex flex-row" key={r.id}>
+                                <h5 className="d-flex flex-row">{r.user.name}</h5>
+                                <h4 className="d-flex flex-row" >{score(r.score)}{r.score}</h4>
                             </div>
-                            <div class="d-flex flex-column">
-                                <p class="d-flex flex-column">{r.content}</p>
+                            <div className="d-flex flex-column">
+                                <p className="d-flex flex-column">{r.content}</p>
                             </div>
 
                         </div>

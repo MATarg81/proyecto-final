@@ -35,7 +35,7 @@ export default function ProfileUsers() {
     <div className="container-fluid">
       <button
         type="button"
-        class="btn btn-outline-dark rounded-pill text-white border-white p-1"
+        className="btn btn-outline-dark rounded-pill text-white border-white p-1"
         style={{ backgroundColor: "indigo" }}
         data-bs-toggle="modal"
         data-bs-target="#editProfileAdmin"
@@ -102,26 +102,26 @@ export default function ProfileUsers() {
                 );
               })}
             <div
-              class="modal fade"
+              className="modal fade"
               id="editProfileAdmin"
               tabindex="-1"
               aria-labelledby="editProfileAdminLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileAdminLabel">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="editProfileAdminLabel">
                       Editar usuario
                     </h5>
                     <button
                       type="button"
-                      class="btn-close"
+                      className="btn-close"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <EditProfileAdmin />
                   </div>
                 </div>
