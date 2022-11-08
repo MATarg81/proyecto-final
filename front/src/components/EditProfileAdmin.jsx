@@ -243,18 +243,21 @@ export default function EditProfileAdmin() {
           <div className="d-flex flex-row-reverse">
             <button
               type="button"
-              className=" btn btn-primary mt-3"
+              className="btn btn-outline-dark rounded-pill text-white border-white"
               data-bs-dismiss="modal"
               aria-label="Close"
               onClick={handleSubmit}
+              style={{backgroundColor:"indigo"}}
             >
               Guardar
             </button>
             <button
               type="button"
-              className="btn btn-primary mt-3 btn-dark"
+              className="btn btn-outline-dark rounded-pill text-white border-white"
               data-bs-dismiss="modal"
               aria-label="Close"
+              style={{backgroundColor:"red"}}
+
               onClick={() => {
                 handleDeleteUser(userId.id);
                 dispatch(get_users());
