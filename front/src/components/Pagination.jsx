@@ -23,42 +23,45 @@ const Pagination = function ({ page, setPage, totalPages }) {
         <nav aria-label="Page navigation">
           <ul className="pagination justify-content-center mb-3 ">
             <li className="page-item">
-              <a
+              <button
                 onClick={handlePrev}
+                
                 disabled={page <= 1}
-                className="page-link text-white "
+                className="page-link text-white pe-auto"
                 data-mdb-ripple-color="dark"
                 aria-label="Next"
                 style={{ backgroundColor: "indigo" }}
               >
                 «
-              </a>
+              </button>
             </li>
             {pages.map((p, index) => (
               <li key={index} className="page-item border-0">
-                <a
-                  className="page-link text-white"
+                <button
+                  className="page-link text-white pe-auto"
                   onClick={() => {
                     setPage(p);
                   }}
+                  
                   disabled={page === p}
                   style={{ backgroundColor: "indigo" }}
                 >
                   {" "}
                   {p}
-                </a>
+                </button>
               </li>
             ))}
             <li className="page-item">
-              <a
-                className="page-link text-white"
+              <button
+                className="page-link text-white pe-auto"
                 aria-label="Next"
                 onClick={handleNext}
                 disabled={page >= totalPages}
+                
                 style={{ backgroundColor: "indigo" }}
               >
                 <span aria-hidden="true">»</span>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>
