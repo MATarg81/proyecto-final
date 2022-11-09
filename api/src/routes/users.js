@@ -19,3 +19,5 @@ router.get("/:id", getUsersById);
 router.post("/", addUser);
 router.delete("/:id", deleteUser);
 router.patch("/", updateUser)
+
+module.exports = router;
