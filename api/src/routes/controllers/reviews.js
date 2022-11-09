@@ -151,7 +151,7 @@ const reviewsProductsId = async(id) => {
 async function getProductsReviews(req, res) {
 
 try{
-    const totalReviews = await Review.findAll({include:[{model: Product, attributes: ['name']}, {model: User, attributes: ['name']}]});
+    const totalReviews = await Review.findAll({include:[{model: Product, attributes: ['name']}, {model: User, attributes: ['name', 'id']}]});
   
     if(totalReviews){
       return res.status(200).send(totalReviews);
@@ -165,6 +165,7 @@ try{
 
 
 async function getProductsReviewsId (req, res) {
+  console.log(req.params.id)
   try {
       const id = req.params.id;
 
@@ -190,6 +191,10 @@ async function addProductsReviews(req, res) {
   } = req.body;
   console.log(req.body)
 
+  const findProduct = await Product.findOne({ where: { id: product}});
+  const findUser = await User.findOne({where: { id: user }})
+ 
+
   try {
       const newReview = await Review.create({
         score,
@@ -209,11 +214,49 @@ async function addProductsReviews(req, res) {
   }
 }
 
+async function updateProductsReviews(req, res) {
+  const { 
+    id,
+    score, 
+    content, 
+    product, 
+    user
+  } = req.body;
+  console.log(req.body)
+
+  const findProduct = await Product.findOne({ where: { id: product}});
+  const findUser = await User.findOne({where: { id: user }})
+ 
+  try {
+      const newReview = await Review.update({
+        score,
+        content,
+      },
+      {
+        where: {
+          id: Number(id),
+        },
+      });
+      
+      // newReview.setProduct(findProduct.id);
+      // newReview.setUser(findUser.id);
+
+      return res
+      .status(200)
+      .json(newReview); 
+  } catch (e) {
+    return res
+    .status(404)
+    .send(console.log("problemas: ", e));
+  }
+}
+
 module.exports = {
   getActivitiesReviews,
   addActivitiesReviews,
   getActivitiesReviewsId,
   getProductsReviews,
   addProductsReviews,
-  getProductsReviewsId
+  getProductsReviewsId,
+  updateProductsReviews
 };

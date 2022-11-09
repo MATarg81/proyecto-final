@@ -32,6 +32,22 @@ export function postReview(body){
   }
 };
 
+export function patchReview(body){
+  return async function (dispatch){
+    console.log(body)
+    try{
+      const response = await axios.patch(`/reviews/products/${body.product}`, body)
+      return dispatch({
+        type: "PATCH_REVIEW",
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+  }
+};
+
 export function getReviewsProductId(id){
   return async function(dispatch){
     
