@@ -32,6 +32,7 @@ const Profile = () => {
                 data-toggle="tooltip"
                 data-placement="bottom"
                 title="Ingresar al perfil"
+                
               />
               <button className="btn position-absolute btn-sm ">Perfil</button>
             </div>
