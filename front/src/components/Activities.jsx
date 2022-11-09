@@ -157,7 +157,7 @@ export default function Activities() {
 
                       {!findUser ? (
                         <div class="d-flex flex-column">
-                          <div class="d-flex flex-column px-4">
+                          <div class="d-flex flex-column">
                             <button
                               type="button"
                               className="btn btn-outline-light mb-4 rounded-pill"
