@@ -9,8 +9,7 @@ import {
   totalPrice,
 } from "../redux/actionsCreator/cartActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import LoginButton from "./Login/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -43,19 +42,17 @@ const Cart = () => {
       setPrice(sum);
       dispatch(totalPrice(sum));
     } //eslint-disable-next-line
-  }, []);
+  }, [state]);
 
   const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
 
 
   const handleAdd = (item) => {
     dispatch(addCart(item));
-    setPrice(price + parseInt(item.price));
     setCart(state);
   };
   const handleDel = (item) => {
     dispatch(delCart(item));
-    setPrice(price - parseInt(item.price));
     setCart(state);
   };
   const handleDeleteAll = () => {
@@ -81,7 +78,7 @@ const Cart = () => {
         unit_price: Number(p.price),
       };
     });
-    console.log("Orden de compra: ", data);
+    // console.log("Orden de compra: ", data);
     const response = await axios.post("/payment", data);
     window.location.href = `${response.data.init_point}`;
   };
@@ -93,7 +90,7 @@ const Cart = () => {
       <div className="px-4 my-5 bg-light rounded-3 py-5">
         <div className="container py-4">
           <div className="row">
-            <h3 class="display-5">Tu carrito está vacío</h3>
+            <h3 className="display-5">Tu carrito está vacío</h3>
           </div>
         </div>
       </div>
@@ -102,8 +99,8 @@ const Cart = () => {
   const cartItems = (product) => {
     return (
       <>
-        <div class="d-flex justify-content-start">
-          <div class="p-2 border border-4 rounded shadow p-3 mb-5 bg-body rounded">
+        <div className="d-flex justify-content-start">
+          <div className="p-2 border border-4 rounded shadow p-3 mb-5 bg-body rounded">
             <img
               src={product.image}
               alt={product.name}
@@ -111,13 +108,13 @@ const Cart = () => {
               width="180px"
             />
           </div>
-          <div class="p-2 shadow-sm p-3 mb-5">
-            <h3 class="display-5">{product.name}</h3>
+          <div className="p-2 shadow-sm p-3 mb-5">
+            <h3 className="display-5">{product.name}</h3>
             <p className="display-6">
               {product.qty} x $ {product.price} = ${product.qty * product.price}
             </p>
             <hr />
-            <div class="lead">
+            <div className="lead">
               <button
                 className="btn rounded-pill text-white m-3"
                 style={{ backgroundColor: "indigo" }}
@@ -135,7 +132,7 @@ const Cart = () => {
               </button>
             </div>
           </div>
-          {/*           <div class="p-2">Flex item 3</div>
+          {/*           <div className="p-2">Flex item 3</div>
            */}
         </div>
 
@@ -181,7 +178,7 @@ const Cart = () => {
       <>
         <div className="container">
           <div className="row">
-            <h3 class="display-6">Total: ${price}</h3>
+            <h3 className="display-6">Total: ${price}</h3>
             <button
               className="btn btn-outline-dark rounded-pill text-white border-white p-1"
               onClick={handleDeleteAll}
@@ -194,29 +191,29 @@ const Cart = () => {
                 <div className="col-auto">
                   <button
                     type="button"
-                    class="btn btn-outline-dark mb-4 rounded-pill"
+                    className="btn btn-outline-dark mb-4 rounded-pill"
                     data-bs-toggle="modal"
                     data-bs-target="#procederPago"
                   >
                     Proceder al pago
                   </button>
                 </div>
-                <div class="modal fade" id="procederPago">
-                  <div class="modal-dialog bg-white">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title">Ingresar</h4>
+                <div className="modal fade" id="procederPago">
+                  <div className="modal-dialog bg-white">
+                    <div className="modal-dialog">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h4 className="modal-title">Ingresar</h4>
                           <button
                             type="button"
-                            class="btn-close"
+                            className="btn-close"
                             data-bs-dismiss="modal"
                           ></button>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                           Por favor ingresa para proceder al pago
                         </div>
-                        <div class="modal-footer">
+                        <div className="modal-footer">
                           <LoginButton />
                         </div>
                       </div>
@@ -253,14 +250,14 @@ export default Cart;
 
 /* 
 
-<div class="table-responsive">
-          <table class="table">
+<div className="table-responsive">
+          <table className="table">
             <thead>
               <tr>
                 <th>Producto</th>
-                <th class="mob-hide"></th>
-                <th class="mob-hide">Precio unitario</th>
-                <th class="table-qty">Unidades</th>
+                <th className="mob-hide"></th>
+                <th className="mob-hide">Precio unitario</th>
+                <th className="table-qty">Unidades</th>
                 <th>Subtotal</th>
               </tr>
             </thead>
@@ -274,12 +271,12 @@ export default Cart;
           <td>
             {i.name}                        
           </td>
-          <td class="text-center mob-hide">
+          <td className="text-center mob-hide">
             <img src={i.image} alt={product.name} style={{ width: "80px" }} />
           </td>
-          <td class="mob-hide">
+          <td className="mob-hide">
 
-            <span class="order-product-price">${i.price}</span>
+            <span className="order-product-price">${i.price}</span>
 
           </td>
           <td>
@@ -298,10 +295,10 @@ export default Cart;
             </button>
           </td>
           <td>
-            <span class="order-product-subtotal">$ {i.qty * i.price}</span>
+            <span className="order-product-subtotal">$ {i.qty * i.price}</span>
           </td>
-          <td clas="text-right"> <a href="/cart/remove_product/120956782" class="cart-product-remove"
-            title="Remove Product"><i class="fas fa-times-circle"></i></a></td>
+          <td clas="text-right"> <a href="/cart/remove_product/120956782" className="cart-product-remove"
+            title="Remove Product"><i className="fas fa-times-circle"></i></a></td>
         </tr>
 
       </>

@@ -13,6 +13,20 @@ class PaymentService {
         pending: "https://proyecto-final-git-develop-matarg81.vercel.app",
         success: process.env.URL_MP_SUCCESS
       },
+      auto_return: "approved",
+      payment_methods: {
+        excluded_payment_methods: [
+            {
+                id: ""
+            }
+        ],
+        excluded_payment_types: [
+            {
+                id: "ticket"
+            }
+        ],
+        installments: 12
+      }
     };
 
     const payment = await axios.post(url, body, {

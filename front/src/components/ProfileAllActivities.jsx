@@ -39,10 +39,11 @@ export default function ProfileAllActivities() {
 
   return (
     <div className="container-fluid">
-      <div>
+      <div className="d-flex flex-row">
         <button
           type="button"
-          class="btn btn-outline-dark"
+          className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#editActivities"
         >
@@ -62,10 +63,10 @@ export default function ProfileAllActivities() {
         </button>
       </div>
       <div>
-        <table className="table table-responsive-sm table-striped table-hover">
+        <table className="table table-responsive-sm table-striped table-hover table-danger">
           <thead>
             <tr className="d-flex col-sm-10">
-              <th className="col-sm-1">
+              <th className="col-sm-1" style={{width:"150px"}}>
                 Nombre
                 <select
                   type="button"
@@ -93,8 +94,8 @@ export default function ProfileAllActivities() {
                 </select>
               </th>
 
-              <th className="col-sm-2">Detalle</th>
-              <th className="col-sm-1">Días</th>
+              <th className="col-sm-2" style={{width:"300px"}}>Detalle</th>
+              <th className="col-sm-1" style={{width:"150px"}}>Días</th>
               <th className="col-sm-1">Horarios</th>
               <th className="col-sm-1">Imágen</th>
             </tr>
@@ -106,10 +107,10 @@ export default function ProfileAllActivities() {
                 return (
                   <>
                     <tr className="d-flex col-sm-10">
-                      <td className="col-sm-1 text-truncate">{a.name}</td>
+                      <td className="col-sm-1 text-truncate" style={{width:"150px"}}>{a.name}</td>
                       <td className="col-sm-1">{a.price}</td>
-                      <td className="col-sm-2 text-truncate">{a.detail}</td>
-                      <td className="col-sm-1 text-truncate">{a.days}</td>
+                      <td className="col-sm-2 text-truncate" style={{width:"300px"}}>{a.detail}</td>
+                      <td className="col-sm-1 text-truncate" style={{width:"150px"}}>{a.days}</td>
                       <td className="col-sm-1 text-truncate">{a.times}</td>
                       <td className="col-sm-1 text-truncate">
                         <img
@@ -123,26 +124,26 @@ export default function ProfileAllActivities() {
                 );
               })}
             <div
-              class="modal fade"
+              className="modal fade"
               id="editActivities"
               tabindex="-1"
               aria-labelledby="editActivitiesLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editActivitiesLabel">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="editActivitiesLabel">
                       Editar actividad
                     </h5>
                     <button
                       type="button"
-                      class="btn-close"
+                      className="btn-close"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <ProfileEditActivities />
                   </div>
                 </div>

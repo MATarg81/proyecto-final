@@ -40,6 +40,8 @@ export default function Activities() {
     dispatch(get_users());
   }, [dispatch]);
 
+  //editProfile
+
   //User
   useEffect(() => {
     if (roles?.length === 0) {
@@ -63,21 +65,21 @@ export default function Activities() {
       return (
         <>
           {/* <div className="col-auto">
-                  <button type="button" class="btn btn-outline-light mb-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#myModal">
+                  <button type="button" className="btn btn-outline-light mb-4 rounded-pill" data-bs-toggle="modal" data-bs-target="#myModal">
                     Suscribirse
                   </button>
                 </div>
-      <div class="modal" id="myModal">
-        <div class="modal-dialog bg-white">
-          <div class="modal-header">
-            <h4 class="modal-title">Gracias por suscribirte!</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      <div className="modal" id="myModal">
+        <div className="modal-dialog bg-white">
+          <div className="modal-header">
+            <h4 className="modal-title">Gracias por suscribirte!</h4>
+            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             Todos los días sabados recibiras un email con todas las novedades del club.
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div> */}
@@ -96,147 +98,101 @@ export default function Activities() {
   }
 
   return (
-    <div>
-      <div className="container p-3">
-        <div className="row">
-          <div className="col">
-            <h3 className="">Actividades del Club</h3>
-            <p className="mb-0 ">
-              En esta seccion usted podra informarse de todas las actividades
-              que el club tiene disponible tanto de los días y horarios como del
-              lugar donde se realizan.{" "}
-            </p>
-          </div>
-          <div className="col">
-            <img
-              src="/img/natacion.jpg"
-              alt="campeones2"
-              style={{ width: "280px" }}
-            />
-          </div>
 
-          <div className="col">
-            <img
-              src="/img/inf_camp.jpg"
-              alt="campeones"
-              style={{ width: "300px" }}
-            />
+    <div>
+      <div>
+        <div className="container p-3">
+          <div className="row">
+            <div className="col shadow p-3 mb-5 bg-body rounded">
+              <h3 className="">Actividades del Club</h3>
+              <p className="mb-0 ">
+                En esta seccion usted podra informarse de todas las actividades
+                que el club tiene disponible tanto de los días y horarios como del
+                lugar donde se realizan.{" "}
+              </p>
+            </div>
+            <div className="col">
+              <img
+                class="shadow pl-3 ml-5 bg-body rounded"
+                src="/img/natacion.jpg"
+                alt="campeones2"
+                style={{ width: "280px" }}
+              />
+            </div>
+
+            <div className="col">
+              <img
+                class="shadow pl-3 mb-5 bg-body rounded"
+                src="/img/inf_camp.jpg"
+                alt="campeones"
+                style={{ width: "300px" }}
+              />
+            </div>
           </div>
         </div>
 
-        <div></div>
-
-        <div></div>
-      </div>
-
-      <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
-        {allActivities ? (
-          allActivities.map((a, index) => {
-            return (
-              <div className="col" key={index}>
-                <div
-                  className="card h-100 m-2"
-                  style={{
-                    border: "1px solid black",
-                  }}
-                >
-                  <img
-                    src={a.img}
-                    style={{ height: "250px", width: "100%" }}
-                    className="card-img-top"
-                    alt="..."
-                  />
-
-                  <div
-                    className="card-body"
-                    style={{
-                      backgroundColor: "rgba(160, 160, 160, 0.788)",
-                      padding: "0px",
-                    }}
-                  >
-                    <h5 className="card-title">{a.name}</h5>
-                    <p className="card-text">{a.detail}</p>
-                    <p className="card-text">
-                      <small className="text-muted">Días: {a.days}</small>
-                    </p>
-                    <p className="card-text">
-                      <small className="text-muted">Horario: {a.times}</small>
-                    </p>
-
-                    {!findUser ? (
-                      <>
-                        <div className="col-auto">
-                          <button
-                            type="button"
-                            class="btn btn-outline-light mb-4 rounded-pill"
-                            data-bs-toggle="modal"
-                            data-bs-target="#inscriptionActivities"
-                          >
-                            Ingresar
-                          </button>
+        <div className=" row row-cols-1 row-cols-md-2 g-4 mx-5 p-4  animate__animated animate__backInUp" style={{ marginTop: "-55px" }}>
+          {allActivities ? (
+            allActivities.map((a, index) => {
+              return (
+                <div className="card product-item border-0 shadow p-3 mb-5 bg-body rounded" key={index}>
+                  <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100">
+                    <img
+                      src={a.img}
+                      style={{ height: "250px", width: "100%" }}
+                      className="card-img-top"
+                      alt="..."
+                    />
+                    <div
+                      className="card-body h-100"
+                      style={{
+                        backgroundColor: "rgba(160, 160, 160, 0.788)",
+                        padding: "0px",
+                      }}
+                    >
+                      <h5 className="card-title">{a.name}</h5>
+                      <p className="card-text">{a.detail}</p>
+                      <div class="d-flex flex-row justify-content-around">
+                        <div class="">
+                          <p className="card-text">
+                            <small className="text-muted">Días: {a.days} </small>
+                          </p>
                         </div>
-                        <div class="modal fade" id="inscriptionActivities">
-                          <div class="modal-dialog bg-white">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h4 class="modal-title">Ingresar</h4>
-                                  <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="modal"
-                                  ></button>
-                                </div>
-                                <div class="modal-body">
-                                  Por favor ingresa para inscribirte
-                                </div>
-                                <div class="modal-footer">
-                                  <LoginButton />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                        <div>
+                          <p className="">
+                            <small className="text-muted">Horario: {a.times}</small>
+                          </p>
                         </div>
-                      </>
-                    ) : (
-                      <button
-                        type="button"
-                        className="btn btn-secondary"
-                        onClick={() => handleAddtoAct(a.id)}
-                      >
-                        Inscribirse
-                      </button>
-                    )}
+                      </div>
 
-                    <div className="d-flex flex-column px-4">
                       {!findUser ? (
                         <>
-                          <div className="col-auto">
+                          <div class="d-flex flex-column px-4">
                             <button
                               type="button"
-                              class="btn btn-outline-light mb-4 rounded-pill"
+                              className="btn btn-outline-light mb-4 rounded-pill"
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
                               Deja tu reseña
                             </button>
                           </div>
-                          <div class="modal fade" id="inscriptionActivities">
-                            <div class="modal-dialog bg-white">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h4 class="modal-title">Inscripción</h4>
+                          <div className="modal fade" id="inscriptionActivities">
+                            <div className="modal-dialog bg-white">
+                              <div className="modal-dialog">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h4 className="modal-title">Ingresar</h4>
                                     <button
                                       type="button"
-                                      class="btn-close"
+                                      className="btn-close"
                                       data-bs-dismiss="modal"
                                     ></button>
                                   </div>
-                                  <div class="modal-body">
-                                    Por favor ingresa para dejar reseña
+                                  <div className="modal-body">
+                                    Por favor ingresa para inscribirte
                                   </div>
-                                  <div class="modal-footer">
+                                  <div className="modal-footer">
                                     <LoginButton />
                                   </div>
                                 </div>
@@ -245,32 +201,84 @@ export default function Activities() {
                           </div>
                         </>
                       ) : (
-                        <Link to="/crearCalificacion">
-                          {" "}
-                          <button
-                            type="button"
-                            className="btn btn-outline-dark ms-2"
-                          >
-                            Deja tu reseña
-                          </button>{" "}
-                        </Link>
+
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={() => handleAddtoAct(a.id)}
+                        >
+                          Inscribirse
+                        </button>
+                      )}
+
+                      <div className="d-flex flex-column px-4">
+                        {!findUser ? (
+                        <>
+                          
+                            <button
+                              type="button"
+                              className="btn btn-outline-light mb-4 rounded-pill"
+                              data-bs-toggle="modal"
+                              data-bs-target="#inscriptionActivities"
+                            >
+                              Deja tu reseña
+                            </button>
+                          
+                          <div className="modal fade" id="inscriptionActivities">
+                            <div className="modal-dialog bg-white">
+                              <div className="modal-dialog">
+                                <div className="modal-content">
+                                  <div className="modal-header">
+                                    <h4 className="modal-title">Inscripción</h4>
+                                    <button
+                                      type="button"
+                                      className="btn-close"
+                                      data-bs-dismiss="modal"
+                                    ></button>
+                                  </div>
+                                  <div className="modal-body">
+                                    Por favor ingresa para dejar reseña
+                                  </div>
+                                  <div className="modal-footer">
+                                    <LoginButton />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                      <Link to="/crearCalificacion">
+                        {" "}
+                        <button
+                          type="button"
+                          className="btn btn-outline-dark ms-2"
+                        >
+                          Deja tu reseña
+                        </button>{" "}
+                      </Link>
                       )}
                     </div>
                   </div>
                 </div>
               </div>
-            );
+        );
           })
         ) : (
-          <div>Loading Activities....</div>
+        <div>Loading Activities....</div>
         )}
+        <div>
+          <Link to="/inscriptos">
+            {" "}
+            <button type="button" className="btn btn-outline-dark ms-2">
+              Usuarios inscriptos
+            </button>{" "}
+          </Link>
+        </div>
       </div>
-      <Link to="/inscriptos">
-        {" "}
-        <button type="button" className="btn btn-outline-dark ms-2">
-          Usuarios inscriptos
-        </button>{" "}
-      </Link>
-    </div>
+   </div>
+   </div>
   );
 }
+
+

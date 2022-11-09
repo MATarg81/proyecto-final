@@ -30,14 +30,14 @@ const CheckoutForm = () => {
 
     if (!error) {
       const { id } = paymentMethod;
-      console.log("paymentMethod: ", paymentMethod)
+      // console.log("paymentMethod: ", paymentMethod)
 
       try {
         const { data } = await axios.post("/stripe", {
           id,
           amount: 10000,
         });
-        console.log(data);
+        // console.log(data);
         elements.getElement(CardElement).clear();
       } catch (error) {
         console.log("Catch Stripe.jsx: ", error);
@@ -46,7 +46,7 @@ const CheckoutForm = () => {
     }
   };
 
-  console.log(!stripe || loading);
+  // console.log(!stripe || loading);
 
   return (
     <form onSubmit={handleSubmit} className="card card-body">
