@@ -192,10 +192,40 @@ async function addProductsReviews(req, res) {
 
   const findProduct = await Product.findOne({ where: { id: product}});
   const findUser = await User.findOne({where: { name: user }})
-  console.log("Este es el producto: ", findProduct, " y este es el user: ", findUser)
-
+ 
   try {
       const newReview = await Review.create({
+        score,
+        content,
+      });
+      
+      newReview.setProduct(findProduct.id);
+      newReview.setUser(findUser.id);
+
+      return res
+      .status(200)
+      .json(newReview); 
+  } catch (e) {
+    return res
+    .status(404)
+    .send(console.log("problemas: ", e));
+  }
+}
+
+async function updateProductsReviews(req, res) {
+  const { 
+    score, 
+    content, 
+    product, 
+    user
+  } = req.body;
+  console.log(req.body)
+
+  const findProduct = await Product.findOne({ where: { id: product}});
+  const findUser = await User.findOne({where: { name: user }})
+ 
+  try {
+      const newReview = await Review.update({
         score,
         content,
       });
@@ -219,5 +249,6 @@ module.exports = {
   getActivitiesReviewsId,
   getProductsReviews,
   addProductsReviews,
-  getProductsReviewsId
+  getProductsReviewsId,
+  updateProductsReviews
 };

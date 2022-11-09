@@ -21,6 +21,11 @@ const reviewsReducer = (state = initialState, action) => {
         ...state,
       }
     };
+    case 'PATCH_REVIEW': {
+      return {
+        ...state,
+      }
+    };
     case 'GET_REVIEW_ID': {
       return  {
         ...state,

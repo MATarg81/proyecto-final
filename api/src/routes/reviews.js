@@ -6,6 +6,7 @@ const {
   getProductsReviews,
   getProductsReviewsId,
   addProductsReviews,
+  updateProductsReviews,
 } = require("./controllers/reviews");
 
 
@@ -19,5 +20,6 @@ router.post("/activities", addActivitiesReviews)
 router.get("/products", getProductsReviews);
 router.get("/products/:id", getProductsReviewsId);
 router.post("/products", addProductsReviews)
+router.patch("/products/:id", updateProductsReviews)
 
 module.exports = router;
