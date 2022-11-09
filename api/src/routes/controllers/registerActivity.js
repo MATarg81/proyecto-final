@@ -10,15 +10,11 @@ try {
   const findUser = await User.findByPk(idU)
   const findActivity = await Activity.findByPk(idA)
 
-  if (findUser && findActivity) {
-    await findUser.addActivity(findActivity)
+  await findUser.addActivity(idA)
 
-    res.status(200).json(findActivity);
-  } else {
-    res.status(404).send("Problemas en agregar la actividad al usuario");
-  }
+  res.status(200).json(idA);
 } catch (error) {
-  res.status(404).send( error)
+  res.status(404).send("Problemas en agregar la actividad al usuario");
 }
 }
 

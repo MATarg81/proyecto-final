@@ -12,6 +12,8 @@ import ProfileProducts from "./ProfileProducts";
 import PurchesesDetail from "./purchesesMaded/purchesesDetail";
 import ProfileAllActivities from "./ProfileAllActivities";
 import ProfileUsers from "./ProfileUsers";
+import ProfileActivities from "./ProfileActivities";
+
 import { useAuth0 } from '@auth0/auth0-react';
 import EditProfile from "./EditProfile";
 
@@ -282,6 +284,15 @@ export default function Perfil() {
             tabIndex="0"
           >
             <ProfileAllActivities />
+          </div>
+          <div
+            class="tab-pane fade"
+            id="v-pills-activities"
+            role="tabpanel"
+            aria-labelledby="v-pills-activities-tab"
+            tabIndex="0"
+          >
+            <ProfileActivities />
           </div>
           <div
             class="tab-pane fade"

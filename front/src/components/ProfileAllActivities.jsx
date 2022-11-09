@@ -8,6 +8,7 @@ import {
 import { orderByName } from "../redux/actionsCreator/productsActions";
 import ActivityCreate from "./ActivityCreate";
 import ProfileEditActivities from "./ProfileEditActivities";
+import RegisteredActivity from "./RegisteredActivity";
 
 export default function ProfileAllActivities() {
   const activities = useSelector((state) => state.activitiesReducer.activities);
@@ -48,6 +49,17 @@ export default function ProfileAllActivities() {
           Editar
         </button>
         <ActivityCreate />
+ 
+      </div>
+      <div>
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#registerActivity"
+        >
+          Inscriptos
+        </button>
       </div>
       <div>
         <table className="table table-responsive-sm table-striped table-hover">
@@ -132,6 +144,32 @@ export default function ProfileAllActivities() {
                   </div>
                   <div class="modal-body">
                     <ProfileEditActivities />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="modal fade"
+              id="registerActivity"
+              tabindex="-1"
+              aria-labelledby="registerActivityLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="registerActivityLabel">
+                      Editar actividad
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    < RegisteredActivity />
                   </div>
                 </div>
               </div>
