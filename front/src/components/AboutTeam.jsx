@@ -20,27 +20,27 @@ function AboutTeam() {
 
   return (
     <div>
-      <h3 className="p-1">Conoce a nuestro equipo de desarrollo</h3>
-      <div className="row row-cols-1 row-cols-md-4 g-4">
+      <h3 className="p-1 display-6 border-bottom">Conoce a nuestro equipo de desarrollo</h3>
+      <div className="row row-cols-1 row-cols-md-4 g-4 animate__animated animate__fadeIn" >
         <div className="col ">
           <div className="card" style={{ borderColor: "white" }}>
             <img
               src={Juan}
               className="card-img-top"
-              style={{ borderRadius: "50%" }}
+
               alt="juan"
             />
             <div className="card-body">
               <h5 className="card-title text-center">Juan Bosque</h5>
               <p className="card-text"></p>
-              <div className="d-flex justify-content-start">
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+              <div className="d-flex justify-content-center">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"  rel="noreferrer" >
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/juanchos85" target="_blank" rel="noreferrer">
                     <img src={GitHub} alt="Github" />
                   </a>
                 </div>
@@ -53,20 +53,20 @@ function AboutTeam() {
             <img
               src={Bren}
               className="card-img-top"
-              style={{ borderRadius: "50%" }}
+
               alt="brenda"
             />
             <div className="card-body">
-              <h5 className="card-title">Brenda Alaniz</h5>
+              <h5 className="card-title text-center">Brenda Alaniz</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+              <div className="col d-flex justify-content-center">
+                  <a href="" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/Macrofago096" target="_blank" rel="noreferrer">
                     <img src={GitHub} alt="Github" />
                   </a>
                 </div>
@@ -80,19 +80,18 @@ function AboutTeam() {
               src={Nahue}
               className="card-img-top"
               alt="nahuel"
-              style={{ borderRadius: "50%" }}
             />
             <div className="card-body">
-              <h5 className="card-title">Nahuel Cittadino</h5>
+              <h5 className="card-title text-center">Nahuel Cittadino</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+              <div className="col d-flex justify-content-center">
+                  <a href="https://www.linkedin.com/in/nahuel-cittadino-b386331b2/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/wellnahuel" target="_blank" rel="noreferrer">
                     <img src={GitHub} alt="Github" />
                   </a>
                 </div>
@@ -106,19 +105,19 @@ function AboutTeam() {
               src={Lau}
               className="card-img-top"
               alt="laura"
-              style={{ borderRadius: "50%" }}
+
             />
             <div className="card-body">
-              <h5 className="card-title">Laura Marcenaro</h5>
+              <h5 className="card-title text-center">Laura Marcenaro</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+              <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/Azrux" target="_blank" rel="noreferrer">
                     <img src={GitHub} alt="Github" />
                   </a>
                 </div>
@@ -132,19 +131,19 @@ function AboutTeam() {
               src={Mati}
               className="card-img-top"
               alt="matias"
-              style={{ borderRadius: "50%" }}
+
             />
             <div className="card-body">
-              <h5 className="card-title">Matías Tula</h5>
+              <h5 className="card-title text-center">Matías Tula</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+              <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/MATarg81" target="_blank" rel="noreferrer">
                     <img src={GitHub} alt="Github" />
                   </a>
                 </div>
@@ -158,19 +157,19 @@ function AboutTeam() {
               src={Cin}
               className="card-img-top"
               alt="cinthya"
-              style={{ borderRadius: "50%" }}
+
             />
             <div className="card-body">
-              <h5 className="card-title">Cinthya Molina</h5>
+              <h5 className="card-title text-center">Cinthya Molina</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+              <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/" target="_blank" rel="noreferrer">
                     <img src={GitHub} alt="Github" />
                   </a>
                 </div>
@@ -184,19 +183,19 @@ function AboutTeam() {
               src={Santi}
               className="card-img-top"
               alt="santiago"
-              style={{ borderRadius: "50%" }}
+
             />
             <div className="card-body">
-              <h5 className="card-title">Santiago Fernandez</h5>
+              <h5 className="card-title text-center">Santiago Fernandez</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+              <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
-                <div className="col">
-                  <a href="https://github.com/" target="_blank">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://github.com/San896" target="_blank" rel="noreferrer">
                     <img src={GitHub} alt="Github" />
                   </a>
                 </div>
