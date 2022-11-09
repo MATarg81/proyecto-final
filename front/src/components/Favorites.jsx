@@ -45,7 +45,7 @@ useEffect(() => {
 
   const handleDeleteFav = (p) => {
     if (findUser) {
-      dispatch(deleteFav(p.product.id, findUser.id));
+      dispatch(deleteFav(p.product?.id, findUser.id));
       alert("Producto eliminado de favoritos");
     } else {
       dispatch(deleteFav(p.product.id));
@@ -95,7 +95,7 @@ useEffect(() => {
               <div class="" onClick={() => navigate(`/tienda/${p.id}`)}>
                 <img
                   class="img-fluid hover-zoom bg-image"
-                  src={p.product?.image}
+                  src={p.product.image}
                   /* className="card-img-top" */ alt={p.image}
                 />
               </div>
