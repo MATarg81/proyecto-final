@@ -1,7 +1,34 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { get_roles, get_users } from "../redux/actionsCreator/usersActions";
+import { getCategories, getProducts } from "../redux/actionsCreator/productsActions";
 
 function Landing() {
+
+  // const roles = useSelector((state) => state.usersReducer.roles)
+  // const users = useSelector((state) => state.usersReducer.users)
+  // const categories = useSelector((state) => state.productsReducer.categories)
+  // const products = useSelector((state) => state.productsReducer.products)
+
+  // const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //   if(roles.length === 0) {
+  //     dispatch(get_roles())
+  //   }
+  //   if(users.length === 0) {
+  //     dispatch(get_users())
+  //   }
+  //   if(categories.length === 0) {
+  //     dispatch(getCategories())
+  //   }
+  //   if(products.length === 0) {
+  //     dispatch(getProducts())
+  //   }
+  // })
+
   return (
     <div>
       <div className="container">
