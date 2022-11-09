@@ -51,16 +51,17 @@ export default function ProfileAllActivities() {
         </button>
         <ActivityCreate />
  
-      </div>
       <div>
         <button
           type="button"
-          class="btn btn-outline-dark"
+          className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#registerActivity"
         >
           Inscriptos
         </button>
+      </div>
       </div>
       <div>
         <table className="table table-responsive-sm table-striped table-hover table-danger">
