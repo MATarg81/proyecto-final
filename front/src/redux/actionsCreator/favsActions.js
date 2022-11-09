@@ -8,12 +8,10 @@ import {
 // const BACK_URL = "http://localhost:3001";
 
 export function addFav(prod, idU) {
-   
     return async function (dispatch) {
         try {
             if(idU){
-                const url = await axios.get(`/favorites?id=${prod.id}&idU=${idU}`);
-                console.log(url.data, 'axios')
+                const url = await axios.post(`/favorites?id=${prod.id}&idU=${idU}`);
                 return dispatch({
                     type: ADD_FAV,
                     payload: url.data,
@@ -33,12 +31,27 @@ export function addFav(prod, idU) {
     };
 }
 
+export function getAllfavs(idU){
+    return async function(dispatch){
+        try {
+            const axiosFavs = await axios(`/favorites?idU=${idU}`)
+            return dispatch({
+                type: 'GET_FAVS',
+                payload: axiosFavs.data
+            })
+        } catch (error) {
+            console.log(error)
+            return error
+        }
+}
+}
+
 
 export function deleteFav(p, idU) {
     return async function (dispatch) {
         try {
             if(idU){
-                const url = await axios.delete(`/favorites?id=${p.id}&idU=${idU}`);
+                const url = await axios.delete(`/favorites?id=${p}&idU=${idU}`);
                 
                 return dispatch({
                     type: REMOVE_FAV,

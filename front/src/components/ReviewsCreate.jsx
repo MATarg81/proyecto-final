@@ -16,7 +16,7 @@ export default function ReviewsCreate() {
     activity: "",
   });
 
- console.log(input, "inputttt");
+//  console.log(input, "inputttt");
 
   function validate(input) {
     const errors = {};
@@ -49,7 +49,7 @@ export default function ReviewsCreate() {
         }
     )
 )
-console.log("soy content: " + e.target.value)
+// console.log("soy content: " + e.target.value)
 };
 
 
@@ -58,7 +58,7 @@ console.log("soy content: " + e.target.value)
       ...input,
       score:e.target.value,
     })
-    console.log(e.target.value, " soy score")
+    // console.log(e.target.value, " soy score")
   };
 
   const handleSubmit = (e) => {
@@ -72,7 +72,7 @@ console.log("soy content: " + e.target.value)
     // ) {
     //   alert("Please complete the form");
     // } else {
-      console.log(input, " input")
+      // console.log(input, " input")
       dispatch(postReview(input));
       alert("Created Succesfully!");
       setInput({
@@ -87,14 +87,14 @@ console.log("soy content: " + e.target.value)
 
   return (
     <div>
-      {/* <div class="col-12"> */}
-        <div class="card-header">
+      {/* <div className="col-12"> */}
+        <div className="card-header">
           <h1>Reseñas y calificaciones</h1>
         </div>
 
-        <div class="card-body">
-          {/* <div class="col-12"> */}
-            <h5 class="card-title">
+        <div className="card-body">
+          {/* <div className="col-12"> */}
+            <h5 className="card-title">
               Deja tu comentario para que podamos seguir creciendo
             </h5>
 
@@ -111,7 +111,7 @@ console.log("soy content: " + e.target.value)
                       <label
                         for="radio1"
                         style={{ color: "gray", cursor: "pointer" }}
-                        class="fa fa-star"
+                        className="fa fa-star"
                         aria-hidden="true"
                       ></label>
                       <input
@@ -128,7 +128,7 @@ console.log("soy content: " + e.target.value)
                       <label
                         for="radio2"
                         style={{ color: "gray", cursor: "pointer" }}
-                        class="fa fa-star"
+                        className="fa fa-star"
                       ></label>
                       <input
                         id="radio2"
@@ -144,7 +144,7 @@ console.log("soy content: " + e.target.value)
                       <label
                         for="radio3"
                         style={{ color: "gray", cursor: "pointer" }}
-                        class="fa fa-star"
+                        className="fa fa-star"
                       ></label>
                       <input
                         id="radio3"
@@ -160,7 +160,7 @@ console.log("soy content: " + e.target.value)
                       <label
                         for="radio4"
                         style={{ color: "gray", cursor: "pointer" }}
-                        class="fa fa-star"
+                        className="fa fa-star"
                       ></label>
                       <input
                         id="radio4"
@@ -176,7 +176,7 @@ console.log("soy content: " + e.target.value)
                       <label
                         for="radio5"
                         style={{ color: "gray", cursor: "pointer" }}
-                        class="fa fa-star"
+                        className="fa fa-star"
                       ></label>
                       <input
                         id="radio5"

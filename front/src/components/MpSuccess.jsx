@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function MpSuccess() {
   const state = useSelector((state) => state.cartReducer);
-  console.log("State en MpSuccess: ", state);
+  // console.log("State en MpSuccess: ", state);
   const [, setCart] = useLocalStorage("cart", state);
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ function MpSuccess() {
   }, []);
 
   function posteo() {
-    console.log("Posteo: ", 1)
+    // console.log("Posteo: ", 1)
     dispatch(postCart(state))
   }
 
@@ -28,6 +28,7 @@ function MpSuccess() {
       <Link to="/home">
         <button>Volver al Home</button>
       </Link>
+      <hr />
     </div>
   );
 }

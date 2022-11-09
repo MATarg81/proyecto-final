@@ -38,10 +38,10 @@ export default function ProfileAllActivities() {
 
   return (
     <div className="container-fluid">
-      <div class="d-flex flex-row">
+      <div className="d-flex flex-row">
         <button
           type="button"
-          class="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          className="btn btn-outline-dark rounded-pill text-white border-white p-1"
           style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#editActivities"
@@ -112,26 +112,26 @@ export default function ProfileAllActivities() {
                 );
               })}
             <div
-              class="modal fade"
+              className="modal fade"
               id="editActivities"
               tabindex="-1"
               aria-labelledby="editActivitiesLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editActivitiesLabel">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="editActivitiesLabel">
                       Editar actividad
                     </h5>
                     <button
                       type="button"
-                      class="btn-close"
+                      className="btn-close"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <ProfileEditActivities />
                   </div>
                 </div>

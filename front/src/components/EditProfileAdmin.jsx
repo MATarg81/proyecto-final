@@ -45,7 +45,7 @@ export default function EditProfileAdmin() {
   function handleDeleteUser(id) {
     if (window.confirm(`Are you sure you want to delete the activity?`)) {
       dispatch(delete_users(id));
-      console.log(id);
+      // console.log(id);
     }
   }
 
@@ -226,7 +226,7 @@ export default function EditProfileAdmin() {
             </div>
 
             {verifiedUser?.roleId === 2 ? (
-              <div class="">
+              <div className="">
                 <label className="col-12">Rol:</label>
                 <select id="roleId" onChange={handleChange}>
                   <option value="-">Elige el rol</option>

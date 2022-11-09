@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
-import { addFav, deleteFav } from "../redux/actionsCreator/favsActions";
+import { addFav, deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import {
   getProducts,
@@ -22,6 +22,7 @@ import LoginButton from "./Login/LoginButton";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import "animate.css/animate.min.css";
 import banner from "../imagesTeam/deportistacrop.jpg";
+import { get_users } from "../redux/actionsCreator/usersActions";
 
 function Shop() {
   //-----------------hover --------------- no se usa, estoy probando como implementarlo bien
@@ -49,7 +50,7 @@ function Shop() {
     (state) => state.productsReducer.byCategories
   );
   const cart_state = useSelector((state) => state.cartReducer);
-  const fav_state = useSelector((state) => state.favReducer.favs);
+  const fav_state = useSelector((state) => state.favReducer.userFavs);
   const fav_LS_state = useSelector((state) => state.favReducer.favsLs);
   const users_state = useSelector((state) => state.usersReducer.users);
 
@@ -85,12 +86,22 @@ function Shop() {
     if (category?.length > 0) {
       dispatch(getProducts());
     }
-  }, [dispatch, category]);
+    if(users_state?.length === 0) {
+      dispatch(get_users())
+    }
+  }, [dispatch, category, users_state]);
 
+  
   //favs
   const findUser = user
-    ? users_state.find((u) => u.email === user.email)
-    : null;
+  ? users_state.find((u) => u.email === user.email)
+  : null;
+  
+  useEffect(() => {
+    if(fav_state?.length === 0) {
+      dispatch(getAllfavs(findUser?.id))
+    }
+  }, [dispatch, fav_state, findUser])
 
   function handleAddtoFav(product) {
     if (findUser) {
@@ -120,7 +131,12 @@ function Shop() {
       progress: undefined,
     }); */
 
-  const stateOrLs = findUser ? fav_state : fav_LS_state;
+
+  const stateOrLs = user ? fav_state : fav_LS_state;
+
+  // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
+  //   localStorage.setItem('favs', JSON.stringify(favState))
+  // }, [favState])
 
   // --------------- Cart function ----------------
   const addProduct = (product) => {
@@ -273,7 +289,9 @@ function Shop() {
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
               </svg>
             </Link>
-            <span className="badge text-dark">({cart_state.items?.length})</span>
+            <span className="badge text-dark">
+              ({cart_state.items?.length})
+            </span>
           </div>
         </div>
 
@@ -351,7 +369,10 @@ function Shop() {
                     </svg>
                   </i>
                 </a>
-                <a onClick={() => handleAddtoFav(p)} className="btn btn-sm  p-0 ">
+                <a
+                  onClick={() => handleAddtoFav(p)}
+                  className="btn btn-sm  p-0 "
+                >
                   <i
                     data-toggle="tooltip"
                     data-placement="bottom"
