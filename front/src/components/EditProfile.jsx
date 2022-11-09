@@ -98,38 +98,39 @@ export default function EditProfile() {
     <div>
       <button
         type="button"
-        class="btn btn-outline-dark"
+        className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+        style={{backgroundColor:"indigo"}}
         data-bs-toggle="modal"
         data-bs-target="#editProfile"
       >
         Editar perfil
       </button>
       <div
-        class="modal fade"
+        className="modal fade"
         id="editProfile"
         tabindex="-1"
         aria-labelledby="editProfileLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editProfileLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="editProfileLabel">
                 Editar perfil
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
 
-            <div class="modal-body">
+            <div className="modal-body">
               <EditProfileAdmin />
               {/* <title>Actualizar Perfil</title>
-              <div class="">
-                <h1 class="">Actualizar Perfil</h1>
+              <div className="">
+                <h1 className="">Actualizar Perfil</h1>
                 <form
                   className="row mt-3 g-2"
                   onSubmit={(e) => onHandleSubmit(e)}
@@ -195,7 +196,7 @@ export default function EditProfile() {
                     ></input>
                   </div>
 
-                  <div class="">
+                  <div className="">
                     <button
                       type="submit"
                       className="btn btn-primary mt-3"

@@ -13,15 +13,15 @@ export default function ProfileUsers() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if(roles?.length === 0) {
+    if (roles?.length === 0) {
       dispatch(get_roles())
     }
-    if(users?.length === 0) {
+    if (users?.length === 0) {
       dispatch(get_users())
     }
   }, [users, roles, dispatch])
 
- useEffect(() => {
+  useEffect(() => {
     if (order === "A/Z") {
       dispatch(orderUsersByName(order));
     }
@@ -35,14 +35,15 @@ export default function ProfileUsers() {
     <div className="container-fluid">
       <button
         type="button"
-        class="btn btn-outline-dark"
+        className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+        style={{ backgroundColor: "indigo" }}
         data-bs-toggle="modal"
         data-bs-target="#editProfileAdmin"
       >
         Editar
       </button>
       <div>
-        <table className="table table-responsive-sm table-striped table-hover">
+        <table className="table table-responsive-sm table-striped table-hover table-primary">
           <thead >
             <tr className="d-flex col-sm-11">
 
@@ -50,8 +51,8 @@ export default function ProfileUsers() {
                 Nombre
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0 w-25"
-                  style={{ width: "30%"}}
+                  className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
+                  style={{ width: "30%" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
                   <option value="-">⇅</option>
@@ -64,7 +65,7 @@ export default function ProfileUsers() {
                 Apellido
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0 w-25"
+                  className="btn btn-outline-dark rounded-pill btn-sm border-0 w-25"
                   style={{ width: "30%" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
@@ -101,26 +102,26 @@ export default function ProfileUsers() {
                 );
               })}
             <div
-              class="modal fade"
+              className="modal fade"
               id="editProfileAdmin"
               tabindex="-1"
               aria-labelledby="editProfileAdminLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileAdminLabel">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="editProfileAdminLabel">
                       Editar usuario
                     </h5>
                     <button
                       type="button"
-                      class="btn-close"
+                      className="btn-close"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <EditProfileAdmin />
                   </div>
                 </div>

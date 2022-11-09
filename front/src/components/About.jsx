@@ -8,18 +8,22 @@ function About() {
   return (
     <div className="">
       <div className="d-flex justify-content-between nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical" >
-        <div>
-          <h1> Athenas Club</h1>
-        </div>
+
         <div className="d-flex">
           <div>
-            <button className="btn btn-primary" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">El club</button>
+            <button className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+              style={{ backgroundColor: "indigo" }} id="v-pills-profile-tab" data-bs-toggle="pill"
+              data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="true">El club</button>
           </div>
           <div>
-            <button className="btn btn-primary" id="v-pills-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="true">Historia</button>
+            <button className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+              style={{ backgroundColor: "indigo" }} id="v-pills-history-tab" data-bs-toggle="pill"
+              data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="true">Historia</button>
           </div>
           <div>
-            <button className="btn btn-primary" id="v-pills-more-tab" data-bs-toggle="pill" data-bs-target="#v-pills-more" type="button" role="tab" aria-controls="v-pills-more" aria-selected="true">Más que un club</button>
+            <button className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+              style={{ backgroundColor: "indigo" }} id="v-pills-more-tab" data-bs-toggle="pill" data-bs-target="#v-pills-more"
+              type="button" role="tab" aria-controls="v-pills-more" aria-selected="true">Más que un club</button>
           </div>
         </div>
       </div>
@@ -86,7 +90,7 @@ function About() {
           id="v-pills-profile"
           role="tabpanel"
           aria-labelledby="v-pills-profile-tab"
-          tabindex="0"          >
+          tabIndex="0"          >
           <div className="card mb-3" max-width="540px">
             <div className="row g-0">
               <div className="col-md-4">
@@ -149,16 +153,16 @@ function About() {
           id="v-pills-more"
           role="tabpanel"
           aria-labelledby="v-pills-more-tab"
-          tabindex="0">
+          tabIndex="0">
           <div>
-            <h1> MÁS QUE UN CLUB </h1>
+            <h1> Más que un club </h1>
 
             <div className="card mb-3" max-width="540px">
               <div className="row g-0">
                 <div className="col-md-8">
                   <div className="card-body">
-                    <h5 className="card-title">MÁS QUE PALABRAS</h5>
-                    <p className="card-text">texto comentario etc....</p>
+                    <h5 className="card-title">Más que ganar o perder. Más que goles</h5>
+                    <p className="card-text">Cuando jugamos queremos ganar, pero sobre todo queremos jugar sin renunciar a nuestro ESTILO DE JUEGO PROPIO. Somos más que fútbol. Somos un club MULTIDEPORTIVO, que competimos en básquet, handbol, natacion y fútbol sala. </p>
                   </div>
                 </div>
               </div>
@@ -169,18 +173,18 @@ function About() {
                 <div className="col-md-8">
                   <div className="card-body">
                     <h5 className="card-title">MÁS QUE GÉNERO</h5>
-                    <p className="card-text">texto comentario etc....</p>
+                    <p className="card-text">Apostamos decididamente por el DEPORTE FEMENINO. Tenemos un equipo de fútbol, dos equipos formativos y un total de 88 deportistas, niñas, jóvenes y mujeres, visten la camiseta del Club Athenas. </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="card mb-3" max-width="540px">
-              <div class="row g-0">
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">MÁS QUE TALENTO</h5>
-                    <p class="card-text">
+            <div className="card mb-3" max-width="540px">
+              <div className="row g-0">
+                <div className="col-md-8">
+                  <div className="card-body">
+                    <h5 className="card-title">MÁS QUE TALENTO</h5>
+                    <p className="card-text">
                       texto comentario etc....
                     </p>
                   </div>

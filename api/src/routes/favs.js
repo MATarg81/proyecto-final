@@ -1,13 +1,15 @@
 const { Router } = require("express");
 const {
     setFav,
-    removeFav
+    removeFav,
+    getFavs
 
 } = require("./controllers/favs");
 
 const router = Router();
 
-router.get("/", setFav);
+router.get("/", getFavs);
+router.post("/", setFav);
 router.delete("/", removeFav);
 
 

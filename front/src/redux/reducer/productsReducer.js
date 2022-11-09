@@ -17,10 +17,10 @@ import {
 
 const initialState = {
   showProducts: [],
+  allProducts : [],
+  products: [],
   categories: [],
   detail: [],
-  byCategories: [],
-  filterByPrice: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -29,6 +29,8 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         showProducts: action.payload,
+        products: action.payload,
+        allProducts: action.payload
       };
     }
 
@@ -59,7 +61,7 @@ const rootReducer = (state = initialState, action) => {
     case POST_CATEGORY: {
       state.categories.push(action.payload)
       return{
-        ...state
+        ...state,
       }
     }
     case EDIT_PRODUCT: {
@@ -69,58 +71,51 @@ const rootReducer = (state = initialState, action) => {
     }
 
     case ORDER_BY_NAME: {
-      if (action.payload === "A/Z") {
-        return {
-          ...state,
-          showProducts: state.showProducts.slice().sort(orderName),
-          byCategories: state.byCategories.slice().sort(orderName),
-          filterByPrice: state.filterByPrice.slice().sort(orderName),
-        };
-      } else if (action.payload === "Z/A") {
-        return {
-          ...state,
-          showProducts: state.showProducts.slice().sort(orderName).reverse(),
-          byCategories: state.byCategories.slice().sort(orderName).reverse(),
-          filterByPrice: state.filterByPrice.slice().sort(orderName).reverse(),
-        };
-      }
-    }// eslint-disable-next-line
-    case ORDER_BY_PRICE: {
-      if (action.payload === "MIN/MAX") {
-        return {
-          ...state,
-          showProducts: state.showProducts.slice().sort(orderPrice),
-          byCategories: state.byCategories.slice().sort(orderPrice),
-          filterByPrice: state.filterByPrice.slice().sort(orderPrice),
-        };
-      } else if (action.payload === "MAX/MIN") {
-        return {
-          ...state,
-          showProducts: state.showProducts.slice().sort(orderPrice).reverse(),
-          byCategories: state.byCategories.slice().sort(orderPrice).reverse(),
-          filterByPrice: state.filterByPrice.slice().sort(orderPrice).reverse(),
-        };
-      };
-    }
-// eslint-disable-next-line
-    case FILTER_BY_CATEGORIES: {
-      const filteredByCategories = [];// eslint-disable-next-line
-      state.showProducts.map((p) => {
-        const findCat = p.categories.find((c) => c.name === action.payload);
-        if (findCat) {
-          filteredByCategories.push(p);
-        }
-      });
+      const productsName = 
+      action.payload === 'A/Z'
+      ? state.showProducts.sort((a, b) => a.name.localeCompare(b.name))
+      : action.payload === 'Z/A' 
+      ? state.showProducts.sort((a, b) => b.name.localeCompare(a.name))
+      : state.showProducts;
       return {
         ...state,
-        byCategories: filteredByCategories,
-      };
+        showProducts: productsName
+    }
+
+    }// eslint-disable-next-line
+    case ORDER_BY_PRICE: {
+      const productsOrderPrice = 
+      action.payload === 'MIN/MAX'
+      ? state.showProducts.sort((a, b) => a.price - b.price)
+      : action.payload === 'MAX/MIN' 
+      ? state.showProducts.sort((a, b) => b.price - a.name)
+      : state.showProducts;
+      return {
+        ...state,
+        showProducts: productsOrderPrice
+    }
+  }
+// eslint-disable-next-line
+    case FILTER_BY_CATEGORIES: {
+
+      console.log(action.payload)
+      console.log(state.showProducts)
+      console.log(state.allProducts[4].categories.find((c) => c.name === action.payload)?.name)
+      const productsCategories = action.payload
+      ? state.showProducts = state.allProducts.filter((p) => (p.categories.find((c) => c.name === action.payload)?.name))
+      : state.showProducts;
+
+      return {
+          ...state,
+          showProducts: productsCategories
+      }
     }
 
     case FILTER_BY_PRICE: {
+      const filterPrice = state.showProducts.filter((p) => action.payload.min <= p.price && action.payload.max >= p.price)
       return {
         ...state,
-        filterByPrice: action.payload,
+        showProducts: filterPrice,
       };
     }
 

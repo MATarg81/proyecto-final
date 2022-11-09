@@ -8,6 +8,7 @@ import {
 import { orderByName } from "../redux/actionsCreator/productsActions";
 import ActivityCreate from "./ActivityCreate";
 import ProfileEditActivities from "./ProfileEditActivities";
+import RegisteredActivity from "./RegisteredActivity";
 
 export default function ProfileAllActivities() {
   const activities = useSelector((state) => state.activitiesReducer.activities);
@@ -38,22 +39,34 @@ export default function ProfileAllActivities() {
 
   return (
     <div className="container-fluid">
-      <div>
+      <div className="d-flex flex-row">
         <button
           type="button"
-          class="btn btn-outline-dark"
+          className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#editActivities"
         >
           Editar
         </button>
         <ActivityCreate />
+ 
       </div>
       <div>
-        <table className="table table-responsive-sm table-striped table-hover">
+        <button
+          type="button"
+          class="btn btn-outline-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#registerActivity"
+        >
+          Inscriptos
+        </button>
+      </div>
+      <div>
+        <table className="table table-responsive-sm table-striped table-hover table-danger">
           <thead>
             <tr className="d-flex col-sm-10">
-              <th className="col-sm-1">
+              <th className="col-sm-1" style={{width:"150px"}}>
                 Nombre
                 <select
                   type="button"
@@ -81,8 +94,8 @@ export default function ProfileAllActivities() {
                 </select>
               </th>
 
-              <th className="col-sm-2">Detalle</th>
-              <th className="col-sm-1">Días</th>
+              <th className="col-sm-2" style={{width:"300px"}}>Detalle</th>
+              <th className="col-sm-1" style={{width:"150px"}}>Días</th>
               <th className="col-sm-1">Horarios</th>
               <th className="col-sm-1">Imágen</th>
             </tr>
@@ -94,10 +107,10 @@ export default function ProfileAllActivities() {
                 return (
                   <>
                     <tr className="d-flex col-sm-10">
-                      <td className="col-sm-1 text-truncate">{a.name}</td>
+                      <td className="col-sm-1 text-truncate" style={{width:"150px"}}>{a.name}</td>
                       <td className="col-sm-1">{a.price}</td>
-                      <td className="col-sm-2 text-truncate">{a.detail}</td>
-                      <td className="col-sm-1 text-truncate">{a.days}</td>
+                      <td className="col-sm-2 text-truncate" style={{width:"300px"}}>{a.detail}</td>
+                      <td className="col-sm-1 text-truncate" style={{width:"150px"}}>{a.days}</td>
                       <td className="col-sm-1 text-truncate">{a.times}</td>
                       <td className="col-sm-1 text-truncate">
                         <img
@@ -111,16 +124,42 @@ export default function ProfileAllActivities() {
                 );
               })}
             <div
-              class="modal fade"
+              className="modal fade"
               id="editActivities"
               tabindex="-1"
               aria-labelledby="editActivitiesLabel"
               aria-hidden="true"
             >
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="editActivitiesLabel">
+                      Editar actividad
+                    </h5>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div className="modal-body">
+                    <ProfileEditActivities />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="modal fade"
+              id="registerActivity"
+              tabindex="-1"
+              aria-labelledby="registerActivityLabel"
+              aria-hidden="true"
+            >
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="editActivitiesLabel">
+                    <h5 class="modal-title" id="registerActivityLabel">
                       Editar actividad
                     </h5>
                     <button
@@ -131,7 +170,7 @@ export default function ProfileAllActivities() {
                     ></button>
                   </div>
                   <div class="modal-body">
-                    <ProfileEditActivities />
+                    < RegisteredActivity />
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add_users, get_users } from "../redux/actionsCreator/usersActions";
 import { useNavigate } from "react-router-dom";
@@ -11,18 +11,17 @@ function Register() {
 
   const { isAuthenticated, user } = useAuth0()
 
-  const stateUser = useSelector( state => state.usersReducer.users)
-  const checkUser = stateUser.find( u => u.email === user.email)
+  const stateUser = useSelector(state => state.usersReducer.users)
+  const checkUser = stateUser.find(u => u.email === user.email)
 
   const [error, setError] = useState({});
 
   const [input, setInput] = useState({
     name: "",
     lastname: "",
-    email: user.email,
+    email: user?.email,
     phoneNumber: "",
-    
-    validatePass: "",
+    image: user?.picture,
     dateOfBirth: "",
     address: "",
     postalCode: "",
@@ -139,8 +138,6 @@ function Register() {
       !input.name ||
       !input.lastname ||
       !input.email ||
-      
-      
       !input.phoneNumber ||
       !input.dateOfBirth ||
       !input.address ||
@@ -148,37 +145,37 @@ function Register() {
     ) {
       alert("Por favor completa todos los campos");
     } else {
-      dispatch(add_users(input));
+      dispatch(add_users(input))
       dispatch(get_users())
-      navigate("/home");
+      navigate("/profile")
     }
   }
 
-  if(checkUser){
+  if (checkUser) {
     return (
-      <Profile/>
+      <Profile />
     )
   }
-  return ( 
+  return (
     <>
-      <div class="container">
+      <div className="container">
         <form
-          class="row mt-3 g-2 needs-validation"
+          className="row mt-3 g-2 needs-validation"
           onSubmit={handleSubmit}
           noValidate
         >
-          <h1 class="col-12">Bienvenido!, Completa tus datos para continuar</h1>
+          <h1 className="col-12 display-6 ">Bienvenido! Completa tus datos para continuar</h1>
 
 
-                {/* Email */}
-                <div class="col-4">
-            <label for="emailInput" class="form-label">
+          {/* Email */}
+          <div className="col-4 ">
+            <label for="emailInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Email
             </label>
             <div>
-              <h3>
-              {user?.email}
-              </h3>
+              <h6 class="" >
+                {user?.email}
+              </h6>
             </div>
             {/* <input
               type="email"
@@ -187,19 +184,19 @@ function Register() {
               onChange={handleChange}
               name="email"
               value={input.email}
-              class={
+              className={
                 input.email && !error.email
                   ? "form-control is-valid"
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.email ? error.email : "Este campo es obligatorio"}
             </div> */}
           </div>
           {/* Nombre */}
-          <div class="col-6">
-            <label for="nameInput" class="form-label">
+          <div className="col-6">
+            <label for="nameInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Nombre
             </label>
             <input
@@ -209,20 +206,20 @@ function Register() {
               onChange={handleChange}
               name="name"
               value={input.name}
-              class={
+              className={
                 input.name && !error.name
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.name ? error.name : "Este campo es obligatorio"}
             </div>
           </div>
 
           {/* Apellido */}
-          <div class="col-6">
-            <label for="lastnameInput" class="form-label">
+          <div className="col-6">
+            <label for="lastnameInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Apellido
             </label>
             <input
@@ -232,13 +229,13 @@ function Register() {
               onChange={handleChange}
               name="lastname"
               value={input.lastname}
-              class={
+              className={
                 input.lastname && !error.lastname
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.lastname ? error.lastname : "Este campo es obligatorio"}
             </div>
           </div>
@@ -246,8 +243,8 @@ function Register() {
 
 
           {/* Contraseña */}
-          {/* <div class="col-4">
-            <label for="passwordInput" class="form-label">
+          {/* <div className="col-4">
+            <label for="passwordInput" className="form-label">
               Contraseña
             </label>
             <input
@@ -257,20 +254,20 @@ function Register() {
               onChange={handleChange}
               name="password"
               value={input.password}
-              class={
+              className={
                 input.password && !error.password
                   ? "form-control is-valid"
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.password ? error.password : "Este campo es obligatorio"}
             </div>
           </div> */}
 
           {/* Confirmacion de contraseña */}
-          {/* <div class="col-4">
-            <label for="validatePassInput" class="form-label">
+          {/* <div className="col-4">
+            <label for="validatePassInput" className="form-label">
               Confirmación
             </label>
             <input
@@ -280,13 +277,13 @@ function Register() {
               onChange={handleChange}
               name="validatePass"
               value={input.validatePass}
-              class={
+              className={
                 input.validatePass && !error.validatePass
                   ? "form-control is-valid"
                   : "form-control is-invalid"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.validatePass
                 ? error.validatePass
                 : "Este campo es obligatorio"}
@@ -294,8 +291,8 @@ function Register() {
           </div> */}
 
           {/* Dirección */}
-          <div class="col-4">
-            <label for="addressInput" class="form-label">
+          <div className="col-4">
+            <label for="addressInput" className="form-label border-bottom " style={{fontWeight:"bold"}}>
               Dirección
             </label>
             <input
@@ -305,20 +302,20 @@ function Register() {
               onChange={handleChange}
               name="address"
               value={input.address}
-              class={
+              className={
                 input.address && !error.address
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.address ? error.address : "Este campo es obligatorio"}
             </div>
           </div>
 
           {/* Código Postal */}
-          <div class="col-1">
-            <label for="postalCodeInput" class="form-label">
+          <div className="col-1">
+            <label for="postalCodeInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               C.P.
             </label>
             <input
@@ -328,13 +325,13 @@ function Register() {
               onChange={handleChange}
               name="postalCode"
               value={input.postalCode}
-              class={
+              className={
                 input.postalCode && !error.postalCode
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.postalCode
                 ? error.postalCode
                 : "Este campo es obligatorio"}
@@ -342,8 +339,8 @@ function Register() {
           </div>
 
           {/* Fecha de nacimiento */}
-          <div class="col-2">
-            <label for="dateOfBirthInput" class="form-label">
+          <div className="col-2">
+            <label for="dateOfBirthInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Fecha de nacimiento
             </label>
             <input
@@ -352,13 +349,13 @@ function Register() {
               onChange={handleChange}
               name="dateOfBirth"
               value={input.dateOfBirth}
-              class={
+              className={
                 input.dateOfBirth && !error.dateOfBirth
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.dateOfBirth
                 ? error.dateOfBirth
                 : "Este campo es obligatorio"}
@@ -366,8 +363,8 @@ function Register() {
           </div>
 
           {/* Número de contacto */}
-          <div class="col-5">
-            <label for="phoneNumberInput" class="form-label">
+          <div className="col-5">
+            <label for="phoneNumberInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Número de contacto
             </label>
             <input
@@ -377,28 +374,29 @@ function Register() {
               onChange={handleChange}
               name="phoneNumber"
               value={input.phoneNumber}
-              class={
+              className={
                 input.phoneNumber && !error.phoneNumber
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
-            <div class="invalid-feedback">
+            <div className="invalid-feedback">
               {error.phoneNumber
                 ? error.phoneNumber
                 : "Este campo es obligatorio"}
             </div>
           </div>
-          <div class="mt-3 mb-3">
-            <button type="submit" class="btn btn-primary">
+          <div className="mt-3 mb-3">
+            <button type="submit" className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+        style={{backgroundColor:"indigo"}}>
               Registrarse
             </button>
           </div>
         </form>
       </div>
-    </> 
+    </>
   );
- }             
+}
 
 
 

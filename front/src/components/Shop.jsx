@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
-//import { addCart } from "../redux/actions/index";
-import { addFav, deleteFav } from "../redux/actionsCreator/favsActions";
+import { addFav, deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import {
   getProducts,
@@ -18,14 +17,14 @@ import SearchBar from "./SearchBar";
 //import cuore from "../imagesTeam/cuore.png"
 import { AiFillHeart } from "react-icons/ai";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import LoginButton from "./Login/LoginButton";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
-import "animate.css/animate.min.css"
-import banner from "../imagesTeam/deportistacrop.jpg"
+import "animate.css/animate.min.css";
+import banner from "../imagesTeam/deportistacrop.jpg";
+import { get_users } from "../redux/actionsCreator/usersActions";
 
 function Shop() {
-
   //-----------------hover --------------- no se usa, estoy probando como implementarlo bien
   const [isHovering, setIsHovering] = useState(false);
 
@@ -51,22 +50,16 @@ function Shop() {
     (state) => state.productsReducer.byCategories
   );
   const cart_state = useSelector((state) => state.cartReducer);
-  const fav_state = useSelector((state) => state.favReducer.favs)
-  const fav_LS_state = useSelector((state) => state.favReducer.favsLs)
-  const users_state = useSelector((state) => state.usersReducer.users)
-    
+  const fav_state = useSelector((state) => state.favReducer.userFavs);
+  const fav_LS_state = useSelector((state) => state.favReducer.favsLs);
+  const users_state = useSelector((state) => state.usersReducer.users);
+
   const [, setCart] = useLocalStorage("cart", cart);
   const [, setFav] = useLocalStorage("favs", fav_LS_state);
 
   // --------------- Pagination --------------
   const productsPerPage = 12;
-
-  const totalPages =
-    byCategories.length > 0
-      ? Math.ceil(byCategories?.length / productsPerPage)
-      : price.length > 0
-        ? Math.ceil(price?.length / productsPerPage)
-        : Math.ceil(products?.length / productsPerPage);
+  const totalPages = Math.ceil(products.length/productsPerPage);
 
   const [, setOrder] = useState();
   const [input, setInput] = useState({
@@ -77,12 +70,7 @@ function Shop() {
   const [page, setPage] = useState(1);
   const first = (page - 1) * productsPerPage;
   const last = page * productsPerPage;
-  let productsPage =
-    byCategories.length > 0
-      ? byCategories?.slice(first, last)
-      : price.length > 0
-        ? price?.slice(first, last)
-        : products?.slice(first, last);
+  const productsPage = products.slice(first, last);
 
   // --------------- Data call -------------
 
@@ -98,34 +86,42 @@ function Shop() {
     if (category?.length > 0) {
       dispatch(getProducts());
     }
-  }, [dispatch, category]);
-
-  //favs
-   const findUser = user ? users_state.find(u => u.email === user.email) : null
- 
-   function handleAddtoFav(product) {
-    if(findUser){
-      const findFav = fav_state.find( prod => prod.id === product.id)
-      if(findFav){
-          dispatch(deleteFav(findFav, findUser.id))
-         
-      }else{
-        dispatch(addFav(product, findUser.id))
-      }
+    if(users_state?.length === 0) {
+      dispatch(get_users())
     }
-    else{
-      const findFavLs = fav_LS_state.find(p => p === product)
-      if(findFavLs){
-        dispatch(deleteFav(findFavLs))
-        
-      }else{ 
-      dispatch(addFav(product))
-      setFav(fav_LS_state)
-      
+  }, [dispatch, category, users_state]);
+
+  
+  //favs
+  const findUser = user
+  ? users_state.find((u) => u.email === user.email)
+  : null;
+  
+  useEffect(() => {
+    if(fav_state?.length === 0) {
+      dispatch(getAllfavs(findUser?.id))
+    }
+  }, [dispatch, fav_state, findUser])
+
+  function handleAddtoFav(product) {
+    if (findUser) {
+      const findFav = fav_state.find((prod) => prod.id === product.id);
+      if (findFav) {
+        dispatch(deleteFav(findFav, findUser.id));
+      } else {
+        dispatch(addFav(product, findUser.id));
+      }
+    } else {
+      const findFavLs = fav_LS_state.find((p) => p === product);
+      if (findFavLs) {
+        dispatch(deleteFav(findFavLs));
+      } else {
+        dispatch(addFav(product));
+        setFav(fav_LS_state);
       }
     }
   }
-    /* toast('🦄 Producto añadido a favoritos', {
+  /* toast('🦄 Producto añadido a favoritos', {
       position: "top-right",
       autoClose: 800,
       hideProgressBar: false,
@@ -135,11 +131,13 @@ function Shop() {
       progress: undefined,
     }); */
 
-  
- const stateOrLs = findUser? fav_state : fav_LS_state
+
+  const stateOrLs = user ? fav_state : fav_LS_state;
+
   // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
   //   localStorage.setItem('favs', JSON.stringify(favState))
   // }, [favState])
+
   // --------------- Cart function ----------------
   const addProduct = (product) => {
     dispatch(addCart(product));
@@ -171,7 +169,7 @@ function Shop() {
 
   // ----------------- filter functions ------------------
   const filterCategories = (e) => {
-    e.preventDefault();
+    console.log(e.target.value)
     setPage(1);
     dispatch(filterByCategories(e.target.value));
   };
@@ -183,22 +181,6 @@ function Shop() {
     });
   }
 
-  /* const handleSumit = (e) => {
-    e.preventDefault();
-    setPage(1);
-    if (byCategories.length > 0) {
-      const filteredCategories = byCategories?.filter((c) => {
-        return parseInt(c.price) > input.min && parseInt(c.price) < input.max;
-      });
-      dispatch(filterByPrice(filteredCategories));
-    } else {
-      const filteredAll = products?.filter((p) => {
-        return parseInt(p.price) > input.min && parseInt(p.price) < input.max;
-      });
-      dispatch(filterByPrice(filteredAll));
-    }
-  }; */
-
   //--------------- clean sort and filters function --------------------
   const cleanFilters = (e) => {
     e.preventDefault();
@@ -208,30 +190,36 @@ function Shop() {
     dispatch(filterByCategories([]));
   };
 
-  
-
   return (
-    // isAuthenticated?    
+    // isAuthenticated?
     <>
       <>
-
         {/* --------------------------------------------------------------------------------- */}
-        <div class="container position-relative d-block text-center m-1 p-0 ">
+        <div className="container position-relative d-block text-center m-1 p-0 ">
           <img src={banner} alt="banner"></img>
-          <div class="text-center text-white position-absolute top-50 start-50">
-            <h1 class="display-4 fw-bolder">Shop Athenas</h1>
-            <p class="lead fw-normal text-white mb-0"><b>Todo</b> para mejorar tu rendimiento</p>
+          <div className="text-center text-white position-absolute top-50 start-50">
+            <h1 className="display-4 fw-bolder">Shop Athenas</h1>
+            <p className="lead fw-normal text-white mb-0">
+              <b>Todo</b> para mejorar tu rendimiento
+            </p>
           </div>
         </div>
 
-
         {/* //////////////////////////////////////// */}
 
-        <div class="row align-items-center py-3 px-xl-5">
-          <div class="col-lg-3 d-none d-lg-block" >
-            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="font-weight-bold border px-1 mr-1" style={{ color: "indigo" }}>T</span>ienda</h1>
+        <div className="row align-items-center py-3 px-xl-5">
+          <div className="col-lg-3 d-none d-lg-block">
+            <h1 className="m-0 display-5 font-weight-semi-bold">
+              <span
+                className="font-weight-bold border px-1 mr-1"
+                style={{ color: "indigo" }}
+              >
+                T
+              </span>
+              ienda
+            </h1>
           </div>
-          <div class="col-lg-6 col-6 text-left ">
+          <div className="col-lg-6 col-6 text-left ">
             <SearchBar setPage={setPage} />
             <select
               onChange={order}
@@ -246,7 +234,9 @@ function Shop() {
             </select>
             <select
               onChange={filterCategories}
-              className="btn border dropdown-toggle rounded-pill text-white" style={{ backgroundColor: "indigo" }}>
+              className="btn border dropdown-toggle rounded-pill text-white"
+              style={{ backgroundColor: "indigo" }}
+            >
               <option defaultValue="Categories">Filtrar categorías</option>
               {category?.map((c) => (
                 <option name={c.name} key={c.id} value={c.name}>
@@ -254,72 +244,157 @@ function Shop() {
                 </option>
               ))}
             </select>
-            <button onClick={cleanFilters} className="btn btn-outline-danger text-dark ms-2 border rounded-pill" >
+            <button
+              onClick={cleanFilters}
+              className="btn btn-outline-danger text-dark ms-2 border rounded-pill"
+            >
               Borrar filtros
             </button>
-
           </div>
-          <div class="col-lg-3 col-6 text-right" data-toggle="tooltip" data-placement="bottom" title="Favoritos">
+          <div
+            className="col-lg-3 col-6 text-right"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="Favoritos"
+          >
             <Link className="" to="/favorites">
-
-              <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "indigo" }} width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ color: "indigo" }}
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-heart"
+                viewBox="0 0 16 16"
+              >
                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
               </svg>
-              <span class="badge text-dark ">({stateOrLs?.length})</span>
+              <span className="badge text-dark ">({stateOrLs?.length})</span>
             </Link>
-            <Link to="/carrito" data-toggle="tooltip" data-placement="bottom" title="Carrito">
-              <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "indigo" }} width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+            <Link
+              to="/carrito"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title="Carrito"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ color: "indigo" }}
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-cart"
+                viewBox="0 0 16 16"
+              >
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
               </svg>
             </Link>
-            <span class="badge text-dark">({cart_state.items?.length})</span>
+            <span className="badge text-dark">
+              ({cart_state.items?.length})
+            </span>
           </div>
         </div>
 
         {/* //////////////////////////////////////////// */}
 
-        <div class="container animate__animated animate__fadeInUp" style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: "3rem",
-          margin: "2rem",
-        }}>
-          {productsPage?.map((p) => (
-            <div class="card product-item border-0" key={p.id}>
-              <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
-                <div class="" onClick={() => navigate(`/tienda/${p.id}`)} >
-
-                  <img class="img-fluid hover-zoom bg-image" src={p.image}/* className="card-img-top" */ alt={p.name} />
-
+        <div
+          className="container animate__animated animate__fadeInUp"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "3rem",
+            margin: "2rem",
+          }}
+        >
+          {productsPage?.map((p, index) => (
+            <div className="card product-item border-0" key={index}>
+              <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
+                <div className="" onClick={() => navigate(`/tienda/${p.id}`)}>
+                  <img
+                    className="img-fluid hover-zoom bg-image"
+                    src={p.image}
+                    /* className="card-img-top" */ alt={p.name}
+                  />
                 </div>
               </div>
-              <div class="card-body border-left border-right text-center">
-                <h6 class="text-truncate ">{p.name}</h6>
-                <div class="d-flex justify-content-center">
+              <div className="card-body border-left border-right text-center">
+                <h6 className="text-truncate ">{p.name}</h6>
+                <div className="d-flex justify-content-center">
                   <h6>$ {p.price}</h6>
                 </div>
               </div>
-              <div class="card-footer d-flex justify-content-between border text-primary" >
-                <a onClick={() => navigate(`/tienda/${p.id}`)} class="btn btn-sm  p-0" >
-                  <i data-toggle="tooltip" data-placement="bottom" title="Ver detalle" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style={{ color: "indigo" }} fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16" >
+              <div className="card-footer d-flex justify-content-between border text-primary">
+                <a
+                  onClick={() => navigate(`/tienda/${p.id}`)}
+                  className="btn btn-sm  p-0"
+                >
+                  <i
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Ver detalle"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      style={{ color: "indigo" }}
+                      fill="currentColor"
+                      className="bi bi-eye"
+                      viewBox="0 0 16 16"
+                    >
                       <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                       <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                     </svg>
                   </i>
                 </a>
-                <a onClick={() => addProduct(p)} class="btn btn-sm  p-0">
-                  <i data-toggle="tooltip" data-placement="bottom" title="Agregar al carrito">
-                    <svg xmlns="http://www.w3.org/2000/svg" style={{ color: "indigo" }} data-toggle="tooltip" data-placement="bottom" title="Agregar al carrito" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                <a onClick={() => addProduct(p)} className="btn btn-sm  p-0">
+                  <i
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Agregar al carrito"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ color: "indigo" }}
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Agregar al carrito"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      className="bi bi-cart"
+                      viewBox="0 0 16 16"
+                    >
                       <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
                   </i>
                 </a>
-                <a onClick={() => handleAddtoFav(p)} class="btn btn-sm  p-0 ">
-                  <i data-toggle="tooltip" data-placement="bottom" title="Agregar a favoritos">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill={ stateOrLs.find(pr=> pr.id === p.id ) ? 'red'  : "currentColor"} class="bi bi-heart-fill" viewBox="0 0 16 16">
-  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-</svg>
+                <a
+                  onClick={() => handleAddtoFav(p)}
+                  className="btn btn-sm  p-0 "
+                >
+                  <i
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Agregar a favoritos"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill={
+                        stateOrLs.find((pr) => pr.id === p.id)
+                          ? "red"
+                          : "currentColor"
+                      }
+                      className="bi bi-heart-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                      />
+                    </svg>
                   </i>
                 </a>
               </div>
@@ -328,12 +403,6 @@ function Shop() {
         </div>
 
         {/* PAGINACION */}
-
-
-
-
-
-
       </>
       <Pagination totalPages={totalPages} page={page} setPage={setPage} />
     </>
@@ -346,26 +415,3 @@ function Shop() {
 }
 
 export default Shop;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -12,9 +12,9 @@ function Landing() {
               height="315"
               src="https://www.youtube.com/embed/iI-od-q_0Dw"
               title="YouTube video player"
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
             <img src="" alt="" id="main-image" />
             <img
