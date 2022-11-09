@@ -3,17 +3,17 @@ const { Cart, Product, User } = require("../../db");
 const { putProduct } = require("./products");
 
 const postCart = async (req, res) => {
-  const { items } = req.body;
+  const { items, id } = req.body;
   // console.log(items)
   let finalPrice = 0;
   items?.forEach((i) => {
-    finalPrice = finalPrice + Number(i.price) * Number(i.qty)
-  })
+    finalPrice = finalPrice + Number(i.price) * Number(i.qty);
+  });
 
   try {
     const newCartList = await Cart.create({
       total: finalPrice,
-      userId: 1,
+      userId: id,
       productQty: items?.map((i) => [i.id, i.qty]),
     });
 
@@ -43,13 +43,13 @@ const cartDetail = async (req, res) => {
 
 const getCart = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     const purhcesesMaded = await Cart.findAll({
-      include: {
-        model: Product,
-      },
       where: {
         userId: id,
+      },
+      include: {
+        model: Product,
       },
     });
     return res.status(200).json(purhcesesMaded);

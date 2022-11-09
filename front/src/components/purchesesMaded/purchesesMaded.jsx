@@ -22,7 +22,7 @@ export default function PurchesesMaded() {
     if (allUsers?.length === 0) {
       dispatch(get_users());
     }
-  }, [dispatch, purchesesMaded, allUsers]);
+  }, [allUsers]);
 
   return purchesesMaded?.length > 0
     ? purchesesMaded?.map((el) => {

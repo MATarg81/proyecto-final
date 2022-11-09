@@ -20,10 +20,10 @@ export const addCart = (product) => {
 };
 
 export const getCart = (userId) => {
-  console.log("Userid: ", userId)
+  console.log("Userid: ", userId);
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`/cart`, userId); //hardcodeo provisorio de user
+      const { data } = await axios.get(`/cart/${userId}`); //hardcodeo provisorio de user
       return dispatch({
         type: GET_CART,
         payload: data,
@@ -79,11 +79,11 @@ export const delAll = () => {
 //   }
 // }
 
-export const postCart = ({items}) => {
-  console.log("postCart body: ", {items});
+export const postCart = ({items, id }) => {
+  console.log("postCart body: ", id);
   return async function (dispatch) {
     try {
-      const res = await axios.post("/cart", {items});
+      const res = await axios.post(`/cart`, {items, id});
       return dispatch({
         type: POST_CART,
         payload: res,
