@@ -64,3 +64,52 @@ export function getReviewsProductId(id){
       }          
   }
 };
+
+
+export function postReviewActivity(body){
+  return async function (dispatch){
+    console.log(body)
+    try{
+      const response = await axios.post('/reviews/activities', body)
+      return dispatch({
+        type: 'POST_REVIEW_ACTIVITY',
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+  }
+};
+
+export function getReviewsActivityId(id){
+  return async function(dispatch){
+    
+      try {
+        const url = await axios.get('/reviews/activities/' + id);
+                
+        return dispatch({
+          type: 'GET_REVIEW_ACTIVITY_ID',
+          payload: url.data
+        })
+      } catch (err) {
+        console.log(err)
+        return err
+      }          
+  }
+};
+
+export function patchReviewActivity(body){
+  return async function (dispatch){
+    try{
+      const response = await axios.patch(`/reviews/activities/${body.activity}`, body)
+      return dispatch({
+        type: "PATCH_REVIEW_ACTIVITY",
+        payload: response,
+      });
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+  }
+};

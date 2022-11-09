@@ -44,7 +44,7 @@ async function getUsers(req, res) {
     } 
     else { 
       //User.findAll({ include: Role }).then((r) => res.status(200).send(r));{include:[{model: Product, attributes: ['name']}, {model: User, attributes: ['name']}]}
-      User.findAll({include: [{model: Role, attributes: ['name']}, { model:Activity, attributes: ['name'] }]}).then((r) => res.status(200).send(r));
+      User.findAll({include: [{model: Role, attributes: ['name']}, { model: Activity }]}).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
