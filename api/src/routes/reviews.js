@@ -3,6 +3,7 @@ const {
   getActivitiesReviews,
   getActivitiesReviewsId,
   addActivitiesReviews,
+  updateActivityReviews,
   getProductsReviews,
   getProductsReviewsId,
   addProductsReviews,
@@ -16,6 +17,7 @@ const router = Router();
 router.get("/activities", getActivitiesReviews);
 router.get("/activities/:id", getActivitiesReviewsId);
 router.post("/activities", addActivitiesReviews)
+router.patch("/activities/:id", updateActivityReviews)
 //---------------PRODUCTS-------------------------------
 router.get("/products", getProductsReviews);
 router.get("/products/:id", getProductsReviewsId);

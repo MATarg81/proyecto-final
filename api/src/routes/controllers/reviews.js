@@ -32,8 +32,8 @@ const allActivitiesReviews = async() => {
 
 const reviewsActivitiesId = async(id) => {
   try {
-      const totalReviews = await Review.findAll({include:[{model: User, attributes: ['name']}, {model: Activity, attributes: ['name']}]});
-      const reviewsId = totalReviews.find((r) => r.activityId.toString() === id);
+    const totalReviews = await Review.findAll({include:[{model: Activity, attributes: ['id', 'name']}, {model: User, attributes: ['name']}]});
+    const reviewsId = totalReviews.filter((r) => r.activityId?.toString() === id);
           
           return reviewsId;
   }
@@ -46,7 +46,7 @@ const reviewsActivitiesId = async(id) => {
 async function getActivitiesReviews(req, res) {
 
 try{                                       
-    const totalReviews = await Review.findAll({include:[{model: User, attributes: ['name']}, {model: Activity, attributes: ['name']}]});
+  const totalReviews = await Review.findAll({include:[{model: User, attributes: ['id','name']}, {model: Activity, attributes: ['name']}]});
   
     if(totalReviews){
       return res.status(200).send(totalReviews);
@@ -83,7 +83,7 @@ async function addActivitiesReviews(req, res) {
     content, 
     activity
   } = req.body;
-  const findActivity = await Activity.findOne({ where: { name: activity}});
+  const findActivity = await Activity.findOne({ where: { id: activity}});
 
   try {
       const newReview = await Review.create({
@@ -92,7 +92,7 @@ async function addActivitiesReviews(req, res) {
 
       });
       
-      await newReview.setActivity(findActivity.id);
+      await newReview.setActivity(activity);
       await newReview.setUser(user) //id
 
       return res
@@ -102,6 +102,39 @@ async function addActivitiesReviews(req, res) {
     return res
     .status(404)
     .send(console.log(e));
+  }
+};
+
+async function updateActivityReviews(req, res) {
+  const { 
+    id,
+    user,
+    score, 
+    content, 
+    activity
+  } = req.body;
+  console.log(req.body)
+
+  const findActivity = await Activity.findOne({ where: { id: activity}});
+ 
+  try {
+      const newReview = await Review.update({
+        score,
+        content,
+      },
+      {
+        where: {
+          id: Number(id),
+        },
+      });
+
+      return res
+      .status(200)
+      .json(newReview); 
+  } catch (e) {
+    return res
+    .status(404)
+    .send(console.log("problemas: ", e));
   }
 }
 
@@ -255,6 +288,7 @@ module.exports = {
   getActivitiesReviews,
   addActivitiesReviews,
   getActivitiesReviewsId,
+  updateActivityReviews,
   getProductsReviews,
   addProductsReviews,
   getProductsReviewsId,

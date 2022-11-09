@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getActivities,
@@ -33,6 +33,7 @@ export default function Activities() {
   //hola
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Add activities to a user - Register in an activity
 

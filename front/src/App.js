@@ -67,7 +67,7 @@ function App() { //Agregar ruta de /detail/id
         <Route exact path="/inscriptos" element={ <RegisteredActivity />} />
         <Route exact path="/crearProducto" element={<CreateProduct />} />
         <Route exact path="/reviews" element={<Reviews />} />
-        <Route exact path="/crearCalificacion" element={<ReviewsCreate />} />
+        <Route exact path="/crearCalificacion/:id" element={<ReviewsCreate />} />
         <Route exact path="/favorites" element={<Favorites />} />
 
         <Route exact path="/edituser" element={<EditProfile />} />
