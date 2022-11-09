@@ -125,14 +125,14 @@ export default function ProfileAllActivities() {
                 );
               })}
             <div
-              className="modal fade"
+              className="modal fade rounded"
               id="editActivities"
               tabindex="-1"
               aria-labelledby="editActivitiesLabel"
               aria-hidden="true"
             >
-              <div className="modal-dialog">
-                <div className="modal-content">
+              <div className="modal-dialog rounded">
+                <div className="modal-content rounded">
                   <div className="modal-header">
                     <h5 className="modal-title" id="editActivitiesLabel">
                       Editar actividad
