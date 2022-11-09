@@ -7,6 +7,7 @@ import {
   getProducts,
   orderByName,
 } from "../redux/actionsCreator/productsActions";
+import CreateProduct from "./CreateProduct/CreateProduct";
 import ProfileEditProduct from "./ProfileEditProduct";
 
 export default function ProfileProducts() {
@@ -52,24 +53,29 @@ export default function ProfileProducts() {
 
   return (
     <div className="container-fluid">
-      <button
-        type="button"
-        class="btn btn-outline-dark"
-        data-bs-toggle="modal"
-        data-bs-target="#editProduct"
-      >
-        Editar
-      </button>
+      <div className="d-flex flex-row">
+
+        <button
+          type="button"
+          className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          style={{backgroundColor:"indigo"}}
+          data-bs-toggle="modal"
+          data-bs-target="#editProduct"
+        >
+          Editar
+        </button>
+        <CreateProduct />
+      </div>
       <div>
-        <table className="table table-responsive-sm table-striped table-hover">
+        <table className="table table-responsive-sm table-striped table-hover table-success">
           <thead >
             <tr className="d-flex col-sm-10">
               <th className="col-sm-2">
                 Nombre
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0"
-                  style={{ width: "30%" }}
+                  className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
+                  style={{ width: "250px" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
                   <option value="-">⇅</option>
@@ -77,11 +83,11 @@ export default function ProfileProducts() {
                   <option value="Z/A">Z-A</option>
                 </select>
               </th>
-              <th className="col-sm-1">
+              <th className="col-sm-1" style={{width:"120px"}}>
                 Precio
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0"
+                  className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
                   style={{ width: "30%" }}
                   onChange={(e) => setOrder(e.target.value)}
                 >
@@ -90,11 +96,11 @@ export default function ProfileProducts() {
                   <option value="MAX/MIN">Desc.</option>
                 </select>
               </th>
-              <th className="col-sm-1">
+              <th className="col-sm-1" style={{width:"120px"}}>
                 Categoría
                 <select
                   type="button"
-                  className="btn btn-outline-dark btn-sm border-0"
+                  className="btn btn-outline-dark btn-sm rounded-pill border-0 w-25"
                   style={{ width: "30%" }}
                   onChange={filterCategories}
                 >
@@ -106,31 +112,31 @@ export default function ProfileProducts() {
                   ))}
                 </select>
               </th>
-              <th className="col-sm-1">Detalle</th>
-              <th className="col-sm-1">Imagen</th>
+              <th className="col-sm-1"  style={{width:"420px"}}>Detalle</th>
+              <th className="col-sm-1" style={{width:"84px"}}>Imagen</th>
               <th className="col-sm-1">Stock</th>
             </tr>
           </thead>
           <tbody>
             {allProducts &&
-              allProducts.map((p) => {
+              allProducts?.map((p) => {
                 return (
                   <>
                     <tr className="d-flex col-sm-10">
                       <td className="col-sm-2 text-truncate">{p.name}</td>
-                      <td className="col-sm-1">{p.price}</td>
-                      <td className="col-sm-1">
+                      <td className="col-sm-1" style={{width:"120px"}}>{p.price}</td>
+                      <td className="col-sm-1" style={{width:"120px"}}>
                         {p.categories.map((c) => c.name)}
                       </td>
-                      <td className="col-sm-1 text-truncate">{p.detail}</td>
-                      <td className="col-sm-1">
+                      <td className="col-sm-1 text-truncate" style={{width:"420px"}}>{p.detail}</td>
+                      <td className="col-sm-1" >
                         {p.image.map((i) => {
                           return (
                             <img
                               src={i}
                               className="img-fluid img-thumbnail"
-                              style={{ width: "15%", height: "75%" }}
-                              alt=""
+                              style={{width:"30px"}}
+                              alt="Foto producto"
                             />
                           );
                         })}
@@ -141,26 +147,26 @@ export default function ProfileProducts() {
                 );
               })}
             <div
-              class="modal fade"
+              className="modal fade"
               id="editProduct"
               tabindex="-1"
               aria-labelledby="editProductLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="editProductLabel">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="editProductLabel">
                       Editar producto
                     </h5>
                     <button
                       type="button"
-                      class="btn-close"
+                      className="btn-close"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <ProfileEditProduct />
                   </div>
                 </div>

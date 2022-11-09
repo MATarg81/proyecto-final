@@ -19,14 +19,15 @@ async function getUsers(req, res) {
           phoneNumber: u.phoneNumber,
           address: u.address,
           postalCode: u.postalCode.toString(),
-          password: u.password
+          image: u.image
         });
         
-        await newUser.setRole(1);
+        await newUser.setRole(2);
 
       });
       return res.status(200).send(allUsers)
-    } else if (name || lastname || email) {
+    } 
+    else if (name || lastname || email) {
       const userName = await User.findOne({
         where: { name: { [Op.iLike]: `%${name}%` } },
       });
@@ -47,19 +48,20 @@ async function getUsers(req, res) {
       } else {
         return res.status(404).send("User can't be found");
       }
-    } else { 
-      // User.findAll({ include: Role }).then((r) => res.status(200).send(r));
-      User.findAll({include:{model: Role}} ).then((r) => res.status(200).send(r));
+    } 
+    else { 
+      //User.findAll({ include: Role }).then((r) => res.status(200).send(r));
+      User.findAll({include: Role, include:[{
+        model:Activity
+      }]}).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
   }
 }
 
-//Debería poder guardar los datos si se editan en el front. 
-// Por ejemplo: {name: Laura} --> front: usuario.name = Sofía --> Tabla: {name: Sofía}
 async function getUsersById(req, res) {
-  const { id } = req.params;
+  const { id } = req.body;
 
   const findUser = await User.findOne({
     where: { id: id },
@@ -76,7 +78,7 @@ async function getUsersById(req, res) {
 }
 
 async function addUser(req, res) {
-  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode, password } = req.body;
+  const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode, image } = req.body;
   const dbUser = await User.findOne({ where: { email: email }, include: Role });
 
   try {
@@ -86,13 +88,14 @@ async function addUser(req, res) {
         lastname: lastname,
         email: email,
         dateOfBirth: dateOfBirth.toString(),
-        phoneNumber: phoneNumber,
+        phoneNumber: parseInt(phoneNumber),
         address: address,
         postalCode: postalCode.toString(),
-        password: password
+        image: image
+        
       });
 
-      const addRole = await newUser.setRole(1);
+      const addRole = await newUser.setRole(2);
       return res.status(200).send(newUser);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);
@@ -115,7 +118,6 @@ async function deleteUser(req, res) {
 }
 
 async function updateUser(req, res) {
-  //const id = req.params.id;
   const body = req.body;
 
   try {
@@ -128,8 +130,8 @@ async function updateUser(req, res) {
         email: body.email,
         address: body.address,
         postalCode: body.postalCode,
-        password: body.password,
         roleId: body.roleId,
+        image: body.image
 
       },
       {

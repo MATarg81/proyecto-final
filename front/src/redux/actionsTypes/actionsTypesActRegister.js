@@ -1,0 +1,1 @@
+export const ADD_USER_ACTIVITY = "ADD_USER_ACTIVITY"

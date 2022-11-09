@@ -8,9 +8,9 @@ const Auth0ProviderWithHistory = ({ children }) => {
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
   const navigate = useNavigate();
 
-   const onRedirectCallback = (appState) => {
-      navigate(appState?.returnTo || window.location.pathname);
-    };
+  //  const onRedirectCallback = (appState) => {
+  //     navigate(appState?.returnTo || window.location.pathname);
+  //   };
 
   return (
     <Auth0Provider
@@ -18,7 +18,9 @@ const Auth0ProviderWithHistory = ({ children }) => {
       clientId={clientId}
       //redirectUri={ window.location.origin }
       redirectUri={'http://localhost:3000/registro'}
-      onRedirectCallback={onRedirectCallback}
+      //onRedirectCallback={onRedirectCallback}
+      useRefreshTokens = {true}
+      cacheLocation="localstorage"
     >
       {children}
     </Auth0Provider>

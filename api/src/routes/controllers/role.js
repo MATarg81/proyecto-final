@@ -37,7 +37,7 @@ async function updateRoles(req, res) {
         },
       }
 
-    )/* .setRole(body.idRole); */
+    )
 
     res.status(200).send("Rol actualizado con éxito");
   } catch (error) {

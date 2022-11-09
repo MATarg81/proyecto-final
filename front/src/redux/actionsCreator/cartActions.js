@@ -1,6 +1,14 @@
 import axios from "axios";
 
-import { ADD_ITEM, DELETE_ITEM, DELETE_ALL, POST_CART, GET_CART, CART_DETAIL, TOTAL_PRICE } from "../actionsTypes/actionsTypesCart";
+import {
+  ADD_ITEM,
+  DELETE_ITEM,
+  DELETE_ALL,
+  POST_CART,
+  GET_CART,
+  CART_DETAIL,
+  TOTAL_PRICE,
+} from "../actionsTypes/actionsTypesCart";
 
 // Agregar item al carro
 
@@ -12,9 +20,10 @@ export const addCart = (product) => {
 };
 
 export const getCart = (userId) => {
+  console.log("Userid: ", userId)
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`/cart/${userId}`); //hardcodeo provisorio de user
+      const { data } = await axios.get(`/cart`, userId); //hardcodeo provisorio de user
       return dispatch({
         type: GET_CART,
         payload: data,
@@ -23,13 +32,12 @@ export const getCart = (userId) => {
       console.log(err);
     }
   };
+};
 
-}
-  
-export const cartDetail = ( id) => {
+export const cartDetail = (id) => {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`/cart/detail/${id}`); 
+      const { data } = await axios.get(`/cart/detail/${id}`);
       return dispatch({
         type: CART_DETAIL,
         payload: data,
@@ -38,9 +46,7 @@ export const cartDetail = ( id) => {
       console.log(err);
     }
   };
- 
 };
-
 
 export const delCart = (product) => {
   return {
@@ -73,11 +79,11 @@ export const delAll = () => {
 //   }
 // }
 
-export const postCart = (body) => {
-    console.log(body)
+export const postCart = ({items}) => {
+  console.log("postCart body: ", {items});
   return async function (dispatch) {
     try {
-      const res = await axios.post("/cart", body);
+      const res = await axios.post("/cart", {items});
       return dispatch({
         type: POST_CART,
         payload: res,
@@ -87,4 +93,4 @@ export const postCart = (body) => {
       return err;
     }
   };
-}
+};

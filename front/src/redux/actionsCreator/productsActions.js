@@ -12,16 +12,17 @@ import {
   GET_PRODUCTS_BY_NAME,
   FILTER_BY_PRICE,
   EDIT_PRODUCT,
-  POST_CATEGORY
+  POST_CATEGORY,
+  DELETE_PRODUCTS
 } from "../actionsTypes/actionsTypesProducts";
 
-// const BACK_URL = "http://localhost:3001";
+
 
 export function getProducts() {
   return async function (dispatch) {
     try {
       const url = await axios.get("/products");
-      // console.log(url.data)
+
 
       return dispatch({
         type: GET_PRODUCTS,
@@ -35,8 +36,8 @@ export function getProducts() {
 }
 
 export function searchProducts(search) {
-  return function (dispatch) {
-    axios
+  return async function (dispatch) {
+    await axios
       .get(`/products?name=${search}`)
       .then((products) => {
         dispatch({
@@ -126,6 +127,17 @@ export function updateProduct(body) {
   };
 }
 
+export const delete_products = (id) => {
+  return async function (dispatch) {
+    try {
+      const { data } = await axios.delete(`/products/${id}`);
+      return dispatch({ type: DELETE_PRODUCTS, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 export function orderByName(payload) {
   return {
     type: ORDER_BY_NAME,
@@ -169,14 +181,16 @@ export function filterByPrice(payload) {
   };
 }
 
-export function orderName(a, b) {
-  if(a.name < b.name) return -1
-  if(b.name < a.name) return 1 
-  return 0
+export function orderName(payload) {
+  return {
+    type: ORDER_BY_NAME,
+    payload,
+}
 }
 
-export function orderPrice(a, b) {
-  if(parseInt(a.price) < parseInt(b.price)) return -1
-  if(parseInt(b.price) < parseInt(a.price)) return 1 
-  return 0
+export function orderPrice(payload) {
+  return {
+    type: ORDER_BY_PRICE,
+    payload,
+}
 }

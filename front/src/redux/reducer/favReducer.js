@@ -9,28 +9,34 @@ import {
 
 const favsInitialState = { 
     favs: [] ,
-    favsLs: [localStorage.getItem('favs')]
+    userFavs: [],
+    favsLs: localStorage.favs 
+    ? JSON.parse(localStorage.favs)
+    : [],
 }
 
 function favReducer(state= favsInitialState, action){
     switch (action.type) {
+        case 'GET_FAVS':
+          return {
+            ...state,
+            userFavs: action.payload
+          }
+
         case ADD_FAV: 
             const item = action.payload          
-
-            //localStorage.setItem('favs', JSON.stringify(item)) //setItem se usa para almacenar informacion
-           
             return {
               ...state,
-                favs: [...state.favs, item] 
+              userFavs: [...state.favs, item] 
               }
 
-        // case 'ADD_FAV_LS':
-        //   const item2 = action.payload
-        //   localStorage.setItem('favs', JSON.stringify(item))
-        //   return {
-        //     ...state,
-        //     favsLs: [localStorage.getItem('favs')]
-        //   }
+        case 'ADD_FAV_LS':
+          const item2 = action.payload
+    
+          return {
+            ...state,
+            favsLs: [...state.favsLs, item2]
+          }
 
         case REMOVE_FAV:
             const favoritos = state.favs;    
@@ -38,8 +44,17 @@ function favReducer(state= favsInitialState, action){
             
             return {
               ...state,
-              favs: filtro
+              userFavs: filtro
             };
+
+        case 'REMOVE_FAV_LS':
+            const prod = action.payload
+            const filter = state.favsLs.filter( p => p.id !== prod.id)
+            return {
+                ...state,
+                favsLs: filter
+            }
+
         default: return state
     }
 }

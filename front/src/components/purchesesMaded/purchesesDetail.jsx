@@ -14,12 +14,11 @@ export default function PurchesesDetail() {
   }, [dispatch, id]);
 
   const purchesDetail = useSelector((state) => state.cartReducer.purchesDetail);
-  console.log(purchesDetail, " soy purches detail");
 
   return (
     <div>
       <Link to="/profile/historial">
-        <button> Go Back </button>
+        <button className="btn btn-outline-dark rounded-pill text-white border-white p-1" style={{backgroundColor: "indigo"}}> Go Back </button>
       </Link>
       {purchesDetail.products?.length &&
         purchesDetail.products.map((el) => {

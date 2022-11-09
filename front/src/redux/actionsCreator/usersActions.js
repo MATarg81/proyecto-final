@@ -28,11 +28,12 @@ export function get_users(name, lastname, email) {
   };
 }
 export function get_users_by_id(id) {
-  console.log("get_users_by_id" + id);
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`/users/${id}`);
-      console.log("soy details " + data);
+
+      const { data } = await axios.get(`/users/`, id);
+      // console.log("soy details " + data);
+
       return dispatch({ type: GET_USERS_BY_ID, payload: data });
     } catch (error) {
       console.log(error);
@@ -43,8 +44,7 @@ export function get_users_by_id(id) {
 
 export function add_users(payload) {
   return function () {
-    axios
-      .post(`/users`, payload)
+    axios.post(`/users`, payload)
       .then((res) => {
         console.log(res.data);
       })
@@ -62,7 +62,6 @@ export const delete_users = (id) => {
   return async function (dispatch) {
     try {
       const { data } = await axios.delete(`/users/${id}`);
-      console.log("soy ID " + data);
       return dispatch({ type: DELETE_USERS, payload: data });
     } catch (error) {
       console.log(error);

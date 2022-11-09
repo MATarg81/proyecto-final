@@ -23,23 +23,18 @@ export default function Searchbar({ setPage }) {
   return (
     <div>
       <form onSubmit={onSubmit} className="d-flex " role="search" action="">
-        <div class="input-group">
+        <div className="input-group">
           <input onChange={onInputChange}
             className="form-control me-2 rounded-pill"
             type="search"
             placeholder="Búsqueda por nombre..."
             aria-label="Buscar"
             value={search} />
-          <div class="input-group-append my-1 " >
-            <span onClick={onSubmit} class="input-group-text bg-transparent text-primary rounded-pill " >
-              <i class="fa fa-search" style={{color: "indigo"}}></i>
+          <div className="input-group-append my-1 " >
+            <span onClick={onSubmit} className="input-group-text bg-transparent text-primary rounded-pill " >
+              <i className="fa fa-search" style={{color: "indigo"}}></i>
             </span>
           </div>
-          <button className="btn border ms-2 rounded-pill text-white" style={{backgroundColor: "indigo"}}>
-              <Link className="nav-link" to="/crearProducto">
-                Crear Producto
-              </Link>
-            </button>
         </div>
       </form>
     </div>
@@ -49,11 +44,11 @@ export default function Searchbar({ setPage }) {
 /* 
 
 <form action="">
-              <div class="input-group">
-                <input type="text" class="form-control py-0" placeholder="Busqueda por nombre" />
-                <div class="input-group-append">
-                  <span class="input-group-text bg-transparent text-primary">
-                    <i class="fa fa-search"></i>
+              <div className="input-group">
+                <input type="text" className="form-control py-0" placeholder="Busqueda por nombre" />
+                <div className="input-group-append">
+                  <span className="input-group-text bg-transparent text-primary">
+                    <i className="fa fa-search"></i>
                   </span>
                 </div>
               </div>

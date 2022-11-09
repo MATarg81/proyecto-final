@@ -1,5 +1,25 @@
-const { User, Product } = require("../../db");
+const { User, Favorite, Product } = require("../../db");
 //const { getUsers, getUsersById } = require("./users");
+
+
+async function getFavs(req, res) {
+  const  idU  = req.query.idU;
+  
+  try {
+    const findAll = await Favorite.findAll({
+      where:{
+        userId: idU
+      }, include:{
+        model: Product
+      }
+    
+    })
+  res.status(200).send(findAll)
+
+  } catch (error) {
+    res.status(404).send(error)
+  }
+}
 
 async function setFav(req, res) {
     const  idU  = req.query.idU;
@@ -10,7 +30,10 @@ try {
     const findProduct = await Product.findByPk(idP)
 
     if (findUser && findProduct) {
-      await findUser.addProduct(findProduct)
+        const newFav = await Favorite.create()
+    
+      await newFav.setUser(findUser)
+      await newFav.setProduct(findProduct)
 
       res.status(200).json(findProduct);
     } else {
@@ -31,7 +54,12 @@ try {
     const findProduct = await Product.findByPk(idP)
 
     if (findUser && findProduct) {
-      await findUser.removeProduct(findProduct)
+      const find = await Favorite.findOne({where:{
+        userId : idU,
+        productId : idP
+      }})
+      
+      await find.destroy()
 
       res.status(200).send('producto eliminado de favoritos');
     } else {
@@ -44,5 +72,6 @@ try {
   
   module.exports = {
     setFav,
-    removeFav
+    removeFav,
+    getFavs
   };

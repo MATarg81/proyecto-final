@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getActivities } from "../redux/actions/activitiesActions";
 
 
-export default function InscriptosActividades() {
+export default function RegisteredActivity() {
 
     const dispatch = useDispatch();
 
@@ -39,12 +39,14 @@ export default function InscriptosActividades() {
                     <h5 className="card-title">{a.name}</h5>
                     
                     <p className="card-text">
-                      <small className="text-muted">Usarios inscriptos: {a.users.map(e => e.email)}
+                      <small className="text-muted">Usarios inscriptos:
+                      <br />
+                      {a.users.map(e => " " + e.email + " / ")}
                       </small>
                     </p>
                     </div>
                 </div>
                   </div>
-            )})};
+            )})}
       </div>   
 )};
