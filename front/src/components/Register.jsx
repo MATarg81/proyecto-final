@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add_users, get_users } from "../redux/actionsCreator/usersActions";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +11,8 @@ function Register() {
 
   const { isAuthenticated, user } = useAuth0()
 
-  const stateUser = useSelector( state => state.usersReducer.users)
-  const checkUser = stateUser.find( u => u.email === user.email)
+  const stateUser = useSelector(state => state.usersReducer.users)
+  const checkUser = stateUser.find(u => u.email === user.email)
 
   const [error, setError] = useState({});
 
@@ -151,12 +151,12 @@ function Register() {
     }
   }
 
-  if(checkUser){
+  if (checkUser) {
     return (
-      <Profile/>
+      <Profile />
     )
   }
-  return ( 
+  return (
     <>
       <div className="container">
         <form
@@ -164,18 +164,18 @@ function Register() {
           onSubmit={handleSubmit}
           noValidate
         >
-          <h1 className="col-12">Bienvenido!, Completa tus datos para continuar</h1>
+          <h1 className="col-12 display-6 ">Bienvenido! Completa tus datos para continuar</h1>
 
 
-                {/* Email */}
-                <div className="col-4">
-            <label for="emailInput" className="form-label">
+          {/* Email */}
+          <div className="col-4 ">
+            <label for="emailInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Email
             </label>
             <div>
-              <h3>
-              {user?.email}
-              </h3>
+              <h6 class="" >
+                {user?.email}
+              </h6>
             </div>
             {/* <input
               type="email"
@@ -196,7 +196,7 @@ function Register() {
           </div>
           {/* Nombre */}
           <div className="col-6">
-            <label for="nameInput" className="form-label">
+            <label for="nameInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Nombre
             </label>
             <input
@@ -208,8 +208,8 @@ function Register() {
               value={input.name}
               className={
                 input.name && !error.name
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
             <div className="invalid-feedback">
@@ -219,7 +219,7 @@ function Register() {
 
           {/* Apellido */}
           <div className="col-6">
-            <label for="lastnameInput" className="form-label">
+            <label for="lastnameInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Apellido
             </label>
             <input
@@ -231,8 +231,8 @@ function Register() {
               value={input.lastname}
               className={
                 input.lastname && !error.lastname
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
             <div className="invalid-feedback">
@@ -292,7 +292,7 @@ function Register() {
 
           {/* Dirección */}
           <div className="col-4">
-            <label for="addressInput" className="form-label">
+            <label for="addressInput" className="form-label border-bottom " style={{fontWeight:"bold"}}>
               Dirección
             </label>
             <input
@@ -304,8 +304,8 @@ function Register() {
               value={input.address}
               className={
                 input.address && !error.address
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
             <div className="invalid-feedback">
@@ -315,7 +315,7 @@ function Register() {
 
           {/* Código Postal */}
           <div className="col-1">
-            <label for="postalCodeInput" className="form-label">
+            <label for="postalCodeInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               C.P.
             </label>
             <input
@@ -327,8 +327,8 @@ function Register() {
               value={input.postalCode}
               className={
                 input.postalCode && !error.postalCode
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
             <div className="invalid-feedback">
@@ -340,7 +340,7 @@ function Register() {
 
           {/* Fecha de nacimiento */}
           <div className="col-2">
-            <label for="dateOfBirthInput" className="form-label">
+            <label for="dateOfBirthInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Fecha de nacimiento
             </label>
             <input
@@ -351,8 +351,8 @@ function Register() {
               value={input.dateOfBirth}
               className={
                 input.dateOfBirth && !error.dateOfBirth
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
             <div className="invalid-feedback">
@@ -364,7 +364,7 @@ function Register() {
 
           {/* Número de contacto */}
           <div className="col-5">
-            <label for="phoneNumberInput" className="form-label">
+            <label for="phoneNumberInput" className="form-label border-bottom" style={{fontWeight:"bold"}}>
               Número de contacto
             </label>
             <input
@@ -376,8 +376,8 @@ function Register() {
               value={input.phoneNumber}
               className={
                 input.phoneNumber && !error.phoneNumber
-                  ? "form-control is-valid"
-                  : "form-control is-invalid"
+                  ? "form-control is-valid rounded-pill"
+                  : "form-control is-invalid rounded-pill"
               }
             ></input>
             <div className="invalid-feedback">
@@ -387,15 +387,16 @@ function Register() {
             </div>
           </div>
           <div className="mt-3 mb-3">
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+        style={{backgroundColor:"indigo"}}>
               Registrarse
             </button>
           </div>
         </form>
       </div>
-    </> 
+    </>
   );
- }             
+}
 
 
 

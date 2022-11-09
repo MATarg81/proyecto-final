@@ -67,13 +67,13 @@ const Profile = () => {
       <Link to="/registro">
         <div class="mb-0">
           <button class="p-0 mb-0 rounded btn mb-4">
-            <p class="m-0" style={{fontSize:"11px"}}>Completar</p> <p class="m-0" style={{fontSize:"11px"}}>Perfil</p>
+            <p class="m-0" style={{fontSize:"11px"}}>Completar</p> <p class="m-0" style={{fontSize:"11px"}}>perfil</p>
           </button>
         </div>
       </Link>
     </>
   ) : null
-  ;
+    ;
 };
 
 export default Profile;
