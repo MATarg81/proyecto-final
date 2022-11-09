@@ -35,7 +35,7 @@ function AboutTeam() {
               <p className="card-text"></p>
               <div className="d-flex justify-content-center">
                 <div className="col d-flex justify-content-center">
-                  <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank"  rel="noreferrer" >
+                  <a href="https://www.linkedin.com/in/juan-bosque-front-end/" target="_blank" rel="noreferrer" >
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
@@ -60,7 +60,7 @@ function AboutTeam() {
               <h5 className="card-title text-center">Brenda Alaniz</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-              <div className="col d-flex justify-content-center">
+                <div className="col d-flex justify-content-center">
                   <a href="" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
@@ -85,7 +85,7 @@ function AboutTeam() {
               <h5 className="card-title text-center">Nahuel Cittadino</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-              <div className="col d-flex justify-content-center">
+                <div className="col d-flex justify-content-center">
                   <a href="https://www.linkedin.com/in/nahuel-cittadino-b386331b2/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
@@ -111,8 +111,8 @@ function AboutTeam() {
               <h5 className="card-title text-center">Laura Marcenaro</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-              <div className="col d-flex justify-content-center">
-                  <a href="https://github.com/" target="_blank" rel="noreferrer">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://www.linkedin.com/in/laura-marcenaro-35b75098/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
@@ -137,8 +137,8 @@ function AboutTeam() {
               <h5 className="card-title text-center">Matías Tula</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-              <div className="col d-flex justify-content-center">
-                  <a href="https://github.com/" target="_blank" rel="noreferrer">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://www.linkedin.com/in/matiastula/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
@@ -163,8 +163,8 @@ function AboutTeam() {
               <h5 className="card-title text-center">Cinthya Molina</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-              <div className="col d-flex justify-content-center">
-                  <a href="https://github.com/" target="_blank" rel="noreferrer">
+                <div className="col d-flex justify-content-center">
+                  <a href="https://www.linkedin.com/in/cinthya-molina/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
@@ -189,7 +189,7 @@ function AboutTeam() {
               <h5 className="card-title text-center">Santiago Fernandez</h5>
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
-              <div className="col d-flex justify-content-center">
+                <div className="col d-flex justify-content-center">
                   <a href="https://github.com/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
