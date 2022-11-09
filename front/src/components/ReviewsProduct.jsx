@@ -82,6 +82,9 @@ function Reviews() {
         for (let i = 0; i < detail.length; i++) {
             a += detail[i].score;
         }
+        if(detail.length === 0) {
+            return ""
+        }
         return a / detail.length
     }
 
