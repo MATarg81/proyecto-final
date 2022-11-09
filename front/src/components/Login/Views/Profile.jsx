@@ -9,17 +9,12 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  //console.log(user)
-  // const { name, picture, email } = user;
   const stateUser = useSelector((state) => state.usersReducer.users);
   const findUser = user ? stateUser.find((u) => u.email === user.email) : null;
 
   useEffect(() => {
     dispatch(get_users());
   }, [dispatch]);
-
-  // console.log(stateUser, 'stado de userrrrrrss')
-  // console.log(findUser, 'userrrrrr')
 
   return isAuthenticated && findUser ? (
     <div>

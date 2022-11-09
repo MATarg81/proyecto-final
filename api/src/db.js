@@ -98,6 +98,9 @@ Product.hasMany(Review);
 Review.belongsTo(User);
 User.hasMany(Review);
 
+Review.belongsTo(Activity);
+Activity.hasMany(Review);
+
 Buy.hasMany(Buyitem);
 Buyitem.belongsTo(Buy);
 
