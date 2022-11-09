@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { postReview, getReviewsProductId } from "../redux/actionsCreator/reviewsActions";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const colors = {
     orange: "#FFBA5A",
@@ -18,13 +19,16 @@ function Reviews() {
     const dispatch = useDispatch();
 
     const { id } = useParams();
+    const { user } = useAuth0()
 
     const detail = useSelector((state) => state.reviewsReducer.detail);
+    const allUsers = useSelector((state) => state.usersReducer.users);
     const product = useSelector((state) => state.productsReducer.detail); //product name me sirve también
     const [currentValue, setCurrentValue] = useState(0); //current Value me va a dar la puntuación (score)
     const [hoverValue, setHoverValue] = useState(undefined);
     const [content, setContent] = useState(""); //Me va a dar lo que va en content
     const stars = Array(5).fill(0)
+    const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
     //al id del user lo tengo que hardcodear momentaneamente
 
     const handleClick = value => {
@@ -45,7 +49,7 @@ function Reviews() {
 
     const handleSubmit = () => {
         const body = {
-            user: "Nahuel",
+            user: findUser.name,
             content: content,
             score: currentValue,
             product: product.id,
@@ -65,74 +69,20 @@ function Reviews() {
 
     useEffect(() => {
         dispatch(getReviewsProductId(id));
-    }, [id, dispatch]);
+    }, [id, dispatch, detail]);
 
     const score = (score) => {
         switch (true) {
-            case (score < 1.25): return (
-                <div>
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                </div>
-            )
-            case (score < 1.75): return (
-                <div>
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStarHalfAlt size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                </div>
-            )
-            case (score < 2.25): return (
-                <div>
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                </div>
-            )
-            case (score < 2.75): return (
-                <div>
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStarHalfAlt size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                </div>
-            )
-            case (score < 3.25): return (
-                <div>
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                </div>
-            )
-            case (score < 3.75): return (
-                <div>
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStarHalfAlt size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
-                </div>
-            )
-            case (score < 4.25): return (
+            case (score >= 4.75): return (
                 <div>
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
-                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
                 </div>
             )
-            case (score < 4.75): return (
+            case (score > 4.25): return (
                 <div>
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
@@ -141,13 +91,67 @@ function Reviews() {
                     <FaStarHalfAlt size={13} color={colors.orange} style={{ marginRight: 10 }} />
                 </div>
             )
-            case (score <= 5): return (
+            case (score > 3.75): return (
                 <div>
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                </div>
+            )           
+            case (score > 3.25): return (
+                <div>
                     <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStarHalfAlt size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                </div>
+            )
+            case (score > 2.75): return (
+                <div>
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                </div>
+            )
+            case (score > 2.25): return (
+                <div>
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStarHalfAlt size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                </div>
+            )
+            case (score > 1.75): return (
+                <div>
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                </div>
+            )
+            case (score > 1.25): return (
+                <div>
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStarHalfAlt size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                </div>
+            )
+            case (score > 0.75): return (
+                <div>
+                    <FaStar size={13} color={colors.orange} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
+                    <FaStar size={13} color={colors.grey} style={{ marginRight: 10 }} />
                 </div>
             )
             default: return (
@@ -190,7 +194,7 @@ function Reviews() {
 
             <div className="d-flex flex-column">
                 <textarea className="form-control" onChange={handleChange} placeholder="Escribe aquí tu comentario" rows="8"/* style={styles.textarea} */ />
-                <button /*  style={styles.button} */ className="btn border ms-2 rounded-pill text-white" style={{ backgroundColor: "indigo" }}
+                <button type = "submit" /*  style={styles.button} */ className="btn border ms-2 rounded-pill text-white" style={{ backgroundColor: "indigo" }}
                     onClick={handleSubmit}>
                     Enviar
                 </button>
