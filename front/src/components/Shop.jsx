@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
-//import { addCart } from "../redux/actions/index";
 import { addFav, deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import {
@@ -60,13 +59,7 @@ function Shop() {
 
   // --------------- Pagination --------------
   const productsPerPage = 12;
-
-  const totalPages =
-    byCategories.length > 0
-      ? Math.ceil(byCategories?.length / productsPerPage)
-      : price.length > 0
-      ? Math.ceil(price?.length / productsPerPage)
-      : Math.ceil(products?.length / productsPerPage);
+  const totalPages = Math.ceil(products.length/productsPerPage);
 
   const [, setOrder] = useState();
   const [input, setInput] = useState({
@@ -77,12 +70,7 @@ function Shop() {
   const [page, setPage] = useState(1);
   const first = (page - 1) * productsPerPage;
   const last = page * productsPerPage;
-  let productsPage =
-    byCategories.length > 0
-      ? byCategories?.slice(first, last)
-      : price.length > 0
-      ? price?.slice(first, last)
-      : products?.slice(first, last);
+  const productsPage = products.slice(first, last);
 
   // --------------- Data call -------------
 
@@ -143,11 +131,13 @@ function Shop() {
       progress: undefined,
     }); */
 
+
   const stateOrLs = user ? fav_state : fav_LS_state;
 
   // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
   //   localStorage.setItem('favs', JSON.stringify(favState))
   // }, [favState])
+
   // --------------- Cart function ----------------
   const addProduct = (product) => {
     dispatch(addCart(product));
@@ -179,7 +169,7 @@ function Shop() {
 
   // ----------------- filter functions ------------------
   const filterCategories = (e) => {
-    e.preventDefault();
+    console.log(e.target.value)
     setPage(1);
     dispatch(filterByCategories(e.target.value));
   };
@@ -190,22 +180,6 @@ function Shop() {
       [e.target.name]: e.target.value,
     });
   }
-
-  /* const handleSumit = (e) => {
-    e.preventDefault();
-    setPage(1);
-    if (byCategories.length > 0) {
-      const filteredCategories = byCategories?.filter((c) => {
-        return parseInt(c.price) > input.min && parseInt(c.price) < input.max;
-      });
-      dispatch(filterByPrice(filteredCategories));
-    } else {
-      const filteredAll = products?.filter((p) => {
-        return parseInt(p.price) > input.min && parseInt(p.price) < input.max;
-      });
-      dispatch(filterByPrice(filteredAll));
-    }
-  }; */
 
   //--------------- clean sort and filters function --------------------
   const cleanFilters = (e) => {
