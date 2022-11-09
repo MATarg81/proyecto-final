@@ -207,7 +207,7 @@ export default function Activities() {
                           
                             <button
                               type="button"
-                              className="btn btn-outline-light mb-4 d-flex flex-column px-4"
+                              className=""
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
