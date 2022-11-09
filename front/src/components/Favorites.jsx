@@ -34,7 +34,7 @@ useEffect(() => {
   if(fav_users?.length === 0){
     dispatch(getAllfavs(findUser?.id));
   }
-}, [fav_users, dispatch, findUser])
+}, [dispatch, findUser?.id, fav_users?.length])
 
   
   const addProduct = (product) => {
@@ -95,7 +95,7 @@ useEffect(() => {
               <div class="" onClick={() => navigate(`/tienda/${p.id}`)}>
                 <img
                   class="img-fluid hover-zoom bg-image"
-                  src={p.product.image}
+                  src={p.product?.image}
                   /* className="card-img-top" */ alt={p.image}
                 />
               </div>
@@ -103,7 +103,7 @@ useEffect(() => {
             <div class="card-body border-left border-right text-center">
               <h6 class="text-truncate ">{p.name}</h6>
               <div class="d-flex justify-content-center">
-                <h6>$ {p.product.price}</h6>
+                <h6>$ {p.product?.price}</h6>
               </div>
             </div>
             <div class="card-footer d-flex justify-content-between border text-primary">

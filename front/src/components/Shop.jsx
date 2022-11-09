@@ -101,7 +101,7 @@ function Shop() {
     if(fav_state?.length === 0) {
       dispatch(getAllfavs(findUser?.id))
     }
-  }, [dispatch, fav_state, findUser])
+  }, [dispatch, findUser?.id, fav_state?.length])
 
   function handleAddtoFav(product) {
     if (findUser) {
