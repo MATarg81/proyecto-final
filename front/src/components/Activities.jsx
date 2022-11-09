@@ -158,8 +158,8 @@ export default function Activities() {
                       </div>
 
                       {!findUser ? (
-                        <>
-                          <div class="d-flex flex-column px-4">
+                        <div class="d-flex flex-column">
+                          <div class="d-flex flex-column">
                             <button
                               type="button"
                               className="btn btn-outline-light mb-4 rounded-pill"
@@ -191,25 +191,25 @@ export default function Activities() {
                               </div>
                             </div>
                           </div>
-                        </>
+                        </div>
                       ) : (
 
                         <button
                           type="button"
-                          className="btn btn-secondary"
+                          className="btn btn-outline-light mb-4 rounded-pill d-flex flex-column"
                           onClick={() => handleAddtoAct(a.id)}
                         >
                           Inscribirse
                         </button>
                       )}
 
-                      <div className="d-flex flex-column px-4">
+                      <div className="d-flex flex-column">
                         {!findUser ? (
                         <>
                           
                             <button
                               type="button"
-                              className="btn btn-outline-light mb-4 rounded-pill"
+                              className="btn btn-outline-light mb-4 rounded-pill "
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
@@ -244,7 +244,7 @@ export default function Activities() {
                         {" "}
                         <button
                           type="button"
-                          className="btn btn-outline-dark ms-2"
+                          className="btn btn-outline-light mb-4 rounded-pill"
                         >
                           Deja tu reseña
                         </button>{" "}
