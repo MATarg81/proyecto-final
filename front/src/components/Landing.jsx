@@ -27,7 +27,7 @@ function Landing() {
           </div>
           <div className="col-md-6 text-center  m-0">
             <div class="shadow p-3 mb-5 bg-body rounded" style={{backgroundColor:"indigo"}}>
-              <h1 className="font-weight-bolder">Club Athenas</h1>
+              <h1 className="font-weight-bolder display-6">Club Athenas</h1>
               <p>
                 El Club Athenas es una institución que actúa, fomenta y desarrolla
                 actividades socio-culturales y deportivas.
@@ -36,8 +36,8 @@ function Landing() {
 
               <Link to="/home">
                 <button
-                  className="btn btn-primary"
-                  style={{ backgroundColor: "#352d39", borderColor: "white" }}
+                  className="btn btn-outline-dark rounded-pill text-white border-white "
+                  style={{ backgroundColor: "indigo" }}                  
                 >
                   Entrar
                 </button>
