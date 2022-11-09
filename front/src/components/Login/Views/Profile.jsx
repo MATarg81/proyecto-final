@@ -9,17 +9,12 @@ import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  //console.log(user)
-  // const { name, picture, email } = user;
   const stateUser = useSelector((state) => state.usersReducer.users);
   const findUser = user ? stateUser.find((u) => u.email === user.email) : null;
 
   useEffect(() => {
     dispatch(get_users());
   }, [dispatch]);
-
-  // console.log(stateUser, 'stado de userrrrrrss')
-  // console.log(findUser, 'userrrrrr')
 
   return isAuthenticated && findUser ? (
     <div>
@@ -63,11 +58,12 @@ const Profile = () => {
         data-toggle="tooltip"
         data-placement="bottom"
         title="Ingresar al perfil"
+        style={{width:"40px"}}
       />
       <Link to="/registro">
         <div class="mb-0">
           <button class="p-0 mb-0 rounded btn mb-4">
-            <p class="m-0" style={{fontSize:"11px"}}>Completar</p> <p class="m-0" style={{fontSize:"11px"}}>perfil</p>
+            <p class="m-0" style={{ fontSize: "11px" }}>Completar</p> <p class="m-0" style={{ fontSize: "11px" }}>perfil</p>
           </button>
         </div>
       </Link>

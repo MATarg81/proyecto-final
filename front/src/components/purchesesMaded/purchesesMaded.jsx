@@ -24,22 +24,25 @@ export default function PurchesesMaded() {
     }
   }, [dispatch, purchesesMaded, allUsers]);
 
-  return purchesesMaded?.map((el) => {
-    return (
-      <div>
-        <hr />
-        <ul>
-          <li>Fecha de compra: {el.createdAt.slice(0, 10)}</li>
-          <li>Hora de compra: {el.createdAt.slice(11, 17)}</li>
-          <li>Total pagado: $ {el.total}</li>
-          <li>
-            <Link to={`/detalleComprasRealizadas/${el.id}`}>
-              Detalle de la compra
-            </Link>
-          </li>
-        </ul>
-        <hr />
-      </div>
-    );
-  });
+  return purchesesMaded?.length > 0
+    ? purchesesMaded?.map((el) => {
+        let s = parseInt(el.createdAt.slice(11, 13)) - 3;
+        return (
+          <div>
+            <hr />
+            <ul>
+              <li>Fecha de compra: {el.createdAt.slice(0, 10)}</li>
+              <li>Hora de compra: {s + ":" + el.createdAt.slice(14, 16)}</li>
+              <li>Total pagado: $ {el.total}</li>
+              <li>
+                <Link to={`/detalleComprasRealizadas/${el.id}`}>
+                  Detalle de la compra
+                </Link>
+              </li>
+            </ul>
+            <hr />
+          </div>
+        );
+      })
+    : "Aún no realizaste ninguna compra";
 }
