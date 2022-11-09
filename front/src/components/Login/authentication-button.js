@@ -19,7 +19,7 @@ const AuthenticationButton = () => {
 
   const findUser = user ? stateUser.find((u) => u.email === user.email) : null;
 
-  return findUser ? (
+  return user ? (
     <div>
       <LogoutButton />
     </div>

@@ -5,29 +5,22 @@ const jsonData = require("../../../users.json");
 
 async function getUsers(req, res) {
   const { name, lastname, email } = req.query;
-  
-  const dbData = await User.count();
+  const {id} = req.body
   
   try {
-    if (!dbData) {
-      const allUsers = jsonData.results.map(async u => {
-        const newUser = await User.create({
-          name: u.name,
-          lastname: u.lastname,
-          email: u.email,
-          dateOfBirth: u.dateOfBirth.toString(),
-          phoneNumber: u.phoneNumber,
-          address: u.address,
-          postalCode: u.postalCode.toString(),
-          image: u.image
-        });
-        
-        await newUser.setRole(2);
-
+    if(id) {
+      const findUser = await User.findOne({
+        where: { id: id },
+        include:{
+          model: Activity
+        }
       });
-      return res.status(200).send(allUsers)
-    } 
-    else if (name || lastname || email) {
+      if (findUser) {
+        res.status(200).send(findUser);
+      } else {
+        res.status(404).send("User can't be found");
+      }
+    } else if (name || lastname || email) {
       const userName = await User.findOne({
         where: { name: { [Op.iLike]: `%${name}%` } },
       });
@@ -50,32 +43,29 @@ async function getUsers(req, res) {
       }
     } 
     else { 
-      //User.findAll({ include: Role }).then((r) => res.status(200).send(r));
-      User.findAll({include: Role, include:[{
-        model:Activity
-      }]}).then((r) => res.status(200).send(r));
+      //User.findAll({ include: Role }).then((r) => res.status(200).send(r));{include:[{model: Product, attributes: ['name']}, {model: User, attributes: ['name']}]}
+      User.findAll({include: [{model: Role, attributes: ['name']}, { model:Activity, attributes: ['name'] }]}).then((r) => res.status(200).send(r));
     }
   } catch (error) {
     return res.status(404).send(error);
   }
 }
 
-async function getUsersById(req, res) {
-  const { id } = req.body;
+// async function getUsersById(req, res) {
+//   const { id } = req.params;
 
-  const findUser = await User.findOne({
-    where: { id: id },
-    include:{
-      model: Activity
-    }
-  });
-  if (findUser) {
-    await findUser.save()
-    res.status(200).send(findUser);
-  } else {
-    res.status(404).send("User can't be found");
-  }
-}
+//   const findUser = await User.findOne({
+//     where: { id: id },
+//     include:{
+//       model: Activity
+//     }
+//   });
+//   if (findUser) {
+//     res.status(200).send(findUser);
+//   } else {
+//     res.status(404).send("User can't be found");
+//   }
+// }
 
 async function addUser(req, res) {
   const { name, lastname, email, dateOfBirth, address, phoneNumber, postalCode, image } = req.body;
@@ -91,11 +81,11 @@ async function addUser(req, res) {
         phoneNumber: parseInt(phoneNumber),
         address: address,
         postalCode: postalCode.toString(),
-        image: image
+        image: image || "https://cdn-icons-png.flaticon.com/512/16/16363.png"
         
       });
 
-      const addRole = await newUser.setRole(2);
+      await newUser.setRole(2);
       return res.status(200).send(newUser);
     } else {
       res.status(404).send(`User "${name + " " + lastname}" already exists`);
@@ -113,7 +103,7 @@ async function deleteUser(req, res) {
     await findUser.destroy();
     return res.status(200).send(`User was deleted`);
   } else {
-    return res.status(404).send(`Cannot find the user email ${id}`);
+    return res.status(404).send(`Cannot find the user email ${findUser.email}`);
   }
 }
 
@@ -150,7 +140,6 @@ async function updateUser(req, res) {
 
 module.exports = {
   getUsers,
-  getUsersById,
   deleteUser,
   addUser,
   updateUser,
