@@ -165,6 +165,7 @@ try{
 
 
 async function getProductsReviewsId (req, res) {
+  console.log(req.params.id)
   try {
       const id = req.params.id;
 
