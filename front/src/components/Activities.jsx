@@ -2,7 +2,10 @@ import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getActivities, getActivityById } from "../redux/actions/activitiesActions";
+import {
+  getActivities,
+  getActivityById,
+} from "../redux/actions/activitiesActions";
 import {
   get_users,
   get_roles,
@@ -11,14 +14,13 @@ import {
 import { addUserActivity } from "../redux/actionsCreator/registerActivityActions";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./Login/LoginButton";
+import Loading from "./Loading";
 
 export default function Activities() {
   const allActivities = useSelector(
     (state) => state.activitiesReducer.activities
   );
-  const activity = useSelector(
-    (state) => state.activitiesReducer.activityId
-  );
+  const activity = useSelector((state) => state.activitiesReducer.activityId);
   const usersState = useSelector((state) => state.usersReducer.usersById);
   const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
@@ -52,13 +54,13 @@ export default function Activities() {
     }
   }, [dispatch, allUsers, usersState, roles]);
 
-  const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
+  const findUser = user ? allUsers?.find((u) => u.email === user.email) : null;
 
   useEffect(() => {
     if (usersState?.length === 0) {
       dispatch(get_users_by_id(findUser?.id));
     }
-  }, [dispatch, findUser, usersState])
+  }, [dispatch, findUser, usersState]);
 
   function handleAddtoAct(activity) {
     if (!findUser) {
@@ -98,7 +100,6 @@ export default function Activities() {
   }
 
   return (
-
     <div>
       <div>
         <div className="container p-3">
@@ -106,15 +107,15 @@ export default function Activities() {
             <div className="col shadow p-3 mb-5 bg-body rounded">
               <h3 className="">Actividades del Club</h3>
               <p className="mb-0 ">
-                En esta seccion usted podra informarse de todas las actividades
-                que el club tiene disponible tanto de los días y horarios como del
-                lugar donde se realizan.{" "}
+                En esta seccion usted podrá informarse de todas las actividades
+                que el club tiene disponible, como así también los días,
+                horarios y lugar donde se realizan.{" "}
               </p>
             </div>
             <div className="col">
               <img
                 class="shadow pl-3 ml-5 bg-body rounded"
-                src="/img/natacion.jpg"
+                src="/img/Natacion.jpg"
                 alt="campeones2"
                 style={{ width: "280px" }}
               />
@@ -133,19 +134,33 @@ export default function Activities() {
         <div>
           <Link to="/inscriptos">
             {" "}
-            <button type="button" className="btn btn-outline-dark rounded-pill text-white border-white p-1 mb-3"
-          style={{ backgroundColor: "indigo" }} >
+            <button
+              type="button"
+              className="btn btn-outline-dark rounded-pill text-white border-white p-1 mb-3"
+              style={{ backgroundColor: "indigo" }}
+            >
               Usuarios inscriptos
             </button>{" "}
           </Link>
         </div>
 
-        <div className=" row row-cols-1 row-cols-md-2 g-4 mx-5 p-4  animate__animated animate__backInUp" style={{ marginTop: "-55px" }}>
+        <div
+          className="container animate__animated animate__fadeInUp"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "3rem",
+            margin: "2rem",
+          }}
+        >
           {allActivities ? (
             allActivities.map((a, index) => {
               return (
-                <div className="card product-item border-0 shadow p-3 mb-5 bg-body rounded" key={index}>
-                  <div className="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100">
+                <div
+                  className="card product-item border-0 shadow p-3 mb-5 bg-body rounded text-center"
+                  key={index}
+                >
+                  <div className="card-header product-img position-relative overflow-hidden bg-transparent border border-color p-0 h-100">
                     <img
                       src={a.img}
                       style={{ height: "250px", width: "100%" }}
@@ -155,7 +170,7 @@ export default function Activities() {
                     <div
                       className="card-body h-100"
                       style={{
-                        backgroundColor: "rgba(160, 160, 160, 0.788)",
+                        backgroundColor: "rgb(223, 213, 223)",
                         padding: "0px",
                       }}
                     >
@@ -164,12 +179,16 @@ export default function Activities() {
                       <div class="d-flex flex-row justify-content-around">
                         <div class="">
                           <p className="card-text">
-                            <small className="text-muted">Días: {a.days} </small>
+                            <small className="text-muted">
+                              Días: {a.days}{" "}
+                            </small>
                           </p>
                         </div>
                         <div>
                           <p className="">
-                            <small className="text-muted">Horario: {a.times}</small>
+                            <small className="text-muted">
+                              Horario: {a.times}
+                            </small>
                           </p>
                         </div>
                       </div>
@@ -183,10 +202,13 @@ export default function Activities() {
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
-                              Deja tu reseña
+                              Dejá tu reseña
                             </button>
                           </div>
-                          <div className="modal fade" id="inscriptionActivities">
+                          <div
+                            className="modal fade"
+                            id="inscriptionActivities"
+                          >
                             <div className="modal-dialog bg-white">
                               <div className="modal-dialog">
                                 <div className="modal-content">
@@ -199,7 +221,7 @@ export default function Activities() {
                                     ></button>
                                   </div>
                                   <div className="modal-body">
-                                    Por favor ingresa para inscribirte
+                                    Por favor ingresá para inscribirte
                                   </div>
                                   <div className="modal-footer">
                                     <LoginButton />
@@ -210,7 +232,6 @@ export default function Activities() {
                           </div>
                         </div>
                       ) : (
-
                         <button
                           type="button"
                           className="btn btn-outline-light mb-4 rounded-pill d-flex flex-column"
@@ -222,65 +243,68 @@ export default function Activities() {
 
                       <div className="d-flex flex-column">
                         {!findUser ? (
-                        <>
-                          
+                          <>
                             <button
                               type="button"
                               className="btn btn-outline-light mb-4 rounded-pill "
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
-                              Deja tu reseña
+                              Dejá tu reseña
                             </button>
-                          
-                          <div className="modal fade" id="inscriptionActivities">
-                            <div className="modal-dialog bg-white">
-                              <div className="modal-dialog">
-                                <div className="modal-content">
-                                  <div className="modal-header">
-                                    <h4 className="modal-title">Inscripción</h4>
-                                    <button
-                                      type="button"
-                                      className="btn-close"
-                                      data-bs-dismiss="modal"
-                                    ></button>
-                                  </div>
-                                  <div className="modal-body">
-                                    Por favor ingresa para dejar reseña
-                                  </div>
-                                  <div className="modal-footer">
-                                    <LoginButton />
+
+                            <div
+                              className="modal fade"
+                              id="inscriptionActivities"
+                            >
+                              <div className="modal-dialog bg-white">
+                                <div className="modal-dialog">
+                                  <div className="modal-content">
+                                    <div className="modal-header">
+                                      <h4 className="modal-title">
+                                        Inscripción
+                                      </h4>
+                                      <button
+                                        type="button"
+                                        className="btn-close"
+                                        data-bs-dismiss="modal"
+                                      ></button>
+                                    </div>
+                                    <div className="modal-body">
+                                      Por favor ingresá para dejar tu reseña
+                                    </div>
+                                    <div className="modal-footer">
+                                      <LoginButton />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </>
-                      ) : (
-                      <Link to="/crearCalificacion">
-                        {" "}
-                        <button
-                          type="button"
-                          className="btn btn-outline-light mb-4 rounded-pill"
-                        >
-                          Deja tu reseña
-                        </button>{" "}
-                      </Link>
-                      )}
+                          </>
+                        ) : (
+                          <Link to="/crearCalificacion">
+                            {" "}
+                            <button
+                              type="button"
+                              className="btn btn-outline-light mb-4 rounded-pill"
+                            >
+                              Dejá tu reseña
+                            </button>{" "}
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-        );
-          })
-        ) : (
-        <div>Loading Activities....</div>
-        )}
-        
+              );
+            })
+          ) : (
+            <div>
+              <Loading />
+            </div>
+          )}
+        </div>
       </div>
-   </div>
-   </div>
+    </div>
   );
 }
-
-

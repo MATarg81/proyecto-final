@@ -4,6 +4,7 @@ import { add_users, get_users } from "../redux/actionsCreator/usersActions";
 import { useNavigate } from "react-router-dom";
 import Profile from './Profile'
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
+import Loading from "./Loading";
 
 function Register() {
   const dispatch = useDispatch();
@@ -401,5 +402,5 @@ function Register() {
 
 
 export default withAuthenticationRequired(Register, {
-  onRedirecting: () => <h1> Loading ...</h1>,
+  onRedirecting: () => <Loading />,
 });
