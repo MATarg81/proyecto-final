@@ -12,7 +12,6 @@ const { verifyAdmin } = require('./controllers/middlewaresRoles')
 //Trae los users por nombre, apellido, email,
 //Debe poder actualizar los datos
 //Debe poder eliminar users
-
 const router = Router();
 
 router.get("/", getUsers);
@@ -20,5 +19,3 @@ router.get("/:id", getUsersById);
 router.post("/", addUser);
 router.delete("/:id", deleteUser);
 router.patch("/", updateUser)
-
-module.exports = router;

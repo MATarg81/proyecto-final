@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivities, getActivityById } from "../redux/actions/activitiesActions";
 import {
@@ -31,6 +31,7 @@ export default function Activities() {
   //hola
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Add activities to a user - Register in an activity
 
@@ -129,6 +130,15 @@ export default function Activities() {
               />
             </div>
           </div>
+        </div>
+        <div>
+          <Link to="/inscriptos">
+            {" "}
+            <button type="button" className="btn btn-outline-dark rounded-pill text-white border-white p-1 mb-3"
+          style={{ backgroundColor: "indigo" }} >
+              Usuarios inscriptos
+            </button>{" "}
+          </Link>
         </div>
 
         <div className=" row row-cols-1 row-cols-md-2 g-4 mx-5 p-4  animate__animated animate__backInUp" style={{ marginTop: "-55px" }}>
@@ -248,15 +258,14 @@ export default function Activities() {
                           </div>
                         </>
                       ) : (
-                      <Link to="/crearCalificacion">
-                        {" "}
+                     
                         <button
                           type="button"
                           className="btn btn-outline-light mb-4 rounded-pill"
+                          onClick={() => navigate(`/crearCalificacion/${a.id}`)}
                         >
                           Deja tu reseña
-                        </button>{" "}
-                      </Link>
+                        </button>
                       )}
                     </div>
                   </div>
@@ -267,14 +276,7 @@ export default function Activities() {
         ) : (
         <div>Loading Activities....</div>
         )}
-        <div>
-          <Link to="/inscriptos">
-            {" "}
-            <button type="button" className="btn btn-outline-dark ms-2">
-              Usuarios inscriptos
-            </button>{" "}
-          </Link>
-        </div>
+        
       </div>
    </div>
    </div>

@@ -28,14 +28,14 @@ async function getAllCategories(req, res){
     if(dbfilled.length === 0){
        await getCategory()
        let lleno = Category.findAll()
-      
+
       if(dbfilled.length > 0) return res.status(200).json(lleno)
     }else{
       console.log(dbfilled, " filled")
       return res.status(200).json(dbfilled)
-    
+
     }
-    
+
   } catch (error) {
     console.log(error, "soy error")
     return res.status(400).send('get All Categories db error').json(error)

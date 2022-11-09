@@ -3,7 +3,6 @@ const { Product, Category } = require("../../db");
 const jsonData = require("../../../products.json");
 const { Op } = require("sequelize");
 
-
 const allProducts = async() => {
     try {
         const dbProduct = await Product.findAll({
@@ -23,9 +22,9 @@ const allProducts = async() => {
             stock: p.stock,
             categories: p.Categories?.map((c) => c.name),
         }));
-      
+
         return results;
-        
+
     } catch (error) {
         console.log('Problemas en la función allProducts()' + error);
     };
@@ -36,15 +35,12 @@ const productsId = async (idP) => {
   try {
     const totalProducts = await allProducts();
     const productId = totalProducts.find((r) => r.id.toString() === idP);
-
     return productId;
   } catch (err) {
     console.log("Problemas en /:id" + err);
   }
 };
-
 //--------------------------------------------------------------------------------------------------------------
-
 const postProducts = async (req, res) => {
   try {
     const { name, price, detail, image, categories, stock } = req.body;
@@ -98,10 +94,10 @@ const getProducts = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+  
     res.status(404).send("Problemas en el controlador de la ruta GET/products");
   }
 };
-
 const getProductsId = async (req, res) => {
   try {
     const id = req.params.id;
@@ -110,6 +106,7 @@ const getProductsId = async (req, res) => {
     if (productId) {
       return res.status(200).send(productId);
     } else {
+
       res.status(404).send("Id no existente");
     }
   } catch (err) {
@@ -118,7 +115,6 @@ const getProductsId = async (req, res) => {
       .send("Problemas en el controlador de la ruta GET/products/:id");
   }
 };
-
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
   try {
@@ -134,10 +130,11 @@ const deleteProduct = async (req, res) => {
 };
 
 const putProduct = async (req, res) => {
-  
+
   const { id, name, price, detail, image, stock, categories } = req.body;
 
   try {
+  
     await Product.update(
       {
         name,
@@ -156,9 +153,10 @@ const putProduct = async (req, res) => {
     res.status(200).send("Producto actualizado con éxito");
   } catch (error) {
     res.status(400).send(console.log(error));
+
+  
   }
 };
-
 module.exports = {
   getProducts,
   getProductsId,

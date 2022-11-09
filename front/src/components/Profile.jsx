@@ -9,7 +9,7 @@ import {
   get_users_by_id,
 } from "../redux/actionsCreator/usersActions";
 import ProfileProducts from "./ProfileProducts";
-import PurchesesDetail from "./purchesesMaded/purchesesDetail";
+import PurchesesMaded from "./purchesesMaded/purchesesMaded";
 import ProfileAllActivities from "./ProfileAllActivities";
 import ProfileUsers from "./ProfileUsers";
 import ProfileActivities from "./ProfileActivities";
@@ -310,7 +310,7 @@ export default function Perfil() {
             aria-labelledby="v-pills-history-tab"
             tabIndex="0"
           >
-            <PurchesesDetail />
+            <PurchesesMaded />
           </div>
         </div>
       </div>
