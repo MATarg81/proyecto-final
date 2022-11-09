@@ -59,8 +59,8 @@ useEffect(() => {
   return (
     <div>
       <button
-        className="btn btn-line-dark ms-0  rounded-pill"
-        style={{ margin: "5px" }}
+        className="btn btn-line-dark ms-0 text-white  rounded-pill"
+        style={{ margin: "5px", backgroundColor:"indigo" }}
         onClick={() => navigate("/tienda")}
       >
         <i className="fa fa-arrow-circle-left" aria-hidden="true"></i> Volver
