@@ -83,7 +83,7 @@ function Reviews() {
             a += detail[i].score;
         }
         if(detail.length === 0) {
-            return ""
+            return false
         }
         return a / detail.length
     }
@@ -261,7 +261,7 @@ function Reviews() {
             <div>
                 <div className="d-flex flex-row">
 
-                    <div className="p-2 border-bottom">{average().toFixed(2)}  </div>
+                    <div className="p-2 border-bottom">{average() && average().toFixed(2)}  </div>
                     <div className="p-2 border-bottom" >({detail.length})</div>
                     <div className="p-2 border-bottom">{score(average())}</div>
 
