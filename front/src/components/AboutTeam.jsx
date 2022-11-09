@@ -190,7 +190,7 @@ function AboutTeam() {
               <p className="card-text"></p>
               <div className="d-flex justify-content-start">
                 <div className="col d-flex justify-content-center">
-                  <a href="https://github.com/" target="_blank" rel="noreferrer">
+                  <a href="https://www.linkedin.com/in/santiago-fernandez-563714239/" target="_blank" rel="noreferrer">
                     <img src={Linkedin} alt="Linkedin" />
                   </a>
                 </div>
