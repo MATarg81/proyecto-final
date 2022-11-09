@@ -155,10 +155,9 @@ function About() {
           aria-labelledby="v-pills-more-tab"
           tabIndex="0">
           <div>
-            <h1> Más que un club </h1>
-
-            <div className="card mb-3" max-width="540px">
-              <div className="row g-0">
+           
+            <div className="card mb-3" >
+              <div className="row">
                 <div className="col-md-8">
                   <div className="card-body">
                     <h5 className="card-title">Más que ganar o perder. Más que goles</h5>
@@ -185,7 +184,7 @@ function About() {
                   <div className="card-body">
                     <h5 className="card-title">MÁS QUE TALENTO</h5>
                     <p className="card-text">
-                      texto comentario etc....
+                    Somos una ESCUELA DE VIDA que forma a personas a través del deporte. No nos conformamos sólo con tener grandes jugadores, sino que, a través de la cantera, formamos a grandes personas, reconocidas y reconocibles tanto dentro como fuera del campo.
                     </p>
                   </div>
                 </div>
