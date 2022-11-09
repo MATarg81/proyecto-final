@@ -17,7 +17,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
       domain={domain}
       clientId={clientId}
       //redirectUri={ window.location.origin }
-      redirectUri={'https://proyecto-final-one-murex.vercel.app/registro'}
+      redirectUri={'http://localhost:3000/registro'}
       //onRedirectCallback={onRedirectCallback}
       useRefreshTokens = {true}
       cacheLocation="localstorage"

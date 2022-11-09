@@ -132,44 +132,8 @@ const Cart = () => {
               </button>
             </div>
           </div>
-          {/*           <div className="p-2">Flex item 3</div>
-           */}
-        </div>
-
-        {/*  <div className="px-4 my-5 bg-light rounded-3 py-5">
-          <div className="container py-4">
-            <div className="row justify-content-center">
-              <div className="col-md-4">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  height="200px"
-                  width="180px"
-                />
-              </div>
-              <div className="col-md-4">
-                <h3>{product.name}</h3>
-                <p className="lead fw-bold">
-                  {product.qty} x $ {product.price} = $
-                  {product.qty * product.price}
-                </p>
-                <hr />
-                <button
-                  className="btn btn-outline-dark me-2"
-                  onClick={() => handleDel(product)}
-                >
-                  <i className="fa fa-minus"></i>
-                </button>
-                <button
-                  className="btn btn-outline-dark"
-                  onClick={() => handleAdd(product)}
-                >
-                  <i className="fa fa-plus"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> */}
+         
+        </div>        
       </>
     );
   };
@@ -177,7 +141,7 @@ const Cart = () => {
     return (
       <>
         <div className="container">
-          <div className="row">
+          <div className="d-flex flex-column">
             <h3 className="display-6">Total: ${price}</h3>
             <button
               className="btn btn-outline-dark rounded-pill text-white border-white p-1"
@@ -188,10 +152,11 @@ const Cart = () => {
             </button>
             {!findUser ? (
               <>
-                <div className="col-auto">
+                <div className="d-flex flex-column">
                   <button
-                    type="button"
-                    className="btn btn-outline-dark mb-4 rounded-pill"
+                   
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+                    style={{ backgroundColor: "Indigo" }}
                     data-bs-toggle="modal"
                     data-bs-target="#procederPago"
                   >
