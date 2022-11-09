@@ -20,6 +20,7 @@ function Reviews() {
 
     const { id } = useParams();
     const { user, isAuthenticated } = useAuth0()
+    
 
     const detail = useSelector((state) => state.reviewsReducer.detail);
     const allUsers = useSelector((state) => state.usersReducer.users);
@@ -32,9 +33,8 @@ function Reviews() {
     
     //-------------------A VER SI EXISTE COMENTARIO DE ESE USUARIO----------------
 
-    const existReview = user
-    ? detail.find((r) => r.user.name === findUser.name)
-    : false;
+    const existReview = detail.find((r) => r.user?.name === findUser?.name)
+    
 
     const handleClick = value => {
         setCurrentValue(value)
@@ -54,7 +54,7 @@ function Reviews() {
 
     const handleSubmit = () => {
         const body = {
-            user: findUser.name,
+            user: findUser.id,
             content: content,
             score: currentValue,
             product: product.id,
@@ -66,7 +66,8 @@ function Reviews() {
 
     const handleSubmitPatch = () => {
         const body = {
-            user: findUser.name,
+            id: existReview.id,
+            user: findUser.id,
             content: content,
             score: currentValue,
             product: product.id,
@@ -267,7 +268,7 @@ function Reviews() {
                         <div className="d-flex flex-column border border-5 rounded-start m-1">
 
                             <div className="d-flex flex-row" key={r.id}>
-                                <h5 className="d-flex flex-row">{r.user.name}</h5>
+                                <h5 className="d-flex flex-row">{r.user?.name}</h5>
                                 <h4 className="d-flex flex-row" >{score(r.score)}{r.score}</h4>
                             </div>
                             <div className="d-flex flex-column">
