@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getActivities } from "../redux/actions/activitiesActions";
+import { getActivities, getActivityById } from "../redux/actions/activitiesActions";
 import {
   get_users,
   get_roles,
@@ -16,12 +16,16 @@ export default function Activities() {
   const allActivities = useSelector(
     (state) => state.activitiesReducer.activities
   );
+  const activity = useSelector(
+    (state) => state.activitiesReducer.activityId
+  );
   const usersState = useSelector((state) => state.usersReducer.usersById);
   const roles = useSelector((state) => state.usersReducer.roles);
   const allUsers = useSelector((state) => state.usersReducer.users);
   const register = useSelector(
     (state) => state.registerActivityReducer.registerActivity
   );
+
   const { isAuthenticated, user } = useAuth0();
 
   //hola
@@ -32,6 +36,7 @@ export default function Activities() {
 
   useEffect(() => {
     dispatch(getActivities());
+    dispatch(getActivityById(activity));
     dispatch(get_users());
   }, [dispatch]);
 
@@ -39,20 +44,23 @@ export default function Activities() {
 
   //User
   useEffect(() => {
-    if (allUsers?.length === 0) {
-      dispatch(get_users());
-    }
     if (roles?.length === 0) {
       dispatch(get_roles());
     }
-    if (usersState?.length === 0) {
-      dispatch(get_users_by_id(7));
+    if (allUsers?.length === 0) {
+      dispatch(get_users());
     }
-  }, [dispatch, allUsers, roles, usersState]);
+  }, [dispatch, allUsers, usersState, roles]);
 
-  const findUser = user ? allUsers?.find((u) => u.email === user.email) : null;
+  const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
 
-  function handleAddtoAct(activities) {
+  useEffect(() => {
+    if (usersState?.length === 0) {
+      dispatch(get_users_by_id(findUser?.id));
+    }
+  }, [dispatch, findUser, usersState])
+
+  function handleAddtoAct(activity) {
     if (!findUser) {
       return (
         <>
@@ -78,12 +86,12 @@ export default function Activities() {
         </>
       );
     }
-    if (usersState) {
-      const findReg = register.find((a) => a.id === activities.id);
+    if (findUser) {
+      const findReg = register.find((a) => a.id === activity.id);
       if (findReg) {
         alert("El usuario ya esta registrado");
       } else {
-        dispatch(addUserActivity(activities, usersState.id));
+        dispatch(addUserActivity(activity, findUser.id));
         alert("Usuario registrado");
       }
     }
@@ -158,15 +166,15 @@ export default function Activities() {
                       </div>
 
                       {!findUser ? (
-                        <>
-                          <div class="d-flex flex-column px-4">
+                        <div class="d-flex flex-column">
+                          <div class="d-flex flex-column">
                             <button
                               type="button"
                               className="btn btn-outline-light mb-4 rounded-pill"
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
-                              Ingresar
+                              Deja tu reseña
                             </button>
                           </div>
                           <div className="modal fade" id="inscriptionActivities">
@@ -191,25 +199,25 @@ export default function Activities() {
                               </div>
                             </div>
                           </div>
-                        </>
+                        </div>
                       ) : (
 
                         <button
                           type="button"
-                          className="btn btn-secondary"
+                          className="btn btn-outline-light mb-4 rounded-pill d-flex flex-column"
                           onClick={() => handleAddtoAct(a.id)}
                         >
                           Inscribirse
                         </button>
                       )}
 
-                      <div className="d-flex flex-column px-4">
+                      <div className="d-flex flex-column">
                         {!findUser ? (
                         <>
                           
                             <button
                               type="button"
-                              className="btn btn-outline-light mb-4 rounded-pill"
+                              className="btn btn-outline-light mb-4 rounded-pill "
                               data-bs-toggle="modal"
                               data-bs-target="#inscriptionActivities"
                             >
@@ -244,7 +252,7 @@ export default function Activities() {
                         {" "}
                         <button
                           type="button"
-                          className="btn btn-outline-dark ms-2"
+                          className="btn btn-outline-light mb-4 rounded-pill"
                         >
                           Deja tu reseña
                         </button>{" "}
