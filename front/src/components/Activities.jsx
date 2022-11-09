@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivities, getActivityById } from "../redux/actions/activitiesActions";
 import {
@@ -31,6 +31,7 @@ export default function Activities() {
   //hola
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Add activities to a user - Register in an activity
 
@@ -257,15 +258,14 @@ export default function Activities() {
                           </div>
                         </>
                       ) : (
-                      <Link to="/crearCalificacion">
-                        {" "}
+                     
                         <button
                           type="button"
                           className="btn btn-outline-light mb-4 rounded-pill"
+                          onClick={() => navigate(`/crearCalificacion/${a.id}`)}
                         >
                           Deja tu reseña
-                        </button>{" "}
-                      </Link>
+                        </button>
                       )}
                     </div>
                   </div>

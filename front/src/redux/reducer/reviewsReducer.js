@@ -6,6 +6,7 @@
 export const initialState = {
   reviews: [],
   detail: [],
+  reviewsActivityId: [],
 }
 
 const reviewsReducer = (state = initialState, action) => {
@@ -30,8 +31,24 @@ const reviewsReducer = (state = initialState, action) => {
       return  {
         ...state,
         detail: action.payload,
+    };
+  }
+    case 'POST_REVIEW_ACTIVITY': {
+      return {
+        ...state,
+      }
+    };
+    case 'GET_REVIEW_ACTIVITY_ID': {
+      return  {
+        ...state,
+        reviewsActivityId: action.payload,
       }
     }
+    case 'PATCH_REVIEW_ACTIVITY': {
+      return {
+        ...state,
+      }
+    };
     default:
       return state;
   }
