@@ -177,7 +177,7 @@ const Cart = () => {
     return (
       <>
         <div className="container">
-          <div className="row">
+          <div className="d-flex flex-column">
             <h3 className="display-6">Total: ${price}</h3>
             <button
               className="btn btn-outline-dark rounded-pill text-white border-white p-1"
@@ -188,10 +188,11 @@ const Cart = () => {
             </button>
             {!findUser ? (
               <>
-                <div className="col-auto">
+                <div className="d-flex flex-column">
                   <button
-                    type="button"
-                    className="btn btn-outline-dark mb-4 rounded-pill"
+                   
+                    className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+                    style={{ backgroundColor: "Indigo" }}
                     data-bs-toggle="modal"
                     data-bs-target="#procederPago"
                   >
