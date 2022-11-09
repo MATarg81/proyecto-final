@@ -51,16 +51,17 @@ export default function ProfileAllActivities() {
         </button>
         <ActivityCreate />
  
-      </div>
       <div>
         <button
           type="button"
-          class="btn btn-outline-dark"
+          className="btn btn-outline-dark rounded-pill text-white border-white p-1"
+          style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#registerActivity"
         >
           Inscriptos
         </button>
+      </div>
       </div>
       <div>
         <table className="table table-responsive-sm table-striped table-hover table-danger">
@@ -124,14 +125,14 @@ export default function ProfileAllActivities() {
                 );
               })}
             <div
-              className="modal fade"
+              className="modal fade rounded"
               id="editActivities"
               tabindex="-1"
               aria-labelledby="editActivitiesLabel"
               aria-hidden="true"
             >
-              <div className="modal-dialog">
-                <div className="modal-content">
+              <div className="modal-dialog rounded">
+                <div className="modal-content rounded">
                   <div className="modal-header">
                     <h5 className="modal-title" id="editActivitiesLabel">
                       Editar actividad

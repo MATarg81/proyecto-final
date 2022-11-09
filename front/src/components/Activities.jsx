@@ -130,6 +130,15 @@ export default function Activities() {
             </div>
           </div>
         </div>
+        <div>
+          <Link to="/inscriptos">
+            {" "}
+            <button type="button" className="btn btn-outline-dark rounded-pill text-white border-white p-1 mb-3"
+          style={{ backgroundColor: "indigo" }} >
+              Usuarios inscriptos
+            </button>{" "}
+          </Link>
+        </div>
 
         <div className=" row row-cols-1 row-cols-md-2 g-4 mx-5 p-4  animate__animated animate__backInUp" style={{ marginTop: "-55px" }}>
           {allActivities ? (
@@ -267,14 +276,7 @@ export default function Activities() {
         ) : (
         <div>Loading Activities....</div>
         )}
-        <div>
-          <Link to="/inscriptos">
-            {" "}
-            <button type="button" className="btn btn-outline-dark ms-2">
-              Usuarios inscriptos
-            </button>{" "}
-          </Link>
-        </div>
+        
       </div>
    </div>
    </div>

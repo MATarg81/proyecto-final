@@ -17,29 +17,28 @@ export default function RegisteredActivity() {
     );
 
     return(
-        <div className="row row-cols-1 row-cols-md-3 g-4 mb-4">
+        <div className="row row-cols-1 row-cols-md-1 g-4 mb-4">
         {allActivities?.map((a) => {
             return (
               <div className="col" key={a.name}>
                 <div
                   className="card h-100 m-2"
-                  style={{
-                    border: "1px solid black",
-                  }}
+                  
                 >
                 
 
                   <div
-                    className="card-body"
+                    className="card-body rounded bg-transparent border-0"
                     style={{
-                      backgroundColor: "rgba(160, 160, 160, 0.788)",
-                      padding: "0px",
+                      backgroundColor: "#FFFFDF",
+                      padding: "10px"
+                     
                     }}
                   >
-                    <h5 className="card-title">{a.name}</h5>
+                    <h5 className="card-title display-6">{a.name}</h5>
                     
                     <p className="card-text">
-                      <small className="text-muted">Usarios inscriptos:
+                      <small className="text-muted border-bottom">Usuarios inscriptos:
                       <br />
                       {a.users.map(e => " " + e.email + " / ")}
                       </small>
