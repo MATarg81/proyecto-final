@@ -63,9 +63,9 @@ function App() {
         <Route exact path="/ingreso" element={<Login />} />
         <Route exact path="/carrito" element={<Cart />} />
         <Route exact path="/tienda/:id" element={<Product />} />
-        <Route exact path="/actividades" element={<Activities />} />
+        {/* <Route exact path="/actividades" element={<Activities />} /> */}
         <Route exact path="/aboutTeam" element={<AboutTeam />} />
-        <Route exact path="/crearActividades" element={<ActivityCreate />} />
+        {/* <Route exact path="/crearActividades" element={<ActivityCreate />} /> */}
         <Route exact path="/inscriptos" element={<RegisteredActivity />} />
         <Route exact path="/crearProducto" element={<CreateProduct />} />
         <Route exact path="/reviews" element={<Reviews />} />
