@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
-import { addFav, deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
+import {
+  addFav,
+  deleteFav,
+  getAllfavs,
+} from "../redux/actionsCreator/favsActions";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import {
   getProducts,
@@ -59,7 +63,7 @@ function Shop() {
 
   // --------------- Pagination --------------
   const productsPerPage = 12;
-  const totalPages = Math.ceil(products.length/productsPerPage);
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
   const [, setOrder] = useState();
   const [input, setInput] = useState({
@@ -86,22 +90,21 @@ function Shop() {
     if (category?.length > 0) {
       dispatch(getProducts());
     }
-    if(users_state?.length === 0) {
-      dispatch(get_users())
+    if (users_state?.length === 0) {
+      dispatch(get_users());
     }
   }, [dispatch, category, users_state]);
 
-  
   //favs
   const findUser = user
-  ? users_state.find((u) => u.email === user.email)
-  : null;
-  
+    ? users_state.find((u) => u.email === user.email)
+    : null;
+
   useEffect(() => {
-    if(fav_state?.length === 0) {
-      dispatch(getAllfavs(findUser?.id))
+    if (fav_state?.length === 0) {
+      dispatch(getAllfavs(findUser?.id));
     }
-  }, [dispatch, findUser?.id, fav_state?.length])
+  }, [dispatch, findUser?.id, fav_state?.length]);
 
   function handleAddtoFav(product) {
     if (findUser) {
@@ -130,7 +133,6 @@ function Shop() {
       draggable: true,
       progress: undefined,
     }); */
-
 
   const stateOrLs = user ? fav_state : fav_LS_state;
 
@@ -169,7 +171,7 @@ function Shop() {
 
   // ----------------- filter functions ------------------
   const filterCategories = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     setPage(1);
     dispatch(filterByCategories(e.target.value));
   };
@@ -369,34 +371,86 @@ function Shop() {
                     </svg>
                   </i>
                 </a>
-                <a
-                  onClick={() => handleAddtoFav(p)}
-                  className="btn btn-sm  p-0 "
-                >
-                  <i
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    title="Agregar a favoritos"
+                {!findUser ? (
+                  <div class="d-flex flex-column">
+                    <div class="d-flex flex-column">
+                      <button
+                        data-bs-toggle="modal"
+                        data-bs-target="#favs"
+                        title="Agregar a favoritos"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill={
+                            stateOrLs.find((pr) => pr.id === p.id)
+                              ? "red"
+                              : "currentColor"
+                          }
+                          className="bi bi-heart-fill"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    <div className="modal fade" id="favs">
+                      <div className="modal-dialog bg-white">
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h4 className="modal-title">Ingresar</h4>
+                              <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                              ></button>
+                            </div>
+                            <div className="modal-body">
+                              Por favor ingresa para agregar a favoritos
+                            </div>
+                            <div className="modal-footer">
+                              <LoginButton />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <a
+                    onClick={() => handleAddtoFav(p)}
+                    className="btn btn-sm  p-0 "
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill={
-                        stateOrLs.find((pr) => pr.id === p.id)
-                          ? "red"
-                          : "currentColor"
-                      }
-                      className="bi bi-heart-fill"
-                      viewBox="0 0 16 16"
+                    <i
+                      data-toggle="tooltip"
+                      data-placement="bottom"
+                      title="Agregar a favoritos"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                      />
-                    </svg>
-                  </i>
-                </a>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill={
+                          stateOrLs.find((pr) => pr.id === p.id)
+                            ? "red"
+                            : "currentColor"
+                        }
+                        className="bi bi-heart-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                        />
+                      </svg>
+                    </i>
+                  </a>
+                )}
               </div>
             </div>
           ))}
