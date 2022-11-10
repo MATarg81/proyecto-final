@@ -6,7 +6,7 @@ import { deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { get_users } from "../redux/actionsCreator/usersActions";
+import { get_users, get_roles } from "../redux/actionsCreator/usersActions";
 
 function Favorites() {
   const dispatch = useDispatch();
@@ -18,15 +18,25 @@ function Favorites() {
   const [, setFav] = useLocalStorage("favs", favLS);
   const fav_users = useSelector((state) => state.favReducer.userFavs);
   const stateUser = useSelector((state) => state.usersReducer.users);
+  const roles = useSelector((state) => state.usersReducer.roles);
   
   // console.log(stateUser)
   // console.log(user)
-  
+
   useEffect(() => {
-    if(stateUser?.length === 0) {
+    if (roles?.length === 0) {
+      dispatch(get_roles());
+    }
+    if (roles?.length > 0 && stateUser?.length === 0) {
       dispatch(get_users());
     }
-  }, [dispatch, stateUser, fav_users]);
+  }, [roles, stateUser]);
+  
+  // useEffect(() => {
+  //   if(stateUser?.length === 0) {
+  //     dispatch(get_users());
+  //   }
+  // }, [dispatch, stateUser, fav_users]);
   
   const findUser = user ? stateUser?.find((u) => u.email === user?.email) : null;
 
