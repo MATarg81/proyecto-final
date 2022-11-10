@@ -112,6 +112,25 @@ function Shop() {
   //   if (category?.length === 0) {
   //     dispatch(getCategories());
   //   }
+  //   if (roles?.length > 0 && products?.length === 0) {
+  //     dispatch(getProducts());
+  //   }
+  // }, [dispatch, category, products]);
+
+  // useEffect(() => {
+  //   if (roles?.length === 0) {
+  //     dispatch(get_roles());
+  //   }
+  //   if (roles?.length > 0 && users_state?.length === 0) {
+  //     dispatch(get_users());
+  //   }
+  // }, [roles, users_state]);
+
+  // //Categories
+  // useEffect(() => {
+  //   if (category?.length === 0) {
+  //     dispatch(getCategories());
+  //   }
   //   if (category?.length > 0 && products?.length === 0) {
   //     dispatch(getProducts());
   //   }
