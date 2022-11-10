@@ -38,6 +38,7 @@ import Stripe from "./components/Stripe";
 import Error404 from "./components/Error404";
 import MpSuccess from "./components/MpSuccess";
 import MpError from "./components/MpError";
+import Loading from "./components/Loading";
 //import ProtectedRoute from "../src/auth/protected-route";
 //import { useAuth0 } from "@auth0/auth0-react"
 
@@ -100,6 +101,7 @@ function App() {
 
         <Route exact path="/success" element={<MpSuccess />} />
         <Route exact path="/mperror" element={<MpError />} />
+        <Route exact path="/loading" element={<Loading />} />
       </Routes>
       <Footer />
     </>
