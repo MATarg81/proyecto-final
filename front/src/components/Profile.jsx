@@ -30,7 +30,7 @@ export default function Perfil() {
     if (roles?.length === 0) {
       dispatch(get_roles());
     }
-    if (allUsers?.length === 0) {
+    if (roles?.length > 0 && usersState?.length === 0) {
       dispatch(get_users());
     }
   }, [dispatch, allUsers, usersState, roles]);
