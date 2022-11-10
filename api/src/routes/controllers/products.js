@@ -44,7 +44,6 @@ const productsId = async (idP) => {
 const postProducts = async (req, res) => {
   try {
     const { name, price, detail, image, categories, stock } = req.body;
-    //const categoriesLowerCase = categories?.map((c) => c.toLowerCase());
 
     const newProduct = await Product.create({
       name: name,
@@ -53,7 +52,7 @@ const postProducts = async (req, res) => {
       stock: stock,
       image:
         image ||
-        "https://img.freepik.com/fotos-premium/deporte-mujer-sentada-descansando-despues-entrenamiento-o-ejercicio-gimnasio-proteina-shak_10307-27.jpg?w=740",
+        ["https://img.freepik.com/fotos-premium/deporte-mujer-sentada-descansando-despues-entrenamiento-o-ejercicio-gimnasio-proteina-shak_10307-27.jpg?w=740"],
     });
 
     newProduct.addCategory(categories);
