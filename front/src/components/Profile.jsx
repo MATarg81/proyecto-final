@@ -10,9 +10,9 @@ import {
 } from "../redux/actionsCreator/usersActions";
 import ProfileProducts from "./ProfileProducts";
 import PurchesesMaded from "./purchesesMaded/purchesesMaded";
-import ProfileAllActivities from "./ProfileAllActivities";
+// import ProfileAllActivities from "./ProfileAllActivities";
 import ProfileUsers from "./ProfileUsers";
-import ProfileActivities from "./ProfileActivities";
+// import ProfileActivities from "./ProfileActivities";
 
 import { useAuth0 } from '@auth0/auth0-react';
 import EditProfile from "./EditProfile";
@@ -32,7 +32,7 @@ export default function Perfil() {
     if (roles?.length > 0 && usersState?.length === 0) {
       dispatch(get_users());
     }
-  }, []);
+  }, [roles, usersState]);
 
   const findUser =  user ? allUsers?.find( u => u.email === user.email) : null
 
@@ -82,7 +82,7 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
-              <li>
+              {/* <li>
                 <label className="nav-link align-middle px-0 ">
                   <button
                     className="btn btn-outline-dark rounded-pill text-white border-white p-1"
@@ -97,7 +97,7 @@ export default function Perfil() {
                     Mis actividades
                   </button>
                 </label>
-              </li>
+              </li> */}
 
               <li id="Historial de compras">
                 <label className="nav-link align-middle px-0">
@@ -163,7 +163,7 @@ export default function Perfil() {
                   </button>
                 </label>
               </li>
-              <li id="Actividades">
+              {/* <li id="Actividades">
                 <label className="nav-link align-middle px-0">
                   <button
                     className="btn btn-outline-dark rounded-pill text-white border-white p-1"
@@ -178,7 +178,7 @@ export default function Perfil() {
                     Actividades
                   </button>
                 </label>
-              </li>
+              </li> */}
               </div>
               }
 
@@ -276,7 +276,7 @@ export default function Perfil() {
           >
             <ProfileProducts />
           </div>
-          <div
+          {/* <div
             className="tab-pane fade"
             id="v-pills-allActivities"
             role="tabpanel"
@@ -284,8 +284,8 @@ export default function Perfil() {
             tabIndex="0"
           >
             <ProfileAllActivities />
-          </div>
-          <div
+          </div> */}
+          {/* <div
             className="tab-pane fade"
             id="v-pills-activities"
             role="tabpanel"
@@ -293,7 +293,7 @@ export default function Perfil() {
             tabIndex="0"
           >
             <ProfileActivities />
-          </div>
+          </div> */}
           <div
             className="tab-pane fade"
             id="v-pills-users"
