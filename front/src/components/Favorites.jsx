@@ -19,8 +19,8 @@ function Favorites() {
   const fav_users = useSelector((state) => state.favReducer.userFavs);
   const stateUser = useSelector((state) => state.usersReducer.users);
   
-  console.log(stateUser)
-  console.log(user)
+  // console.log(stateUser)
+  // console.log(user)
   
   useEffect(() => {
     if(stateUser?.length === 0) {
