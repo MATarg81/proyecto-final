@@ -92,23 +92,23 @@ useEffect(() => {
         {user && fav_users ? (fav_users?.map((p, index) => (
           <div class="card product-item border-0" key={index}>
             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0 h-100 ">
-              <div class="" onClick={() => navigate(`/tienda/${p.id}`)}>
+              <div class="" onClick={() => navigate(`/tienda/${p?.product.id}`)}>
                 <img
                   class="img-fluid hover-zoom bg-image"
-                  src={p.product.image}
-                  /* className="card-img-top" */ alt={p.image}
+                  src={p?.product.image}
+                  /* className="card-img-top" */ alt="imagen"
                 />
               </div>
             </div>
             <div class="card-body border-left border-right text-center">
-              <h6 class="text-truncate ">{p.name}</h6>
+              <h6 class="text-truncate ">{p?.product.name}</h6>
               <div class="d-flex justify-content-center">
-                <h6>$ {p.product?.price}</h6>
+                <h6>$ {p?.product.price}</h6>
               </div>
             </div>
             <div class="card-footer d-flex justify-content-between border text-primary">
               <a
-                onClick={() => navigate(`/tienda/${p.id}`)}
+                onClick={() => navigate(`/tienda/${p?.product.id}`)}
                 class="btn btn-sm  p-0"
               >
                 <i
