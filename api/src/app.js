@@ -11,7 +11,7 @@ const server = express();
 
 server.name = "API";
 
-server.use(cors({ origin: "*" }));
+server.use(cors({ origin: [REACT_APP_AUTH0_DOMAIN, "https://proyecto-final-one-murex.vercel.app"] }));
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
