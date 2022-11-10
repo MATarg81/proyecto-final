@@ -11,32 +11,35 @@ function MpSuccess() {
   // console.log("State en MpSuccess: ", state);
   const [, setCart] = useLocalStorage("cart", state);
   const dispatch = useDispatch();
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
   const users = useSelector((state) => state.usersReducer.users);
 
-  useEffect(() => {
-    posteo();
-    setCart([]);
-    dispatch(delAll());
-  }, []);
+  let findUser;
 
   useEffect(() => {
     if (users?.length === 0) {
       dispatch(get_users());
     }
+    findUser = user ? users?.find((u) => u.email === user.email) : null;
+    console.log(findUser);
+    if (findUser && !isLoading) {
+      dispatch(postCart(state, findUser?.id));
+      dispatch(delAll());
+      setTimeout(() => {
+        window.location.href = "/home";
+      }, 3000);
+    }
   }, [users]);
 
-  const findUser = user ? users?.find((u) => u.email === user.email) : null;
+  // useEffect(() => {
+  // }, []);
 
-  function posteo() {
-    // console.log("Posteo: ", 1)
-    dispatch(
-      postCart({
-        items: state.items,
-        id: findUser.id,
-      })
-    );
-  }
+  // function posteo() {
+  //   // console.log("Posteo: ", 1)
+  //   dispatch(
+  //     postCart(state, findUser.id)
+  //   );
+  // }
 
   return (
     <div>

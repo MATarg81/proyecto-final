@@ -79,11 +79,11 @@ export const delAll = () => {
 //   }
 // }
 
-export const postCart = ({items, id }) => {
-  console.log("postCart body: ", id);
+export const postCart = ({items}, id) => {
+
   return async function (dispatch) {
     try {
-      const res = await axios.post(`/cart`, {items, id});
+      const res = await axios.post(`/cart/${id}`, {items});
       return dispatch({
         type: POST_CART,
         payload: res,

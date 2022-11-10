@@ -4,7 +4,7 @@ const { postCart, getCart, getAllCart, cartDetail } = require("./controllers/car
 
 const router = Router();
 
-router.post('/', postCart);
+router.post('/:id', postCart);
 
 router.get('/:id', getCart);
 router.get('/', getAllCart)

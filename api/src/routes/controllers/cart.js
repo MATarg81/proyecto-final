@@ -3,7 +3,8 @@ const { Cart, Product, User } = require("../../db");
 const { putProduct } = require("./products");
 
 const postCart = async (req, res) => {
-  const { items, id } = req.body;
+  const { items } = req.body;
+  const {id} = req.params
   // console.log(items)
   let finalPrice = 0;
   items?.forEach((i) => {
@@ -11,19 +12,24 @@ const postCart = async (req, res) => {
   });
 
   try {
-    const newCartList = await Cart.create({
-      total: finalPrice,
-      userId: id,
-      productQty: items?.map((i) => [i.id, i.qty]),
-    });
+    if(items?.length > 0) {
+      const newCartList = await Cart.create({
+        total: finalPrice,
+        userId: id,
+        productQty: items?.map((i) => [i.id, i.qty]),
+      });
+  
+      await items.map(async (i) => {
+        await newCartList.addProduct(i.id);
+        const findProd = await Product.findByPk(i.id);
+        await findProd.update({ stock: findProd.stock - i.qty });
+      });
+  
+      return res.status(200).send(newCartList);
 
-    await items.map(async (i) => {
-      await newCartList.addProduct(i.id);
-      const findProd = await Product.findByPk(i.id);
-      await findProd.update({ stock: findProd.stock - i.qty });
-    });
-
-    return res.status(200).send(newCartList);
+    } else {
+      return res.status(404).send('No se pudo realizar el post')
+    }
   } catch (err) {
     console.log("problema para realizar el post: " + err);
   }
