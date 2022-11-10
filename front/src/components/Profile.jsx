@@ -24,7 +24,6 @@ export default function Perfil() {
   const{ isAuthenticated, user } = useAuth0()
 
   const dispatch = useDispatch();
-  console.log(user)
 
   useEffect(() => {
     if (roles?.length === 0) {
