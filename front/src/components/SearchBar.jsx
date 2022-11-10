@@ -31,9 +31,9 @@ export default function Searchbar({ setPage }) {
             aria-label="Buscar"
             value={search} />
           <div className="input-group-append my-1 " >
-            <span onClick={onSubmit} className="input-group-text bg-transparent text-primary rounded-pill " >
+            <button onClick={onSubmit} className="input-group-text bg-transparent text-primary rounded-pill pe-auto" >
               <i className="fa fa-search" style={{color: "indigo"}}></i>
-            </span>
+            </button>
           </div>
         </div>
       </form>
