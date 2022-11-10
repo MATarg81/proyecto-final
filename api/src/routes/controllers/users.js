@@ -63,7 +63,7 @@ async function getUsers(req, res) {
 }
 
 async function getUsersById(req, res) {
-  const { id } = req.body;
+  const { id } = req.params;
 
   const findUser = await User.findOne({
     where: { id: id },
