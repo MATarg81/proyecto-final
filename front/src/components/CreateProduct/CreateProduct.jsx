@@ -19,16 +19,17 @@ const CreateProduct = function () {
   const [input, setInput] = useState({
     name: "",
     price: 0,
-    image: "",
+    image: [],
     detail: "",
     category: "",
+    stock: "",
   });
   const handleImg = async (e) => {
     const upLoeadedImg = await upImage(e.target.files[0]);
+    input.image.push(upLoeadedImg.url);
 
     setInput({
       ...input,
-      image: upLoeadedImg.url,
     });
 
     setError(
@@ -77,12 +78,13 @@ const CreateProduct = function () {
       setInput({
         name: "",
         price: 0,
-        image: "",
+        image: [],
         category: "",
+        stock: "",
       });
-      alert("Product created succesfully!");
+      alert("Producto creado exitosamente!");
     } else {
-      alert("You must fill in all fields.");
+      alert("Debe completar todos los campos");
     }
   };
 
@@ -92,7 +94,7 @@ const CreateProduct = function () {
         <button
           type="button"
           className="btn btn-outline-dark rounded-pill text-white border-white p-1"
-          style={{backgroundColor:"indigo"}}         
+          style={{ backgroundColor: "indigo" }}
           data-bs-toggle="modal"
           data-bs-target="#createProducts"
         >
@@ -218,9 +220,31 @@ const CreateProduct = function () {
                         ))}
                         {error.categories && <p>{error.categories}</p>}
                       </div>
-
+                      <label for="stock" className="form-label">
+                        Stock
+                      </label>
+                      <input
+                        style={{ width: "600px" }}
+                        type="text"
+                        className="form-control mb-3"
+                        id="stock"
+                        aria-describedby="stock"
+                        placeholder="Stock..."
+                        value={input.stock}
+                        name="stock"
+                        required
+                        onChange={(e) => {
+                          handleChange(e);
+                        }}
+                      />
+                      {error.stock && <p>{error.stock}</p>}
                       <hr />
-                      <button type="submit" className="btn btn-primary">
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      >
                         Crear
                       </button>
                     </div>

@@ -53,7 +53,7 @@ const postProducts = async (req, res) => {
       stock: stock,
       image:
         image ||
-        "https://img.freepik.com/fotos-premium/deporte-mujer-sentada-descansando-despues-entrenamiento-o-ejercicio-gimnasio-proteina-shak_10307-27.jpg?w=740",
+        ["https://img.freepik.com/fotos-premium/deporte-mujer-sentada-descansando-despues-entrenamiento-o-ejercicio-gimnasio-proteina-shak_10307-27.jpg?w=740"],
     });
 
     newProduct.addCategory(categories);
