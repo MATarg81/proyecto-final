@@ -44,7 +44,6 @@ const productsId = async (idP) => {
 const postProducts = async (req, res) => {
   try {
     const { name, price, detail, image, categories, stock } = req.body;
-    //const categoriesLowerCase = categories?.map((c) => c.toLowerCase());
 
     const newProduct = await Product.create({
       name: name,

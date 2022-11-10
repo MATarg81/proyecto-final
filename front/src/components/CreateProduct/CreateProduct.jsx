@@ -258,8 +258,5 @@ const CreateProduct = function () {
     </div>
   );
 };
-// export default withAuthenticationRequired(CreateProduct, {
-//   onRedirecting: () => <h1>redirigiendo al login, aguarde..</h1>,
-// });
 
 export default CreateProduct;
