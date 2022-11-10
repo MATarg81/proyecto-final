@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
-import { addFav, deleteFav, getAllfavs } from "../redux/actionsCreator/favsActions";
+import {
+  addFav,
+  deleteFav,
+  getAllfavs,
+} from "../redux/actionsCreator/favsActions";
 import { addCart } from "../redux/actionsCreator/cartActions";
 import {
   getProducts,
@@ -24,11 +28,10 @@ import "animate.css/animate.min.css";
 import banner from "../imagesTeam/deportistacrop.jpg";
 import { get_users, get_roles } from "../redux/actionsCreator/usersActions";
 
-
 function Shop() {
   //-----------------hover --------------- no se usa, estoy probando como implementarlo bien
   const [isHovering, setIsHovering] = useState(false);
-  const roles = useSelector((state ) => state.usersReducer.roles)
+  const roles = useSelector((state) => state.usersReducer.roles);
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -61,7 +64,7 @@ function Shop() {
 
   // --------------- Pagination --------------
   const productsPerPage = 12;
-  const totalPages = Math.ceil(products.length/productsPerPage);
+  const totalPages = Math.ceil(products.length / productsPerPage);
 
   const [, setOrder] = useState();
   const [input, setInput] = useState({
@@ -83,17 +86,36 @@ function Shop() {
     if (roles?.length > 0 && users_state?.length === 0) {
       dispatch(get_users());
     }
-  }, [roles?.length, users_state?.length]);
+  }, [roles, users_state]);
 
   //Categories
   useEffect(() => {
     if (category?.length === 0) {
       dispatch(getCategories());
     }
-    if (category?.length > 0 && products?.length === 0) {
+    if (roles?.length > 0 && products?.length === 0) {
       dispatch(getProducts());
     }
-  }, [products?.length, category?.length]);
+  }, [dispatch, category, products]);
+
+  // useEffect(() => {
+  //   if (roles?.length === 0) {
+  //     dispatch(get_roles());
+  //   }
+  //   if (roles?.length > 0 && users_state?.length === 0) {
+  //     dispatch(get_users());
+  //   }
+  // }, [roles, users_state]);
+
+  // //Categories
+  // useEffect(() => {
+  //   if (category?.length === 0) {
+  //     dispatch(getCategories());
+  //   }
+  //   if (category?.length > 0 && products?.length === 0) {
+  //     dispatch(getProducts());
+  //   }
+  // }, [products, category]);
 
   // //Categories
   // useEffect(() => {
@@ -112,17 +134,16 @@ function Shop() {
   //   }
   // }, [dispatch, category, users_state]);
 
-  
   //favs
   const findUser = user
-  ? users_state.find((u) => u.email === user.email)
-  : null;
-  
+    ? users_state.find((u) => u.email === user.email)
+    : null;
+
   useEffect(() => {
-    if(fav_state?.length === 0) {
-      dispatch(getAllfavs(findUser?.id))
+    if (fav_state?.length === 0) {
+      dispatch(getAllfavs(findUser?.id));
     }
-  }, [dispatch, findUser?.id, fav_state?.length])
+  }, [dispatch, findUser?.id, fav_state?.length]);
 
   function handleAddtoFav(product) {
     if (findUser) {
@@ -151,7 +172,6 @@ function Shop() {
       draggable: true,
       progress: undefined,
     }); */
-
 
   const stateOrLs = user ? fav_state : fav_LS_state;
 
@@ -190,7 +210,7 @@ function Shop() {
 
   // ----------------- filter functions ------------------
   const filterCategories = (e) => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     setPage(1);
     dispatch(filterByCategories(e.target.value));
   };

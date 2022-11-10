@@ -60,17 +60,18 @@ async function getUsers(req, res) {
 async function getUsersById(req, res) {
   const { id } = req.params;
 
-  const findUser = await User.findOne({
-    where: { id: id },
-    include: {
-      model: Activity,
-    },
-  });
-  if (findUser) {
-    await findUser.save();
-    res.status(200).send(findUser);
-  } else {
-    res.status(404).send("User can't be found");
+  try {
+    const findUser = await User.findByPk(id, {
+      include: [{ model: Role }],
+    });
+    if (findUser) {
+      await findUser.save();
+      res.status(200).send(findUser);
+    } else {
+      res.status(404).send("User can't be found");
+    }
+  } catch (e) {
+    res.status(404).send(console.log(e));
   }
 }
 
