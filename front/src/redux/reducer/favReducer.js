@@ -27,7 +27,7 @@ function favReducer(state= favsInitialState, action){
             const item = action.payload          
             return {
               ...state,
-              userFavs: [...state.favs, item] 
+              userFavs: [...state.userFavs, item] 
               }
 
         case 'ADD_FAV_LS':
@@ -39,7 +39,7 @@ function favReducer(state= favsInitialState, action){
           }
 
         case REMOVE_FAV:
-            const favoritos = state.favs;    
+            const favoritos = state.userFavs;    
             const filtro = favoritos.filter((item) => item.id !== action.payload); //aca borro
             
             return {

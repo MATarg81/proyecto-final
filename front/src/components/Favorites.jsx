@@ -19,14 +19,14 @@ function Favorites() {
   const fav_users = useSelector((state) => state.favReducer.userFavs);
   const stateUser = useSelector((state) => state.usersReducer.users);
   
-  // console.log(stateUser)
+  console.log("fav_users: ", fav_users)
   // console.log(user)
   
   useEffect(() => {
     if(stateUser?.length === 0) {
       dispatch(get_users());
     }
-  }, [dispatch, stateUser, fav_users]);
+  }, [dispatch, stateUser]);
   
   const findUser = user ? stateUser?.find((u) => u.email === user?.email) : null;
 
@@ -34,7 +34,7 @@ useEffect(() => {
   if(fav_users?.length === 0){
     dispatch(getAllfavs(findUser?.id));
   }
-}, [dispatch, findUser?.id, fav_users?.length])
+}, [dispatch])
 
   
   const addProduct = (product) => {
@@ -53,8 +53,6 @@ useEffect(() => {
       alert("Producto eliminado de favoritos");
     }
   };
-
-  const stateOrLs = user ? fav_users : favLS;
 
   return (
     <div>
@@ -95,8 +93,8 @@ useEffect(() => {
               <div class="" onClick={() => navigate(`/tienda/${p.id}`)}>
                 <img
                   class="img-fluid hover-zoom bg-image"
-                  src={p.product.image}
-                  /* className="card-img-top" */ alt={p.image}
+                  src={p.product?.image}
+                  /* className="card-img-top" */ alt="imagen"
                 />
               </div>
             </div>
