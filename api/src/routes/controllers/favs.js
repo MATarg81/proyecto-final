@@ -22,12 +22,13 @@ async function getFavs(req, res) {
 async function setFav(req, res) {
   const idU = req.query.idU;
   const idP = req.query.id;
-  console.log(idP, idU, "ididididissss");
+  // console.log(idP, idU, "ididididissss");
   try {
     const findUser = await User.findByPk(idU);
     const findProduct = await Product.findByPk(idP);
+    const findFav = await Favorite.findByPk(idP)
 
-    if (findUser && findProduct) {
+    if (findUser && findProduct && !findFav) {
       const newFav = await Favorite.create();
 
       await newFav.setUser(findUser);

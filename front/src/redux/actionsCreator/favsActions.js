@@ -51,7 +51,7 @@ export function deleteFav(p, idU) {
     return async function (dispatch) {
         try {
             if(idU){
-                const url = await axios.delete(`/favorites?id=${p}&idU=${idU}`);
+                const url = axios.delete(`/favorites?id=${p}&idU=${idU}`);
                 
                 return dispatch({
                     type: REMOVE_FAV,

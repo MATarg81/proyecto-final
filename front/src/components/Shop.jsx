@@ -106,21 +106,15 @@ function Shop() {
     }
   }, [dispatch, findUser?.id, fav_state?.length]);
 
-  function handleAddtoFav(product) {
+  function handleAddtoFav(p) {
     if (findUser) {
-      const findFav = fav_state.find((prod) => prod.id === product.id);
+      const findFav = fav_state.find((prod) => prod.id === p.id);
       if (findFav) {
         dispatch(deleteFav(findFav, findUser.id));
+        alert("Producto eliminado de favoritos");
       } else {
-        dispatch(addFav(product, findUser.id));
-      }
-    } else {
-      const findFavLs = fav_LS_state.find((p) => p === product);
-      if (findFavLs) {
-        dispatch(deleteFav(findFavLs));
-      } else {
-        dispatch(addFav(product));
-        setFav(fav_LS_state);
+        dispatch(addFav(p, findUser.id));
+        alert("Producto agregado favoritos");
       }
     }
   }
@@ -133,8 +127,6 @@ function Shop() {
       draggable: true,
       progress: undefined,
     }); */
-
-  const stateOrLs = user ? fav_state : fav_LS_state;
 
   // useEffect(() => { //si cambia el estado local FavState , entonces setIteame el LS
   //   localStorage.setItem('favs', JSON.stringify(favState))
@@ -271,7 +263,7 @@ function Shop() {
               >
                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
               </svg>
-              <span className="badge text-dark ">({stateOrLs?.length})</span>
+              <span className="badge text-dark ">({fav_state?.length})</span>
             </Link>
             <Link
               to="/carrito"
@@ -392,7 +384,7 @@ function Shop() {
                           width="15"
                           height="15"
                           fill={
-                            stateOrLs.find((pr) => pr.id === p.id)
+                            fav_state.find((pr) => pr.id === p.id)
                               ? "red"
                               : "currentColor"
                           }
@@ -406,7 +398,6 @@ function Shop() {
                         </svg>
                       </button>
                     </i>
-
                     <div
                       className="modal fade"
                       id="favs"
@@ -433,6 +424,7 @@ function Shop() {
                         </div>
                       </div>
                     </div>
+                              
                   </div>
                 ) : (
                   <a
@@ -449,7 +441,7 @@ function Shop() {
                         width="16"
                         height="16"
                         fill={
-                          stateOrLs.find((pr) => pr.id === p.id)
+                          fav_state.find((pr) => pr.id === p.id)
                             ? "red"
                             : "currentColor"
                         }
