@@ -1,11 +1,16 @@
 const { Router } = require("express");
-const {getCategory, addCategory }= require("./controllers/category");
+const {
+  getCategory,
+  getAllCategories,
+  addCategory,
+} = require("./controllers/category");
 
 //Trae todos los Category desde la DB
 
 const router = Router();
 
 router.get("/", getCategory);
-router.post('/', addCategory)
+router.get("/getAll", getAllCategories);
+router.post("/", addCategory);
 
 module.exports = router;

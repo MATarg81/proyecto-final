@@ -92,7 +92,7 @@ async function addActivitiesReviews(req, res) {
 
       });
       
-      await newReview.setActivity(activity);
+      await newReview.setActivity(findActivity.id);
       await newReview.setUser(user) //id
 
       return res
@@ -124,7 +124,7 @@ async function updateActivityReviews(req, res) {
       },
       {
         where: {
-          id: Number(id),
+          id: Number(findActivity.id),
         },
       });
 

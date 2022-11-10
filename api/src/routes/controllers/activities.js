@@ -1,13 +1,51 @@
 const { Activity, User, Role } = require("../../db");
 const jsonData = require("../../../activities.json");
 
+const allActivities = async () => {
+  // const dataActivity = [];
+  //       const results = jsonData.results.map(db => {
+  //         dataActivity.push({
+  //             name: db.name,
+  //             detail: db.detail,
+  //             days: db.days,
+  //             times: db.times,
+  //             img: db.img,
+  //       })
+  //     });
+  //       return dataActivity;
+
+  const dbData = await Activity.count();
+
+  try {
+    if (!dbData) {
+      const results = jsonData.results.map(async (a) => {
+        const newRev = await Activity.create({
+          name: a.name,
+          detail: a.detail,
+          days: a.days,
+          times: a.times,
+          img: a.img,
+          price: a.price,
+        });
+        await newRev.addUser(a.user);
+      });
+      return results;
+    } else {
+      const dbActivity = await Activity.findAll({
+        include: [
+          { model: User, attributes: ["email"], include: [{ model: Role }] },
+        ],
+      });
+      return dbActivity;
+    }
+  } catch (error) {
+    console.log("Problemas en la función dbActivity()" + error);
+  }
+};
+
 const activitiesId = async (id) => {
   try {
-    const totalActivities = await Activity.findAll({
-      include: [
-        { model: User, attributes: ["email"], include: [{ model: Role }] },
-      ],
-    });
+    const totalActivities = await allActivities();
     const activityId = totalActivities.find((r) => r.id.toString() === id);
 
     return activityId;
@@ -19,11 +57,7 @@ const activitiesId = async (id) => {
 const getActivities = async (req, res) => {
   try {
     const { name } = req.query;
-    const totalActivities = await Activity.findAll({
-      include: [
-        { model: User, attributes: ["email"], include: [{ model: Role }] },
-      ],
-    });
+    const totalActivities = await allActivities();
     if (name) {
       const activitiesName = totalActivities.filter((r) =>
         r.name.toLowerCase().includes(name.toString().toLowerCase())
@@ -76,33 +110,30 @@ const deleteActivity = async (req, res) => {
 const addActivity = async (req, res) => {
   const { name, detail, days, times, img, email, price } = req.body;
 
-  const dbActivity = await Activity.findOne({ where: { name: name } });
+  const dbActivity = await Activity.count();
 
   try {
-    if (!dbActivity) {
-      const newActivity = await Activity.create({
-        name: name,
-        detail: detail,
-        days: days,
-        times: times,
-        img: img || "https://eltarget.com/wp-content/uploads/2018/03/%C2%A1Los-10-deportes-mas-practicados-en-todo-el-mundo-696x339.jpg",
-        price,
-      });
+    const newActivity = await Activity.create({
+      name: name,
+      detail: detail,
+      days: days,
+      times: times,
+      img:
+        img ||
+        "https://eltarget.com/wp-content/uploads/2018/03/%C2%A1Los-10-deportes-mas-practicados-en-todo-el-mundo-696x339.jpg",
+      price,
+    });
 
-      newActivity.addUser(email);
+    newActivity.addUser(email);
 
-      return res.status(200).json(newActivity);
-    } else {
-      res.status(404).send(`Actividad "${name + " "}" already exists`);
-    }
-  } catch(e) {
-    res.status(404).send((e));
+    return res.status(200).json(newActivity);
+  } catch {
+    res.status(404).send(`Actividad "${name + " "}" already exists`);
   }
 };
 
 const patchActivity = async (req, res) => {
   const body = req.body;
-
   try {
     await Activity.update(
       {

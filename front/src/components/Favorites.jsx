@@ -34,7 +34,7 @@ useEffect(() => {
   if(fav_users?.length === 0){
     dispatch(getAllfavs(findUser?.id));
   }
-}, [fav_users, dispatch, findUser])
+}, [dispatch, findUser?.id, fav_users?.length])
 
   
   const addProduct = (product) => {
@@ -45,7 +45,7 @@ useEffect(() => {
 
   const handleDeleteFav = (p) => {
     if (findUser) {
-      dispatch(deleteFav(p.product.id, findUser.id));
+      dispatch(deleteFav(p.product?.id, findUser.id));
       alert("Producto eliminado de favoritos");
     } else {
       dispatch(deleteFav(p.product.id));
@@ -103,7 +103,7 @@ useEffect(() => {
             <div class="card-body border-left border-right text-center">
               <h6 class="text-truncate ">{p.name}</h6>
               <div class="d-flex justify-content-center">
-                <h6>$ {p.product.price}</h6>
+                <h6>$ {p.product?.price}</h6>
               </div>
             </div>
             <div class="card-footer d-flex justify-content-between border text-primary">
