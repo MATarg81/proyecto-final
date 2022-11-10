@@ -44,11 +44,12 @@ import Loading from "./components/Loading";
 
 function App() {
   //Agregar ruta de /detail/id
-  //const dispatch = useDispatch();
-  //useEffect(() => {
-  //  dispatch(get_roles());
-  //  dispatch(get_users());
-  //}, []);
+
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   // dispatch(get_roles());
+  //   // dispatch(get_users());
+  // }, []);
 
   return (
     <>

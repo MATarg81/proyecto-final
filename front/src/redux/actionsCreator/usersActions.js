@@ -31,7 +31,7 @@ export function get_users_by_id(id) {
   return async function (dispatch) {
     try {
 
-      const { data } = await axios.get(`/users/`+ id);
+      const { data } = await axios.get(`/users/`, id);
       // console.log("soy details " + data);
 
       return dispatch({ type: GET_USERS_BY_ID, payload: data });
