@@ -95,7 +95,7 @@ export default function Perfil() {
                     aria-controls="v-pills-activities"
                     aria-selected="true"
                   >
-                    Actividades
+                    Mis actividades
                   </button>
                 </label>
               </li>
