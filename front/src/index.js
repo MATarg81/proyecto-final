@@ -14,7 +14,7 @@ import Auth0ProviderWithHistory from "./auth/auth0-provider-with-history";
 
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_AUTH0_DOMAIN || "http://localhost:3001";
+axios.defaults.baseURL = process.env.REACT_APP_API || "https://proyecto-final-one-murex.vercel.app";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
