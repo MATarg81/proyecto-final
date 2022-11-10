@@ -93,7 +93,7 @@ function Shop() {
     if (category?.length > 0 && products?.length === 0) {
       dispatch(getProducts());
     }
-  }, [category?.length, category?.length]);
+  }, [products?.length, category?.length]);
 
   // //Categories
   // useEffect(() => {
