@@ -24,6 +24,7 @@ function MpSuccess() {
     console.log(findUser);
     if (findUser && !isLoading) {
       dispatch(postCart(state, findUser?.id));
+      setCart([])
       dispatch(delAll());
       setTimeout(() => {
         window.location.href = "/home";
