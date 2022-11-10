@@ -21,25 +21,26 @@ async function getFavs(req, res) {
 
 async function setFav(req, res) {
   const idU = req.query.idU;
-  const idP = req.query.id;
-  // console.log(idP, idU, "ididididissss");
-  try {
-    const findUser = await User.findByPk(idU);
-    const findProduct = await Product.findByPk(idP);
-    const findFav = await Favorite.findByPk(idP)
+  const idP = req.query.idP;
 
-    if (findUser && findProduct && !findFav) {
+  try {
+    const findFav = await Favorite.findAll({ where: { userId: idU } });
+
+    const find = await findFav.find(async (f) => {
+      (await f.productId) === idP;
+    });
+
+    if (!find) {
       const newFav = await Favorite.create();
 
-      await newFav.setUser(findUser);
-      await newFav.setProduct(findProduct);
-
-      res.status(200).json(findProduct);
+      await newFav.setUser(idU);
+      await newFav.setProduct(idP);
+      return res.status(200).json(findFav);
     } else {
       res.status(404).send("Fallo en agregar favs");
     }
   } catch (error) {
-    res.status(404).send(error);
+    res.status(404).send(console.log(error));
   }
 }
 

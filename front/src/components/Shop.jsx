@@ -97,24 +97,25 @@ function Shop() {
 
   //favs
   const findUser = user
-    ? users_state.find((u) => u.email === user.email)
+    ? users_state?.find((u) => u.email === user.email)
     : null;
 
   useEffect(() => {
-    if (fav_state?.length === 0) {
+    if (fav_state?.length === 1) {
       dispatch(getAllfavs(findUser?.id));
     }
-  }, [dispatch, findUser?.id, fav_state?.length]);
+  }, [dispatch]);
 
   function handleAddtoFav(p) {
     if (findUser) {
-      const findFav = fav_state.find((prod) => prod.id === p.id);
+      const findFav = fav_state?.find((prod) => prod.product.id === p.id);
+
       if (findFav) {
-        dispatch(deleteFav(findFav, findUser.id));
-        alert("Producto eliminado de favoritos");
+        dispatch(deleteFav(findFav.product.id, findUser.id));
+
       } else {
         dispatch(addFav(p, findUser.id));
-        alert("Producto agregado favoritos");
+
       }
     }
   }
@@ -384,7 +385,7 @@ function Shop() {
                           width="15"
                           height="15"
                           fill={
-                            fav_state.find((pr) => pr.id === p.id)
+                            fav_state?.find((pr) => pr.product.id === p.id)
                               ? "red"
                               : "currentColor"
                           }
@@ -441,7 +442,7 @@ function Shop() {
                         width="16"
                         height="16"
                         fill={
-                          fav_state.find((pr) => pr.id === p.id)
+                          fav_state?.map((pr) => pr.id === p.id)
                             ? "red"
                             : "currentColor"
                         }
