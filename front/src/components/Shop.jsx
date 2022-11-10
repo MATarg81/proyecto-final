@@ -83,7 +83,7 @@ function Shop() {
     if (roles?.length > 0 && users_state?.length === 0) {
       dispatch(get_users());
     }
-  }, [roles, users_state]);
+  }, [roles?.length, users_state?.length]);
 
   //Categories
   useEffect(() => {
@@ -93,7 +93,7 @@ function Shop() {
     if (category?.length > 0 && products?.length === 0) {
       dispatch(getProducts());
     }
-  }, [category, products]);
+  }, [category?.length, category?.length]);
 
   // //Categories
   // useEffect(() => {
