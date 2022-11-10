@@ -22,11 +22,13 @@ import LoginButton from "./Login/LoginButton";
 import { useLocalStorage } from "../localStorage/useLocalStorage";
 import "animate.css/animate.min.css";
 import banner from "../imagesTeam/deportistacrop.jpg";
-import { get_users } from "../redux/actionsCreator/usersActions";
+import { get_users, get_roles } from "../redux/actionsCreator/usersActions";
+
 
 function Shop() {
   //-----------------hover --------------- no se usa, estoy probando como implementarlo bien
   const [isHovering, setIsHovering] = useState(false);
+  const roles = useSelector((state ) => state.usersReducer.roles)
 
   const handleMouseEnter = () => {
     setIsHovering(true);
@@ -74,22 +76,41 @@ function Shop() {
 
   // --------------- Data call -------------
 
+  useEffect(() => {
+    if (roles?.length === 0) {
+      dispatch(get_roles());
+    }
+    if (roles?.length > 0 && users_state?.length === 0) {
+      dispatch(get_users());
+    }
+  }, [roles, users_state]);
+
   //Categories
   useEffect(() => {
     if (category?.length === 0) {
       dispatch(getCategories());
     }
-  }, [dispatch, category]);
-
-  //Products
-  useEffect(() => {
-    if (category?.length > 0) {
+    if (category?.length > 0 && products?.length === 0) {
       dispatch(getProducts());
     }
-    if(users_state?.length === 0) {
-      dispatch(get_users())
-    }
-  }, [dispatch, category, users_state]);
+  }, [category, products]);
+
+  // //Categories
+  // useEffect(() => {
+  //   if (category?.length === 0) {
+  //     dispatch(getCategories());
+  //   }
+  // }, [dispatch, category]);
+
+  // //Products
+  // useEffect(() => {
+  //   if (category?.length > 0) {
+  //     dispatch(getProducts());
+  //   }
+  //   if(users_state?.length === 0) {
+  //     dispatch(get_users())
+  //   }
+  // }, [dispatch, category, users_state]);
 
   
   //favs
