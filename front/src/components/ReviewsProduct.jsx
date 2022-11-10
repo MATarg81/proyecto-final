@@ -91,7 +91,7 @@ function Reviews() {
   useEffect(() => {
     dispatch(getReviewsProductId(id));
     setContent();
-  }, []);
+  }, [detail]);
 
   const score = (score) => {
     switch (true) {
