@@ -24,7 +24,7 @@ router.use("/categories", category);
 router.use("/activities", activities);
 router.use("/reviews", reviews);
 router.use("/cart", cart);
-router.use("/payment/", payment);
+router.use("/payment", payment);
 router.use("/favorites", favs);
 router.use("/profile/actividades", registerActivity);
 
